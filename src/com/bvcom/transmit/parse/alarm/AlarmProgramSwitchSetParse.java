@@ -15,10 +15,10 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.alarm.AlarmProgramSwitchSetVO;
 
-//±¨¾¯¿ª¹Ø£¨½ÚÄ¿Ïà¹Ø£©
+//æŠ¥è­¦å¼€å…³ï¼ˆèŠ‚ç›®ç›¸å…³ï¼‰
 public class AlarmProgramSwitchSetParse {
 	private static Logger log = Logger.getLogger(AlarmProgramSwitchSetParse.class.getSimpleName());
-	//½ÚÄ¿±¨¾¯¿ª¹Ø½âÎöxmlµÃµ½Í¨µÀºÅµÄÊı×é
+	//èŠ‚ç›®æŠ¥è­¦å¼€å…³è§£æxmlå¾—åˆ°é€šé“å·çš„æ•°ç»„
 	@SuppressWarnings("unchecked")
 	public List<AlarmProgramSwitchSetVO> getIndexByDownXml(Document document){
 		List<AlarmProgramSwitchSetVO> indexlist = new ArrayList();
@@ -38,7 +38,7 @@ public class AlarmProgramSwitchSetParse {
 		
 	}
 	
-	//½ÚÄ¿±¨¾¯¿ª¹Ø½âÎö»Ø¸´µÄxml¶ÔÏó
+	//èŠ‚ç›®æŠ¥è­¦å¼€å…³è§£æå›å¤çš„xmlå¯¹è±¡
 	@SuppressWarnings("unchecked")
 	public AlarmProgramSwitchSetVO getReturnByXml(Document document){
 		AlarmProgramSwitchSetVO vo = new AlarmProgramSwitchSetVO();
@@ -49,14 +49,14 @@ public class AlarmProgramSwitchSetParse {
 		int value  = Integer.parseInt(Return.attribute("Value").getValue());
 		if(!type.equals("AlarmProgramSwitchSet")){
 			vo.setReturnValue(1);
-			vo.setComment("½ÚÄ¿±¨¾¯¿ª¹ØxmlµÄtype´íÎó");
+			vo.setComment("èŠ‚ç›®æŠ¥è­¦å¼€å…³xmlçš„typeé”™è¯¯");
 			return vo;
 		}
 		vo.setReturnValue(value);
 		return vo;
 	}
 	
-	// ½ÚÄ¿±¨¾¯¿ª¹Ø»Ø¸´xml´ò°ü
+	// èŠ‚ç›®æŠ¥è­¦å¼€å…³å›å¤xmlæ‰“åŒ…
 	public String ReturnXMLByURL(MSGHeadVO head, int value) {
 
 		String xml = null;
@@ -66,9 +66,9 @@ public class AlarmProgramSwitchSetParse {
 		+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 		+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"AlarmProgramSwitchSet\" Value=\"0\" Desc=\"³É¹¦\"/>";
+			xml += "<Return Type=\"AlarmProgramSwitchSet\" Value=\"0\" Desc=\"æˆåŠŸ\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"AlarmProgramSwitchSet\" Value=\"1\" Desc=\"Ê§°Ü\"/>";
+			xml += "<Return Type=\"AlarmProgramSwitchSet\" Value=\"1\" Desc=\"å¤±è´¥\"/>";
 			xml += "</Msg>";
 			return xml;
 		}
@@ -77,7 +77,7 @@ public class AlarmProgramSwitchSetParse {
 
 	}
 	/**
-	 * ½âÎö³ö½ÚÄ¿±¨¾¯¿ª¹Ø×´Ì¬ ĞÅÏ¢Èë¿â
+	 * è§£æå‡ºèŠ‚ç›®æŠ¥è­¦å¼€å…³çŠ¶æ€ ä¿¡æ¯å…¥åº“
 	 * @param document
 	 * JI LONG  2011-5-12 
 	 */
@@ -105,7 +105,7 @@ public class AlarmProgramSwitchSetParse {
 				}
 			}
         }catch (Exception ex) {
-        	log.error("½âÎö½ÚÄ¿¿ª¹Ø´íÎó"+ex);
+        	log.error("è§£æèŠ‚ç›®å¼€å…³é”™è¯¯"+ex);
         }
 	    //System.out.println(alarmSwitchList);
 	    dao.save(alarmSwitchList);

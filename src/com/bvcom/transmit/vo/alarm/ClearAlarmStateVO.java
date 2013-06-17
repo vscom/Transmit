@@ -2,7 +2,7 @@ package com.bvcom.transmit.vo.alarm;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//±¨¾¯×´Ì¬Çå³ı
+//æŠ¥è­¦çŠ¶æ€æ¸…é™¤
 public class ClearAlarmStateVO {
 	
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -11,7 +11,7 @@ public class ClearAlarmStateVO {
 	
 	private int ReturnValue;
     
-    private String Comment;//Ê§°ÜÔ­Òò
+    private String Comment;//å¤±è´¥åŸå› 
 
 	public MSGHeadVO getMSGHead() {
 		return MSGHead;

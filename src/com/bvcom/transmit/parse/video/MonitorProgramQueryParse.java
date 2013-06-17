@@ -14,9 +14,9 @@ import com.bvcom.transmit.vo.video.MonitorProgramQueryVO;
 
 public class MonitorProgramQueryParse {
 	/**
-	 * ĞÂÔö·½·¨½âÎöxml»ñÈ¡Æµµã¼¯ºÏ
-	 * @param document½âÎö¶ÔÏó
-	 * @return ÆµµãµÄ¼¯ºÏ
+	 * æ–°å¢æ–¹æ³•è§£æxmlè·å–é¢‘ç‚¹é›†åˆ
+	 * @param documentè§£æå¯¹è±¡
+	 * @return é¢‘ç‚¹çš„é›†åˆ
 	 */
 	public List<String> getFreqXml(Document document){
 		List<String> freqList=new ArrayList<String>();
@@ -121,9 +121,9 @@ public class MonitorProgramQueryParse {
         strBuf.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuf.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">\r\n");
         if(0==value){
-            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r\n");
+            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r\n");
         }else if(1==value){
-            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"Ê§°Ü\"/>\r\n");
+            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"å¤±è´¥\"/>\r\n");
         }
         strBuf.append("<ReturnInfo>\r\n");
         strBuf.append("<RealStreamURL URL=\""+ rtvsURL +"\"/>\r\n");

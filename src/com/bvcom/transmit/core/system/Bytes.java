@@ -1,17 +1,17 @@
 package com.bvcom.transmit.core.system;
 
 /** *//**  
- * byte²Ù×÷Àà.  
+ * byteæ“ä½œç±».  
  * @author amg * @version 1.0   
- * Creation date: 2008-4-30 - ÏÂÎç04:57:23  
+ * Creation date: 2008-4-30 - ä¸‹åˆ04:57:23  
  */  
 public class Bytes {   
     /** *//**  
-     * ÓÉÓÚString.subString¶Ôºº×Ö´¦Àí´æÔÚÎÊÌâ£¨°ÑÒ»¸öºº×ÖÊÓÎªÒ»¸ö×Ö½Ú)£¬Òò´ËÔÚ  
-     * °üº¬ºº×ÖµÄ×Ö·û´®Ê±´æÔÚÒş»¼£¬ÏÖµ÷ÕûÈçÏÂ£º  
-     * @param src Òª½ØÈ¡µÄ×Ö·û´®  
-     * @param start_idx ¿ªÊ¼×ø±ê£¨°üÀ¨¸Ã×ø±ê)  
-     * @param end_idx   ½ØÖ¹×ø±ê£¨°üÀ¨¸Ã×ø±ê£©  
+     * ç”±äºString.subStringå¯¹æ±‰å­—å¤„ç†å­˜åœ¨é—®é¢˜ï¼ˆæŠŠä¸€ä¸ªæ±‰å­—è§†ä¸ºä¸€ä¸ªå­—èŠ‚)ï¼Œå› æ­¤åœ¨  
+     * åŒ…å«æ±‰å­—çš„å­—ç¬¦ä¸²æ—¶å­˜åœ¨éšæ‚£ï¼Œç°è°ƒæ•´å¦‚ä¸‹ï¼š  
+     * @param src è¦æˆªå–çš„å­—ç¬¦ä¸²  
+     * @param start_idx å¼€å§‹åæ ‡ï¼ˆåŒ…æ‹¬è¯¥åæ ‡)  
+     * @param end_idx   æˆªæ­¢åæ ‡ï¼ˆåŒ…æ‹¬è¯¥åæ ‡ï¼‰  
      * @return  
      */  
     public static String substring(String src, int start_idx, int end_idx){   

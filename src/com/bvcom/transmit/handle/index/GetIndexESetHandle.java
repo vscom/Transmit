@@ -33,33 +33,33 @@ public class GetIndexESetHandle {
 	private UtilXML utilXML = new UtilXML();
 
 	/**
-	 * ÔËĞĞ»·¾³Ö¸±ê²éÑ¯
-	 * Ö±½Ó·µ»Øµ±Ç°»úÆ÷µÄĞÅÏ¢.
+	 * è¿è¡Œç¯å¢ƒæŒ‡æ ‡æŸ¥è¯¢
+	 * ç›´æ¥è¿”å›å½“å‰æœºå™¨çš„ä¿¡æ¯.
 	 */
 	@SuppressWarnings("unchecked")
 	public void downXML() {
 		GetIndexESetParse indexEsetp = new GetIndexESetParse();
 		List<GetIndexESetVO> volist = new ArrayList();
-		volist.add(this.getTEMPERing());//ÎÂ¶È
-		volist.add(this.getETing());//µçÑ¹
-		volist.add(this.getAQUOSITYing());//Êª¶È
-		volist.add(this.getSTATing());//×´Ì¬
+		volist.add(this.getTEMPERing());//æ¸©åº¦
+		volist.add(this.getETing());//ç”µå‹
+		volist.add(this.getAQUOSITYing());//æ¹¿åº¦
+		volist.add(this.getSTATing());//çŠ¶æ€
 		volist.add(this.getCPUing());//cpu
-		volist.add(this.getHDing());//Ó²ÅÌ
-		volist.add(this.getEMSing());//ÄÚ´æ
+		volist.add(this.getHDing());//ç¡¬ç›˜
+		volist.add(this.getEMSing());//å†…å­˜
 		
 		String upString = indexEsetp.ReturnXMLByURL(this.bsData, volist, 0);
 		
 		try {
 			utilXML.SendUpXML(upString, bsData);
 		} catch (CommonException e) {
-			log.error("ÔËĞĞ»·¾³Ö¸±ê²éÑ¯»Ø¸´Ê§°Ü: " + e.getMessage());
+			log.error("è¿è¡Œç¯å¢ƒæŒ‡æ ‡æŸ¥è¯¢å›å¤å¤±è´¥: " + e.getMessage());
 		}
 		
-		//Èë¿â²Ù×÷
+		//å…¥åº“æ“ä½œ
 		
 	}
-	//½«µÃµ½µÄÔËĞĞ»·¾³Êı¾İlistÈë¿â
+	//å°†å¾—åˆ°çš„è¿è¡Œç¯å¢ƒæ•°æ®listå…¥åº“
 	public void insterEtable(List<GetIndexESetVO> volist){
 		StringBuffer strBuff = new StringBuffer();
         
@@ -77,24 +77,24 @@ public class GetIndexESetHandle {
 	            	 strBuff.append("','");
 	        }
 	        strBuff.append(")");
-	        log.info("ÔËĞĞ»·¾³Êı¾İ¿â£º" + strBuff.toString());
+	        log.info("è¿è¡Œç¯å¢ƒæ•°æ®åº“ï¼š" + strBuff.toString());
 	        
             statement = conn.createStatement();
             statement.executeUpdate(strBuff.toString());
             
         } catch (Exception e) {
-            log.error("ÔËĞĞ»·¾³Êı¾İ¿â´íÎó: " + e.getMessage());
+            log.error("è¿è¡Œç¯å¢ƒæ•°æ®åº“é”™è¯¯: " + e.getMessage());
         } finally {
             try {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("ÔËĞĞ»·¾³Êı¾İ¿â¹Ø±Õ´íÎó:"+e.getMessage());
+				log.error("è¿è¡Œç¯å¢ƒæ•°æ®åº“å…³é—­é”™è¯¯:"+e.getMessage());
 				e.printStackTrace();
 			}
 	    }
-        log.info("ÔËĞĞ»·¾³Êı¾İ¿â³É¹¦!");
+        log.info("è¿è¡Œç¯å¢ƒæ•°æ®åº“æˆåŠŸ!");
 	}
 	public GetIndexESetVO getCPUing(){
 		GetIndexESetVO vo = new GetIndexESetVO();
@@ -113,16 +113,16 @@ public class GetIndexESetHandle {
 	public GetIndexESetVO getHDing(){
 		GetIndexESetVO vo = new GetIndexESetVO();
 		vo.setType(55);
-		vo.setDesc("Ó²ÅÌ");
+		vo.setDesc("ç¡¬ç›˜");
 		File[] roots = File.listRoots();
         double constm = 1024 * 1024 * 1024 ;
         double total = 1d;
         double using = 1d;
         for (File _file : roots) {
 //            System.out.println(_file.getPath());
-//            System.out.println("Ê£Óà¿Õ¼ä = " + doubleFormat(_file.getFreeSpace()/constm)+" G");
-//            System.out.println("ÒÑÊ¹ÓÃ¿Õ¼ä = " + doubleFormat(_file.getUsableSpace()/constm)+" G");
-//            System.out.println(_file.getPath()+"ÅÌ×Ü´óĞ¡ = " + doubleFormat(_file.getTotalSpace()/constm)+" G");
+//            System.out.println("å‰©ä½™ç©ºé—´ = " + doubleFormat(_file.getFreeSpace()/constm)+" G");
+//            System.out.println("å·²ä½¿ç”¨ç©ºé—´ = " + doubleFormat(_file.getUsableSpace()/constm)+" G");
+//            System.out.println(_file.getPath()+"ç›˜æ€»å¤§å° = " + doubleFormat(_file.getTotalSpace()/constm)+" G");
 //            System.out.println();
         	
 //            total+=_file.getTotalSpace();
@@ -136,33 +136,33 @@ public class GetIndexESetHandle {
 	public GetIndexESetVO getSTATing(){
 		GetIndexESetVO vo = new GetIndexESetVO();
 		vo.setType(53);
-		vo.setDesc("×´Ì¬");
+		vo.setDesc("çŠ¶æ€");
 		vo.setValue(this.getint1To100());
 		return vo;
 	}
 	public GetIndexESetVO getTEMPERing(){
 		GetIndexESetVO vo = new GetIndexESetVO();
 		vo.setType(50);
-		vo.setDesc("ÎÂ¶È");
+		vo.setDesc("æ¸©åº¦");
 		vo.setValue(this.getint1To100());
 		return vo;
 	}
 	public GetIndexESetVO getAQUOSITYing(){
 		GetIndexESetVO vo = new GetIndexESetVO();
 		vo.setType(52);
-		vo.setDesc("Êª¶È");
+		vo.setDesc("æ¹¿åº¦");
 		vo.setValue(this.getint1To100());
 		return vo;
 	}
 	public GetIndexESetVO getEMSing(){
 		GetIndexESetVO vo = new GetIndexESetVO();
 		vo.setType(56);
-		vo.setDesc("ÄÚ´æ");
+		vo.setDesc("å†…å­˜");
 		IMonitorService service = new MonitorServiceImpl();   
         try {
 			MonitorInfoBean monitorInfo = service.getMonitorInfoBean();
-			long cout = monitorInfo.getTotalMemorySize();//×ÜÎïÀíÄÚ´æ
-			long emsusing = cout-monitorInfo.getFreeMemory();//Ê¹ÓÃµÄÎïÀíÄÚ´æ
+			long cout = monitorInfo.getTotalMemorySize();//æ€»ç‰©ç†å†…å­˜
+			long emsusing = cout-monitorInfo.getFreeMemory();//ä½¿ç”¨çš„ç‰©ç†å†…å­˜
 			vo.setValue((int)(emsusing/cout));
 		} catch (Exception e) {
 			vo.setValue(73);
@@ -173,16 +173,16 @@ public class GetIndexESetHandle {
 	public GetIndexESetVO getETing(){
 		GetIndexESetVO vo = new GetIndexESetVO();
 		vo.setType(51);
-		vo.setDesc("µçÑ¹");
+		vo.setDesc("ç”µå‹");
 		vo.setValue(this.getint1To100());
 		return vo;
 	}
 	public static String doubleFormat(double d){   
-        //DecimalFormat df = new DecimalFormat("0.##");   //Ğ¡ÊıµãºóÁ½Î»
-        DecimalFormat df = new DecimalFormat("0");   //È¡ÕûÊı
+        //DecimalFormat df = new DecimalFormat("0.##");   //å°æ•°ç‚¹åä¸¤ä½
+        DecimalFormat df = new DecimalFormat("0");   //å–æ•´æ•°
         return df.format(d);                   
     }
-	//»ñÈ¡Ëæ»úÊı
+	//è·å–éšæœºæ•°
 	public int getint1To100(){
 		return (int) (Math.random() * 100);
 	}

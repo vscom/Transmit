@@ -36,28 +36,28 @@ public class AlarmSearchESetHandle {
 	}
 
 	/**
-	 * ±¨¾¯ÉÏ±¨Ö¸±ê²éÑ¯
-	 * Ö±½Ó·µ»Øµ±Ç°»úÆ÷µÄĞÅÏ¢.
+	 * æŠ¥è­¦ä¸ŠæŠ¥æŒ‡æ ‡æŸ¥è¯¢
+	 * ç›´æ¥è¿”å›å½“å‰æœºå™¨çš„ä¿¡æ¯.
 	 */
 	@SuppressWarnings("unchecked")
 	public void downXML() {
 		AlarmSearchESetParse alarmsearchp = new AlarmSearchESetParse();
 		List<AlarmSearchESetVO> volist = new ArrayList();
-		volist.add(this.getTEMPERing());//ÎÂ¶È
-		volist.add(this.getETing());//µçÑ¹
-		volist.add(this.getAQUOSITYing());//Êª¶È
-		volist.add(this.getSTATing());//×´Ì¬
+		volist.add(this.getTEMPERing());//æ¸©åº¦
+		volist.add(this.getETing());//ç”µå‹
+		volist.add(this.getAQUOSITYing());//æ¹¿åº¦
+		volist.add(this.getSTATing());//çŠ¶æ€
 		volist.add(this.getCPUing());//cpu
-		//volist.add(this.getHDing());//Ó²ÅÌ
-		volist.add(this.getEMSing());//ÄÚ´æ
+		//volist.add(this.getHDing());//ç¡¬ç›˜
+		volist.add(this.getEMSing());//å†…å­˜
 		String upString = alarmsearchp.ReturnXMLByURL(this.bsData, volist, 0);
 		try {
 			utilXML.SendUpXML(upString, bsData);
 		} catch (CommonException e) {
-			log.error("±¨¾¯ÉÏ±¨Ö¸±ê²éÑ¯»Ø¸´Ê§°Ü: " + e.getMessage());
+			log.error("æŠ¥è­¦ä¸ŠæŠ¥æŒ‡æ ‡æŸ¥è¯¢å›å¤å¤±è´¥: " + e.getMessage());
 		}
 	}
-	//½«µÃµ½µÄ»·¾³Êı¾İlistÈë¿â
+	//å°†å¾—åˆ°çš„ç¯å¢ƒæ•°æ®listå…¥åº“
 	public void insterEtable(List<AlarmSearchESetVO> volist){
 		StringBuffer strBuff = new StringBuffer();
         
@@ -75,24 +75,24 @@ public class AlarmSearchESetHandle {
 	            	 strBuff.append("','");
 	        }
 	        strBuff.append(")");
-	        log.info("ÔËĞĞ»·¾³Êı¾İ¿â£º" + strBuff.toString());
+	        log.info("è¿è¡Œç¯å¢ƒæ•°æ®åº“ï¼š" + strBuff.toString());
 	        
             statement = conn.createStatement();
             statement.executeUpdate(strBuff.toString());
             
         } catch (Exception e) {
-            log.error("ÔËĞĞ»·¾³Êı¾İ¿â´íÎó: " + e.getMessage());
+            log.error("è¿è¡Œç¯å¢ƒæ•°æ®åº“é”™è¯¯: " + e.getMessage());
         } finally {
             try {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("ÔËĞĞ»·¾³Êı¾İ¿â¹Ø±Õ´íÎó:"+e.getMessage());
+				log.error("è¿è¡Œç¯å¢ƒæ•°æ®åº“å…³é—­é”™è¯¯:"+e.getMessage());
 				e.printStackTrace();
 			}
 	    }
-        log.info("ÔËĞĞ»·¾³Êı¾İ¿â³É¹¦!");
+        log.info("è¿è¡Œç¯å¢ƒæ•°æ®åº“æˆåŠŸ!");
 	}
 	public AlarmSearchESetVO getCPUing(){
 		AlarmSearchESetVO vo = new AlarmSearchESetVO();
@@ -113,7 +113,7 @@ public class AlarmSearchESetHandle {
 	public AlarmSearchESetVO getSTATing(){
 		AlarmSearchESetVO vo = new AlarmSearchESetVO();
 		vo.setType(53);
-		vo.setDesc("×´Ì¬");
+		vo.setDesc("çŠ¶æ€");
 		vo.setTime(CommonUtility.getDateTime());
 		vo.setValue(this.getint1To100());
 		return vo;
@@ -121,7 +121,7 @@ public class AlarmSearchESetHandle {
 	public AlarmSearchESetVO getTEMPERing(){
 		AlarmSearchESetVO vo = new AlarmSearchESetVO();
 		vo.setType(50);
-		vo.setDesc("ÎÂ¶È");
+		vo.setDesc("æ¸©åº¦");
 		vo.setTime(CommonUtility.getDateTime());
 		vo.setValue(this.getint1To100());
 		return vo;
@@ -129,7 +129,7 @@ public class AlarmSearchESetHandle {
 	public AlarmSearchESetVO getAQUOSITYing(){
 		AlarmSearchESetVO vo = new AlarmSearchESetVO();
 		vo.setType(52);
-		vo.setDesc("Êª¶È");
+		vo.setDesc("æ¹¿åº¦");
 		vo.setTime(CommonUtility.getDateTime());
 		vo.setValue(this.getint1To100());
 		return vo;
@@ -137,13 +137,13 @@ public class AlarmSearchESetHandle {
 	public AlarmSearchESetVO getEMSing(){
 		AlarmSearchESetVO vo = new AlarmSearchESetVO();
 		vo.setType(55);
-		vo.setDesc("ÄÚ´æ");
+		vo.setDesc("å†…å­˜");
 		vo.setTime(CommonUtility.getDateTime());
 		IMonitorService service = new MonitorServiceImpl();   
         try {
 			MonitorInfoBean monitorInfo = service.getMonitorInfoBean();
-			long cout = monitorInfo.getTotalMemorySize();//×ÜÎïÀíÄÚ´æ
-			long emsusing = cout-monitorInfo.getFreeMemory();//Ê¹ÓÃµÄÎïÀíÄÚ´æ
+			long cout = monitorInfo.getTotalMemorySize();//æ€»ç‰©ç†å†…å­˜
+			long emsusing = cout-monitorInfo.getFreeMemory();//ä½¿ç”¨çš„ç‰©ç†å†…å­˜
 			vo.setValue((int)(emsusing/cout));
 		} catch (Exception e) {
 			vo.setValue(73);
@@ -154,12 +154,12 @@ public class AlarmSearchESetHandle {
 	public AlarmSearchESetVO getETing(){
 		AlarmSearchESetVO vo = new AlarmSearchESetVO();
 		vo.setType(51);
-		vo.setDesc("µçÑ¹");
+		vo.setDesc("ç”µå‹");
 		vo.setTime(CommonUtility.getDateTime());
 		vo.setValue(this.getint1To100());
 		return vo;
 	}
-	//»ñÈ¡Ëæ»úÊı
+	//è·å–éšæœºæ•°
 	public int getint1To100(){
 		return (int) (Math.random() * 100);
 	}

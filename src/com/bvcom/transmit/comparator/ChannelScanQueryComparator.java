@@ -5,12 +5,12 @@ import java.util.Comparator;
 import com.bvcom.transmit.vo.si.ChannelScanQueryVO;
 
 /**
- * 频点扫描列表按照频点排序
+ * 棰戠偣鎵弿鍒楄〃鎸夌収棰戠偣鎺掑簭
  */
 public class ChannelScanQueryComparator implements Comparator{
 	
 	/**
-	 * 频点扫描列表按照频点排序
+	 * 棰戠偣鎵弿鍒楄〃鎸夌収棰戠偣鎺掑簭
 	 */
 	public int compare(Object o1,Object o2) {
 		ChannelScanQueryVO p1=(ChannelScanQueryVO)o1;

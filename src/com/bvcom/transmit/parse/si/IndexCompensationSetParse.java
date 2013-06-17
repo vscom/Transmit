@@ -12,9 +12,9 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.si.IndexCompensationSetVO;
 
-//指标补偿
+//鎸囨爣琛ュ伩
 public class IndexCompensationSetParse {
-	//指标补偿解析xml得到通道号的数组
+	//鎸囨爣琛ュ伩瑙ｆ瀽xml寰楀埌閫氶亾鍙风殑鏁扮粍
 	@SuppressWarnings("unchecked")
 	public List<IndexCompensationSetVO> getIndexByDownXml(Document document){
 		List<IndexCompensationSetVO> indexlist = new ArrayList();
@@ -37,7 +37,7 @@ public class IndexCompensationSetParse {
 		
 	}
 	
-	//指标补偿回复xml打包
+	//鎸囨爣琛ュ伩鍥炲xml鎵撳寘
 	public String ReturnXMLByURL(MSGHeadVO head, int value) {
 		
 		String xml = null;
@@ -47,9 +47,9 @@ public class IndexCompensationSetParse {
 				+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"IndexCompensationSet\" Value=\"0\" Desc=\"成功\"/>";
+			xml += "<Return Type=\"IndexCompensationSet\" Value=\"0\" Desc=\"鎴愬姛\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"IndexCompensationSet\" Value=\"1\" Desc=\"失败\"/>";
+			xml += "<Return Type=\"IndexCompensationSet\" Value=\"1\" Desc=\"澶辫触\"/>";
 			xml +="</Msg>";
 			return xml;
 		}

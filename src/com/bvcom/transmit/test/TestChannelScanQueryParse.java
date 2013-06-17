@@ -12,23 +12,23 @@ import com.bvcom.transmit.vo.si.ChannelScanQueryVO;
 
 public class TestChannelScanQueryParse {
 
-//	XMLÍ·
+//	XMLå¤´
 	private static String XML_HEADER = "<?xml version=\"1.0\" encoding=\"GB2312\" standalone=\"yes\"?>";
-//	MSG½ÚµãµÄVersionÊôĞÔ
+//	MSGèŠ‚ç‚¹çš„Versionå±æ€§
 	private static String MSG_VERSION = " Version=\"4\"";
-//	MSG½ÚµãµÄMsgIDÊôĞÔ
+//	MSGèŠ‚ç‚¹çš„MsgIDå±æ€§
 	private static String MSG_ID = " MsgID=\"2\"";
-	//MSG½ÚµãµÄTypeÊôĞÔ
+	//MSGèŠ‚ç‚¹çš„Typeå±æ€§
 	private static String MSG_TYPE = " Type=\"AD988MonUp\"";
-	//MSG½ÚµãµÄTimeÊôĞÔ
+	//MSGèŠ‚ç‚¹çš„Timeå±æ€§
 	private static String MSG_DATA_TIME = " DateTime=";
-	//MSG½ÚµãµÄÔ´¶Ë±àÂëÊôĞÔ
+	//MSGèŠ‚ç‚¹çš„æºç«¯ç¼–ç å±æ€§
 	private static String MSG_SRC_CODE = " SrcCode=";
-	//MSG½ÚµãµÄÄ¿±ê±àÂëÊôĞÔ
+	//MSGèŠ‚ç‚¹çš„ç›®æ ‡ç¼–ç å±æ€§
 	private static String MSG_DST_CODE = " DstCode=\"110000N01\"";
-//	MSG½ÚµãµÄÓÅÏÈ¼¶ÊôĞÔ
+//	MSGèŠ‚ç‚¹çš„ä¼˜å…ˆçº§å±æ€§
 	private static String MSG_PRIORITY = " Priority=\"1\"";
-//	MSG½ÚµãµÄÓÅÏÈ¼¶ÊôĞÔ
+//	MSGèŠ‚ç‚¹çš„ä¼˜å…ˆçº§å±æ€§
 	private static String MSG_REPLYID = " ReplyID=";
 	
 	public static void main(String[] args) throws CommonException {
@@ -46,7 +46,7 @@ public class TestChannelScanQueryParse {
 //		xml += " <ChannelScanQuery ScanTime=\"\" SymbolRate=\"6875\" QAM=\"QAM64\"/>";
 //		xml +="</Msg>";
 //		
-//		System.out.println("×Ö·û´®xml£º"+xml);
+//		System.out.println("å­—ç¬¦ä¸²xmlï¼š"+xml);
 //		
 //		UtilXML uxml = new UtilXML();
 //		Document document = uxml.StringToXML(xml);
@@ -60,14 +60,14 @@ public class TestChannelScanQueryParse {
 		xml += "<Msg" + MSG_VERSION + 
 		  MSG_ID + MSG_TYPE + MSG_DATA_TIME + "\"" + data + "\"" + 
 		  MSG_SRC_CODE +"\"" + name + "\"" + MSG_DST_CODE + MSG_PRIORITY+MSG_REPLYID+"\"" + 1 + "\"" +">";
-		xml += " <Return Type=\"ChannelScanQuery\" Value=\"0\" Desc=\"³É¹¦\"/>" +
+		xml += " <Return Type=\"ChannelScanQuery\" Value=\"0\" Desc=\"æˆåŠŸ\"/>" +
 				"<ReturnInfo><ChannelScanQuery ScanTime=\"2002-09-01 10:00:00\">" +
 				"<ChannelScan  Freq=\"482000\" OrgNetID=\"5678\" TsID=\"12\">" +
-				"<Channel Program=\"ÖĞÑëÒ»\" ProgramID=\"123\" ServiceID=\"10\" Pcr_PID=\"122\" VideoPID=\"2060\" AudioPID=\"2061\"/>" +
-				"<Channel Program=\"ÖĞÑë¶ş\" ProgramID=\"124\" ServiceID=\"11\" Pcr_PID=\"123\" VideoPID=\"2062\" AudioPID=\"2064\"/>" +
+				"<Channel Program=\"ä¸­å¤®ä¸€\" ProgramID=\"123\" ServiceID=\"10\" Pcr_PID=\"122\" VideoPID=\"2060\" AudioPID=\"2061\"/>" +
+				"<Channel Program=\"ä¸­å¤®äºŒ\" ProgramID=\"124\" ServiceID=\"11\" Pcr_PID=\"123\" VideoPID=\"2062\" AudioPID=\"2064\"/>" +
 				"</ChannelScan></ChannelScanQuery></ReturnInfo></Msg>";
 		
-		System.out.println("×Ö·û´®xml£º"+xml);
+		System.out.println("å­—ç¬¦ä¸²xmlï¼š"+xml);
 		
 		UtilXML uxml = new UtilXML();
 		Document document = uxml.StringToXML(xml);

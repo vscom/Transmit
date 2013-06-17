@@ -31,7 +31,7 @@ public class ReplyAlarmErrorTableHandle {
 			statement = conn.createStatement();
 			statement.executeUpdate(strBuff.toString());
 		} catch (Exception e) {
-			log.error("±¨¾¯ĞÅÏ¢Èë¿â´íÎó: " + e.getMessage());
+			log.error("æŠ¥è­¦ä¿¡æ¯å…¥åº“é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
@@ -52,8 +52,8 @@ public class ReplyAlarmErrorTableHandle {
 			statement.execute(strBuff.toString());
 			conn.commit();
 		} catch (Exception e) {
-			log.error("É¾³ı±¨¾¯ÉÏ±¨Ê§°Ü±í(replyalarmerrortable)ĞÅÏ¢´íÎó: " + e.getMessage());
-			log.error("É¾³ı±¨¾¯ÉÏ±¨Ê§°Ü±í(replyalarmerrortable)ĞÅÏ¢´íÎó SQL: " + strBuff.toString());
+			log.error("åˆ é™¤æŠ¥è­¦ä¸ŠæŠ¥å¤±è´¥è¡¨(replyalarmerrortable)ä¿¡æ¯é”™è¯¯: " + e.getMessage());
+			log.error("åˆ é™¤æŠ¥è­¦ä¸ŠæŠ¥å¤±è´¥è¡¨(replyalarmerrortable)ä¿¡æ¯é”™è¯¯ SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
@@ -86,14 +86,14 @@ public class ReplyAlarmErrorTableHandle {
 				}
 				
 			} catch (Exception e) {
-				log.error("±¨¾¯ÉÏ±¨ĞÅÏ¢²éÑ¯´íÎó: " + e.getMessage());
+				log.error("æŠ¥è­¦ä¸ŠæŠ¥ä¿¡æ¯æŸ¥è¯¢é”™è¯¯: " + e.getMessage());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			}
 		} catch (DaoException e1) {
-			log.error("±¨¾¯ÉÏ±¨ĞÅÏ¢²éÑ¯´íÎó: " + e1.getMessage());
+			log.error("æŠ¥è­¦ä¸ŠæŠ¥ä¿¡æ¯æŸ¥è¯¢é”™è¯¯: " + e1.getMessage());
 		}
     	
     	return alarmList;

@@ -23,11 +23,11 @@ public class ReceiveMosaicStreamRoundInfoQuery {
         this.bsData = bsData;
     }
     /**
-     * 1. °ÑÊÕµ½µÄÂíÈü¿ËÂÖ²¥½ÚÄ¿ĞÅÏ¢  ÉÏ±¨¸øÖĞĞÄ
+     * 1. æŠŠæ”¶åˆ°çš„é©¬èµ›å…‹è½®æ’­èŠ‚ç›®ä¿¡æ¯  ä¸ŠæŠ¥ç»™ä¸­å¿ƒ
      */
     public void downXML() {
     	String CenterURL=coreData.getSysVO().getCenterRoundChannelURL();
-    	 log.error("ÉÏ·¢ "+ bsData.getStatusQueryType()+"ÂÖ²¥ÉÏ±¨URL:"+CenterURL);
+    	 log.error("ä¸Šå‘ "+ bsData.getStatusQueryType()+"è½®æ’­ä¸ŠæŠ¥URL:"+CenterURL);
     	 
     	utilXML.SendUpXML(downString, CenterURL);
     }

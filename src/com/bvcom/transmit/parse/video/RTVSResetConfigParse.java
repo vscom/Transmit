@@ -29,7 +29,7 @@ public class RTVSResetConfigParse {
     	strBuff.append(" ViedoPID=\""+ vo.getVideoPID() +"\"");
     	strBuff.append(" AudioPID=\""+ vo.getAudioPID() +"\"");
     	
-    	//Èç¹ûCodingFormat="cbr" Width="960"  Height="544" Fps="25" Bps="1500000" 
+    	//å¦‚æžœCodingFormat="cbr" Width="960"  Height="544" Fps="25" Bps="1500000" 
     	try
     	{
 	    	if(vo.getCodingFormat().equals(null)){

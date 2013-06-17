@@ -11,12 +11,12 @@ import org.dom4j.Node;
 import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.video.StreamRoundInfoQueryVO;
-//×Ô¶¯ÂÖ²¥
+//è‡ªåŠ¨è½®æ’­
 public class StreamRoundInfoQueryParse {
 	/**
-	 * ĞÂÔö·½·¨½âÎöxml»ñÈ¡Æµµã¼¯ºÏ
-	 * @param document½âÎö¶ÔÏó
-	 * @return ÆµµãµÄ¼¯ºÏ
+	 * æ–°å¢æ–¹æ³•è§£æxmlè·å–é¢‘ç‚¹é›†åˆ
+	 * @param documentè§£æå¯¹è±¡
+	 * @return é¢‘ç‚¹çš„é›†åˆ
 	 */
 	public List<String> getFreqXml(Document document){
 		Element root = document.getRootElement();
@@ -37,7 +37,7 @@ public class StreamRoundInfoQueryParse {
 		return freqList;
 	}
 	
-	//×Ô¶¯ÂÖ²¥½âÎöxmlµÃµ½Í¨µÀºÅµÄÊı×é
+	//è‡ªåŠ¨è½®æ’­è§£æxmlå¾—åˆ°é€šé“å·çš„æ•°ç»„
 	@SuppressWarnings("unchecked")
 	public List<StreamRoundInfoQueryVO> getIndexByDownXml(Document document){
 		List<StreamRoundInfoQueryVO> indexlist = new ArrayList();
@@ -61,7 +61,7 @@ public class StreamRoundInfoQueryParse {
 		
 	}
 	
-	// ×Ô¶¯ÂÖ²¥»Ø¸´xml´ò°ü
+	// è‡ªåŠ¨è½®æ’­å›å¤xmlæ‰“åŒ…
 	public String ReturnXMLByURL(MSGHeadVO head, List<StreamRoundInfoQueryVO> list ,int value) {
 		//		
 		// String date;
@@ -76,9 +76,9 @@ public class StreamRoundInfoQueryParse {
 		+ CommonUtility.getDateTime()+ "\" SrcCode=\"" + head.getDstCode()
 		+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"StreamRoundInfoQuery\" Value=\"0\" Desc=\"³É¹¦\"/>";
+			xml += "<Return Type=\"StreamRoundInfoQuery\" Value=\"0\" Desc=\"æˆåŠŸ\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"StreamRoundInfoQuery\" Value=\"1\" Desc=\"Ê§°Ü\"/>";
+			xml += "<Return Type=\"StreamRoundInfoQuery\" Value=\"1\" Desc=\"å¤±è´¥\"/>";
 			xml +=	"</Msg>";
 			return xml;
 		}

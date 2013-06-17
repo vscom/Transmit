@@ -46,8 +46,8 @@ public class ICInfoQueryHandle {
     
     
     /**
-     * 1. ¶ÁÈ¡Ð¡¿¨¿¨ºÅµÈÐÅÏ¢ÅäÖÃÎÄ¼þ
-     * 2. ´ò°üxml·µ»Ø¸øÆ½Ì¨
+     * 1. è¯»å–å°å¡å¡å·ç­‰ä¿¡æ¯é…ç½®æ–‡ä»¶
+     * 2. æ‰“åŒ…xmlè¿”å›žç»™å¹³å°
      */
     public void downXML() {
     	boolean isErr = false;
@@ -70,7 +70,7 @@ public class ICInfoQueryHandle {
 			isErr=true;
 		}
 		*/
-    	//´ÓSMG_CARD_INFO±íÖÐ»ñÈ¡°å¿¨Ïà¹ØÐÅÏ¢
+    	//ä»ŽSMG_CARD_INFOè¡¨ä¸­èŽ·å–æ¿å¡ç›¸å…³ä¿¡æ¯
     	try
 		{
 			Statement statement = null;
@@ -91,7 +91,7 @@ public class ICInfoQueryHandle {
 			}
 			catch (Exception e)
 			{
-				log.info("»ñÈ¡Ð¡¿¨¿¨ºÅÐÅÏ¢£º"+e.getMessage());
+				log.info("èŽ·å–å°å¡å¡å·ä¿¡æ¯ï¼š"+e.getMessage());
 				isErr=true;
 			}
 			finally {
@@ -113,14 +113,14 @@ public class ICInfoQueryHandle {
         	try {
                 utilXML.SendUpXML(returnstr, bsData);
             } catch (CommonException e) {
-                log.error("ÉÏ·¢ "+ bsData.getStatusQueryType() +" ÐÅÏ¢Ê§°Ü: " + e.getMessage());
+                log.error("ä¸Šå‘ "+ bsData.getStatusQueryType() +" ä¿¡æ¯å¤±è´¥: " + e.getMessage());
             }
         }else{
         	returnstr = getReturnXML(sMGCardInfoList,this.bsData, 0);
         	try {
                 utilXML.SendUpXML(returnstr, bsData);
             } catch (CommonException e) {
-                log.error("ÉÏ·¢ "+ bsData.getStatusQueryType() +" ÐÅÏ¢Ê§°Ü: " + e.getMessage());
+                log.error("ä¸Šå‘ "+ bsData.getStatusQueryType() +" ä¿¡æ¯å¤±è´¥: " + e.getMessage());
             }
         }
         
@@ -130,10 +130,10 @@ public class ICInfoQueryHandle {
     }
     
     /**
-     * È¡µÃ·µ»ØµÄXMLÐÅÏ¢
-     * @param head XMLÊý¾Ý¶ÔÏó 
-     * @param value 0:³É¹¦ 1:Ê§°Ü
-     * @return XMLÎÄ±¾ÐÅÏ¢
+     * å–å¾—è¿”å›žçš„XMLä¿¡æ¯
+     * @param head XMLæ•°æ®å¯¹è±¡ 
+     * @param value 0:æˆåŠŸ 1:å¤±è´¥
+     * @return XMLæ–‡æœ¬ä¿¡æ¯
      */
     public String getReturnXML(List ICInfoQueryList, MSGHeadVO head, int value) {
         
@@ -144,7 +144,7 @@ public class ICInfoQueryHandle {
         strBuf.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuf.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\"> \r\n");
         if(0==value){
-            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r");
+            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r");
             if(ICInfoQueryList.size()>0){
             	strBuf.append("<ReturnInfo>\r\n");
             	strBuf.append("<ICInfoQuery Total=\""+ICInfoQueryList.size()+"\">\r\n");
@@ -152,7 +152,7 @@ public class ICInfoQueryHandle {
             for(int i =0;i<ICInfoQueryList.size();i++)
             {
             	SMGCardInfoVO smg=(SMGCardInfoVO)ICInfoQueryList.get(i);
-            	//<ICInfo  CardNO="XX" Position=¡±µÚ¼¸¸ö»úÏäµÚ¼¸¸ö¿¨²Û¡±  Desc="´Ë¿¨µÄÃèÊöÐÅÏ¢"  />
+            	//<ICInfo  CardNO="XX" Position=â€ç¬¬å‡ ä¸ªæœºç®±ç¬¬å‡ ä¸ªå¡æ§½â€  Desc="æ­¤å¡çš„æè¿°ä¿¡æ¯"  />
             	strBuf.append("\t<ICInfo CardNO=\""+smg.getSmgCamCard()+"\"  Position=\""+smg.getSmgCamPostion()+"\" Desc=\""+smg.getSmgCamDesc()+"\" />\n");
 
             }
@@ -161,7 +161,7 @@ public class ICInfoQueryHandle {
             	strBuf.append("</ReturnInfo>\r\n");
             }
         }else if(1==value){
-            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"Ê§°Ü\"/>\r\n");
+            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"å¤±è´¥\"/>\r\n");
         }
         strBuf.append("</Msg>");
         return strBuf.toString();

@@ -19,7 +19,7 @@ import com.bvcom.transmit.vo.rec.SetAutoRecordChannelVO;
 import com.bvcom.transmit.vo.video.MonitorProgramQueryVO;
 
 /**
- * ÊÖ¶¯Â¼ÖÆ
+ * æ‰‹åŠ¨å½•åˆ¶
  * @author Bian Jiang
  *
  */
@@ -41,13 +41,13 @@ public class ManualRecordQueryHandle {
     }
     
     /**
-     * 1. ÏòTSCÏÂ·¢Ö¸Áî
-     * 2. ÏÂ·¢³É¹¦ºó·µ»Ø³É¹¦¡£
-     * 3. µÈTSCÂ¼ÖÆÍê³ÉºóÖ÷¶¯ÉÏ±¨
+     * 1. å‘TSCä¸‹å‘æŒ‡ä»¤
+     * 2. ä¸‹å‘æˆåŠŸåè¿”å›æˆåŠŸã€‚
+     * 3. ç­‰TSCå½•åˆ¶å®Œæˆåä¸»åŠ¨ä¸ŠæŠ¥
      *
      */
     public void downXML() {
-        // ·µ»ØÊı¾İ
+        // è¿”å›æ•°æ®
         String upString = "";
         
         List TSCList = new ArrayList();
@@ -63,7 +63,7 @@ public class ManualRecordQueryHandle {
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("ÊÖ¶¯Â¼ÖÆStringToXML Error: " + e.getMessage());
+            log.error("æ‰‹åŠ¨å½•åˆ¶StringToXML Error: " + e.getMessage());
         };
         
         List<ManualRecordQueryVO> ManualRecordlist = ManualRecord.getIndexByDownXml(document);
@@ -73,7 +73,7 @@ public class ManualRecordQueryHandle {
             try {
             	rtvsVO.setFreq(vo.getFreq());
             	rtvsVO.setServiceID(vo.getServiceID());
-            	// È¡µÃÊÖ¶¯Â¼ÖÆ×é²¥µØÖ·ºÍ¶Ë¿ÚºÅ
+            	// å–å¾—æ‰‹åŠ¨å½•åˆ¶ç»„æ’­åœ°å€å’Œç«¯å£å·
     			rtvsVO = MonitorProgramQueryHandle.GetManualRecordProgramInfo(rtvsVO);
     			
     			SetAutoRecordChannelVO SetAutoRecordChannelVO = new SetAutoRecordChannelVO();
@@ -91,7 +91,7 @@ public class ManualRecordQueryHandle {
     			
     			
     		} catch (DaoException e1) {
-    			log.error("È¡µÃÊÖ¶¯Â¼ÖÆ³ö´í: " + e1.getMessage());
+    			log.error("å–å¾—æ‰‹åŠ¨å½•åˆ¶å‡ºé”™: " + e1.getMessage());
     		}
     		break;
         }
@@ -99,25 +99,25 @@ public class ManualRecordQueryHandle {
 
 		this.downString = ManualRecord.createForDownXML(bsData, ManualRecordlist, rtvsVO);
 		
-        // È¡µÃÏÂ·¢URLÁĞ±íĞÅÏ¢
+        // å–å¾—ä¸‹å‘URLåˆ—è¡¨ä¿¡æ¯
         TSCList = coreData.getTSCList();
         
         String url = "";
-        // ÏÂ·¢Ö¸Áî
+        // ä¸‹å‘æŒ‡ä»¤
         for (int i=0; i< TSCList.size(); i++) {
             TSCInfoVO tsc = (TSCInfoVO) TSCList.get(i);
             try {
                 if(!url.equals(tsc.getURL())) {
-                    // Ñ¡Ì¨ĞÅÏ¢ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+                    // é€‰å°ä¿¡æ¯ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
                     utilXML.SendDownNoneReturn(this.downString, tsc.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
                 }
                 url = tsc.getURL();
-                // Ö»ÓĞÒ»¸öÍ¨µÀ×öÊÖ¶¯Ñ¡Ì¨
+                // åªæœ‰ä¸€ä¸ªé€šé“åšæ‰‹åŠ¨é€‰å°
                 //break;
             } catch (CommonException e) {
-                log.error("ÏÂ·¢ÊÖ¶¯Â¼ÖÆ³ö´í£º" + tsc.getURL());
+                log.error("ä¸‹å‘æ‰‹åŠ¨å½•åˆ¶å‡ºé”™ï¼š" + tsc.getURL());
             }
-            //È¥µô×¢ÊÍ ÊÖ¶¯Â¼Ïñ¸øËùÓĞTSCÏÂ·¢
+            //å»æ‰æ³¨é‡Š æ‰‹åŠ¨å½•åƒç»™æ‰€æœ‰TSCä¸‹å‘
             //break;
         }
         
@@ -126,7 +126,7 @@ public class ManualRecordQueryHandle {
         try {
             utilXML.SendUpXML(upString, bsData);
         } catch (CommonException e) {
-            log.error("ÊÖ¶¯Â¼ÖÆÑ¡Ì¨ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+            log.error("æ‰‹åŠ¨å½•åˆ¶é€‰å°ä¿¡æ¯å¤±è´¥: " + e.getMessage());
         }
         
         bsData = null;

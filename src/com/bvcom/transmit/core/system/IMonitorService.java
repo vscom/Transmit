@@ -1,17 +1,17 @@
 package com.bvcom.transmit.core.system;
 
 /** *//**  
- * »ñÈ¡ÏµÍ³ĞÅÏ¢µÄÒµÎñÂß¼­Àà½Ó¿Ú.  
+ * è·å–ç³»ç»Ÿä¿¡æ¯çš„ä¸šåŠ¡é€»è¾‘ç±»æ¥å£.  
  * @author amg * @version 1.0   
- * Creation date: 2008-3-11 - ÉÏÎç10:06:06  
+ * Creation date: 2008-3-11 - ä¸Šåˆ10:06:06  
  */  
 public interface IMonitorService {   
     /** *//**  
-     * »ñµÃµ±Ç°µÄ¼à¿Ø¶ÔÏó.  
-     * @return ·µ»Ø¹¹ÔìºÃµÄ¼à¿Ø¶ÔÏó  
+     * è·å¾—å½“å‰çš„ç›‘æ§å¯¹è±¡.  
+     * @return è¿”å›æ„é€ å¥½çš„ç›‘æ§å¯¹è±¡  
      * @throws Exception  
      * @author amgkaka  
-     * Creation date: 2008-4-25 - ÉÏÎç10:45:08  
+     * Creation date: 2008-4-25 - ä¸Šåˆ10:45:08  
      */  
     public MonitorInfoBean getMonitorInfoBean() throws Exception;   
   

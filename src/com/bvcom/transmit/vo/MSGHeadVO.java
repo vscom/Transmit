@@ -1,5 +1,5 @@
 /**
- * controlAlarm (java×ª·¢)
+ * controlAlarm (javaè½¬å‘)
  * 
  * BaseXMLData.java    2007.8.15
  * 
@@ -12,17 +12,17 @@ import org.dom4j.Document;
 
 /**
  * 
- * XMLÊı¾İ¶ÔÏó
+ * XMLæ•°æ®å¯¹è±¡
  * 
  * @version  V1.0
- * @author   ±ß ½­
+ * @author   è¾¹ æ±Ÿ
  * Date 2007.8.15
  */
 
 public class MSGHeadVO {
     
 	private Document document = null;
-	// XMLÍ·²¿<Msg>ÊôĞÔĞÅÏ¢
+	// XMLå¤´éƒ¨<Msg>å±æ€§ä¿¡æ¯
 	private String version = null;
 	private String centerMsgID = null;
 	private String type = null;
@@ -30,12 +30,12 @@ public class MSGHeadVO {
 	private String srcCode = null;
 	private String dstCode = null;
 	private String srcURL = null;
-	// ÊµÌåĞÅÏ¢
+	// å®ä½“ä¿¡æ¯
 	private String StatusQueryType = null;
 	private String ErrTypeStr = null;
 	
 	private String SystemType = null;
-	// ÃüÁîÓÅÏÈ¼¶
+	// å‘½ä»¤ä¼˜å…ˆçº§
 	private String Priority = null;
 	private long 	    XMLLen = 0;
 

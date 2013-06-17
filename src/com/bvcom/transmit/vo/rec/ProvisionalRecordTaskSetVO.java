@@ -1,7 +1,7 @@
 package com.bvcom.transmit.vo.rec;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
-//ÈÎÎñÂ¼ÏñÉèÖÃ
+//ä»»åŠ¡å½•åƒè®¾ç½®
 public class ProvisionalRecordTaskSetVO {
 
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -32,7 +32,7 @@ public class ProvisionalRecordTaskSetVO {
     
     private String EndDateTime;
     
-    private int ExpireDays;//½ØÖ¹ÈÕÆÚ
+    private int ExpireDays;//æˆªæ­¢æ—¥æœŸ
     
     private int Freq;
 
@@ -52,11 +52,11 @@ public class ProvisionalRecordTaskSetVO {
     
     private int ReutnValue;
     
-    private String Comment;//Ê§°ÜÔ­Òò
+    private String Comment;//å¤±è´¥åŸå› 
     
     private String lasttime;
     
-    private String programname;//½ÚÄ¿Ãû
+    private String programname;//èŠ‚ç›®å
 
 	public String getComment() {
 		return Comment;
@@ -155,7 +155,7 @@ public class ProvisionalRecordTaskSetVO {
 	}
 
 	/**
-	 * ½ØÖ¹ÈÕÆÚ
+	 * æˆªæ­¢æ—¥æœŸ
 	 * @return
 	 */
 	public int getExpireDays() {
@@ -163,7 +163,7 @@ public class ProvisionalRecordTaskSetVO {
 	}
 
 	/**
-	 * ½ØÖ¹ÈÕÆÚ
+	 * æˆªæ­¢æ—¥æœŸ
 	 * @param expireDays
 	 */
 	public void setExpireDays(int expireDays) {

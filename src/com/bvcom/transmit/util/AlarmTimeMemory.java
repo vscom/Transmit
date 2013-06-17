@@ -8,13 +8,13 @@ import com.bvcom.transmit.parse.video.domain.AlarmTimeDao;
 /**
  * 
  * @author JI LONG 2011-6-15
- *°ÑÔËĞĞÍ¼½ÚÄ¿ĞÅÏ¢·ÅÈëÄÚ´æ
+ *æŠŠè¿è¡Œå›¾èŠ‚ç›®ä¿¡æ¯æ”¾å…¥å†…å­˜
  */
 public class AlarmTimeMemory {
 	public static List<AlarmTime> alarmTimeList=new ArrayList<AlarmTime>();
 	public static void alarmTimeToMemory(){
 		AlarmTimeDao dao=new AlarmTimeDao();
 		alarmTimeList=dao.list();
-		//System.out.println("ÄÚ´æÖĞÔËĞĞÍ¼ĞÅÏ¢£º"+alarmTimeList);
+		//System.out.println("å†…å­˜ä¸­è¿è¡Œå›¾ä¿¡æ¯ï¼š"+alarmTimeList);
 	}
 }

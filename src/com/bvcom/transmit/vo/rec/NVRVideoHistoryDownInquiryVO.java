@@ -2,7 +2,7 @@ package com.bvcom.transmit.vo.rec;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//历史视频下载
+//鍘嗗彶瑙嗛涓嬭浇
 public class NVRVideoHistoryDownInquiryVO {
 
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -17,7 +17,7 @@ public class NVRVideoHistoryDownInquiryVO {
     
     private String ReturnURL;
     
-    private String Comment;//失败原因	
+    private String Comment;//澶辫触鍘熷洜	
 
 	public MSGHeadVO getMSGHead() {
 		return MSGHead;

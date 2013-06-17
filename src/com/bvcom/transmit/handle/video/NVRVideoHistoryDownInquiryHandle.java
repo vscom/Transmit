@@ -32,11 +32,11 @@ public class NVRVideoHistoryDownInquiryHandle {
     }
 
     /**
-     * TSC ºÏ²¢ÎÄ¼ş·µ»Ø¸øjava£¬ºÏ²¢µÈ´ı30Ãëºó·µ»ØURL£¬È»ºó¼ÌĞøºÏ²¢
+     * TSC åˆå¹¶æ–‡ä»¶è¿”å›ç»™javaï¼Œåˆå¹¶ç­‰å¾…30ç§’åè¿”å›URLï¼Œç„¶åç»§ç»­åˆå¹¶
      */
 	@SuppressWarnings("unchecked")
 	public void downXML(){
-		// ·µ»ØÊı¾İ
+		// è¿”å›æ•°æ®
 		@SuppressWarnings("unused")
 		String upString = "";
 
@@ -45,12 +45,12 @@ public class NVRVideoHistoryDownInquiryHandle {
         
         MemCoreData coreData = MemCoreData.getInstance();
         
-        List TSCSendList = coreData.getTSCList();//tscµÄÁĞ±íĞÅÏ¢
+        List TSCSendList = coreData.getTSCList();//tscçš„åˆ—è¡¨ä¿¡æ¯
         
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("ÀúÊ·ÊÓÆµ²é¿´StringToXML Error: " + e.getMessage());
+            log.error("å†å²è§†é¢‘æŸ¥çœ‹StringToXML Error: " + e.getMessage());
         }
         NVRVideoHistoryDownInquiryParse nvrHistoryd = new NVRVideoHistoryDownInquiryParse();
         List<ProvisionalRecordTaskSetVO> nvrHistoryDlist = nvrHistoryd.getIndexByDownXml(document);
@@ -62,7 +62,7 @@ public class NVRVideoHistoryDownInquiryHandle {
 
         	int index = 0;
         	
-        	// Del By Bian Jiang ½ÚÄ¿ĞÅÏ¢¶¼´Ó½ÚÄ¿Ó³Éä±íÈ¡µÃ 2010.9.8
+        	// Del By Bian Jiang èŠ‚ç›®ä¿¡æ¯éƒ½ä»èŠ‚ç›®æ˜ å°„è¡¨å–å¾— 2010.9.8
 //        	if (this.bsData.getVersion().equals(CommonUtility.XML_VERSION_2_3)) {
 //        		try {
 //					index = NVRVideoHistoryInquiryHandle.getIndexByProgram(vo);
@@ -71,7 +71,7 @@ public class NVRVideoHistoryDownInquiryHandle {
 //					
 //				}
 //        	} else if (this.bsData.getVersion().equals(CommonUtility.XML_VERSION_2_0)) {
-//        		// Í¨µÀÓ³ÉäÈ¡µÃµ±Ç°½ÚÄ¿ĞÅÏ¢
+//        		// é€šé“æ˜ å°„å–å¾—å½“å‰èŠ‚ç›®ä¿¡æ¯
 //        		try {
 //					index = NVRVideoHistoryInquiryHandle.getIndexByProgramForChannelRemap(vo);
 //					this.downString = this.downString.replaceAll("Index=\"" + vo.getIndex() + "\"", "Index=\"" + index + "\"");
@@ -86,7 +86,7 @@ public class NVRVideoHistoryDownInquiryHandle {
 
 			}
 			/**
-			 * ¹ãÖİ¼à²âÖĞĞÄÏîÄ¿, TSC²»ĞèÒªIndexºÅ
+			 * å¹¿å·ç›‘æµ‹ä¸­å¿ƒé¡¹ç›®, TSCä¸éœ€è¦Indexå·
 			 * By: Bian Jiang
 			 * 2011.4.7
 			 */
@@ -100,12 +100,12 @@ public class NVRVideoHistoryDownInquiryHandle {
     				int tscIndex=NVRVideoHistoryInquiryHandle.getTscIndex(vo);
     				if(tscIndex >= tsc.getIndexMin() && tscIndex <= tsc.getIndexMax() ){
     					if(!url.equals(tsc.getURL())) {
-    						// ÀúÊ·ÊÓÆµÏÂÔØÏÂ·¢ timeout 1000*20 ¶şÊ®Ãë
+    						// å†å²è§†é¢‘ä¸‹è½½ä¸‹å‘ timeout 1000*20 äºŒåç§’
     						upString = utilXML.SendDownXML(this.downString, tsc.getURL(), CommonUtility.TASK_WAIT_TIMEOUT, bsData);
     						//break;
     						url = tsc.getURL().trim();
     						if(upString.equals("")) {
-    							log.info("·µ»ØĞÅÏ¢Îª¿Õ: " + tsc.getURL());
+    							log.info("è¿”å›ä¿¡æ¯ä¸ºç©º: " + tsc.getURL());
     							continue;
     						} else {
     							break;
@@ -113,21 +113,21 @@ public class NVRVideoHistoryDownInquiryHandle {
     					}
     				}
                 } catch (CommonException e) {
-                    log.error("ÏÂ·¢ÀúÊ·ÊÓÆµÏÂÔØµ½TSC³ö´í£º" + tsc.getURL());
+                    log.error("ä¸‹å‘å†å²è§†é¢‘ä¸‹è½½åˆ°TSCå‡ºé”™ï¼š" + tsc.getURL());
                     upString = "";
                 }
         	}
         	
         }
-      //ÉÏ±¨»Ø¸´µÄxml¸øÖĞĞÄ
+      //ä¸ŠæŠ¥å›å¤çš„xmlç»™ä¸­å¿ƒ
         try {
         	if(upString == null || upString.equals("")) {
         		upString = utilXML.getReturnXML(bsData, 1);
         	}
-//    		// µÈ´ı10Ãë
+//    		// ç­‰å¾…10ç§’
 //    		try {
 //    			int random = 10000+(int)(Math.random()*5000);
-//    			log.info("ÀúÊ·ÊÓÆµÏÂÔØSleepÊ±¼ä£º" + (random/1000) + "s");
+//    			log.info("å†å²è§†é¢‘ä¸‹è½½Sleepæ—¶é—´ï¼š" + (random/1000) + "s");
 //				Thread.sleep(random);
 //			} catch (InterruptedException e) {
 //			}
@@ -135,7 +135,7 @@ public class NVRVideoHistoryDownInquiryHandle {
     		utilXML.SendUpXML(upString, bsData);	
             
         } catch (CommonException e) {
-            log.error("ÀúÊ·ÊÓÆµÏÂÔØ»Ø¸´Ê§°Ü: " + e.getMessage());
+            log.error("å†å²è§†é¢‘ä¸‹è½½å›å¤å¤±è´¥: " + e.getMessage());
         }
         
         bsData = null;

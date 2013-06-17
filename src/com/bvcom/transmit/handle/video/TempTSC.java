@@ -3,7 +3,7 @@ package com.bvcom.transmit.handle.video;
 import java.util.List;
 
 
-//·â×°Ã¿¸ötscµÄ Í¨µÀ
+//å°è£…æ¯ä¸ªtscçš„ é€šé“
 public class TempTSC {
 private int key;
 private List<Integer> value;

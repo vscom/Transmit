@@ -7,11 +7,11 @@ import sun.management.ManagementFactory;
 import com.sun.management.OperatingSystemMXBean;   
   
 /** *//**  
- * »ñÈ¡ÏµÍ³ĞÅÏ¢µÄÒµÎñÂß¼­ÊµÏÖÀà.  
- * @author amg * @version 1.0 Creation date: 2008-3-11 - ÉÏÎç10:06:06  
+ * è·å–ç³»ç»Ÿä¿¡æ¯çš„ä¸šåŠ¡é€»è¾‘å®ç°ç±».  
+ * @author amg * @version 1.0 Creation date: 2008-3-11 - ä¸Šåˆ10:06:06  
  */  
 public class MonitorServiceImpl implements IMonitorService {   
-    //¿ÉÒÔÉèÖÃ³¤Ğ©£¬·ÀÖ¹¶Áµ½ÔËĞĞ´Ë´ÎÏµÍ³¼ì²éÊ±µÄcpuÕ¼ÓÃÂÊ£¬¾Í²»×¼ÁË   
+    //å¯ä»¥è®¾ç½®é•¿äº›ï¼Œé˜²æ­¢è¯»åˆ°è¿è¡Œæ­¤æ¬¡ç³»ç»Ÿæ£€æŸ¥æ—¶çš„cpuå ç”¨ç‡ï¼Œå°±ä¸å‡†äº†   
     private static final int CPUTIME = 5000;   
   
     private static final int PERCENT = 100;   
@@ -19,36 +19,36 @@ public class MonitorServiceImpl implements IMonitorService {
     private static final int FAULTLENGTH = 10;   
   
     /** *//**  
-     * »ñµÃµ±Ç°µÄ¼à¿Ø¶ÔÏó.  
-     * @return ·µ»Ø¹¹ÔìºÃµÄ¼à¿Ø¶ÔÏó  
+     * è·å¾—å½“å‰çš„ç›‘æ§å¯¹è±¡.  
+     * @return è¿”å›æ„é€ å¥½çš„ç›‘æ§å¯¹è±¡  
      * @throws Exception  
-     * @author amg     * Creation date: 2008-4-25 - ÉÏÎç10:45:08  
+     * @author amg     * Creation date: 2008-4-25 - ä¸Šåˆ10:45:08  
      */  
     public MonitorInfoBean getMonitorInfoBean() throws Exception {   
         int kb = 1024;   
            
-        // ¿ÉÊ¹ÓÃÄÚ´æ   
+        // å¯ä½¿ç”¨å†…å­˜   
         long totalMemory = Runtime.getRuntime().totalMemory() / kb;   
-        // Ê£ÓàÄÚ´æ   
+        // å‰©ä½™å†…å­˜   
         long freeMemory = Runtime.getRuntime().freeMemory() / kb;   
-        // ×î´ó¿ÉÊ¹ÓÃÄÚ´æ   
+        // æœ€å¤§å¯ä½¿ç”¨å†…å­˜   
         long maxMemory = Runtime.getRuntime().maxMemory() / kb;   
   
         OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory   
                 .getOperatingSystemMXBean();   
   
-        // ²Ù×÷ÏµÍ³   
+        // æ“ä½œç³»ç»Ÿ   
         String osName = System.getProperty("os.name");   
-        // ×ÜµÄÎïÀíÄÚ´æ   
+        // æ€»çš„ç‰©ç†å†…å­˜   
         long totalMemorySize = osmxb.getTotalPhysicalMemorySize() / kb;   
-        // Ê£ÓàµÄÎïÀíÄÚ´æ   
+        // å‰©ä½™çš„ç‰©ç†å†…å­˜   
         long freePhysicalMemorySize = osmxb.getFreePhysicalMemorySize() / kb;   
-        // ÒÑÊ¹ÓÃµÄÎïÀíÄÚ´æ   
+        // å·²ä½¿ç”¨çš„ç‰©ç†å†…å­˜   
         long usedMemory = (osmxb.getTotalPhysicalMemorySize() - osmxb   
                 .getFreePhysicalMemorySize())   
                 / kb;   
   
-        // »ñµÃÏß³Ì×ÜÊı   
+        // è·å¾—çº¿ç¨‹æ€»æ•°   
         ThreadGroup parentThread;   
         for (parentThread = Thread.currentThread().getThreadGroup(); parentThread   
                 .getParent() != null; parentThread = parentThread.getParent())   
@@ -60,7 +60,7 @@ public class MonitorServiceImpl implements IMonitorService {
             cpuRatio = this.getCpuRatioForWindows();   
         }   
            
-        // ¹¹Ôì·µ»Ø¶ÔÏó   
+        // æ„é€ è¿”å›å¯¹è±¡   
         MonitorInfoBean infoBean = new MonitorInfoBean();   
         infoBean.setFreeMemory(freeMemory);   
         infoBean.setFreePhysicalMemorySize(freePhysicalMemorySize);   
@@ -75,16 +75,16 @@ public class MonitorServiceImpl implements IMonitorService {
     }   
   
     /** *//**  
-     * »ñµÃCPUÊ¹ÓÃÂÊ.  
-     * @return ·µ»ØcpuÊ¹ÓÃÂÊ  
-     * @author amg     * Creation date: 2008-4-25 - ÏÂÎç06:05:11  
+     * è·å¾—CPUä½¿ç”¨ç‡.  
+     * @return è¿”å›cpuä½¿ç”¨ç‡  
+     * @author amg     * Creation date: 2008-4-25 - ä¸‹åˆ06:05:11  
      */  
     private double getCpuRatioForWindows() {   
         try {   
             String procCmd = System.getenv("windir")   
                     + "\\system32\\wbem\\wmic.exe process get Caption,CommandLine,"  
                     + "KernelModeTime,ReadOperationCount,ThreadCount,UserModeTime,WriteOperationCount";   
-            // È¡½ø³ÌĞÅÏ¢   
+            // å–è¿›ç¨‹ä¿¡æ¯   
             long[] c0 = readCpu(Runtime.getRuntime().exec(procCmd));   
             Thread.sleep(CPUTIME);   
             long[] c1 = readCpu(Runtime.getRuntime().exec(procCmd));   
@@ -104,10 +104,10 @@ public class MonitorServiceImpl implements IMonitorService {
     }   
   
     /** *//**  
-     * ¶ÁÈ¡CPUĞÅÏ¢.  
+     * è¯»å–CPUä¿¡æ¯.  
      * @param proc  
      * @return  
-     * @author amg     * Creation date: 2008-4-25 - ÏÂÎç06:10:14  
+     * @author amg     * Creation date: 2008-4-25 - ä¸‹åˆ06:10:14  
      */  
     private long[] readCpu(final Process proc) {   
         long[] retn = new long[2];   
@@ -132,7 +132,7 @@ public class MonitorServiceImpl implements IMonitorService {
                 if (line.length() < wocidx) {   
                     continue;   
                 }   
-                // ×Ö¶Î³öÏÖË³Ğò£ºCaption,CommandLine,KernelModeTime,ReadOperationCount,   
+                // å­—æ®µå‡ºç°é¡ºåºï¼šCaption,CommandLine,KernelModeTime,ReadOperationCount,   
                 // ThreadCount,UserModeTime,WriteOperation   
                 String caption = Bytes.substring(line, capidx, cmdidx - 1)   
                         .trim();   
@@ -175,24 +175,24 @@ public class MonitorServiceImpl implements IMonitorService {
     }   
        
     /** *//**  
-     * ²âÊÔ·½·¨.  
+     * æµ‹è¯•æ–¹æ³•.  
      * @param args  
      * @throws Exception  
-     * @author amg     * Creation date: 2008-4-30 - ÏÂÎç04:47:29  
+     * @author amg     * Creation date: 2008-4-30 - ä¸‹åˆ04:47:29  
      */  
     public static void main(String[] args) throws Exception {   
         IMonitorService service = new MonitorServiceImpl();   
         MonitorInfoBean monitorInfo = service.getMonitorInfoBean();   
-        System.out.println("cpuÕ¼ÓĞÂÊ=" + monitorInfo.getCpuRatio());   
+        System.out.println("cpuå æœ‰ç‡=" + monitorInfo.getCpuRatio());   
            
-        System.out.println("¿ÉÊ¹ÓÃÄÚ´æ=" + monitorInfo.getTotalMemory());   
-        System.out.println("Ê£ÓàÄÚ´æ=" + monitorInfo.getFreeMemory());   
-        System.out.println("×î´ó¿ÉÊ¹ÓÃÄÚ´æ=" + monitorInfo.getMaxMemory());   
+        System.out.println("å¯ä½¿ç”¨å†…å­˜=" + monitorInfo.getTotalMemory());   
+        System.out.println("å‰©ä½™å†…å­˜=" + monitorInfo.getFreeMemory());   
+        System.out.println("æœ€å¤§å¯ä½¿ç”¨å†…å­˜=" + monitorInfo.getMaxMemory());   
            
-        System.out.println("²Ù×÷ÏµÍ³=" + monitorInfo.getOsName());   
-        System.out.println("×ÜµÄÎïÀíÄÚ´æ=" + monitorInfo.getTotalMemorySize() + "kb");   
-        System.out.println("Ê£ÓàµÄÎïÀíÄÚ´æ=" + monitorInfo.getFreeMemory() + "kb");   
-        System.out.println("ÒÑÊ¹ÓÃµÄÎïÀíÄÚ´æ=" + monitorInfo.getUsedMemory() + "kb");   
-        System.out.println("Ïß³Ì×ÜÊı=" + monitorInfo.getTotalThread() + "kb");   
+        System.out.println("æ“ä½œç³»ç»Ÿ=" + monitorInfo.getOsName());   
+        System.out.println("æ€»çš„ç‰©ç†å†…å­˜=" + monitorInfo.getTotalMemorySize() + "kb");   
+        System.out.println("å‰©ä½™çš„ç‰©ç†å†…å­˜=" + monitorInfo.getFreeMemory() + "kb");   
+        System.out.println("å·²ä½¿ç”¨çš„ç‰©ç†å†…å­˜=" + monitorInfo.getUsedMemory() + "kb");   
+        System.out.println("çº¿ç¨‹æ€»æ•°=" + monitorInfo.getTotalThread() + "kb");   
     }   
 }  

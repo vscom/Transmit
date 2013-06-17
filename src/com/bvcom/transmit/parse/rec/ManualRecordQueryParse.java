@@ -13,10 +13,10 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.rec.ManualRecordQueryVO;
 import com.bvcom.transmit.vo.video.MonitorProgramQueryVO;
 
-//ÊÖ¶¯Â¼Ïñ
+//æ‰‹åŠ¨å½•åƒ
 public class ManualRecordQueryParse {
 	
-	//ÊÖ¶¯Â¼Ïñ½âÎöxmlµÃµ½Í¨µÀºÅµÄÊı×é
+	//æ‰‹åŠ¨å½•åƒè§£æxmlå¾—åˆ°é€šé“å·çš„æ•°ç»„
 	@SuppressWarnings("unchecked")
 	public List<ManualRecordQueryVO> getIndexByDownXml(Document document){
 		List<ManualRecordQueryVO> indexlist = new ArrayList();
@@ -48,7 +48,7 @@ public class ManualRecordQueryParse {
             
          
            try{
-        	   //¼à²âÖĞĞÄËÄÆÚĞ­Òé£ºÊÖ¶¯Â¼ÖÆÓĞĞ§Ê±¼ä
+        	   //ç›‘æµ‹ä¸­å¿ƒå››æœŸåè®®ï¼šæ‰‹åŠ¨å½•åˆ¶æœ‰æ•ˆæ—¶é—´
                node = element.selectSingleNode("@Lifecycle");
                
         	   vo.setFileSaveTime(node.getText());
@@ -89,7 +89,7 @@ public class ManualRecordQueryParse {
 		
 	}
 	
-	// ÊÖ¶¯Â¼Ïñ»Ø¸´xml´ò°ü
+	// æ‰‹åŠ¨å½•åƒå›å¤xmlæ‰“åŒ…
 	public String ReturnXMLByURL(MSGHeadVO head,int value) {
 
         StringBuffer strBuff = new StringBuffer();
@@ -99,9 +99,9 @@ public class ManualRecordQueryParse {
         strBuff.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuff.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">");
 		if(0==value){
-            strBuff.append("<Return Type=\"ManualRecordQuery\" Value=\"0\" Desc=\"³É¹¦\"/>");
+            strBuff.append("<Return Type=\"ManualRecordQuery\" Value=\"0\" Desc=\"æˆåŠŸ\"/>");
 		}else if(1==value){
-            strBuff.append("<Return Type=\"ManualRecordQuery\" Value=\"1\" Desc=\"Ê§°Ü\"/>");
+            strBuff.append("<Return Type=\"ManualRecordQuery\" Value=\"1\" Desc=\"å¤±è´¥\"/>");
 		}
         strBuff.append("</Msg>");
 		return strBuff.toString();

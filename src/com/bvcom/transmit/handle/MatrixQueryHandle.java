@@ -29,13 +29,13 @@ public class MatrixQueryHandle {
     }
     
     /**
-     * ¾ØÕóÇĞ»»
-     * Ä¿Ç°Ö±½Ó·µ»Ø³É¹¦
+     * çŸ©é˜µåˆ‡æ¢
+     * ç›®å‰ç›´æ¥è¿”å›æˆåŠŸ
      */
 	@SuppressWarnings("unchecked")
 	public void downXML(){
 		
-		// ·µ»ØÊı¾İ
+		// è¿”å›æ•°æ®
 		@SuppressWarnings("unused")
 		String upString = "";
 		List SMGSendList = new ArrayList();
@@ -45,7 +45,7 @@ public class MatrixQueryHandle {
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("¾ØÕóÇĞ»»StringToXML Error: " + e.getMessage());
+            log.error("çŸ©é˜µåˆ‡æ¢StringToXML Error: " + e.getMessage());
         };
         MatrixQueryParse matrixQuery = new MatrixQueryParse();
         List<MatrixQueryVO> matrixlist = matrixQuery.getIndexByDownXml(document);
@@ -56,33 +56,33 @@ public class MatrixQueryHandle {
         	for(int j=0;j<SMGSendList.size();j++){
         		SMGCardInfoVO smg = (SMGCardInfoVO) SMGSendList.get(i);
         		try {
-                    // ¾ØÕóÇĞ»»ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+                    // çŸ©é˜µåˆ‡æ¢ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
                     utilXML.SendDownNoneReturn(this.downString, smg.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
                     //break;
                 } catch (CommonException e) {
-                    log.error("ÏÂ·¢¾ØÕóÇĞ»»µ½SMG³ö´í£º" + smg.getURL());
+                    log.error("ä¸‹å‘çŸ©é˜µåˆ‡æ¢åˆ°SMGå‡ºé”™ï¼š" + smg.getURL());
                 }
         	}
         	CommonUtility.checkSMGChannelIndex(matrixlist.get(i).getIndex2(), SMGSendList2);
         	for(int j=0;j<SMGSendList2.size();j++){
         		SMGCardInfoVO smg = (SMGCardInfoVO) SMGSendList2.get(i);
         		try {
-                    // ¾ØÕóÇĞ»»ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+                    // çŸ©é˜µåˆ‡æ¢ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
                     utilXML.SendDownNoneReturn(this.downString, smg.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
                     //break;
                 } catch (CommonException e) {
-                    log.error("ÏÂ·¢¾ØÕóÇĞ»»µ½SMG³ö´í£º" + smg.getURL());
+                    log.error("ä¸‹å‘çŸ©é˜µåˆ‡æ¢åˆ°SMGå‡ºé”™ï¼š" + smg.getURL());
                 }
         	}
         }
         
-      //ÉÏ±¨»Ø¸´µÄxml¸øÖĞĞÄ,×Ô¼º·µ»Ø³É¹¦
+      //ä¸ŠæŠ¥å›å¤çš„xmlç»™ä¸­å¿ƒ,è‡ªå·±è¿”å›æˆåŠŸ
         upString = matrixQuery.ReturnXMLByURL(this.bsData,0);
         
         try {
             utilXML.SendUpXML(upString, bsData);
         } catch (CommonException e) {
-            log.error("¾ØÕóÇĞ»»»Ø¸´Ê§°Ü: " + e.getMessage());
+            log.error("çŸ©é˜µåˆ‡æ¢å›å¤å¤±è´¥: " + e.getMessage());
         }
         
         bsData = null;

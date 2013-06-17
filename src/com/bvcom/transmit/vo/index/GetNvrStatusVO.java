@@ -1,7 +1,7 @@
 package com.bvcom.transmit.vo.index;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
-//ͨ��״̬��ѯ
+//通道状态查询
 public class GetNvrStatusVO {
 	
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -20,7 +20,7 @@ public class GetNvrStatusVO {
     
     private int ReturnValue;
     
-    private String Comment;//ʧ��ԭ��
+    private String Comment;//失败原因
 
 	public String getComment() {
 		return Comment;

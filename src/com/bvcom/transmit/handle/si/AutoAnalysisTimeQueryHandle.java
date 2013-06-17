@@ -13,7 +13,7 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.si.AutoAnalysisTimeQueryVO;
 
 /**
- * 频道扫描
+ * 棰戦亾鎵弿
  * @author Bian Jiang
  * 
  */
@@ -40,14 +40,14 @@ public class AutoAnalysisTimeQueryHandle {
         try {
             utilXML.SendUpXML(sendString, bsData);
         } catch (CommonException e) {
-            log.error("数据业务分析信息失败: " + e.getMessage());
+            log.error("鏁版嵁涓氬姟鍒嗘瀽淇℃伅澶辫触: " + e.getMessage());
         }
     	
         Document document = null;
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("数据业务分析 StringToXML Error: " + e.getMessage());
+            log.error("鏁版嵁涓氬姟鍒嗘瀽 StringToXML Error: " + e.getMessage());
         }
         
         AutoAnalysisTimeQueryParse AutoAnalysisTimeQueryParse = new AutoAnalysisTimeQueryParse();
@@ -67,9 +67,9 @@ public class AutoAnalysisTimeQueryHandle {
         autoAnalysisTimeQueryTask.newScheduler();
         autoAnalysisTimeQueryTask.start();
         
-    	// 下发数据业务分析时，进行实时扫描
+    	// 涓嬪彂鏁版嵁涓氬姟鍒嗘瀽鏃讹紝杩涜瀹炴椂鎵弿
     	ChannelScanQueryHandle ChannelScanQueryHandle = new ChannelScanQueryHandle();
-    	//by tqy 新增加协议头信息
+    	//by tqy 鏂板鍔犲崗璁ご淇℃伅
     	ChannelScanQueryHandle.setBsData(this.bsData);
     	ChannelScanQueryHandle.channelScanNow();
     }

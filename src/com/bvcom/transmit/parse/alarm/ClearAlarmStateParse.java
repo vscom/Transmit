@@ -3,9 +3,9 @@ package com.bvcom.transmit.parse.alarm;
 import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//±¨¾¯×´Ì¬Çå³ý
+//æŠ¥è­¦çŠ¶æ€æ¸…é™¤
 public class ClearAlarmStateParse {
-	// ±¨¾¯×´Ì¬Çå³ý»Ø¸´xml´ò°ü
+	// æŠ¥è­¦çŠ¶æ€æ¸…é™¤å›žå¤xmlæ‰“åŒ…
 	public String ReturnXMLByURL(MSGHeadVO head, int value) {
 
 		String xml = null;
@@ -15,9 +15,9 @@ public class ClearAlarmStateParse {
 		+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 		+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"ClearAlarmState\" Value=\"0\" Desc=\"³É¹¦\"/>";
+			xml += "<Return Type=\"ClearAlarmState\" Value=\"0\" Desc=\"æˆåŠŸ\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"ClearAlarmState\" Value=\"1\" Desc=\"Ê§°Ü\"/>";
+			xml += "<Return Type=\"ClearAlarmState\" Value=\"1\" Desc=\"å¤±è´¥\"/>";
 		}
 		xml += "</Msg>";
 		return xml;

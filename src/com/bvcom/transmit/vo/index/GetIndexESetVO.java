@@ -1,20 +1,20 @@
 package com.bvcom.transmit.vo.index;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
-//ÔËĞĞ»·¾³Ö¸±ê²éÑ¯
+//è¿è¡Œç¯å¢ƒæŒ‡æ ‡æŸ¥è¯¢
 public class GetIndexESetVO {
 	
 	private MSGHeadVO MSGHead = new MSGHeadVO();
 
 	private int Type;
 	
-	private String Desc;//¶ÔÓ¦typeµÄÃèÊö
+	private String Desc;//å¯¹åº”typeçš„æè¿°
 	
-	private int Value;//¶ÔÓ¦typeµÄvalue
+	private int Value;//å¯¹åº”typeçš„value
 	
-	private int ReturnValue;//³É¹¦»òÊ§°Ü
+	private int ReturnValue;//æˆåŠŸæˆ–å¤±è´¥
 	
-	private String Comment;//Ê§°ÜÔ­Òò
+	private String Comment;//å¤±è´¥åŸå› 
 
 	public MSGHeadVO getMSGHead() {
 		return MSGHead;

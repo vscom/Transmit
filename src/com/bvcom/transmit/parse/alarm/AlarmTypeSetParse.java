@@ -5,7 +5,7 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 
 public class AlarmTypeSetParse {
 	
-	// 报警方式回复xml打包
+	// 鎶ヨ鏂瑰紡鍥炲xml鎵撳寘
 	public String ReturnXMLByURL(MSGHeadVO head, int value) {
 
 		String xml = null;
@@ -15,9 +15,9 @@ public class AlarmTypeSetParse {
 		+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 		+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"AlarmTypeSet\" Value=\"0\" Desc=\"成功\"/>";
+			xml += "<Return Type=\"AlarmTypeSet\" Value=\"0\" Desc=\"鎴愬姛\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"AlarmTypeSet\" Value=\"1\" Desc=\"失败\"/>";
+			xml += "<Return Type=\"AlarmTypeSet\" Value=\"1\" Desc=\"澶辫触\"/>";
 		}
 		xml += "</Msg>";
 		return xml;

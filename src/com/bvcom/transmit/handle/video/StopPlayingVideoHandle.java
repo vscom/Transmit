@@ -44,11 +44,11 @@ public class StopPlayingVideoHandle {
     }
     
     
-    private List SMGSendList = new ArrayList();//SMGµÄÁĞ±íĞÅÏ¢
+    private List SMGSendList = new ArrayList();//SMGçš„åˆ—è¡¨ä¿¡æ¯
     
     /**
-     * 1. È¡µÃRTVMËùÓĞµÄµØÖ·
-     * 2. °ÑÊÓÆµÍ£Ö¹Ğ­Òé·¢¸øËùÓĞrtvm
+     * 1. å–å¾—RTVMæ‰€æœ‰çš„åœ°å€
+     * 2. æŠŠè§†é¢‘åœæ­¢åè®®å‘ç»™æ‰€æœ‰rtvm
      */
     @SuppressWarnings({ "unchecked", "static-access" })
 	public void downXML() {
@@ -60,25 +60,25 @@ public class StopPlayingVideoHandle {
          
     	 SMGSendList = new ArrayList();
     	 
-    	//¸ü¸ÄÒ»¶ÔÒ»ÊµÊ±ÊÓÆµ±íµÄÒµÎñÀàĞÍ×´Ì¬recordtype=4
-    	// È¡µÃÂíÈü¿ËÏà¹ØµÄ½ÚÄ¿ĞÅÏ¢
+    	//æ›´æ”¹ä¸€å¯¹ä¸€å®æ—¶è§†é¢‘è¡¨çš„ä¸šåŠ¡ç±»å‹çŠ¶æ€recordtype=4
+    	// å–å¾—é©¬èµ›å…‹ç›¸å…³çš„èŠ‚ç›®ä¿¡æ¯
 		@SuppressWarnings("unused")
-		//1£ºĞèÒª»ñÈ¡RECORDTYPE!=4£¬¶øÇÒRECORDTYPE=2µÄ½ÚÄ¿ĞÅÏ¢£¬ÖØĞÂÏÂ·¢Ö¸Áî¸ø°å¿¨
+		//1ï¼šéœ€è¦è·å–RECORDTYPE!=4ï¼Œè€Œä¸”RECORDTYPE=2çš„èŠ‚ç›®ä¿¡æ¯ï¼Œé‡æ–°ä¸‹å‘æŒ‡ä»¤ç»™æ¿å¡
 		List<SetAutoRecordChannelVO> voList = getProgramInfoByIndex();
 
 		try{
-			//2012-07-20ĞÂÔö¼ÓÉ¾³ıSMGµÄ½ÚÄ¿ĞÅÏ¢
-			for(int i=0; i< voList.size(); i++)  {//µÃµ½½âÎöºóµÄxmlµÄ¶ÔÏóÊı×éÖĞµÄÒ»¸ö²Ù×÷
+			//2012-07-20æ–°å¢åŠ åˆ é™¤SMGçš„èŠ‚ç›®ä¿¡æ¯
+			for(int i=0; i< voList.size(); i++)  {//å¾—åˆ°è§£æåçš„xmlçš„å¯¹è±¡æ•°ç»„ä¸­çš„ä¸€ä¸ªæ“ä½œ
 	        	SetAutoRecordChannelVO vo = (SetAutoRecordChannelVO)voList.get(i);
 	        	@SuppressWarnings("unused")
 				int channelIndex = (int)vo.getIndex();
 	        
-	        	 // É¾³ıÍ¨µÀÊ¹ÓÃ±ê¼Ç TODO É¾³ı·µ»ØÍ¨µÀÓĞÎÊÌâ
+	        	 // åˆ é™¤é€šé“ä½¿ç”¨æ ‡è®° TODO åˆ é™¤è¿”å›é€šé“æœ‰é—®é¢˜
 				handle.GetIndexByProgram(vo, true);
 				channelIndex = vo.getDevIndex();
 				handle.updateDelFlagChannelRemappingByProgram(vo);
 				
-				 //½«°å¿¨ºÅ´æÈëchannelSendListÖĞ£¬ÇÒ±£Ö¤channelSendListÎŞÖØ¸´µÄÍ¨µÀºÅ
+				 //å°†æ¿å¡å·å­˜å…¥channelSendListä¸­ï¼Œä¸”ä¿è¯channelSendListæ— é‡å¤çš„é€šé“å·
 				if (channel != channelIndex && channelIndex != 0) {
 					boolean isHasIndex = false;
 					for(int j=0; j<channelSendList.size(); j++) {
@@ -96,7 +96,7 @@ public class StopPlayingVideoHandle {
 					channel = channelIndex;
 				}
 	
-				//*************ÏÂ·¢smg(ĞèÒª¸øÄÄĞ©°å¿¨·¢ĞÅÏ¢)**************
+				//*************ä¸‹å‘smg(éœ€è¦ç»™å“ªäº›æ¿å¡å‘ä¿¡æ¯)**************
 				CommonUtility.checkSMGChannelIndex(channelIndex, SMGSendList);
 	   		
 			}
@@ -119,13 +119,13 @@ public class StopPlayingVideoHandle {
 	  		                {
 		  		                smgDownString = smgDownString.replaceAll("QAM=\"64\"", "QAM=\"QAM64\"");
 		  		            	smgDownString = smgDownString.replaceAll("QAM=\"\"", "QAM=\"QAM64\"");
-		  		                // ×Ô¶¯Â¼ÏñÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+		  		                // è‡ªåŠ¨å½•åƒä¸‹å‘ timeout 1000*30 ä¸‰åç§’
 		  		                utilXML.SendDownNoneReturn(setAutoRecordChannel.replaceString(smgDownString), smg.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
 		  		                url = smg.getURL().trim();
 	  		                }
-	  		                // ¸ßÇåÏà¹ØÅäÖÃ
+	  		                // é«˜æ¸…ç›¸å…³é…ç½®
 	  		                if (smg.getHDFlag() == 1 && smg.getHDURL() != null && !smg.getHDURL().trim().equals("")) {
-	  		                	// ¸ßÇå×ªÂëÏÂ·¢
+	  		                	// é«˜æ¸…è½¬ç ä¸‹å‘
 	  		                	utilXML.SendDownNoneReturn(setAutoRecordChannel.replaceString(smgDownString), smg.getHDURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
 	  		                }
 	  		                try {
@@ -134,7 +134,7 @@ public class StopPlayingVideoHandle {
 	  	
 	  						}
 	  		            } catch (CommonException e) {
-	  		                log.error("ÏÂ·¢ÂíÈü¿Ë×Ô¶¯Â¼Ïñµ½SMG³ö´í£º" + smg.getURL());
+	  		                log.error("ä¸‹å‘é©¬èµ›å…‹è‡ªåŠ¨å½•åƒåˆ°SMGå‡ºé”™ï¼š" + smg.getURL());
 	  		            }
 	  		        }
 				}catch(Exception ex){
@@ -142,11 +142,11 @@ public class StopPlayingVideoHandle {
 				}
 		}
 		
-		//Í¬Ê±¸üĞÂÒ»¶ÔÒ»½ÚÄ¿±í£¬½«recordtype=4 ĞŞ¸ÄÎª³õÊ¼×´Ì¬
-		//BY TQY ¼à²âËÄÆÚ
+		//åŒæ—¶æ›´æ–°ä¸€å¯¹ä¸€èŠ‚ç›®è¡¨ï¼Œå°†recordtype=4 ä¿®æ”¹ä¸ºåˆå§‹çŠ¶æ€
+		//BY TQY ç›‘æµ‹å››æœŸ
 		updateMosaicChannelMapping(voList);
 		
-    	// ·µ»ØÊı¾İ
+    	// è¿”å›æ•°æ®
         @SuppressWarnings("unused")
 		String upString = "";
         boolean isErr = false;
@@ -157,9 +157,9 @@ public class StopPlayingVideoHandle {
 			isErr = true;
 		}
         
-		//¸øRTVMÏÂ·¢ÊÓÆµÍ£Ö¹ÃüÁî
+		//ç»™RTVMä¸‹å‘è§†é¢‘åœæ­¢å‘½ä»¤
         if (isErr) {
-            // Ê§°Ü
+            // å¤±è´¥
             upString = utilXML.getReturnXML(bsData, 1);
         } else {
         	for (int i = 0; i < rtvsList.size(); i++) {
@@ -172,7 +172,7 @@ public class StopPlayingVideoHandle {
         }
         
         //BY TQY 
-     	//¸øIPMÏÂ·¢¸øÍ£Ö¹ÉÏ±¨ÂÖ²¥½ÚÄ¿ĞÅÏ¢
+     	//ç»™IPMä¸‹å‘ç»™åœæ­¢ä¸ŠæŠ¥è½®æ’­èŠ‚ç›®ä¿¡æ¯
     	List ipmList=coreData.getIPMList();
     	for(int i=0;i<ipmList.size();i++){
     		IPMInfoVO ipm = (IPMInfoVO) ipmList.get(i);
@@ -180,12 +180,12 @@ public class StopPlayingVideoHandle {
     			try {
 				  upString=utilXML.SendDownXML(this.downString, ipm.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
 				} catch (CommonException e) {
-					log.error("ÂíÈü¿ËÂÖÑµÏÂ·¢¶à»­´íÎó£º"+e.getMessage());
+					log.error("é©¬èµ›å…‹è½®è®­ä¸‹å‘å¤šç”»é”™è¯¯ï¼š"+e.getMessage());
 					isErr = true;
 				}
     		}
     	}
-    	//by tqy 2012-07-09 Ôö¼ÓÉ¾³ıÂÖ²¥°å¿¨ĞÅÏ¢
+    	//by tqy 2012-07-09 å¢åŠ åˆ é™¤è½®æ’­æ¿å¡ä¿¡æ¯
     	
     	
         String returnstr="";
@@ -194,14 +194,14 @@ public class StopPlayingVideoHandle {
         	try {
                 utilXML.SendUpXML(returnstr, bsData);
             } catch (CommonException e) {
-                log.error("ÉÏ·¢ "+ bsData.getStatusQueryType() +" ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+                log.error("ä¸Šå‘ "+ bsData.getStatusQueryType() +" ä¿¡æ¯å¤±è´¥: " + e.getMessage());
             }
         }else{
         	returnstr = utilXML.getReturnXML(this.bsData, 0);
         	try {
                 utilXML.SendUpXML(returnstr, bsData);
             } catch (CommonException e) {
-                log.error("ÉÏ·¢ "+ bsData.getStatusQueryType() +" ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+                log.error("ä¸Šå‘ "+ bsData.getStatusQueryType() +" ä¿¡æ¯å¤±è´¥: " + e.getMessage());
             }
         }
         
@@ -212,10 +212,10 @@ public class StopPlayingVideoHandle {
     }
     
     /**
-     * È¡µÃ·µ»ØµÄXMLĞÅÏ¢
-     * @param head XMLÊı¾İ¶ÔÏó 
-     * @param value 0:³É¹¦ 1:Ê§°Ü
-     * @return XMLÎÄ±¾ĞÅÏ¢
+     * å–å¾—è¿”å›çš„XMLä¿¡æ¯
+     * @param head XMLæ•°æ®å¯¹è±¡ 
+     * @param value 0:æˆåŠŸ 1:å¤±è´¥
+     * @return XMLæ–‡æœ¬ä¿¡æ¯
      */
     public String getReturnXML(String url, MSGHeadVO head, int value) {
         
@@ -227,9 +227,9 @@ public class StopPlayingVideoHandle {
         strBuf.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuf.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\"> \r\n");
         if(0==value){
-            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r\n");
+            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r\n");
         }else if(1==value){
-            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"Ê§°Ü\"/>\r\n");
+            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"å¤±è´¥\"/>\r\n");
         }
         strBuf.append("<ReturnInfo> \r\n <MosaicUrl URL=\"" + url	+ "\" /> \r\n</ReturnInfo>\r\n");
         strBuf.append("</Msg>");
@@ -238,7 +238,7 @@ public class StopPlayingVideoHandle {
     
     
     /*
-	 *¸ù¾İÂíÈü¿ËÏà¹Ø½ÚÄ¿ĞÅÏ¢£¬¸üĞÂÒ»¶ÔÒ»½ÚÄ¿±í
+	 *æ ¹æ®é©¬èµ›å…‹ç›¸å…³èŠ‚ç›®ä¿¡æ¯ï¼Œæ›´æ–°ä¸€å¯¹ä¸€èŠ‚ç›®è¡¨
 	 * 
 	 */
 	public void updateMosaicChannelMapping(List<SetAutoRecordChannelVO>  voList)
@@ -263,7 +263,7 @@ public class StopPlayingVideoHandle {
 		Statement statement = null;
 		Connection conn = DaoSupport.getJDBCConnection();
 
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		
 		strBuff.append("update transmit.channelremapping c set ");
 		strBuff.append(" StatusFlag = 0, tscIndex = 0, freq=0, ServiceID=0, VideoPID=0, AudioPID=0, RecordType=0,Action=null,");
@@ -278,18 +278,18 @@ public class StopPlayingVideoHandle {
 			statement.execute(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
 		}
 		strBuff = null;
-		//log.info("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 	}
     
     /**
-	 * È¡µÃÂíÈü¿ËÏà¹ØµÄ½ÚÄ¿ĞÅÏ¢
-	 * recordType 0£º²»Â¼Ïñ£¬1:´ú±í¹ÊÕÏ´¥·¢Â¼ÖÆ   2£º24Ğ¡Ê±Â¼Ïñ(Ä¬ÈÏ)	3: ÈÎÎñÂ¼Ïñ  4: ÂíÈü¿ËºÏ³ÉÂÖ²¥
+	 * å–å¾—é©¬èµ›å…‹ç›¸å…³çš„èŠ‚ç›®ä¿¡æ¯
+	 * recordType 0ï¼šä¸å½•åƒï¼Œ1:ä»£è¡¨æ•…éšœè§¦å‘å½•åˆ¶   2ï¼š24å°æ—¶å½•åƒ(é»˜è®¤)	3: ä»»åŠ¡å½•åƒ  4: é©¬èµ›å…‹åˆæˆè½®æ’­
 	 * @return
 	 */
 	public List<SetAutoRecordChannelVO> getProgramInfoByIndex() {
@@ -303,7 +303,7 @@ public class StopPlayingVideoHandle {
 		try {
 			conn = DaoSupport.getJDBCConnection();
 			StringBuffer strBuff = new StringBuffer();
-			// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+			// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 			strBuff.append("select *  from channelremapping where delflag =0 and  RecordType = 4 ;");
 			try {
 				statement = conn.createStatement();
@@ -330,7 +330,7 @@ public class StopPlayingVideoHandle {
 				}
 
 			} catch (Exception e) {
-				log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó: " + e.getMessage());
+				log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯: " + e.getMessage());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);

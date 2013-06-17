@@ -1,5 +1,5 @@
 /**
- * transmit (java×ª·¢)
+ * transmit (javaè½¬å‘)
  * 
  * IPMInfoVO.java    2009.11.12
  * 
@@ -10,7 +10,7 @@ package com.bvcom.transmit.vo;
 
 /**
  * 
- *  IP ¶à»­ËùĞèÒªµÄÅäÖÃÎÄ¼şĞÅÏ¢
+ *  IP å¤šç”»æ‰€éœ€è¦çš„é…ç½®æ–‡ä»¶ä¿¡æ¯
  * 
  * @version  V1.0
  * @author Bian Jiang
@@ -30,17 +30,17 @@ public class IPMInfoVO {
     
     
     /**
-     * µ±Ç°»úÆ÷µÄ¸ßÇå½ÚÄ¿Êı
+     * å½“å‰æœºå™¨çš„é«˜æ¸…èŠ‚ç›®æ•°
      */
     private int HDNums = 0;
     
     /**
-     * µ±Ç°»úÆ÷µÄ¸ßÇå½ÚÄ¿Êı
+     * å½“å‰æœºå™¨çš„é«˜æ¸…èŠ‚ç›®æ•°
      */
     private int TVNums = 0;
     
     /**
-     * RecordType: 0:²»Â¼Ïñ 1:ÒìÌ¬´¥·¢Â¼Ïñ 2:×Ô¶¯Â¼Ïñ 3:¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+     * RecordType: 0:ä¸å½•åƒ 1:å¼‚æ€è§¦å‘å½•åƒ 2:è‡ªåŠ¨å½•åƒ 3:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
      */
     private int RecordType;
 
@@ -85,14 +85,14 @@ public class IPMInfoVO {
 	}
 
 	/**
-     * RecordType: 0:²»Â¼Ïñ 1:ÒìÌ¬´¥·¢Â¼Ïñ 2:×Ô¶¯Â¼Ïñ 3:¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+     * RecordType: 0:ä¸å½•åƒ 1:å¼‚æ€è§¦å‘å½•åƒ 2:è‡ªåŠ¨å½•åƒ 3:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
      */
     public int getRecordType() {
 		return RecordType;
 	}
     
     /**
-     * RecordType: 0:²»Â¼Ïñ 1:ÒìÌ¬´¥·¢Â¼Ïñ 2:×Ô¶¯Â¼Ïñ 3:¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+     * RecordType: 0:ä¸å½•åƒ 1:å¼‚æ€è§¦å‘å½•åƒ 2:è‡ªåŠ¨å½•åƒ 3:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
      */
 	public void setRecordType(int recordType) {
 		RecordType = recordType;

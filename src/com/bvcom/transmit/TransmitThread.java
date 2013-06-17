@@ -65,7 +65,7 @@ import com.bvcom.transmit.handle.smginfo.ICInfoChannelEncryptQuery;;
 
 public class TransmitThread extends Thread {
     /**
-     * ¶Ô×ª·¢³ÌĞòÊµÏÖ²¢ĞĞ´¦Àí
+     * å¯¹è½¬å‘ç¨‹åºå®ç°å¹¶è¡Œå¤„ç†
      * 
      * @version  V1.0
      * @author Bian Jiang
@@ -93,25 +93,25 @@ public class TransmitThread extends Thread {
         
         String returnstr = null;
         
-        // ½ÓÊÜĞÅÏ¢±£´æÎÄ¼ş
+        // æ¥å—ä¿¡æ¯ä¿å­˜æ–‡ä»¶
         this.saveReceXML2File();
         long t1 = System.currentTimeMillis();
-//        System.out.println("\n === ²éÑ¯ÊôĞÔ: " + this.bsData.getStatusQueryType() + " ThreadID: " + this.getId() + " ===\n");
+//        System.out.println("\n === æŸ¥è¯¢å±æ€§: " + this.bsData.getStatusQueryType() + " ThreadID: " + this.getId() + " ===\n");
 
-        // Ğ­ÒéÅĞ±ğ
+        // åè®®åˆ¤åˆ«
         try {
             this.transmitMainCtrl();
         } catch (CommonException e) {
         }
         long t2 = System.currentTimeMillis();
-//        log.info(this.bsData.getStatusQueryType() + " ThreadID: " + this.getId() + " ===  ÏµÍ³´¦ÀíÊ±¼ä: " + ((t2-t1)/1000) + "s");
+//        log.info(this.bsData.getStatusQueryType() + " ThreadID: " + this.getId() + " ===  ç³»ç»Ÿå¤„ç†æ—¶é—´: " + ((t2-t1)/1000) + "s");
     }
     
     /*
-     * Ğ­ÒéÅĞ±ğ
+     * åè®®åˆ¤åˆ«
      */
     private void transmitMainCtrl() throws CommonException {
-        // ²éÑ¯ÊôĞÔ
+        // æŸ¥è¯¢å±æ€§
         String statusQueryType = bsData.getStatusQueryType();
         
         String returnstr = "";
@@ -153,7 +153,7 @@ public class TransmitThread extends Thread {
             
         	MHPQuery = null;
         	//TODO 
-        	//¹Ø×¢Ò»ÏÂ
+        	//å…³æ³¨ä¸€ä¸‹
         }  else if(statusQueryType.equals("EPGQuery")) {
         	EPGQueryHandle EPGQuery = new EPGQueryHandle(this.downString, this.bsData);
         	EPGQuery.downXML();
@@ -161,109 +161,109 @@ public class TransmitThread extends Thread {
         	EPGQuery = null;
         }
         else  if(statusQueryType.equals("ChannelScanQuery")) {
-            // ÆµµÀÉ¨Ãè
+            // é¢‘é“æ‰«æ
             ChannelScanQueryHandle ChannelScanQuery = new ChannelScanQueryHandle(this.downString, this.bsData);
             ChannelScanQuery.downXML();
-            //TODO ¹Ø×¢Ò»ÏÂ 
+            //TODO å…³æ³¨ä¸€ä¸‹ 
             ChannelScanQuery = null;
             
             
         } else if(statusQueryType.equals("AutoAnalysisTimeQuery")) {
-            // Êı¾İÒµÎñ·ÖÎöÊ±¼äÉèÖÃ
+            // æ•°æ®ä¸šåŠ¡åˆ†ææ—¶é—´è®¾ç½®
             AutoAnalysisTimeQueryHandle AutoAnalysis = new AutoAnalysisTimeQueryHandle(this.downString, this.bsData);
             AutoAnalysis.downXML();
-            //TODO ¹Ø×¢Ò»ÏÂ 
+            //TODO å…³æ³¨ä¸€ä¸‹ 
             AutoAnalysis = null;
             
             
         } else if(statusQueryType.equals("SpectrumScanQuery")) {
-        	// ÆµÆ×É¨Ãè
+        	// é¢‘è°±æ‰«æ
         	SpectrumScanQueryHandle SpectrumScanQueryHandle = new SpectrumScanQueryHandle(this.downString, this.bsData);
         	SpectrumScanQueryHandle.downXML();
             
         	SpectrumScanQueryHandle = null;
         }
         else if(statusQueryType.equals("ChangeProgramQuery")) {
-            // ÊÖ¶¯Ñ¡Ì¨
+            // æ‰‹åŠ¨é€‰å°
             ChangeProgramQueryHandle ChangeProgram = new ChangeProgramQueryHandle(this.downString, this.bsData);
             ChangeProgram.downXML();
             
             ChangeProgram = null;
         } else if(statusQueryType.equals("ManualRecordQuery")) {
-            // ÊÖ¶¯Â¼ÖÆ
+            // æ‰‹åŠ¨å½•åˆ¶
             ManualRecordQueryHandle ManualRecord = new ManualRecordQueryHandle(this.downString, this.bsData);
             ManualRecord.downXML();
             
             ManualRecord = null;
         }else if(statusQueryType.equals("SetAutoRecordChannel")) {
-            // ×Ô¶¯Â¼Ïñ
+            // è‡ªåŠ¨å½•åƒ
         	SetAutoRecordChannelHandle SetAutoRecord = new SetAutoRecordChannelHandle(this.downString, this.bsData);
         	SetAutoRecord.downXML();
             
         	SetAutoRecord = null;
         }else if(statusQueryType.equals("NVRVideoHistoryDownInquiry")) {
-            // ÀúÊ·ÊÓÆµÏÂÔØ
+            // å†å²è§†é¢‘ä¸‹è½½
         	NVRVideoHistoryDownInquiryHandle nvrHistroydownRecord = new NVRVideoHistoryDownInquiryHandle(this.downString, this.bsData);
         	nvrHistroydownRecord.downXML();
             
         	nvrHistroydownRecord = null;
         }else if(statusQueryType.equals("NVRVideoHistoryInquiry")) {
-            // ÀúÊ·ÊÓÆµ²é¿´
+            // å†å²è§†é¢‘æŸ¥çœ‹
         	NVRVideoHistoryInquiryHandle nvrHistroyRecord = new NVRVideoHistoryInquiryHandle(this.downString, this.bsData);
         	nvrHistroyRecord.downXML();
             
         	nvrHistroyRecord = null;
         } else if(statusQueryType.equals("NVRSteamRateSet")) {
-            // ÊµÊ±ÊÓÆµÁ÷ÂÊ
+            // å®æ—¶è§†é¢‘æµç‡
         	NVRSteamRateSetHandle nvrStream = new NVRSteamRateSetHandle(this.downString, this.bsData);
         	nvrStream.downXML();
             
         	nvrStream = null; 
         } else if(statusQueryType.equals("MatrixQuery")) {
-            //¾ØÕóÇĞ»»
+            //çŸ©é˜µåˆ‡æ¢
         	MatrixQueryHandle matrixRecord = new MatrixQueryHandle(this.downString, this.bsData);
         	matrixRecord.downXML();
             
         	matrixRecord = null;
         } else if(statusQueryType.equals("OSDSet")) {
-            //osdÉèÖÃ
+            //osdè®¾ç½®
         	OSDSetHandle osdRecord = new OSDSetHandle(this.downString, this.bsData);
         	osdRecord.downXML();
             
         	osdRecord = null;
         } else if(statusQueryType.equals("ChangeQAMQuery")) {
-            //QAMÉèÖÃ
+            //QAMè®¾ç½®
         	ChangeQAMQueryHandle QAMRecord = new ChangeQAMQueryHandle(this.downString, this.bsData);
         	QAMRecord.downXML();
             
         	QAMRecord = null;
         } else if(statusQueryType.equals("StreamRoundInfoQuery")&& Pattern.compile("WindowNumber=\"1\"").matcher(this.downString).find()) {
         		 
-            //×Ô¶¯ÂÖ²¥
+            //è‡ªåŠ¨è½®æ’­
         	StreamRoundInfoQueryHandle streamRoundInfoQuery = new StreamRoundInfoQueryHandle(this.downString, this.bsData);
         	streamRoundInfoQuery.downXML();
             
         	streamRoundInfoQuery = null;
         } else if(statusQueryType.equals("IndexCompensationSet")) {
-            //Ö¸±ê²¹³¥
+            //æŒ‡æ ‡è¡¥å¿
         	IndexCompensationSetHandle indexCompensationSetQuery = new IndexCompensationSetHandle(this.downString, this.bsData);
         	indexCompensationSetQuery.downXML();
             
         	indexCompensationSetQuery = null;
         } else if(statusQueryType.equals("AlarmSearchLSet")) {
-            //Ñ­ÇĞ±¨¾¯²éÑ¯
+            //å¾ªåˆ‡æŠ¥è­¦æŸ¥è¯¢
         	AlarmSearchLSetHandle alarmSearchLSetQuery = new AlarmSearchLSetHandle(this.downString, this.bsData);
         	alarmSearchLSetQuery.downXML();
             
         	alarmSearchLSetQuery = null;
         } else if(statusQueryType.equals("GetIndexSet")) {
-            //ĞÔÄÜÖ¸±ê²éÑ¯
+            //æ€§èƒ½æŒ‡æ ‡æŸ¥è¯¢
         	GetIndexSetHandle GetIndexSetQuery = new GetIndexSetHandle(this.downString, this.bsData);
         	GetIndexSetQuery.downXML();
             
         	GetIndexSetQuery = null;
         } else if(statusQueryType.equals("GetNvrStatus_BAK")) {
-            //1:Ô­Í¨µÀ×´Ì¬²éÑ¯¡¢·ÏÆú
+            //1:åŸé€šé“çŠ¶æ€æŸ¥è¯¢ã€åºŸå¼ƒ
         	/*
         	GetNvrStatusHandle getNvrStatusQuery = new GetNvrStatusHandle(this.downString, this.bsData);
         	getNvrStatusQuery.downXML();
@@ -271,27 +271,27 @@ public class TransmitThread extends Thread {
         	getNvrStatusQuery = null;
         	*/
         } else if(statusQueryType.equals("GetIndexESet")) {
-            //ÔËĞĞ»·¾³Ö¸±ê²éÑ¯
+            //è¿è¡Œç¯å¢ƒæŒ‡æ ‡æŸ¥è¯¢
         	GetIndexESetHandle getIndexESetQuery = new GetIndexESetHandle(this.downString, this.bsData);
         	getIndexESetQuery.downXML();
             
         	getIndexESetQuery = null;
         } else if(statusQueryType.equals("AlarmSearchPSet")) {
-            // ½ÚÄ¿±¨¾¯²éÑ¯
+            // èŠ‚ç›®æŠ¥è­¦æŸ¥è¯¢
             AlarmSearchPSetHandle AlarmSearchPSet = new AlarmSearchPSetHandle(this.downString, this.bsData);
             AlarmSearchPSet.downXML();
             
             AlarmSearchPSet = null;
         }
         else if(statusQueryType.equals("AlarmSearchESet")) {
-            //±¨¾¯ÉÏ±¨Ö¸±ê²éÑ¯
+            //æŠ¥è­¦ä¸ŠæŠ¥æŒ‡æ ‡æŸ¥è¯¢
         	AlarmSearchESetHandle alarmSearchESetQuery = new AlarmSearchESetHandle(this.downString, this.bsData);
         	alarmSearchESetQuery.downXML();
             
         	alarmSearchESetQuery = null;
         }
         else if(statusQueryType.equals("AlarmSearchFSet")) {
-            //±¨¾¯ÉÏ±¨ÆµÂÊ²éÑ¯
+            //æŠ¥è­¦ä¸ŠæŠ¥é¢‘ç‡æŸ¥è¯¢
         	AlarmSearchFSetHandle alarmSearchFSetQuery = new AlarmSearchFSetHandle(this.downString, this.bsData);
         	alarmSearchFSetQuery.downXML();
             
@@ -299,19 +299,19 @@ public class TransmitThread extends Thread {
         }
         
         else if(statusQueryType.equals("ProvisionalRecordTaskSet")) {
-            // ÈÎÎñÂ¼ÏñÉèÖÃ
+            // ä»»åŠ¡å½•åƒè®¾ç½®
             ProvisionalRecordTaskSetHandle RecordTaskSet = new ProvisionalRecordTaskSetHandle(this.downString, this.bsData);
             RecordTaskSet.downXML();
             
             RecordTaskSet = null;
         } else if(statusQueryType.equals("NVRTaskRecordInquiry")) {
-            // ÈÎÎñÂ¼Ïñ²é¿´
+            // ä»»åŠ¡å½•åƒæŸ¥çœ‹
             NVRTaskRecordInquiryHandle TaskRecordInquiry = new NVRTaskRecordInquiryHandle(this.downString, this.bsData);
             TaskRecordInquiry.downXML();
             
             TaskRecordInquiry = null;
         } else if(statusQueryType.equals("NVRTaskRecordDownInquiry")) {
-            // ÈÎÎñÂ¼ÏñÏÂÔØ
+            // ä»»åŠ¡å½•åƒä¸‹è½½
             NVRTaskRecordDownInquiryHandle TaskRecordInquiry = new NVRTaskRecordDownInquiryHandle(this.downString, this.bsData);
             TaskRecordInquiry.downXML();
             
@@ -319,22 +319,22 @@ public class TransmitThread extends Thread {
         } else if(statusQueryType.equals("RecordParamSet") || 
         		statusQueryType.equals("HDDefAudioParamSet") ||
         		statusQueryType.equals("AudioParamSet") ) {
-        	// ÊÓÆµ×ªÂëÂ¼ÏñÄ¬ÈÏ²ÎÊıÉèÖÃ
-        	// ¸ßÇåÒôÆµÄ¬ÈÏ²ÎÊıÉèÖÃ
-        	// ÒôÆµ²ÎÊıÉèÖÃ
+        	// è§†é¢‘è½¬ç å½•åƒé»˜è®¤å‚æ•°è®¾ç½®
+        	// é«˜æ¸…éŸ³é¢‘é»˜è®¤å‚æ•°è®¾ç½®
+        	// éŸ³é¢‘å‚æ•°è®¾ç½®
         	NVRHDParamSetHandle nvrHDParamSetHandle = new NVRHDParamSetHandle(this.downString, this.bsData);
         	nvrHDParamSetHandle.downXML();
         	nvrHDParamSetHandle = null;
 
         } else if (statusQueryType.equals("RecordCapabilityQuery")) {
-        	// Â¼ÏñÂ·Êı²éÑ¯
+        	// å½•åƒè·¯æ•°æŸ¥è¯¢
         	RecordCapabilityQuery RecordCapabilityQuery = new RecordCapabilityQuery(this.downString, this.bsData);
         	RecordCapabilityQuery.downXML();
         	
         	RecordCapabilityQuery = null;
         	
         } else if(statusQueryType.equals("AlarmTimeSet")) {
-            // ÔËĞĞÍ¼
+            // è¿è¡Œå›¾
             AlarmTimeSetHandle AlarmTimeSet = new AlarmTimeSetHandle(this.downString, this.bsData);
             AlarmTimeSet.downXML();
             
@@ -343,119 +343,119 @@ public class TransmitThread extends Thread {
                   statusQueryType.equals("AlarmSwitchSet") ||
                   statusQueryType.equals("AlarmTypeSet") ||
                   statusQueryType.equals("ClearAlarmState")) {
-            // ±¨¾¯ÃÅÏŞ, ¿ª¹Ø ,·½Ê½ ºÍ±¨¾¯×´Ì¬Çå³ı
+            // æŠ¥è­¦é—¨é™, å¼€å…³ ,æ–¹å¼ å’ŒæŠ¥è­¦çŠ¶æ€æ¸…é™¤
             AlarmSetHandle AlarmSet = new AlarmSetHandle(this.downString, this.bsData);
             AlarmSet.downXML();
             AlarmSet = null;
         } else if(statusQueryType.equals("AlarmProgramSwitchSet") ||
                   statusQueryType.equals("AlarmProgramThresholdSet")) {
-            // ±¨¾¯ÃÅÏŞºÍ¿ª¹Ø½ÚÄ¿Ïà¹Ø
+            // æŠ¥è­¦é—¨é™å’Œå¼€å…³èŠ‚ç›®ç›¸å…³
             AlarmProgramSetHandle AlarmProgramSet = new AlarmProgramSetHandle(this.downString, this.bsData);
             AlarmProgramSet.downXML();
             
             AlarmProgramSet = null;
         } else if(statusQueryType.equals("LoopAlaInf")) {
-            // Ñ­ÇĞ±¨¾¯ÉèÖÃ
+            // å¾ªåˆ‡æŠ¥è­¦è®¾ç½®
             LoopAlaInfHandle LoopAlaInf = new LoopAlaInfHandle(this.downString, this.bsData);
             LoopAlaInf.downXML();
             
             LoopAlaInf = null;
         } else if(statusQueryType.equals("ProgramPatrol")) {
-        	// ÂÖÑ²¼à²âÉèÖÃ ¹ãÖİ¼à²â Add By Bian Jiang 2010.9.15
+        	// è½®å·¡ç›‘æµ‹è®¾ç½® å¹¿å·ç›‘æµ‹ Add By Bian Jiang 2010.9.15
         	
         	ProgramPatrolHandle programPatrol = new ProgramPatrolHandle(this.downString, this.bsData);
         	programPatrol.downXML();
             
         	programPatrol = null;
         } else if(statusQueryType.equals("MonitorProgramQuery")) {
-        	// ÊµÊ±ÊÓÆµ¼à¿´ ¹ãÖİ¼à²â Add By Bian Jiang 2010.9.15
+        	// å®æ—¶è§†é¢‘ç›‘çœ‹ å¹¿å·ç›‘æµ‹ Add By Bian Jiang 2010.9.15
         	MonitorProgramQueryHandle monitorProgramQuery = new MonitorProgramQueryHandle(this.downString, this.bsData);
         	monitorProgramQuery.downXML();
             
         	monitorProgramQuery = null;
-        	//TODO Ôö¼ÓÂëÂÊÅĞ¶Ï
+        	//TODO å¢åŠ ç ç‡åˆ¤æ–­
         }  else if(statusQueryType.equals("RecordParamSetEx")) {
-        	// Â¼ÏñÂëÂÊÉèÖÃ ¹ãÖİ¼à²â Add By Bian Jiang 2010.9.23
+        	// å½•åƒç ç‡è®¾ç½® å¹¿å·ç›‘æµ‹ Add By Bian Jiang 2010.9.23
         	RecordParamSetExHandle RecordParamSetExHandle = new RecordParamSetExHandle(this.downString, this.bsData);
         	RecordParamSetExHandle.downXML();
             
         	RecordParamSetExHandle = null;
         } else if(statusQueryType.equals("ConstellationQuery")) {
-        	// ĞÇ×ùÍ¼  ¹ãÖİ¼à²â Add By Bian Jiang 2010.10.12
+        	// æ˜Ÿåº§å›¾  å¹¿å·ç›‘æµ‹ Add By Bian Jiang 2010.10.12
         	ConstellationQueryHandle ConstellationQueryHandle = new ConstellationQueryHandle(this.downString, this.bsData);
         	ConstellationQueryHandle.downXML();
         	
         	ConstellationQueryHandle = null;
         } else if(statusQueryType.equals("NephogramQuery")) {
-        	// Web 2.0 ĞÇ×ùÍ¼ Add By Bian Jiang 2011.1.7
+        	// Web 2.0 æ˜Ÿåº§å›¾ Add By Bian Jiang 2011.1.7
         	NephogramQueryHandle nephogramQueryHandle = new NephogramQueryHandle(this.downString, this.bsData);
         	nephogramQueryHandle.downXML();
         	
         	nephogramQueryHandle = null;
         } else if(statusQueryType.equals("MosaicConfig")) {
-        	// ¶à»­ÃæºÏ³É(ÂíÈü¿Ë) ¹ãÖİ¼à²â Add By Bian Jiang 2010.12.9
+        	// å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹) å¹¿å·ç›‘æµ‹ Add By Bian Jiang 2010.12.9
         	MosaicConfigHandle mosaicConfigHandle = new MosaicConfigHandle(this.downString, this.bsData);
         	mosaicConfigHandle.downXML();
         	
         	mosaicConfigHandle = null;
         }else if(statusQueryType.equals("StopPlayingVideo")){
-        	//ÊÓÆµ²¥·ÅÍ£Ö¹ Add By tqy 2011-07-25
-        	//Èç¹ûÊÇÊÓÆµÍ£²¥Ğ­ÒéÔò×ª·¢¸øRTVM¡¢IASÍ£Ö¹½ÚÄ¿ÂÖ²¥ÉÏ±¨
+        	//è§†é¢‘æ’­æ”¾åœæ­¢ Add By tqy 2011-07-25
+        	//å¦‚æœæ˜¯è§†é¢‘åœæ’­åè®®åˆ™è½¬å‘ç»™RTVMã€IASåœæ­¢èŠ‚ç›®è½®æ’­ä¸ŠæŠ¥
         	StopPlayingVideoHandle stopPlayingVideoHandle =new StopPlayingVideoHandle(this.downString, this.bsData);
         	stopPlayingVideoHandle.downXML();
         	stopPlayingVideoHandle =null;
         }else if(statusQueryType.equals("ICInfoQuery")){	
-        	//Ğ¡¿¨ĞÅÏ¢²éÑ¯ Add By Ji Long 2011-07-28,
-        	//BY TQY MODIFIED´ÓÊı¾İ¿âSMG_CARD_INFOÖĞ¶ÁÈ¡ĞÅÏ¢
+        	//å°å¡ä¿¡æ¯æŸ¥è¯¢ Add By Ji Long 2011-07-28,
+        	//BY TQY MODIFIEDä»æ•°æ®åº“SMG_CARD_INFOä¸­è¯»å–ä¿¡æ¯
         	ICInfoQueryHandle iCInfoQueryHandle=new ICInfoQueryHandle(this.downString, this.bsData);
         	iCInfoQueryHandle.downXML();
         	iCInfoQueryHandle =null;
         }else if(statusQueryType.equals("GetNvrStatus")){
-        	//°å¿¨Í¨µÀ²é¿´ Add By  Ji Long 2011-08-01
+        	//æ¿å¡é€šé“æŸ¥çœ‹ Add By  Ji Long 2011-08-01
         	//modify by tqy 2012-10-18
         	GetNvrStatus getNvrStatus=new GetNvrStatus(this.downString, this.bsData);
         	getNvrStatus.downXML();
         	getNvrStatus =null;
         }else if(statusQueryType.equals("NvrStatusSet")){	
-        	//°å¿¨Í¨µÀÉèÖÃ Add By Ji Long 2011-07-28 
+        	//æ¿å¡é€šé“è®¾ç½® Add By Ji Long 2011-07-28 
         	NvrStatusSet nvrStatusSet=new NvrStatusSet(this.downString, this.bsData);
         	nvrStatusSet.downXML();
         	nvrStatusSet =null;
         }else if(statusQueryType.equals("StreamRoundInfoQuery")&&bsData.getVersion().equals("2.5")){
-        	//ÂíÈü¿ËºÏ³ÉÂÖ²¥:added by tqy  
-        	//ÂíÈü¿Ë¹ıÆÚÉ¾³ıÏà¹ØµÄ½ÚÄ¿ĞÅÏ¢ 
+        	//é©¬èµ›å…‹åˆæˆè½®æ’­:added by tqy  
+        	//é©¬èµ›å…‹è¿‡æœŸåˆ é™¤ç›¸å…³çš„èŠ‚ç›®ä¿¡æ¯ 
         	MosaicStreamRoundInfoQuery mosaicStreamRoundInfoQuery=new MosaicStreamRoundInfoQuery(this.downString, this.bsData);
         	mosaicStreamRoundInfoQuery.downXML();
         	mosaicStreamRoundInfoQuery=null;
         	
         }else if(statusQueryType.equals("AgentInfoSet")){
-        	//Ç°¶ËÊôĞÔÅäÖÃ Add By Ji Long 2011-08-01
+        	//å‰ç«¯å±æ€§é…ç½® Add By Ji Long 2011-08-01
         	AgentInfoSet agentInfoSet=new AgentInfoSet(this.downString, this.bsData);
         	agentInfoSet.downXML();
         	agentInfoSet=null;
         	
         }else if(statusQueryType.equals("RebootSet")){
-        	//Ç°¶ËÖØÆô Add By Ji Long 2011-08-01
+        	//å‰ç«¯é‡å¯ Add By Ji Long 2011-08-01
         	RebootSet rebootSet=new RebootSet(this.downString, this.bsData);
         	rebootSet.downXML();
         	rebootSet=null;
         	
         }else if(statusQueryType.equals("Return")){
-        	//V2.5½Ó¿ÚĞ­Òé£ºÔö¼ÓICInfoChannelEncryptQueryµÄ´¦Àí£¨½âÎö£¬¸ù¾İĞ¡¿¨¿¨ºÅ´æÊı¾İ¿â£©
+        	//V2.5æ¥å£åè®®ï¼šå¢åŠ ICInfoChannelEncryptQueryçš„å¤„ç†ï¼ˆè§£æï¼Œæ ¹æ®å°å¡å¡å·å­˜æ•°æ®åº“ï¼‰
         	String str= bsData.getReturn_Type();
         	if(str.equals("ICInfoChannelEncryptQuery")){
         		//ICInfoChannelEncryptParase(document);
         	}
         	else
         	{
-	        	//ÊÕµ½¶à»­·µ»Ø ÂíÈü¿ËÏÂ´ÎÂÖ²¥½ÚÄ¿  Add By  Ji Long  2011-08-01
+	        	//æ”¶åˆ°å¤šç”»è¿”å› é©¬èµ›å…‹ä¸‹æ¬¡è½®æ’­èŠ‚ç›®  Add By  Ji Long  2011-08-01
 	        	ReceiveMosaicStreamRoundInfoQuery  receiveMosaicStreamRoundInfoQuery=new ReceiveMosaicStreamRoundInfoQuery(this.downString, this.bsData);
 	        	receiveMosaicStreamRoundInfoQuery.downXML();
 	        	receiveMosaicStreamRoundInfoQuery=null;
         	}
         	
         }else if(statusQueryType.equals("ICInfoChannelEncryptQuery")){
-        	//2012-10-18 V2.5 by tqy  Ğ¡¿¨½ÚÄ¿ÊÚÈ¨²éÑ¯
+        	//2012-10-18 V2.5 by tqy  å°å¡èŠ‚ç›®æˆæƒæŸ¥è¯¢
         	ICInfoChannelEncryptQuery ICInfoChannelEncryptQueryHandle= new ICInfoChannelEncryptQuery(this.downString,this.bsData);
         	ICInfoChannelEncryptQueryHandle.downXML();
         	ICInfoChannelEncryptQueryHandle=null;
@@ -463,12 +463,12 @@ public class TransmitThread extends Thread {
         }else if(statusQueryType.equals("GetNvrIndexTotal")){
         	System.out.println(this.downString);
         }else {
-            // ÆäËûĞÅÏ¢¶¼·µ»Ø³É¹¦
+            // å…¶ä»–ä¿¡æ¯éƒ½è¿”å›æˆåŠŸ
             returnstr = utilXML.getReturnXML(this.bsData, 0);
             try {
                 utilXML.SendUpXML(returnstr, bsData);
             } catch (CommonException e) {
-                log.error("ÉÏ·¢ "+ bsData.getStatusQueryType() +" ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+                log.error("ä¸Šå‘ "+ bsData.getStatusQueryType() +" ä¿¡æ¯å¤±è´¥: " + e.getMessage());
             }
             utilXML = null;
         }
@@ -476,42 +476,42 @@ public class TransmitThread extends Thread {
     
     
     /**
-     * ±£´æ½ÓÊÕµ½µÄXMLÊı¾İ
+     * ä¿å­˜æ¥æ”¶åˆ°çš„XMLæ•°æ®
      *
      */
     private void saveReceXML2File() {
         
-        // ½ÓÊÜĞÅÏ¢±£´æÎÄ¼şStart
+        // æ¥å—ä¿¡æ¯ä¿å­˜æ–‡ä»¶Start
         //String receFilePath = pData.getReceFilePath();
-        // List ´ÓÅäÖÃÎÄ¼şÈ¡µÃÎÄ¼şÂ·¾¶
+        // List ä»é…ç½®æ–‡ä»¶å–å¾—æ–‡ä»¶è·¯å¾„
         MemCoreData coreData = MemCoreData.getInstance();
         SysInfoVO sysVO = coreData.getSysVO();
         
         String receFilePath = sysVO.getReceFilePath();
-        // ´´½¨´íÎóXMLĞÅÏ¢´æ·ÅÄ¿Â¼
+        // åˆ›å»ºé”™è¯¯XMLä¿¡æ¯å­˜æ”¾ç›®å½•
         CommonUtility.CreateFolder(receFilePath);
-        // ½ÓÊÜĞÅÏ¢±£´æÎÄ¼ş
+        // æ¥å—ä¿¡æ¯ä¿å­˜æ–‡ä»¶
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH_mm_ss_SS"); 
         SimpleDateFormat formatDate = new SimpleDateFormat("yyyy/MM/dd"); 
         Date desData = new Date();
         
-        // Ä¿Â¼
+        // ç›®å½•
         String desDataStr = formatDate.format(desData);
-        // ÎÄ¼şÃû
+        // æ–‡ä»¶å
         String desDataTimeStr = formatter.format(desData);
         
-        // ´´½¨Ä¿Â¼
+        // åˆ›å»ºç›®å½•
         String fileFlod = receFilePath + "\\";
         
         String[] dataFold = desDataStr.split("/");
-        // ´´½¨Ä¿Â¼
+        // åˆ›å»ºç›®å½•
         for(int i=0; i<dataFold.length; i++) {
         	fileFlod += dataFold[i] + "/";
         	CommonUtility.CreateFolder(fileFlod);
         }
         
         String fileName =  fileFlod + "\\" + desDataTimeStr + "_"+ bsData.getStatusQueryType() + "_Rece.xml";
-        log.info("ThreadID: " + this.getId() + " ´æ·Å½ÓÊÜµÄXML´æ·ÅÂ·¾¶£º" + fileName);
+        log.info("ThreadID: " + this.getId() + " å­˜æ”¾æ¥å—çš„XMLå­˜æ”¾è·¯å¾„ï¼š" + fileName);
         CommonUtility.WriteFile(downString, fileName);
     }
     

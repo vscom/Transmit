@@ -30,32 +30,32 @@ public class ChangeQAMQueryHandle {
     }
     
     /**
-     * qamÉèÖÃ
-     * Ä¿Ç°Ö±½Ó·µ»Ø³É¹¦
+     * qamè®¾ç½®
+     * ç›®å‰ç›´æ¥è¿”å›æˆåŠŸ
      */
 	@SuppressWarnings("unchecked")
 	public void downXML(){
-		 // ·µ»ØÊı¾İ
+		 // è¿”å›æ•°æ®
 		@SuppressWarnings("unused")
 		String upString = "";
-        List SMGSendList = new ArrayList();//smgµÄÁĞ±íĞÅÏ¢
+        List SMGSendList = new ArrayList();//smgçš„åˆ—è¡¨ä¿¡æ¯
         
         Document document = null;
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("qamÉèÖÃStringToXML Error: " + e.getMessage());
+            log.error("qamè®¾ç½®StringToXML Error: " + e.getMessage());
         }
         
         ChangeQAMQueryParse qamp = new ChangeQAMQueryParse();
         List<ChangeQAMQueryVO> qamlist = qamp.getIndexByDownXml(document);
         
-        //ÉÏ±¨»Ø¸´µÄxml¸øÖĞĞÄ,×Ô¼º·µ»Ø³É¹¦
+        //ä¸ŠæŠ¥å›å¤çš„xmlç»™ä¸­å¿ƒ,è‡ªå·±è¿”å›æˆåŠŸ
         upString = qamp.ReturnXMLByURL(this.bsData,0);
         try {
             utilXML.SendUpXML(upString, bsData);
         } catch (CommonException e) {
-            log.error("qamÉèÖÃ»Ø¸´Ê§°Ü: " + e.getMessage());
+            log.error("qamè®¾ç½®å›å¤å¤±è´¥: " + e.getMessage());
         }
         
         for(int i=0;i<qamlist.size();i++){
@@ -67,11 +67,11 @@ public class ChangeQAMQueryHandle {
     	{
     		SMGCardInfoVO smg = (SMGCardInfoVO) SMGSendList.get(j);
 			try {
-                // qamÉèÖÃÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+                // qamè®¾ç½®ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
                 utilXML.SendDownNoneReturn(this.downString, smg.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
                 //break;
             } catch (CommonException e) {
-                log.error("ÏÂ·¢qamÉèÖÃµ½TSC³ö´í£º" + smg.getURL());
+                log.error("ä¸‹å‘qamè®¾ç½®åˆ°TSCå‡ºé”™ï¼š" + smg.getURL());
             }
     	}
         	

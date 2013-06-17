@@ -65,13 +65,13 @@ private static Logger log=Logger.getLogger(RecordParamSetExParse.class.getSimple
 				rmf.setServiceID(Integer.parseInt(RecordParamSetEx.attribute("ServiceID").getValue()));
 				rmf.setWidth(Integer.parseInt(RecordParamSetEx.attribute("Width").getValue()));
 			} catch (Exception ex) {
-				log.error("½âÎöÆµÂÊ¿ª¹Ø´íÎó"+ex);
+				log.error("è§£æžé¢‘çŽ‡å¼€å…³é”™è¯¯"+ex);
 			}
 			list.add(rmf);
 		}
 		return list;
 	}
-	// ÂëÂÊÉèÖÃ»Ø¸´xml´ò°ü
+	// ç çŽ‡è®¾ç½®å›žå¤xmlæ‰“åŒ…
 	public String ReturnXMLByURL(MSGHeadVO head, int value) {
 		
 		String xml = null;
@@ -81,9 +81,9 @@ private static Logger log=Logger.getLogger(RecordParamSetExParse.class.getSimple
 				+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"RecordParamSetEx\" Value=\"0\" Desc=\"³É¹¦\"/>";
+			xml += "<Return Type=\"RecordParamSetEx\" Value=\"0\" Desc=\"æˆåŠŸ\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"RecordParamSetEx\" Value=\"1\" Desc=\"Ê§°Ü-Ã»ÓÐ¸ü¶àµÄ×ÊÔ´¿ÉÓÃ\"/>";
+			xml += "<Return Type=\"RecordParamSetEx\" Value=\"1\" Desc=\"å¤±è´¥-æ²¡æœ‰æ›´å¤šçš„èµ„æºå¯ç”¨\"/>";
 			xml +="</Msg>";
 			return xml;
 		}

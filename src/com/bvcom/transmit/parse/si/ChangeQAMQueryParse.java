@@ -12,10 +12,10 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.si.ChangeQAMQueryVO;
 
-//QAM控制
+//QAM鎺у埗
 public class ChangeQAMQueryParse {
 
-	//QAM控制解析xml得到通道号的数组
+	//QAM鎺у埗瑙ｆ瀽xml寰楀埌閫氶亾鍙风殑鏁扮粍
 	@SuppressWarnings("unchecked")
 	public List<ChangeQAMQueryVO> getIndexByDownXml(Document document){
 		List<ChangeQAMQueryVO> indexlist = new ArrayList();
@@ -41,7 +41,7 @@ public class ChangeQAMQueryParse {
 		
 	}
 	
-	//QAM控制回复xml打包
+	//QAM鎺у埗鍥炲xml鎵撳寘
 	public String ReturnXMLByURL(MSGHeadVO head, int value) {
 		
 		String xml = null;
@@ -51,9 +51,9 @@ public class ChangeQAMQueryParse {
 				+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"ChangeQAMQuery\" Value=\"0\" Desc=\"成功\"/>";
+			xml += "<Return Type=\"ChangeQAMQuery\" Value=\"0\" Desc=\"鎴愬姛\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"ChangeQAMQuery\" Value=\"1\" Desc=\"失败\"/>";
+			xml += "<Return Type=\"ChangeQAMQuery\" Value=\"1\" Desc=\"澶辫触\"/>";
 			xml +="</Msg>";
 			return xml;
 		}

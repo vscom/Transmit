@@ -13,9 +13,9 @@ public class TableParse {
         strBuff.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuff.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">");
 		if(0==value){
-            strBuff.append("<Return Type=\"table\" Value=\"0\" Desc=\"³É¹¦\" Redirect=\"" + Redirect + "\" />");
+            strBuff.append("<Return Type=\"table\" Value=\"0\" Desc=\"æˆåŠŸ\" Redirect=\"" + Redirect + "\" />");
 		}else if(1==value){
-            strBuff.append("<Return Type=\"table\" Value=\"1\" Desc=\"Ê§°Ü\" Redirect=\"" + Redirect + "\"  />");
+            strBuff.append("<Return Type=\"table\" Value=\"1\" Desc=\"å¤±è´¥\" Redirect=\"" + Redirect + "\"  />");
 		}
         strBuff.append("</Msg>");
 		return strBuff.toString();

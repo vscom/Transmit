@@ -36,14 +36,14 @@ public class ReplyAlarmErrorTaskThread extends Thread {
     	if (sysVO.getIsAutoAlarmReply() != 0) {
     		recordTaskProcess();
     	} else {
-    		log.info("¹Ø±Õ±¨¾¯¹ÊÕÏ×Ô¶¯ÉÏ±¨¹¦ÄÜ, Èç¹ûÏë´ò¿ª´Ë¹¦ÄÜ, ÇëÅäÖÃ IsAutoAlarmReply=\"1\"");
+    		log.info("å…³é—­æŠ¥è­¦æ•…éšœè‡ªåŠ¨ä¸ŠæŠ¥åŠŸèƒ½, å¦‚æœæƒ³æ‰“å¼€æ­¤åŠŸèƒ½, è¯·é…ç½® IsAutoAlarmReply=\"1\"");
     	}
     	
     }
     
     private void recordTaskProcess() {
 
-    	log.info("Æô¶¯±¨¾¯¹ÊÕÏ×Ô¶¯ÉÏ±¨Ïß³Ì");
+    	log.info("å¯åŠ¨æŠ¥è­¦æ•…éšœè‡ªåŠ¨ä¸ŠæŠ¥çº¿ç¨‹");
     	while(true) {
     		
 	    	ReplyAlarmErrorTableHandle replyAlarmErrorTableHandle = new ReplyAlarmErrorTableHandle();
@@ -54,22 +54,22 @@ public class ReplyAlarmErrorTaskThread extends Thread {
 	    		ReplyAlarmErrorTableVO vo = (ReplyAlarmErrorTableVO)alarmList.get(i);
 	    		
 	            try {
-	            	//log.info("±¨¾¯²¹±¨ĞÅÏ¢"+vo.getReplyXML());
-	                // ´ÓÏÂ·¢µÄXmlÊı¾İÖĞÌáÈ¡Í·²¿ĞÅÏ¢
-	            	//Èç¹û±¨¾¯²¹±¨³É¹¦¾Í·µ»Øtrue ²¢ÇÒÉ¾³ı²¹±¨±íÖĞ¸ÃÌõ±¨¾¯  JI Long 2011-06-26
+	            	//log.info("æŠ¥è­¦è¡¥æŠ¥ä¿¡æ¯"+vo.getReplyXML());
+	                // ä»ä¸‹å‘çš„Xmlæ•°æ®ä¸­æå–å¤´éƒ¨ä¿¡æ¯
+	            	//å¦‚æœæŠ¥è­¦è¡¥æŠ¥æˆåŠŸå°±è¿”å›true å¹¶ä¸”åˆ é™¤è¡¥æŠ¥è¡¨ä¸­è¯¥æ¡æŠ¥è­¦  JI Long 2011-06-26
 	                if(utilXML.SendUpXML(vo.getReplyXML(), sysVO.getCenterAlarmURL())){
-	                	//1.²¹±¨³É¹¦ É¾³ı¸Ã²¹±¨³É¹¦¼ÇÂ¼ĞÅÏ¢
+	                	//1.è¡¥æŠ¥æˆåŠŸ åˆ é™¤è¯¥è¡¥æŠ¥æˆåŠŸè®°å½•ä¿¡æ¯
 	                	replyAlarmErrorTableHandle.delReplyAlarmErrorTable(vo);
-	                	//2.¸üĞÂ±¨¾¯ÀúÊ·±íÖĞÊÇ·ñ³É¹¦£¨isSuccess£©×´Ì¬
+	                	//2.æ›´æ–°æŠ¥è­¦å†å²è¡¨ä¸­æ˜¯å¦æˆåŠŸï¼ˆisSuccessï¼‰çŠ¶æ€
 	                	upAlarmSearchTableIsSuccess(vo);
 	                }
 	            } catch (Exception e) {
 	            	e.printStackTrace();
-	            	log.error("±¨¾¯¹ÊÕÏ×Ô¶¯²¹±¨µØÖ·: " + sysVO.getCenterAlarmURL());
-	                log.error("±¨¾¯¹ÊÕÏ×Ô¶¯²¹±¨Ïß³Ì³ö´í: " + e.getMessage());
+	            	log.error("æŠ¥è­¦æ•…éšœè‡ªåŠ¨è¡¥æŠ¥åœ°å€: " + sysVO.getCenterAlarmURL());
+	                log.error("æŠ¥è­¦æ•…éšœè‡ªåŠ¨è¡¥æŠ¥çº¿ç¨‹å‡ºé”™: " + e.getMessage());
 	            }
 		    	try {
-		    		// Ã¿¸ô2ÃëÉÏ±¨Ò»¸ö±¨¾¯Êı¾İ
+		    		// æ¯éš”2ç§’ä¸ŠæŠ¥ä¸€ä¸ªæŠ¥è­¦æ•°æ®
 					Thread.sleep(1000*2);
 				} catch (InterruptedException e) {
 				}
@@ -83,19 +83,19 @@ public class ReplyAlarmErrorTaskThread extends Thread {
     }
     
     /**
-     * ¸üĞÂ ±¨¾¯ÀúÊ·±í isSuccess£¨ÉÏ±¨³É¹¦×´Ì¬£©
+     * æ›´æ–° æŠ¥è­¦å†å²è¡¨ isSuccessï¼ˆä¸ŠæŠ¥æˆåŠŸçŠ¶æ€ï¼‰
      * @param vo
      */
     private void upAlarmSearchTableIsSuccess(ReplyAlarmErrorTableVO vo){
     	/*
     	  <?xml version="1.0" encoding="GB2312" standalone="yes" ?> 
     	  <Msg Version="4" MsgID="2" Type="MonUp" DateTime="2002-08-17 15:30:00" SrcCode="110000M01" DstCode="110000G01" ReplyID="1000_ID">
-    	  <Return Type="AlarmSearchPSet" Value="0" Desc="³É¹¦" /> 
+    	  <Return Type="AlarmSearchPSet" Value="0" Desc="æˆåŠŸ" /> 
     	  <ReturnInfo>
     	  <AlarmSearchPSet Index="0" Freq="259000" ServiceID="501" VideoPID="2060" AudioPID="2061">
-    	  <AlarmSearchP Type="31" Desc="¾²Ö¡" Value="1" Time="2002-08-17 15:30:00" /> 
-    	  <AlarmSearchP Type="32" Desc="ºÚ³¡" Value="1" Time="2002-08-17 15:30:00" /> 
-    	  <AlarmSearchP Type="33" Desc="ÎŞ°éÒô" Value="1" Time="2002-08-17 15:30:00" /> 
+    	  <AlarmSearchP Type="31" Desc="é™å¸§" Value="1" Time="2002-08-17 15:30:00" /> 
+    	  <AlarmSearchP Type="32" Desc="é»‘åœº" Value="1" Time="2002-08-17 15:30:00" /> 
+    	  <AlarmSearchP Type="33" Desc="æ— ä¼´éŸ³" Value="1" Time="2002-08-17 15:30:00" /> 
     	  </AlarmSearchPSet>
     	  </ReturnInfo>
     	  </Msg>
@@ -136,8 +136,8 @@ public class ReplyAlarmErrorTaskThread extends Thread {
 						statement=conn.createStatement();
 						statement.executeUpdate(strSql);
 					} catch (Exception e) {
-						log.error("¸üĞÂ±¨¾¯ÀúÊ·±íisSuccessÊ§°Ü£º"+e.getMessage());
-						log.error("¸üĞÂ±¨¾¯ÀúÊ·±íisSuccessSQL£º"+strSql);
+						log.error("æ›´æ–°æŠ¥è­¦å†å²è¡¨isSuccesså¤±è´¥ï¼š"+e.getMessage());
+						log.error("æ›´æ–°æŠ¥è­¦å†å²è¡¨isSuccessSQLï¼š"+strSql);
 					}finally{
 						DaoSupport.close(statement);
 						strSql="";
@@ -150,12 +150,12 @@ public class ReplyAlarmErrorTaskThread extends Thread {
 					conn.rollback();
 				} catch (SQLException e1) {
 				}
-				log.error("¸üĞÂ±¨¾¯ÀúÊ·±íisSuccessÊ§°Ü"+e.getMessage());
+				log.error("æ›´æ–°æŠ¥è­¦å†å²è¡¨isSuccesså¤±è´¥"+e.getMessage());
 			}finally{
 				try {
 					DaoSupport.close(conn);
 				} catch (DaoException e) {
-					log.error("¹Ø±Õ¸üĞÂ±¨¾¯ÀúÊ·±íÁ¬½Ó´íÎó"+e.getMessage());
+					log.error("å…³é—­æ›´æ–°æŠ¥è­¦å†å²è¡¨è¿æ¥é”™è¯¯"+e.getMessage());
 				}
 			}
 		}

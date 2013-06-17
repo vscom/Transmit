@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//ָ�겹��
+//指标补偿
 public class IndexCompensationSetVO {
 
 	private MSGHeadVO MSGHead = new MSGHeadVO();

@@ -26,7 +26,7 @@ import com.bvcom.transmit.vo.rec.ProvisionalRecordTaskSetVO;
 import com.bvcom.transmit.vo.rec.SetAutoRecordChannelVO;
 
 /**
- * ÈÎÎñÂ¼ÏñÉèÖÃ
+ * ä»»åŠ¡å½•åƒè®¾ç½®
  * @author Bian Jiang
  *
  */
@@ -52,18 +52,18 @@ public class ProvisionalRecordTaskSetHandle {
     }
     
     /**
-     * 1. ·Ö±ğÏÂ·¢¸øSMGºÍTSC
-     * 2. ÏÂ·¢³É¹¦£¬·µ»Ø³É¹¦
-     * 3. ÏòÖĞĞÄÉÏ±¨³É¹¦ĞÅÏ¢
+     * 1. åˆ†åˆ«ä¸‹å‘ç»™SMGå’ŒTSC
+     * 2. ä¸‹å‘æˆåŠŸï¼Œè¿”å›æˆåŠŸ
+     * 3. å‘ä¸­å¿ƒä¸ŠæŠ¥æˆåŠŸä¿¡æ¯
      *
      */
     public void downXML() {
-        // ·µ»ØÊı¾İ
+        // è¿”å›æ•°æ®
         String upString = "";
         
         List SMGList = new ArrayList();
-//        List TSCList = coreData.getTSCList();//tscµÄÁĞ±íĞÅÏ¢
-//        List TSCList = new ArrayList();//tscµÄÁĞ±íĞÅÏ¢
+//        List TSCList = coreData.getTSCList();//tscçš„åˆ—è¡¨ä¿¡æ¯
+//        List TSCList = new ArrayList();//tscçš„åˆ—è¡¨ä¿¡æ¯
         List channelSendList = new ArrayList();// SMG downChannelList Index List
         
     	this.downString = this.downString.replaceAll("QAM=\"64\"", "QAM=\"QAM64\"");
@@ -71,11 +71,11 @@ public class ProvisionalRecordTaskSetHandle {
     	
         String smgDownString = this.downString;
         String tscDownString = this.downString;
-        // ÅĞ¶ÏÊÇ·ñ·ÖÅäµ½channel
+        // åˆ¤æ–­æ˜¯å¦åˆ†é…åˆ°channel
         boolean isNoMoreChannel = false;
         
         SysInfoVO sysInfoVO = coreData.getSysVO();
-        List TSCSendList = coreData.getTSCList();//tscµÄÁĞ±íĞÅÏ¢
+        List TSCSendList = coreData.getTSCList();//tscçš„åˆ—è¡¨ä¿¡æ¯
         
         SetAutoRecordChannelHandle setAutoRecordChannelHandle = new SetAutoRecordChannelHandle();
         SetAutoRecordChannelParse setAutoRecordChannel = new SetAutoRecordChannelParse();
@@ -85,7 +85,7 @@ public class ProvisionalRecordTaskSetHandle {
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("ÈÎÎñÂ¼ÏñStringToXML Error: " + e.getMessage());
+            log.error("ä»»åŠ¡å½•åƒStringToXML Error: " + e.getMessage());
         }
        
         ProvisionalRecordTaskSetParse RecordTaskSet = new ProvisionalRecordTaskSetParse();
@@ -93,7 +93,7 @@ public class ProvisionalRecordTaskSetHandle {
         
         int index = 0;
         int indexOrg = 0;
-        // È¡µÃÏÂ·¢SMG URLÁĞ±íĞÅÏ¢
+        // å–å¾—ä¸‹å‘SMG URLåˆ—è¡¨ä¿¡æ¯
         SetAutoRecordChannelVO recordVO = null;
         
     	int channelIndex = 0;
@@ -103,7 +103,7 @@ public class ProvisionalRecordTaskSetHandle {
             ProvisionalRecordTaskSetVO vo = RecordTaskSetList.get(i);
         	
 	       	if(vo.getAction().equals("Set")) {
-	       		// ÈÎÎñÂ¼ÏñÉèÖÃ
+	       		// ä»»åŠ¡å½•åƒè®¾ç½®
 				indexOrg = vo.getIndex();
 				try {
 					vo = NVRVideoHistoryInquiryHandle.getIndexByProgramForChannelRemap(vo);
@@ -112,9 +112,9 @@ public class ProvisionalRecordTaskSetHandle {
 				} catch (DaoException e1) {
 				
 				}
-				//²»ÊÇÒ»¶ÔÒ»µÄ½ÚÄ¿
+				//ä¸æ˜¯ä¸€å¯¹ä¸€çš„èŠ‚ç›®
 				if(index == 0) {
-					// ´ÓÊı¾İ¿âÖĞ×Ô¶¯ÕÒÒ»¸öÃ»ÓĞÓÃ¹ıµÄÍ¨µÀºÅ
+					// ä»æ•°æ®åº“ä¸­è‡ªåŠ¨æ‰¾ä¸€ä¸ªæ²¡æœ‰ç”¨è¿‡çš„é€šé“å·
 					recordVO = new SetAutoRecordChannelVO();
 					recordVO.setFreq(vo.getFreq());
 					recordVO.setServiceID(vo.getServiceID());
@@ -131,57 +131,57 @@ public class ProvisionalRecordTaskSetHandle {
 					try {
 						
 						recordVO = SetAutoRecordChannelHandle.getHDFlagByProgram(recordVO);
-						//ÔÚËùÓĞÒ»¶ÔÒ»°å¿¨ÖĞ·ÖÅä°å¿¨×ÊÔ´
+						//åœ¨æ‰€æœ‰ä¸€å¯¹ä¸€æ¿å¡ä¸­åˆ†é…æ¿å¡èµ„æº
 						setAutoRecordChannelHandle.GetChannelRemappingbyFreq(recordVO);
 						if(recordVO.getIndex() == 0) {
 							isNoMoreChannel = true;
-							log.error("ÈÎÎñÂ¼ÏñÍ¨µÀ³ö´í, Ã»ÓĞ·ÖÅäµ½Ïà¹ØµÄÍ¨µÀºÅ");
+							log.error("ä»»åŠ¡å½•åƒé€šé“å‡ºé”™, æ²¡æœ‰åˆ†é…åˆ°ç›¸å…³çš„é€šé“å·");
 							break;
 						}
-						// ÈÎÎñÂ¼Ïñ 0£º²»Â¼Ïñ£¬1:´ú±í¹ÊÕÏ´¥·¢Â¼ÖÆ   2£º24Ğ¡Ê±Â¼Ïñ(Ä¬ÈÏ) 3: ÈÎÎñÂ¼Ïñ
+						// ä»»åŠ¡å½•åƒ 0ï¼šä¸å½•åƒï¼Œ1:ä»£è¡¨æ•…éšœè§¦å‘å½•åˆ¶   2ï¼š24å°æ—¶å½•åƒ(é»˜è®¤) 3: ä»»åŠ¡å½•åƒ
 						recordVO.setRecordType(3);
 
-	    				 // È¡µÃTSCIndexÍ¨µÀºÅ By: Bian Jiang 2011.4.8
+	    				 // å–å¾—TSCIndexé€šé“å· By: Bian Jiang 2011.4.8
 						recordVO.setTscIndex(SetAutoRecordChannelHandle.getTSCIndex(recordVO.getHDFlag(),recordVO.getFreq()));
 	    				 
-						//ÈÎÎñÂ¼Ïñ½ÚÄ¿¸üĞÂÒ»¶ÔÒ»Ó³Éä±í£ºÉèÖÃRecordType =3 
+						//ä»»åŠ¡å½•åƒèŠ‚ç›®æ›´æ–°ä¸€å¯¹ä¸€æ˜ å°„è¡¨ï¼šè®¾ç½®RecordType =3 
 						setAutoRecordChannelHandle.upChannelRemappingIndex(recordVO);
 						
 						vo.setIndex(recordVO.getIndex());
 						vo.setDevIndex(recordVO.getDevIndex());
 					 	channelIndex = vo.getDevIndex();
 					} catch (DaoException e) {
-						log.error("È¡µÃÈÎÎñÂ¼ÏñÍ¨µÀ³ö´í: " + e.getMessage());
+						log.error("å–å¾—ä»»åŠ¡å½•åƒé€šé“å‡ºé”™: " + e.getMessage());
 					}
 				}
 				
 				tscDownString = tscDownString.replaceAll("Index=\"" + indexOrg + "\"", "Index=\"" + vo.getIndex() + "\"");
 	       	} else {
-	       		// ÈÎÎñÂ¼ÏñÉ¾³ı
+	       		// ä»»åŠ¡å½•åƒåˆ é™¤
 	       		recordVO = new SetAutoRecordChannelVO();
 	       		try {
 	       			recordVO.setFreq(vo.getFreq());
 	       			recordVO.setServiceID(vo.getServiceID());
-	       			//Çå³ıÒ»¶ÔÒ»Ó³Éä±íÄÚÈİ
+	       			//æ¸…é™¤ä¸€å¯¹ä¸€æ˜ å°„è¡¨å†…å®¹
 	       			recordVO = setAutoRecordChannelHandle.delRecordTaskIndex(recordVO);
 	       			channelIndex = recordVO.getDevIndex();
-	       			//Çå³ı¸üĞÂÈÎÎñÂ¼Ïñ±í
+	       			//æ¸…é™¤æ›´æ–°ä»»åŠ¡å½•åƒè¡¨
 					updateRecordTaskIndex(vo);
-					log.info("ÈÎÎñÂ¼ÏñÉ¾³ı³É¹¦: Freq:" + vo.getFreq() + " ServiceID:" + vo.getServiceID());
+					log.info("ä»»åŠ¡å½•åƒåˆ é™¤æˆåŠŸ: Freq:" + vo.getFreq() + " ServiceID:" + vo.getServiceID());
 				} catch (DaoException e) {
-					log.error("ÈÎÎñÂ¼ÏñÉ¾³ı³ö´í: " + e.getMessage());
+					log.error("ä»»åŠ¡å½•åƒåˆ é™¤å‡ºé”™: " + e.getMessage());
 				}
 	       	}
         	
 	       	
-	       	//»ñÈ¡ÈÎÎñÂ¼ÏñĞ­ÒéÖĞÓĞ¶àÉÙ¸ö°å¿¨Í¨µÀ
+	       	//è·å–ä»»åŠ¡å½•åƒåè®®ä¸­æœ‰å¤šå°‘ä¸ªæ¿å¡é€šé“
 			if (channel != channelIndex && channelIndex != 0) {
 				channelSendList.add(channelIndex);
 				channel = channelIndex;
 			} else {
 				channel = channelIndex;
 			}
-			//»ñÈ¡Í¨µÀ¶ÔÓ¦µÄSMG°å¿¨¶ÔÏóĞÅÏ¢
+			//è·å–é€šé“å¯¹åº”çš„SMGæ¿å¡å¯¹è±¡ä¿¡æ¯
             CommonUtility.checkSMGChannelIndex(vo.getDevIndex(), SMGList);
 //            CommonUtility.checkTSCChannelIndex(vo.getIndex(), TSCList);
         }
@@ -194,41 +194,41 @@ public class ProvisionalRecordTaskSetHandle {
 	        	smgDownString = setAutoRecordChannel.createForDownXML(this.bsData, AutoRecordlistSMGNew, "Set", true);
         		
 			} catch (Exception e) {
-				log.error("Í¨¹ıÍ¨µÀÈ¡µÃ½ÚÄ¿ĞÅÏ¢³ö´í: " + e.getMessage());
+				log.error("é€šè¿‡é€šé“å–å¾—èŠ‚ç›®ä¿¡æ¯å‡ºé”™: " + e.getMessage());
 			}
         }
         
         if(!isNoMoreChannel) {
-            // SMG ÏÂ·¢Ö¸Áî
+            // SMG ä¸‹å‘æŒ‡ä»¤
             for (int i=0; i< SMGList.size(); i++) {
                 SMGCardInfoVO smg = (SMGCardInfoVO) SMGList.get(i);
                 try {
-                    // ÈÎÎñÂ¼ÏñĞÅÏ¢ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+                    // ä»»åŠ¡å½•åƒä¿¡æ¯ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
 
                     utilXML.SendDownNoneReturn(smgDownString, smg.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
                 } catch (CommonException e) {
-                    log.error("ÈÎÎñÂ¼ÏñÏòSMGÏÂ·¢ÈÎÎñÂ¼Ïñ³ö´í£º" + smg.getURL());
+                    log.error("ä»»åŠ¡å½•åƒå‘SMGä¸‹å‘ä»»åŠ¡å½•åƒå‡ºé”™ï¼š" + smg.getURL());
                 }
                 try {
                 	SetAutoRecordChannelHandle.updateSMGURLByDevIndex(smg.getIndex(), smg.getURL());
                 } catch (Exception ex) {
                 	
                 }
-            } // SMG ÏÂ·¢Ö¸Áî END
+            } // SMG ä¸‹å‘æŒ‡ä»¤ END
             
-            // TSC ÏÂ·¢Ö¸Áî£º¸øËùÓĞµÄTSC¶¼ÏÂ·¢ÈÎÎñÂ¼Ïñ
+            // TSC ä¸‹å‘æŒ‡ä»¤ï¼šç»™æ‰€æœ‰çš„TSCéƒ½ä¸‹å‘ä»»åŠ¡å½•åƒ
             for (int i=0; i< TSCSendList.size(); i++) {
                 TSCInfoVO tsc = (TSCInfoVO) TSCSendList.get(i);
                 try {
-            		// ÈÎÎñÂ¼ÏñĞÅÏ¢ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+            		// ä»»åŠ¡å½•åƒä¿¡æ¯ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
                     utilXML.SendDownNoneReturn(tscDownString, tsc.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
                 } catch (CommonException e) {
-                    log.error("ÈÎÎñÂ¼ÏñÏòTSCÏÂ·¢ÈÎÎñÂ¼Ïñ³ö´í£º" + tsc.getURL());
+                    log.error("ä»»åŠ¡å½•åƒå‘TSCä¸‹å‘ä»»åŠ¡å½•åƒå‡ºé”™ï¼š" + tsc.getURL());
                 }
-            } // TSC ÏÂ·¢Ö¸Áî END
+            } // TSC ä¸‹å‘æŒ‡ä»¤ END
             upString = RecordTaskSet.ReturnXMLByURL(bsData, 0);
         } 
-        //Ã»ÓĞ¿ÉÊ¹ÓÃµÄ°å¿¨×ÊÔ´
+        //æ²¡æœ‰å¯ä½¿ç”¨çš„æ¿å¡èµ„æº
         else 
         {
         	upString = RecordTaskSet.ReturnXMLByURL(bsData, 1);
@@ -238,17 +238,17 @@ public class ProvisionalRecordTaskSetHandle {
         try {
             utilXML.SendUpXML(upString, bsData);
         } catch (CommonException e) {
-            log.error("ÈÎÎñÂ¼ÏñÑ¡Ì¨ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+            log.error("ä»»åŠ¡å½•åƒé€‰å°ä¿¡æ¯å¤±è´¥: " + e.getMessage());
         }
         
-        //±£´æÈÎÎñÂ¼ÖÆĞÅÏ¢
+        //ä¿å­˜ä»»åŠ¡å½•åˆ¶ä¿¡æ¯
         if(!isNoMoreChannel) {
         	this.insertNewTaskRecordTable(RecordTaskSetList);	
         }
         
         
-        //BY TQY 2012-05-20  1£º ¼àÊÓÈÎÎñÂ¼ÏñÊÇ·ñ¹ıÆÚ 2£ºÔÚ³ÌĞòÆô¶¯Ê±Í¬ÑùÒ²ĞèÒª¼àÊÓÈÎÎñÂ¼ÖÆĞÅÏ¢
-        // ÈÎÎñÂ¼Ïñ´¦Àí, É¾³ıÒÑ¾­¹ıÆÚµÄÈÎÎñÂ¼Ïñ
+        //BY TQY 2012-05-20  1ï¼š ç›‘è§†ä»»åŠ¡å½•åƒæ˜¯å¦è¿‡æœŸ 2ï¼šåœ¨ç¨‹åºå¯åŠ¨æ—¶åŒæ ·ä¹Ÿéœ€è¦ç›‘è§†ä»»åŠ¡å½•åˆ¶ä¿¡æ¯
+        // ä»»åŠ¡å½•åƒå¤„ç†, åˆ é™¤å·²ç»è¿‡æœŸçš„ä»»åŠ¡å½•åƒ
         //RecordTaskThread RecordTaskProcess = new RecordTaskThread();
         //RecordTaskProcess.start();
         
@@ -261,8 +261,8 @@ public class ProvisionalRecordTaskSetHandle {
     }
     
     /**
-     * ÈÎÎñÂ¼Ïñ²»ÓÃ¼ÇÂ¼Èë¿â(Ä¿Ç°²»ÓÃÕâ¸öº¯Êı)
-     * ÈÎÎñÂ¼Ïñ×´Ì¬Èë¿â
+     * ä»»åŠ¡å½•åƒä¸ç”¨è®°å½•å…¥åº“(ç›®å‰ä¸ç”¨è¿™ä¸ªå‡½æ•°)
+     * ä»»åŠ¡å½•åƒçŠ¶æ€å…¥åº“
      * @param RecordTaskSetList
      */
     private void insertNewTaskRecordTable(List RecordTaskSetList) {
@@ -282,7 +282,7 @@ public class ProvisionalRecordTaskSetHandle {
                 sqlBuff.append("'" + vo.getAction() + "', ");
                 sqlBuff.append(vo.getIndex() + ", ");
                 
-                //TODO Õâ¸öURLÊÇ×Ô¼ºÉú³ÉµÄ
+                //TODO è¿™ä¸ªURLæ˜¯è‡ªå·±ç”Ÿæˆçš„
                 sqlBuff.append("'" + vo.getURL() + "', ");
                 
                 sqlBuff.append("'" + CommonUtility.getDateTime() + "', ");
@@ -297,8 +297,8 @@ public class ProvisionalRecordTaskSetHandle {
             }
             
         } catch (Exception e) {
-        	log.error("´íÎóSQL: " + sqlBuff.toString());
-        	log.error("ÈÎÎñÂ¼Ïñ¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
+        	log.error("é”™è¯¯SQL: " + sqlBuff.toString());
+        	log.error("ä»»åŠ¡å½•åƒæ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
         } finally {
             try {
                 DaoSupport.close(statement);
@@ -306,11 +306,11 @@ public class ProvisionalRecordTaskSetHandle {
             } catch (DaoException e) {
             }
         }
-        log.info("ÈÎÎñÂ¼Ïñ¸üĞÂÊı¾İ¿â³É¹¦!");
+        log.info("ä»»åŠ¡å½•åƒæ›´æ–°æ•°æ®åº“æˆåŠŸ!");
     }
     
     /**
-     * É¾³ıÈÎÎñÂ¼Ïñ±íÏà¹ØµÄĞÅÏ¢
+     * åˆ é™¤ä»»åŠ¡å½•åƒè¡¨ç›¸å…³çš„ä¿¡æ¯
      * @param vo
      * @throws DaoException
      */
@@ -321,7 +321,7 @@ public class ProvisionalRecordTaskSetHandle {
 		Statement statement = null;
 		Connection conn = DaoSupport.getJDBCConnection();
 
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		
 		strBuff.append("update transmit.taskrecord c set ");
 		strBuff.append(" statusFlag = 0 ");
@@ -333,13 +333,13 @@ public class ProvisionalRecordTaskSetHandle {
 			statement.execute(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
 		}
 		strBuff = null;
-		log.info("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		log.info("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 	}
     
     public List selectRunTaskList()  throws DaoException {
@@ -369,14 +369,14 @@ public class ProvisionalRecordTaskSetHandle {
 				}
 				
 			} catch (Exception e) {
-				log.error("ÈÎÎñÂ¼Ïñ²éÑ¯Êı¾İ¿â´íÎó: " + e.getMessage());
+				log.error("ä»»åŠ¡å½•åƒæŸ¥è¯¢æ•°æ®åº“é”™è¯¯: " + e.getMessage());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			}
 		} catch (DaoException e1) {
-			log.error("ÈÎÎñÂ¼Ïñ²éÑ¯Êı¾İ¿â´íÎó: " + e1.getMessage());
+			log.error("ä»»åŠ¡å½•åƒæŸ¥è¯¢æ•°æ®åº“é”™è¯¯: " + e1.getMessage());
 		}
     	
     	return recordTaskList;

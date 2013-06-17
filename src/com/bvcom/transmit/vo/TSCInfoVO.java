@@ -1,5 +1,5 @@
 /**
- * transmit (java×ª·¢)
+ * transmit (javaè½¬å‘)
  * 
  * TSCInfoVO.java    2009.11.12
  * 
@@ -10,7 +10,7 @@ package com.bvcom.transmit.vo;
 
 /**
  * 
- *  ×ªÂëËùĞèÒªµÄÅäÖÃÎÄ¼şĞÅÏ¢
+ *  è½¬ç æ‰€éœ€è¦çš„é…ç½®æ–‡ä»¶ä¿¡æ¯
  * 
  * @version  V1.0
  * @author Bian Jiang
@@ -29,17 +29,17 @@ public class TSCInfoVO {
     private String SysURL;
     
     /**
-     * µ±Ç°»úÆ÷µÄ¸ßÇå½ÚÄ¿Êı
+     * å½“å‰æœºå™¨çš„é«˜æ¸…èŠ‚ç›®æ•°
      */
     private int HDNums = 0;
     
     /**
-     * µ±Ç°»úÆ÷µÄ¸ßÇå½ÚÄ¿Êı
+     * å½“å‰æœºå™¨çš„é«˜æ¸…èŠ‚ç›®æ•°
      */
     private int TVNums = 0;
     
     /**
-     * RecordType: 0:²»Â¼Ïñ 1:ÒìÌ¬´¥·¢Â¼Ïñ 2:×Ô¶¯Â¼Ïñ 3:¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+     * RecordType: 0:ä¸å½•åƒ 1:å¼‚æ€è§¦å‘å½•åƒ 2:è‡ªåŠ¨å½•åƒ 3:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
      */
     private int RecordType;
     
@@ -93,20 +93,20 @@ public class TSCInfoVO {
 //		StreamRateURL = streamRateURL;
 //	}
     /**
-     * RecordType: 0:²»Â¼Ïñ 1:ÒìÌ¬´¥·¢Â¼Ïñ 2:×Ô¶¯Â¼Ïñ 3:¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+     * RecordType: 0:ä¸å½•åƒ 1:å¼‚æ€è§¦å‘å½•åƒ 2:è‡ªåŠ¨å½•åƒ 3:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
      */
 	public int getRecordType() {
 		return RecordType;
 	}
     /**
-     * RecordType: 0:²»Â¼Ïñ 1:ÒìÌ¬´¥·¢Â¼Ïñ 2:×Ô¶¯Â¼Ïñ 3:¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+     * RecordType: 0:ä¸å½•åƒ 1:å¼‚æ€è§¦å‘å½•åƒ 2:è‡ªåŠ¨å½•åƒ 3:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
      */
 	public void setRecordType(int recordType) {
 		RecordType = recordType;
 	}
 
 	/**
-	 * µ±Ç°»úÆ÷µÄ¸ßÇå½ÚÄ¿Êı
+	 * å½“å‰æœºå™¨çš„é«˜æ¸…èŠ‚ç›®æ•°
 	 * @return
 	 */
 	public int getHDNums() {
@@ -114,21 +114,21 @@ public class TSCInfoVO {
 	}
 
 	/**
-	 * µ±Ç°»úÆ÷µÄ¸ßÇå½ÚÄ¿Êı
+	 * å½“å‰æœºå™¨çš„é«˜æ¸…èŠ‚ç›®æ•°
 	 * @param nums
 	 */
 	public void setHDNums(int nums) {
 		HDNums = nums;
 	}
 	/**
-	 * µ±Ç°»úÆ÷µÄ±êÇå½ÚÄ¿Êı
+	 * å½“å‰æœºå™¨çš„æ ‡æ¸…èŠ‚ç›®æ•°
 	 * @param nums
 	 */
 	public int getTVNums() {
 		return TVNums;
 	}
 	/**
-	 * µ±Ç°»úÆ÷µÄ±êÇå½ÚÄ¿Êı
+	 * å½“å‰æœºå™¨çš„æ ‡æ¸…èŠ‚ç›®æ•°
 	 * @param nums
 	 */
 	public void setTVNums(int nums) {

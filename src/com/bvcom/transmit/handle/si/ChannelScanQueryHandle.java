@@ -49,11 +49,11 @@ public class ChannelScanQueryHandle {
 		return this.bsData;
 	}
 	/**
-	 * ÆµµÀÉ¨Ãè´¦Àí
-	 * 1. ÏÂ·¢ÆµµÀÉ¨Ãè
-	 * 2. ½ÓÊÕÆµµÀÉ¨Ãè½á¹û
-	 * 3. É¨Ãè½á¹ûÈë¿â
-	 * 4. É¨Ãè½á¹ûÉÏ±¨ÖĞĞÄ
+	 * é¢‘é“æ‰«æå¤„ç†
+	 * 1. ä¸‹å‘é¢‘é“æ‰«æ
+	 * 2. æ¥æ”¶é¢‘é“æ‰«æç»“æœ
+	 * 3. æ‰«æç»“æœå…¥åº“
+	 * 4. æ‰«æç»“æœä¸ŠæŠ¥ä¸­å¿ƒ
 	 *
 	 */
 	public void downXML() {
@@ -71,7 +71,7 @@ public class ChannelScanQueryHandle {
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("ÀúÊ·ÊÓÆµ²é¿´StringToXML Error: " + e.getMessage());
+            log.error("å†å²è§†é¢‘æŸ¥çœ‹StringToXML Error: " + e.getMessage());
         }
         
 
@@ -89,7 +89,7 @@ public class ChannelScanQueryHandle {
 			else if (bsData.getVersion().equals(CommonUtility.XML_VERSION_2_5)) {
 				channelScanPath = CommonUtility.CHANNEL_SCAN_PATH_2_5;
 				this.downString = this.downString.replaceAll("Version=\"2.5\"", "Version=\"2.3\"");
-//				System.out.println(" ------ ´¦Àíºó Ğ­Òé -------"+bsData);
+//				System.out.println(" ------ å¤„ç†å åè®® -------"+bsData);
 			}
 			else {
 				channelScanPath = CommonUtility.CHANNEL_SCAN_PATH_2_0;
@@ -99,7 +99,7 @@ public class ChannelScanQueryHandle {
 
 		} catch (CommonException e1) {
 			// e1.printStackTrace();
-			log.error("È¡µÃÆµµÀÉ¨ÃèĞÅÏ¢Ê§°Ü: " + channelScanPath);
+			log.error("å–å¾—é¢‘é“æ‰«æä¿¡æ¯å¤±è´¥: " + channelScanPath);
 		}
 
 		if (vo.getScanTime() == null || vo.getScanTime().equals("") || returnStr.trim().equals("") || vo.getScanType() == 0) {
@@ -107,8 +107,8 @@ public class ChannelScanQueryHandle {
 			for (int i = 0; i < SMGSendList.size(); i++) {
 				SMGCardInfoVO smg = (SMGCardInfoVO) SMGSendList.get(i);
 				try {
-					// TODO ÔÚÕâÀïÌí¼ÓÖ¸¶¨ÆµµãÉ¨Ğ­Òé ¼à²âÖĞĞÄËÄÆÚ²âÊÔÓĞ¿ÉÄÜ¸ãÒ»Ğ©²»¹æÔòµÄÆµµã Èç 52.5 µÈ 2011-08-15 Ji Long 
-					// °ÑÖ¸¶¨É¨ ÊÕµ½µÄ ÆµµÀ±í ºÍÈ«ÆµµãÉ¨ ÊÕµ½µÄÆµµÀ±í ºÏ³ÉÎª Ò»¸ö  ·µ»Ø¸øÆ½Ì¨ ²¢±£´æµ½Ö¸¶¨ÎÄ¼şÄ¿Â¼
+					// TODO åœ¨è¿™é‡Œæ·»åŠ æŒ‡å®šé¢‘ç‚¹æ‰«åè®® ç›‘æµ‹ä¸­å¿ƒå››æœŸæµ‹è¯•æœ‰å¯èƒ½æä¸€äº›ä¸è§„åˆ™çš„é¢‘ç‚¹ å¦‚ 52.5 ç­‰ 2011-08-15 Ji Long 
+					// æŠŠæŒ‡å®šæ‰« æ”¶åˆ°çš„ é¢‘é“è¡¨ å’Œå…¨é¢‘ç‚¹æ‰« æ”¶åˆ°çš„é¢‘é“è¡¨ åˆæˆä¸º ä¸€ä¸ª  è¿”å›ç»™å¹³å° å¹¶ä¿å­˜åˆ°æŒ‡å®šæ–‡ä»¶ç›®å½•
 					//ChannelScanQueryFlag
 					AutoAnalysisTimeQueryConfigFile  autoAnalysisTimeQueryConfigFile=new AutoAnalysisTimeQueryConfigFile(); 
 					String str =autoAnalysisTimeQueryConfigFile.getChannelScanQueryFlag();
@@ -116,21 +116,21 @@ public class ChannelScanQueryHandle {
 					if(str.split(",")[0].equals("1")){
 						ChannelScanQueryParse channelScanQueryParse=new ChannelScanQueryParse();
 						String sendStr=channelScanQueryParse.createChannelScanXML(str, bsData);
-						// ÆµµÀÉ¨ÃèĞÅÏ¢ÏÂ·¢ timeout 1000*60*5 Îå·ÖÖÓ
+						// é¢‘é“æ‰«æä¿¡æ¯ä¸‹å‘ timeout 1000*60*5 äº”åˆ†é’Ÿ
 						strr = utilXML.SendDownXML(sendStr, smg.getURL(), CommonUtility.CHANNEL_SCAN_WAIT_TIMEOUT2,bsData);
 					}
 					
-					// ÆµµÀÉ¨ÃèĞÅÏ¢ÏÂ·¢ timeout 1000*60*50 ÎåÊ®·ÖÖÓ
+					// é¢‘é“æ‰«æä¿¡æ¯ä¸‹å‘ timeout 1000*60*50 äº”ååˆ†é’Ÿ
 					returnStr = utilXML.SendDownXML(this.downString, smg.getURL(), CommonUtility.CHANNEL_SCAN_WAIT_TIMEOUT,bsData);
 					if(returnStr == null || returnStr.equals("")) {
-						log.error("È¡µÃÆµµÀÉ¨ÃèÁĞ±íÊ§°Ü: " + smg.getURL());
+						log.error("å–å¾—é¢‘é“æ‰«æåˆ—è¡¨å¤±è´¥: " + smg.getURL());
 						continue;
 					}
 					
-					//Èç¹ûÉ¨µ½µÄÆµµÀ±í³¤¶È²»Îª0 Ôò °ÑÁ½´ÎÆ´½Ó
+					//å¦‚æœæ‰«åˆ°çš„é¢‘é“è¡¨é•¿åº¦ä¸ä¸º0 åˆ™ æŠŠä¸¤æ¬¡æ‹¼æ¥
 					if(str.split(",").equals("1")){
 						if(strr.length()!=0){
-							//Æ´½ÓÁ½´ÎµÄÆµµÀ±í
+							//æ‹¼æ¥ä¸¤æ¬¡çš„é¢‘é“è¡¨
 						}
 					}
 					
@@ -138,15 +138,15 @@ public class ChannelScanQueryHandle {
 					
 					if (vo.getScanType() == 1) {
 						/**
-						 * ScanType=0Îª¼òµ¥
-						 * µ±ScanType=1Ê±ÎªÏêÏ¸É¨Ãè
+						 * ScanType=0ä¸ºç®€å•
+						 * å½“ScanType=1æ—¶ä¸ºè¯¦ç»†æ‰«æ
 						 */
 						CommonUtility.StoreIntoFile(returnStr, channelScanPath);
 		                CommonUtility.StoreIntoFile(returnStr, sysVO.getTomcatHome() + "/webapps/transmit/ChannelScanQuery.xml");
 					}
 					break;
 				} catch (CommonException e) {
-					log.error("ÏòSMGÏÂ·¢ÆµµÀÉ¨Ãè³ö´í£º" + smg.getURL());
+					log.error("å‘SMGä¸‹å‘é¢‘é“æ‰«æå‡ºé”™ï¼š" + smg.getURL());
 				}
 			}
 
@@ -154,12 +154,12 @@ public class ChannelScanQueryHandle {
 		
 		if (vo.getScanType() == 1) {
 			/**
-			 * ScanType=0Îª¼òµ¥
-			 * µ±ScanType=1Ê±ÎªÏêÏ¸É¨Ãè
+			 * ScanType=0ä¸ºç®€å•
+			 * å½“ScanType=1æ—¶ä¸ºè¯¦ç»†æ‰«æ
 			 */
 	        try {
 	        	if(returnStr == null || returnStr.equals("")) {
-	        		log.error("È¡µÃÆµµÀÉ¨ÃèÁĞ±íÊ§°Ü, Çë¹ı¼¸·ÖÖÓÔÙÊÔ¡£");
+	        		log.error("å–å¾—é¢‘é“æ‰«æåˆ—è¡¨å¤±è´¥, è¯·è¿‡å‡ åˆ†é’Ÿå†è¯•ã€‚");
 	        		return;
 	        	}
 	        	CommonUtility.StoreIntoFile(returnStr, sysVO.getTomcatHome() + "/webapps/transmit/ChannelScanQuery.xml");
@@ -170,7 +170,7 @@ public class ChannelScanQueryHandle {
 	            List<ChannelScanQueryVO> ChannelScanQueryVOList = ChannelScanQueryParse.getReturnObject(document);
 	            delChannelScanTable();
 	            
-	            //added by tqy ĞÂÔö¼ÓServiceTypeÈë¿â²Ù×÷£¬¼æÈİÔ­À´±í½á¹¹
+	            //added by tqy æ–°å¢åŠ ServiceTypeå…¥åº“æ“ä½œï¼Œå…¼å®¹åŸæ¥è¡¨ç»“æ„
 	            try{
 	            	updateChannelScanTable(ChannelScanQueryVOList);
 	            }
@@ -179,30 +179,30 @@ public class ChannelScanQueryHandle {
 	            }
 	            
 	        } catch (Exception e) {
-	            log.error("ÆµµÀÉ¨Ãè½á¹ûÈë¿âÊ§°Ü Error: " + e.getMessage());
+	            log.error("é¢‘é“æ‰«æç»“æœå…¥åº“å¤±è´¥ Error: " + e.getMessage());
 	        }
 		}
 		
 		try {
-        	// ÅĞ¶ÏÊÇ·ñÍêÕûµÄXMLĞ­Òé Add Start By Bian Jiang 2011.2.21
+        	// åˆ¤æ–­æ˜¯å¦å®Œæ•´çš„XMLåè®® Add Start By Bian Jiang 2011.2.21
             int msgEnd = returnStr.indexOf(CommonUtility.XML_MSG_END) + CommonUtility.XML_MSG_END.length();
             
             if (msgEnd != CommonUtility.XML_MSG_END.length()) {
             	try {
             		returnStr = returnStr.substring(0, msgEnd);	
             	} catch (Exception ex) {
-            		log.warn("ÆµµÀÁĞ±íĞÅÏ¢´¦Àí³ö´í: " + ex.getMessage());
+            		log.warn("é¢‘é“åˆ—è¡¨ä¿¡æ¯å¤„ç†å‡ºé”™: " + ex.getMessage());
             	}
             }
-           // ÅĞ¶ÏÊÇ·ñÍêÕûµÄXMLĞ­Òé Add End By Bian Jiang 2011.2.21
+           // åˆ¤æ–­æ˜¯å¦å®Œæ•´çš„XMLåè®® Add End By Bian Jiang 2011.2.21
 			
-			// ¹ú¼Ò¼à²âÖĞĞÄ¶«ÈíÇ°¶Ë¸üĞÂ£¬Ôö¼ÓÁË¶ÔÊ±¼äµÄÅĞ¶Ï£¬ËùÒÔ²»ÄÜÃ¿´Î¶¼ĞŞ¸ÄÊ±¼ä
+			// å›½å®¶ç›‘æµ‹ä¸­å¿ƒä¸œè½¯å‰ç«¯æ›´æ–°ï¼Œå¢åŠ äº†å¯¹æ—¶é—´çš„åˆ¤æ–­ï¼Œæ‰€ä»¥ä¸èƒ½æ¯æ¬¡éƒ½ä¿®æ”¹æ—¶é—´
 			utilXML.SendUpXML(utilXML.replaceXMLMsgHeader(returnStr, bsData),bsData);
 		} catch (CommonException e) {
-			log.error("ÉÏ·¢ÆµµÀÉ¨ÃèĞÅÏ¢Ê§°Ü: " + e.getMessage());
+			log.error("ä¸Šå‘é¢‘é“æ‰«æä¿¡æ¯å¤±è´¥: " + e.getMessage());
 		}
 		
-		//Ìí¼Ó Çå¿Õ×Ô¶¯Â¼Ïñ½ÚÄ¿ĞÅÏ¢  ºÍ¸øTSCÏÂ·¢É¾³ıĞ­Òé 
+		//æ·»åŠ  æ¸…ç©ºè‡ªåŠ¨å½•åƒèŠ‚ç›®ä¿¡æ¯  å’Œç»™TSCä¸‹å‘åˆ é™¤åè®® 
 		CleanChannelAndTSC  ccat=new CleanChannelAndTSC(bsData);
 		ccat.chean();
 		
@@ -213,8 +213,8 @@ public class ChannelScanQueryHandle {
 	}
 
 	/**
-	 * ¸üĞÂÈë¿âÆµµÀÉ¨Ãè±í
-	 * @param ĞèÒª¸üĞÂµÄXMLÊı¾İ
+	 * æ›´æ–°å…¥åº“é¢‘é“æ‰«æè¡¨
+	 * @param éœ€è¦æ›´æ–°çš„XMLæ•°æ®
 	 * @throws DaoException 
 	 */
 	public static void upChannelScanTable(List<ChannelScanQueryVO> ChannelScanQueryVOList) throws DaoException {
@@ -250,14 +250,14 @@ public class ChannelScanQueryHandle {
 				statement.executeUpdate(strBuff.toString());
 	
 			} catch (Exception e) {
-				log.error("ÆµµÀÉ¨Ãè¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
-				log.error("ÆµµÀÉ¨Ãè¸üĞÂÊı¾İ¿â´íÎó SQL£º\n" + strBuff.toString());
+				log.error("é¢‘é“æ‰«ææ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
+				log.error("é¢‘é“æ‰«ææ›´æ–°æ•°æ®åº“é”™è¯¯ SQLï¼š\n" + strBuff.toString());
 			} finally {
 				DaoSupport.close(statement);
 			}
 		}
 		DaoSupport.close(conn);
-		log.info("É¨Ãè½á¹û¸üĞÂÊı¾İ¿â³É¹¦!");
+		log.info("æ‰«æç»“æœæ›´æ–°æ•°æ®åº“æˆåŠŸ!");
 	}
 
 	
@@ -298,18 +298,18 @@ public class ChannelScanQueryHandle {
 				statement.executeUpdate(strBuff.toString());
 	
 			} catch (Exception e) {
-				log.error("ÆµµÀÉ¨Ãè¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
-				log.error("ÆµµÀÉ¨Ãè¸üĞÂÊı¾İ¿â´íÎó SQL£º\n" + strBuff.toString());
+				log.error("é¢‘é“æ‰«ææ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
+				log.error("é¢‘é“æ‰«ææ›´æ–°æ•°æ®åº“é”™è¯¯ SQLï¼š\n" + strBuff.toString());
 			} finally {
 				DaoSupport.close(statement);
 			}
 		}
 		DaoSupport.close(conn);
-		log.info("É¨Ãè½á¹û¸üĞÂÊı¾İ¿â³É¹¦!");
+		log.info("æ‰«æç»“æœæ›´æ–°æ•°æ®åº“æˆåŠŸ!");
 	}
 	/**
-	 * ¸üĞÂÈë¿âÆµµÀÉ¨Ãè±í
-	 * @param ĞèÒª¸üĞÂµÄXMLÊı¾İ
+	 * æ›´æ–°å…¥åº“é¢‘é“æ‰«æè¡¨
+	 * @param éœ€è¦æ›´æ–°çš„XMLæ•°æ®
 	 * @throws DaoException 
 	 */
 	public static void upChannelScanTable(ChannelScanQueryVO vo) throws DaoException {
@@ -342,17 +342,17 @@ public class ChannelScanQueryHandle {
 			statement.executeUpdate(strBuff.toString());
 
 		} catch (Exception e) {
-			log.error("ÆµµÀÉ¨Ãè¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
-			log.error("ÆµµÀÉ¨Ãè¸üĞÂÊı¾İ¿â´íÎó SQL£º\n" + strBuff.toString());
+			log.error("é¢‘é“æ‰«ææ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
+			log.error("é¢‘é“æ‰«ææ›´æ–°æ•°æ®åº“é”™è¯¯ SQLï¼š\n" + strBuff.toString());
 		} finally {
 			DaoSupport.close(statement);
 		}
 		DaoSupport.close(conn);
-		log.info("É¨Ãè½á¹û¸üĞÂÊı¾İ¿â³É¹¦!");
+		log.info("æ‰«æç»“æœæ›´æ–°æ•°æ®åº“æˆåŠŸ!");
 	}
 	
 	/**
-	 * ¸üĞÂÆµµÀÉ¨Ãè±í
+	 * æ›´æ–°é¢‘é“æ‰«æè¡¨
 	 * @throws DaoException 
 	 */
 	public static void delChannelScanTable() throws DaoException {
@@ -370,22 +370,22 @@ public class ChannelScanQueryHandle {
 			statement.executeUpdate(strBuff.toString());
 
 		} catch (Exception e) {
-			log.error("¸üĞÂÆµµÀÉ¨ÃèÊı¾İ¿â´íÎó: " + e.getMessage());
-			log.error("¸üĞÂÆµµÀÉ¨ÃèÊı¾İ¿â´íÎó SQL£º\n" + strBuff.toString());
+			log.error("æ›´æ–°é¢‘é“æ‰«ææ•°æ®åº“é”™è¯¯: " + e.getMessage());
+			log.error("æ›´æ–°é¢‘é“æ‰«ææ•°æ®åº“é”™è¯¯ SQLï¼š\n" + strBuff.toString());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
 		}
 		
-		log.info("É¨Ãè½á¹û¸üĞÂÊı¾İ¿â³É¹¦!");
+		log.info("æ‰«æç»“æœæ›´æ–°æ•°æ®åº“æˆåŠŸ!");
 	}
 	
 	/**
-	 * ÊµÊ±ÆµµãÉ¨Ãè
+	 * å®æ—¶é¢‘ç‚¹æ‰«æ
 	 */
     public void channelScanNow() {
         
-    	log.info("¿ªÊ¼½øĞĞÆµµÀÉ¨Ãè: ");
+    	log.info("å¼€å§‹è¿›è¡Œé¢‘é“æ‰«æ: ");
         List SMGSendList = new ArrayList();
         
         CommonUtility.checkSMGChannelType("ChannelScanQuery", SMGSendList);
@@ -409,27 +409,27 @@ public class ChannelScanQueryHandle {
                 Document document = null;
                 SysInfoVO sysVO = coreData.getSysVO();
                 
-                // ÆµµÀÉ¨ÃèĞÅÏ¢ÏÂ·¢ timeout 1000*60*10 Ê®·ÖÖÓ
+                // é¢‘é“æ‰«æä¿¡æ¯ä¸‹å‘ timeout 1000*60*10 ååˆ†é’Ÿ
                 retXML = utilXML.SendDownXML(upString, smg.getURL(), CommonUtility.CHANNEL_SCAN_WAIT_TIMEOUT, bsData);
                 
             	if(retXML.equals("")) {
-            		log.error("ÆµµÀÉ¨Ãè½á¹ûÎª¿Õ");
+            		log.error("é¢‘é“æ‰«æç»“æœä¸ºç©º");
             		break;
             	}
             	
             	retXML = CommonUtility.RegReplaceString(retXML, "ScanTime");
             	
-            	// ÅĞ¶ÏÊÇ·ñÍêÕûµÄXMLĞ­Òé Add Start By Bian Jiang 2011.2.21
+            	// åˆ¤æ–­æ˜¯å¦å®Œæ•´çš„XMLåè®® Add Start By Bian Jiang 2011.2.21
                 int msgEnd = retXML.indexOf(CommonUtility.XML_MSG_END) + CommonUtility.XML_MSG_END.length();
                 
                 if (msgEnd != CommonUtility.XML_MSG_END.length()) {
                 	try {
                 		retXML = retXML.substring(0, msgEnd);
                 	} catch (Exception ex) {
-                		 log.warn("ÆµµÀÁĞ±íĞÅÏ¢´¦Àí³ö´í: " + ex.getMessage());
+                		 log.warn("é¢‘é“åˆ—è¡¨ä¿¡æ¯å¤„ç†å‡ºé”™: " + ex.getMessage());
                 	}
                 }
-               // ÅĞ¶ÏÊÇ·ñÍêÕûµÄXMLĞ­Òé Add End By Bian Jiang 2011.2.21
+               // åˆ¤æ–­æ˜¯å¦å®Œæ•´çš„XMLåè®® Add End By Bian Jiang 2011.2.21
                 
 				if (bsData.getVersion() == CommonUtility.XML_VERSION_2_3) {
 					CommonUtility.StoreIntoFile(retXML, CommonUtility.CHANNEL_SCAN_PATH_2_3);
@@ -449,18 +449,18 @@ public class ChannelScanQueryHandle {
                     ChannelScanQueryHandle.delChannelScanTable();
                     ChannelScanQueryHandle.upChannelScanTable(ChannelScanQueryVOList);
                 } catch (Exception e) {
-                    log.error("ÆµµÀÉ¨Ãè½á¹ûÈë¿âÊ§°Ü Error: " + e.getMessage());
+                    log.error("é¢‘é“æ‰«æç»“æœå…¥åº“å¤±è´¥ Error: " + e.getMessage());
                 }
                 
-                // FIXED Ö»ÓĞÒ»¸öÍ¨µÀ×öÆµµÀÉ¨Ãè
+                // FIXED åªæœ‰ä¸€ä¸ªé€šé“åšé¢‘é“æ‰«æ
                 break;
             } catch (Exception e) {
-                log.error("ÏòSMGÏÂ·¢ÆµµÀÉ¨Ãè³ö´í£º" + smg.getURL());
+                log.error("å‘SMGä¸‹å‘é¢‘é“æ‰«æå‡ºé”™ï¼š" + smg.getURL());
             }
         }
-        //Ìí¼Ó Çå¿Õ×Ô¶¯Â¼Ïñ½ÚÄ¿ĞÅÏ¢  ºÍ¸øTSCÏÂ·¢É¾³ıĞ­Òé 
-        //Çå³ı×Ô¶¯Â¼ÖÆÖĞµÄSrcURL,²»·µ»Ø¸ø¼à¹ÜÆ½Ì¨
-        //BY TQY ËÄÆÚ
+        //æ·»åŠ  æ¸…ç©ºè‡ªåŠ¨å½•åƒèŠ‚ç›®ä¿¡æ¯  å’Œç»™TSCä¸‹å‘åˆ é™¤åè®® 
+        //æ¸…é™¤è‡ªåŠ¨å½•åˆ¶ä¸­çš„SrcURL,ä¸è¿”å›ç»™ç›‘ç®¡å¹³å°
+        //BY TQY å››æœŸ
         this.bsData.setSrcURL("");
 		CleanChannelAndTSC  ccat=new CleanChannelAndTSC(bsData);
 		ccat.chean();

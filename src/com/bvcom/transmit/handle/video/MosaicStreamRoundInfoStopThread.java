@@ -52,22 +52,22 @@ public class MosaicStreamRoundInfoStopThread extends Thread {
 	
 	@Override
 	/**
-    * TODO ÂíÈü¿Ë¹ıÆÚÉ¾³ıÏà¹ØµÄ½ÚÄ¿ĞÅÏ¢ 
-    * Ä¿Ç°Ö»¸ø¸ø°å¿¨ÏÂ·¢DelÃüÁî£¬ 
-    * ĞèÒªÉ¾³ırecordType = 4µÄ½ÚÄ¿
-    * »¹ĞèÒª¸ü¾ßÕâĞ©ĞÅÏ¢ÏÂ·¢SetÃüÁî
+    * TODO é©¬èµ›å…‹è¿‡æœŸåˆ é™¤ç›¸å…³çš„èŠ‚ç›®ä¿¡æ¯ 
+    * ç›®å‰åªç»™ç»™æ¿å¡ä¸‹å‘Delå‘½ä»¤ï¼Œ 
+    * éœ€è¦åˆ é™¤recordType = 4çš„èŠ‚ç›®
+    * è¿˜éœ€è¦æ›´å…·è¿™äº›ä¿¡æ¯ä¸‹å‘Setå‘½ä»¤
     * By: Bian Jiang 2012.3.21
 	 */
 	public void run() {
-		//log.info("\n\n    \t------- Æô¶¯Æô¶¯ÂíÈü¿ËÂÖ²¥ Í£Ö¹Ïß³Ì: " +year+"-"+month+"-"+day+" "+ hourOfDay + ":" + minute + ":" + second + " ---------\n");
+		//log.info("\n\n    \t------- å¯åŠ¨å¯åŠ¨é©¬èµ›å…‹è½®æ’­ åœæ­¢çº¿ç¨‹: " +year+"-"+month+"-"+day+" "+ hourOfDay + ":" + minute + ":" + second + " ---------\n");
 		//AutoAnalysisTimeQueryConfigFile autoAnalysisTimeOueryConfigFile = new AutoAnalysisTimeQueryConfigFile();
 		//String StopTime = autoAnalysisTimeOueryConfigFile.getStreamRoundInfoQueryStopTime();
 		//String[] strDate = StopTime.split("-");
 		//Date stopDate = new Date(Integer.parseInt(strDate[0]) - 1900, Integer.parseInt(strDate[1]) - 1, Integer.parseInt(strDate[2]), Integer.parseInt(strDate[3]), Integer.parseInt(strDate[4]), Integer.parseInt(strDate[5]));
 		//if (stopDate.after(new Date())) {
-			//log.info("------- ¿ªÊ¼Æô¶¯ÂíÈü¿ËÂÖ²¥ Í£Ö¹ÈÎÎñ: " + year+"-"+month+"-"+day+" "+ hourOfDay + ":" + minute + ":" + second + " ---------");
+			//log.info("------- å¼€å§‹å¯åŠ¨é©¬èµ›å…‹è½®æ’­ åœæ­¢ä»»åŠ¡: " + year+"-"+month+"-"+day+" "+ hourOfDay + ":" + minute + ":" + second + " ---------");
 			
-			// È¡µÃÂíÈü¿ËÏà¹ØµÄ½ÚÄ¿ĞÅÏ¢
+			// å–å¾—é©¬èµ›å…‹ç›¸å…³çš„èŠ‚ç›®ä¿¡æ¯
 			List<SetAutoRecordChannelVO> voList = getProgramInfoByIndex();
 			
 			String sendString=createForDownXML(voList);
@@ -76,12 +76,12 @@ public class MosaicStreamRoundInfoStopThread extends Thread {
 				CommonUtility.checkSMGChannelIndex(voList.get(i).getDevIndex(), smgList);
 			}
 			
-			//Ïò°å¿¨·¢ËÍ×Ô¶¯Â¼ÏñÉèÖÃ
+			//å‘æ¿å¡å‘é€è‡ªåŠ¨å½•åƒè®¾ç½®
 			for(int i=0;i<smgList.size();i++){
 				utilXML.SendUpXML(sendString, smgList.get(i).getURL());
 			}
-			//Í¬Ê±¸üĞÂÒ»¶ÔÒ»½ÚÄ¿±í£¬½«recordtype=4 ĞŞ¸ÄÎª³õÊ¼×´Ì¬
-			//BY TQY ¼à²âËÄÆÚ
+			//åŒæ—¶æ›´æ–°ä¸€å¯¹ä¸€èŠ‚ç›®è¡¨ï¼Œå°†recordtype=4 ä¿®æ”¹ä¸ºåˆå§‹çŠ¶æ€
+			//BY TQY ç›‘æµ‹å››æœŸ
 			updateMosaicChannelMapping(voList);
 			
 		//}
@@ -118,7 +118,7 @@ public class MosaicStreamRoundInfoStopThread extends Thread {
 
 	
 	/*
-	 *¸ù¾İÂíÈü¿ËÏà¹Ø½ÚÄ¿ĞÅÏ¢£¬¸üĞÂÒ»¶ÔÒ»½ÚÄ¿±í
+	 *æ ¹æ®é©¬èµ›å…‹ç›¸å…³èŠ‚ç›®ä¿¡æ¯ï¼Œæ›´æ–°ä¸€å¯¹ä¸€èŠ‚ç›®è¡¨
 	 * 
 	 */
 	public void updateMosaicChannelMapping(List<SetAutoRecordChannelVO>  voList)
@@ -142,7 +142,7 @@ public class MosaicStreamRoundInfoStopThread extends Thread {
 			Statement statement = null;
 			Connection conn = DaoSupport.getJDBCConnection();
 
-			// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+			// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 			
 			strBuff.append("update transmit.channelremapping c set ");
 			strBuff.append(" StatusFlag = 0, tscIndex = 0, freq=0, ServiceID=0, VideoPID=0, AudioPID=0, ");
@@ -157,17 +157,17 @@ public class MosaicStreamRoundInfoStopThread extends Thread {
 				statement.execute(strBuff.toString());
 				
 			} catch (Exception e) {
-				log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + e.getMessage());
+				log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + e.getMessage());
 			} finally {
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			}
 			strBuff = null;
-			//log.info("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+			//log.info("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		}
 	/**
-	 * È¡µÃÂíÈü¿ËÏà¹ØµÄ½ÚÄ¿ĞÅÏ¢
-	 * recordType 0£º²»Â¼Ïñ£¬1:´ú±í¹ÊÕÏ´¥·¢Â¼ÖÆ   2£º24Ğ¡Ê±Â¼Ïñ(Ä¬ÈÏ)	3: ÈÎÎñÂ¼Ïñ  4: ÂíÈü¿ËºÏ³ÉÂÖ²¥
+	 * å–å¾—é©¬èµ›å…‹ç›¸å…³çš„èŠ‚ç›®ä¿¡æ¯
+	 * recordType 0ï¼šä¸å½•åƒï¼Œ1:ä»£è¡¨æ•…éšœè§¦å‘å½•åˆ¶   2ï¼š24å°æ—¶å½•åƒ(é»˜è®¤)	3: ä»»åŠ¡å½•åƒ  4: é©¬èµ›å…‹åˆæˆè½®æ’­
 	 * @return
 	 */
 	public List<SetAutoRecordChannelVO> getProgramInfoByIndex() {
@@ -181,7 +181,7 @@ public class MosaicStreamRoundInfoStopThread extends Thread {
 		try {
 			conn = DaoSupport.getJDBCConnection();
 			StringBuffer strBuff = new StringBuffer();
-			// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+			// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 			strBuff.append("select *  from channelremapping where  RecordType = 4 ;");
 			try {
 				statement = conn.createStatement();
@@ -208,7 +208,7 @@ public class MosaicStreamRoundInfoStopThread extends Thread {
 				}
 
 			} catch (Exception e) {
-				log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó: " + e.getMessage());
+				log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯: " + e.getMessage());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);

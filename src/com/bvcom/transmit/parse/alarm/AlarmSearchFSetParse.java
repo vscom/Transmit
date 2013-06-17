@@ -14,7 +14,7 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.SysInfoVO;
 import com.bvcom.transmit.vo.alarm.AlarmSearchPSetVO;
 
-//报警上报（频率相关）
+//鎶ヨ涓婃姤锛堥鐜囩浉鍏筹級
 public class AlarmSearchFSetParse {
 	
 	private static Logger log = Logger.getLogger(AlarmSearchFSetParse.class.getSimpleName());
@@ -23,7 +23,7 @@ public class AlarmSearchFSetParse {
 	SysInfoVO sysVO = coreData.getSysVO();
 	
     /**
-     * 上报XML信息
+     * 涓婃姤XML淇℃伅
      * @param document
      * @return
      */
@@ -37,7 +37,7 @@ public class AlarmSearchFSetParse {
         	int Index = 0;
         	int Freq = 0;
         	
-        	//频点级报警没有ServiceID VideoPID AudioPID  吉龙修改
+        	//棰戠偣绾ф姤璀︽病鏈塖erviceID VideoPID AudioPID  鍚夐緳淇敼
         	
         	int ServiceID = 0;
         	int VideoPID = 0;
@@ -86,7 +86,7 @@ public class AlarmSearchFSetParse {
         return ReturnList;
     }
     
-	//节目报警开关解析xml得到通道号的数组
+	//鑺傜洰鎶ヨ寮�鍏宠В鏋恱ml寰楀埌閫氶亾鍙风殑鏁扮粍
 //	@SuppressWarnings("unchecked")
 //	public List<AlarmSearchFSetVO> getIndexByDownXml(Document document){
 //		List<AlarmSearchFSetVO> indexlist = new ArrayList();
@@ -106,7 +106,7 @@ public class AlarmSearchFSetParse {
 //		
 //	}
 	
-	// 报警上报回复xml打包
+	// 鎶ヨ涓婃姤鍥炲xml鎵撳寘
 //	public String ReturnXMLByURL(MSGHeadVO head,List<AlarmSearchFSetVO> list, int value) {
 //		
 //		String xml = null;
@@ -116,9 +116,9 @@ public class AlarmSearchFSetParse {
 //				+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 //				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 //		if(0==value){
-//			xml += "<Return Type=\"AlarmSearchFSet\" Value=\"0\" Desc=\"成功\"/>";
+//			xml += "<Return Type=\"AlarmSearchFSet\" Value=\"0\" Desc=\"鎴愬姛\"/>";
 //		}else if(1==value){
-//			xml += "<Return Type=\"AlarmSearchFSet\" Value=\"1\" Desc=\"失败\"/>";
+//			xml += "<Return Type=\"AlarmSearchFSet\" Value=\"1\" Desc=\"澶辫触\"/>";
 //			xml +="</Msg>";
 //			return xml;
 //		}
@@ -142,9 +142,9 @@ public class AlarmSearchFSetParse {
         strBuf.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuf.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\"> \r\n");
         if(0==value){
-            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"成功\"/>\r\n");
+            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"鎴愬姛\"/>\r\n");
         }else if(1==value){
-            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"失败\"/>\r\n");
+            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"澶辫触\"/>\r\n");
         }
         
         strBuf.append("<ReturnInfo>\r\n");
@@ -152,7 +152,7 @@ public class AlarmSearchFSetParse {
         /*
         <ReturnInfo>
 	  		<AlarmSearchFSet Index="0" Freq="658000" >
-	  			       <AlarmSearchF Type="1" AlarmID="123456789012" Desc="失锁" Value="0" Time="2002-08-17 15:30:00"/> 
+	  			       <AlarmSearchF Type="1" AlarmID="123456789012" Desc="澶遍攣" Value="0" Time="2002-08-17 15:30:00"/> 
 	  		</AlarmSearchFSet>
   	    </ReturnInfo>
        */
@@ -162,7 +162,7 @@ public class AlarmSearchFSetParse {
         	AlarmSearchPSetVO AlarmSearchPSet = AlarmSearchPSetList.get(i);
         	
         	if (AlarmSearchPSet.getFreq() == 0) {
-        		log.info("生成节目报警XML出错 Freq:" + AlarmSearchPSet.getFreq());
+        		log.info("鐢熸垚鑺傜洰鎶ヨXML鍑洪敊 Freq:" + AlarmSearchPSet.getFreq());
         		continue;
         	}
         	

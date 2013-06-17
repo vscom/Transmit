@@ -3,7 +3,7 @@ package com.bvcom.transmit.vo.index;
 import java.util.List;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
-//ĞÔÄÜÖ¸±ê²éÑ¯
+//æ€§èƒ½æŒ‡æ ‡æŸ¥è¯¢
 public class GetIndexSetVO {
 	
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -14,13 +14,13 @@ public class GetIndexSetVO {
 	
 	private List<Integer> Type;
 	
-	private List<String> Desc;//¶ÔÓ¦typeµÄÃèÊö
+	private List<String> Desc;//å¯¹åº”typeçš„æè¿°
 	
-	private List<Integer> Value;//¶ÔÓ¦typeµÄvalue
+	private List<Integer> Value;//å¯¹åº”typeçš„value
 	
-	private int ReturnValue;//³É¹¦»òÊ§°Ü
+	private int ReturnValue;//æˆåŠŸæˆ–å¤±è´¥
 	
-	private String Comment;//Ê§°ÜÔ­Òò
+	private String Comment;//å¤±è´¥åŸå› 
 
 	public MSGHeadVO getMSGHead() {
 		return MSGHead;

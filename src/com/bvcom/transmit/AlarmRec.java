@@ -76,7 +76,7 @@ public class AlarmRec extends HttpServlet {
         out.println("</HEAD>  <BODY>");
         out.print("Welcome Home, using the POST method. PowerBy: BVCOM <br />");
         out.print(" VERSION: " + CommonUtility.VERSION + "<br />");
-        out.println("<br /> ------------±¨¾¯½ÓÊÕµØÖ·------------------  ");
+        out.println("<br /> ------------æŠ¥è­¦æ¥æ”¶åœ°å€------------------  ");
         out.println("<br />" + request.getContextPath());
         out.println("<br /> RemoteHost: " + request.getRemoteHost());
         out.println("<br /> LocalAddr: " + request.getLocalAddr());
@@ -122,32 +122,32 @@ public class AlarmRec extends HttpServlet {
         try {
             try {
                 inReader = new InputStreamReader(request.getInputStream(),
-                        "UTF-8");// »ñµÃÁ´½Ó¸ÃÀàµÄÁ÷
+                        "UTF-8");// è·å¾—é“¾æ¥è¯¥ç±»çš„æµ
                 getString = CommonUtility.readStringFromURL(inReader);
                 if(getString.equals("")){
                 	return;
                 }
                 //System.out.println(getString);
-                //log.info("½ÓÊÕµ½±¨¾¯Êı¾İÎª£º"+getString);
+                //log.info("æ¥æ”¶åˆ°æŠ¥è­¦æ•°æ®ä¸ºï¼š"+getString);
                 try {
                     OutputStreamWriter ResponseWriter = null;
                     response.setContentType("text/html");
                     ResponseWriter = new OutputStreamWriter(response.getOutputStream(),
-                            "UTF-8"); //Ïò¿Í»§¶Ë·µ»ØÈ·ÈÏĞÅÏ¢ 
+                            "UTF-8"); //å‘å®¢æˆ·ç«¯è¿”å›ç¡®è®¤ä¿¡æ¯ 
 
                     ResponseWriter.write("OK");
                     ResponseWriter.flush();
                     ResponseWriter.close();
                 } catch (Exception ex) {
-                    //log.error("»Ø¸´Êı¾İ³ö´í: " + ex.getMessage());
+                    //log.error("å›å¤æ•°æ®å‡ºé”™: " + ex.getMessage());
                 }
                 /**
-                 * ¶ÁÈ¡ÇëÇóĞÅÏ¢
+                 * è¯»å–è¯·æ±‚ä¿¡æ¯
                  */
             } catch (IOException ex) {
-                log.error("½ÓÊÕ±¨¾¯Êı¾İ³ö´í: " + ex.getMessage());
-                log.error("·¢ËÍÇëÇó¶ËIP£º"+clientIp);
-                /**Êä³ö´íÎóĞÅÏ¢µ½ÎÄ¼ş*/
+                log.error("æ¥æ”¶æŠ¥è­¦æ•°æ®å‡ºé”™: " + ex.getMessage());
+                log.error("å‘é€è¯·æ±‚ç«¯IPï¼š"+clientIp);
+                /**è¾“å‡ºé”™è¯¯ä¿¡æ¯åˆ°æ–‡ä»¶*/
         		PrintWriter pw;
     			try {
     				pw = new PrintWriter(new File("d:/ExceptionAlarm.log"));
@@ -165,8 +165,8 @@ public class AlarmRec extends HttpServlet {
             }
             
             if (sysVO.getIsAlarmLogEnable() == 1) {
-	            log.info("ÉÏ±¨IP: ----- " + request.getRemoteAddr() + " ---   Port: " + request.getRemotePort() + " ---- ");
-	            log.info("½ÓÊÕ±¨¾¯ÉÏ±¨ĞÅÏ¢:\n" + getString);
+	            log.info("ä¸ŠæŠ¥IP: ----- " + request.getRemoteAddr() + " ---   Port: " + request.getRemotePort() + " ---- ");
+	            log.info("æ¥æ”¶æŠ¥è­¦ä¸ŠæŠ¥ä¿¡æ¯:\n" + getString);
             }
 
             requestDoc = xmlUtil.StringToXML(getString);
@@ -175,7 +175,7 @@ public class AlarmRec extends HttpServlet {
             }
             requestDoc.setXMLEncoding("GB2312");
 
-            // ´ÓÏÂ·¢µÄXmlÊı¾İÖĞÌáÈ¡Í·²¿ĞÅÏ¢
+            // ä»ä¸‹å‘çš„Xmlæ•°æ®ä¸­æå–å¤´éƒ¨ä¿¡æ¯
             boolean retFlg = xmlUtil.getInfoFromDownXml(requestDoc, bsData);
             
 //            if (bsData.getDateTime() == null || bsData.getDateTime().startsWith("2000")) {
@@ -185,21 +185,21 @@ public class AlarmRec extends HttpServlet {
             
             MemCoreData coreData = MemCoreData.getInstance();
             SysInfoVO sysVO = coreData.getSysVO();
-            // »òÕß´ÓJava×ª·¢È¡µÃÉÏ±¨µØÖ·
+            // æˆ–è€…ä»Javaè½¬å‘å–å¾—ä¸ŠæŠ¥åœ°å€
             
             if (getString.indexOf("ManualRecordQuery") <= 0) {
-                // ·ÇÊÖ¶¯Â¼ÖÆÖ÷¶¯ÉÏ±¨²ÉÓÃ±¾µØÅäÖÃ
+                // éæ‰‹åŠ¨å½•åˆ¶ä¸»åŠ¨ä¸ŠæŠ¥é‡‡ç”¨æœ¬åœ°é…ç½®
                 bsData.setSrcURL(sysVO.getCenterAlarmURL());
                 bsData.setReplyID("-1");
                 bsData.setCenterMsgID(String.valueOf(CommonUtility.getMsgID()));
             } else {
-            	log.info("ÊÖ¶¯Â¼ÖÆÉÏ±¨µØÖ·:\n" + bsData.getSrcURL());
-            	log.info("ÊÖ¶¯Â¼ÖÆÉÏ±¨ĞÅÏ¢:\n" + getString);
+            	log.info("æ‰‹åŠ¨å½•åˆ¶ä¸ŠæŠ¥åœ°å€:\n" + bsData.getSrcURL());
+            	log.info("æ‰‹åŠ¨å½•åˆ¶ä¸ŠæŠ¥ä¿¡æ¯:\n" + getString);
             	isManualRecord = 1;
             }
 
             if(getString.indexOf("AlarmSearchPSet") > 0) {
-                // ½ÚÄ¿±¨¾¯Ö÷¶¯ÉÏ±¨
+                // èŠ‚ç›®æŠ¥è­¦ä¸»åŠ¨ä¸ŠæŠ¥
                 AlarmSearchPSetHandle AlarmSearchPSetHandle = new AlarmSearchPSetHandle(getString, bsData);
                 getString = AlarmSearchPSetHandle.upXML();
                 
@@ -217,7 +217,7 @@ public class AlarmRec extends HttpServlet {
             
             getString = sendDoc.asXML();
             
-            // ÅĞ¶Ï±¨¾¯ĞÅÏ¢µÄÆµµãÊÇ·ñÔÚchannelremapping±íÀïÃæ´æÔÚ,Èç¹û²»´æÔÚ¾Í·ÅÆúÏà¹Ø±¨¾¯ Add By: Bian Jiang 2011.03.01
+            // åˆ¤æ–­æŠ¥è­¦ä¿¡æ¯çš„é¢‘ç‚¹æ˜¯å¦åœ¨channelremappingè¡¨é‡Œé¢å­˜åœ¨,å¦‚æœä¸å­˜åœ¨å°±æ”¾å¼ƒç›¸å…³æŠ¥è­¦ Add By: Bian Jiang 2011.03.01
         	List alarmList = null;
         	String type = xmlUtil.getReturnType(getString);
         	bsData.setStatusQueryType(type);
@@ -238,7 +238,7 @@ public class AlarmRec extends HttpServlet {
 	    		newAlarmList = AlarmSearchPSetHandle.getFreqFromDB(alarmList, type);
 	            
 	    		if (newAlarmList.size() <= 0) {
-	    			log.info("Êı¾İ¿âÖĞalarmsearchtable±íÖĞ´æÔÚ´ËÌõ±¨¾¯ĞÅÏ¢:\n"+getString+"\n====´Ë±¨¾¯ĞÅÏ¢Ã»ÓĞ»Ö¸´,²»ÊÇĞÂ±¨¾¯ĞÅÏ¢=======");
+	    			log.info("æ•°æ®åº“ä¸­alarmsearchtableè¡¨ä¸­å­˜åœ¨æ­¤æ¡æŠ¥è­¦ä¿¡æ¯:\n"+getString+"\n====æ­¤æŠ¥è­¦ä¿¡æ¯æ²¡æœ‰æ¢å¤,ä¸æ˜¯æ–°æŠ¥è­¦ä¿¡æ¯=======");
 	    			return;
 	    		}
         	}
@@ -249,26 +249,26 @@ public class AlarmRec extends HttpServlet {
 	            AlarmThread.start();
             } else {
             	if (bsData.getStatusQueryType().equals("AlarmSearchPSet")) {
-            		// ½ÚÄ¿Ïà¹Ø±¨¾¯
+            		// èŠ‚ç›®ç›¸å…³æŠ¥è­¦
             		
             		getString = alarmSearchPSetParse.createForUpXML(bsData, newAlarmList, 0);
             	} else if (bsData.getStatusQueryType().equals("AlarmSearchFSet")) {
-            		// ÆµÂÊÏà¹Ø±¨¾¯
+            		// é¢‘ç‡ç›¸å…³æŠ¥è­¦
             		getString = alarmSearchFSetParse.createForUpXML(bsData, newAlarmList, 0);
             	}
                 try {
-                	// ¹Ø±Õ±¨¾¯ÈÕÖ¾ĞÅÏ¢
-                	//log.info("±¨¾¯ÉÏ±¨ĞÅÏ¢:\n" + xmlUtil.replaceAlarmXMLMsgHeader(getString, bsData));
-                	//log.info("ÉÏ±¨ĞÅÏ¢Êı¾İÎª£º"+getString);
+                	// å…³é—­æŠ¥è­¦æ—¥å¿—ä¿¡æ¯
+                	//log.info("æŠ¥è­¦ä¸ŠæŠ¥ä¿¡æ¯:\n" + xmlUtil.replaceAlarmXMLMsgHeader(getString, bsData));
+                	//log.info("ä¸ŠæŠ¥ä¿¡æ¯æ•°æ®ä¸ºï¼š"+getString);
                     xmlUtil.SendUpXML(xmlUtil.replaceAlarmXMLMsgHeader(getString, bsData, isManualRecord), bsData);
                 } catch (Exception e) {
-                    log.error("±¨¾¯½ÚÄ¿ÃÅÏŞ»ò¿ª¹ØÉÏ±¨ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+                    log.error("æŠ¥è­¦èŠ‚ç›®é—¨é™æˆ–å¼€å…³ä¸ŠæŠ¥ä¿¡æ¯å¤±è´¥: " + e.getMessage());
                 }
             }
         } catch (Exception ex) {
         	//ex.printStackTrace();
-            log.error("´¦Àí±¨¾¯Êı¾İ³ö´í: " + ex.getMessage());
-            log.error("±¨¾¯´íÎóÔ­Ê¼XML: " + getString);
+            log.error("å¤„ç†æŠ¥è­¦æ•°æ®å‡ºé”™: " + ex.getMessage());
+            log.error("æŠ¥è­¦é”™è¯¯åŸå§‹XML: " + getString);
         }
     }
 }

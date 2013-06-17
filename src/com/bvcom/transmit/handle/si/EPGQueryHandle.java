@@ -47,21 +47,21 @@ public class EPGQueryHandle {
     }
     
 	public void downXML(){
-		log.info("¶ÁÈ¡EPGĞÅÏ¢");
-		// MHPĞÅÏ¢ 
+		log.info("è¯»å–EPGä¿¡æ¯");
+		// MHPä¿¡æ¯ 
         Document document = null;
 
         SysInfoVO sysVO = coreData.getSysVO();
         UtilXML utilXML = new UtilXML();
         EPGQueryParse epgQueryParse = new EPGQueryParse();
         
-		// ´ÓXMLÎÄ¼şÖĞÈ¡µÃµÄÊ±¼äĞÅÏ¢
+		// ä»XMLæ–‡ä»¶ä¸­å–å¾—çš„æ—¶é—´ä¿¡æ¯
 		String dataStr = null;
 		String EPGXMLStr = null;
 		
-		// µ±Ç°µÄÊ±¼äÄ¿Â¼Ãû
+		// å½“å‰çš„æ—¶é—´ç›®å½•å
 		
-		// È¡µÃÇ°Ò»¸öĞ¡Ê±µÄÊ±¼ä
+		// å–å¾—å‰ä¸€ä¸ªå°æ—¶çš„æ—¶é—´
 		String filename = null;
 		Element root = null;
 		List epgQueryList = null;
@@ -69,13 +69,13 @@ public class EPGQueryHandle {
 		try {
 			document = utilXML.StringToXML(downString);
 		} catch (CommonException e1) {
-			log.error("EPG XML ½âÎö³ö´í: " + e1.getMessage());
+			log.error("EPG XML è§£æå‡ºé”™: " + e1.getMessage());
 		}
 
 		root = document.getRootElement();
 		Element ele = null;
 		
-		// EPGĞÅÏ¢
+		// EPGä¿¡æ¯
 		ele = root.element("EPGQuery");
 		dataStr = ele.attributeValue("ScanTime").trim();
 
@@ -84,14 +84,14 @@ public class EPGQueryHandle {
 		}
 		
 	    /**
-	     * EPGĞÅÏ¢ÊÇ·ñ´ÓÊı¾İ¿âÈ¡µÃ 0:²»´ÓÊı¾İ¿âÈ¡µÃÊı¾İ 1:´ÓÊı¾İ¿âÈ¡µÃ
+	     * EPGä¿¡æ¯æ˜¯å¦ä»æ•°æ®åº“å–å¾— 0:ä¸ä»æ•°æ®åº“å–å¾—æ•°æ® 1:ä»æ•°æ®åº“å–å¾—
 	     */
 		if(sysVO.getIsEPGFromDataBase() == 0) {
 			String data = CommonUtility.getDateHourPath(dataStr);
 			
 			filename = CommonUtility.getEPGFilePath(sysVO.getEPGInfoFilePath()+ "/" + data);
 				    
-			log.info("´Ó " + filename + " ¶ÁÈ¡ÎÄ¼ş");
+			log.info("ä» " + filename + " è¯»å–æ–‡ä»¶");
 			//docreturn = readXmlFromFile(filename);
 			File readFilePath = new File(filename);
 			
@@ -109,7 +109,7 @@ public class EPGQueryHandle {
 	            
 	            String body = EPGXMLStr.substring(start);
 	            newEPGStr.append(EPGXMLStr.substring(0, start));
-	            newEPGStr.append("\r\n<Return Type=\"EPGQuery\" Value=\"0\" Desc=\"³É¹¦\" Redirect=\"\"/>\r\n");
+	            newEPGStr.append("\r\n<Return Type=\"EPGQuery\" Value=\"0\" Desc=\"æˆåŠŸ\" Redirect=\"\"/>\r\n");
 	            newEPGStr.append(body);
 	            
 	            EPGXMLStr = newEPGStr.toString();
@@ -123,7 +123,7 @@ public class EPGQueryHandle {
 				log.error("Get EPGInfoFromDB Error " + ex.getMessage());
 			}
 			
-			// ×ª»»EPGĞÅÏ¢ÎªXMLÎÄ¼ş
+			// è½¬æ¢EPGä¿¡æ¯ä¸ºXMLæ–‡ä»¶
 			EPGXMLStr = epgQueryParse.getEPGInfoXMLByList(this.bsData, epgQueryList, dataStr);
 		}
 		
@@ -131,17 +131,17 @@ public class EPGQueryHandle {
 		
 		String desPath = sysVO.getTomcatHome() + "/webapps/PSI/";
 
-		String dataFlod = CommonUtility.mkDateTimeFold(desPath, dataStr); //´´½¨ÎÄ¼ş¼Ğ
+		String dataFlod = CommonUtility.mkDateTimeFold(desPath, dataStr); //åˆ›å»ºæ–‡ä»¶å¤¹
 
 		String desXMLPath = desPath + "/" + dataFlod +"/EPG.xml";
 		
-		// ±£´æEPGĞÅÏ¢µ½XMLÎÄ¼ş
+		// ä¿å­˜EPGä¿¡æ¯åˆ°XMLæ–‡ä»¶
 		CommonUtility.WriteFile(EPGXMLStr, desXMLPath);
 			
         try {
             long fileSize = EPGXMLStr.length(); // M
             
-            log.info("EPG ÎÄ¼ş´óĞ¡: " + fileSize);
+            log.info("EPG æ–‡ä»¶å¤§å°: " + fileSize);
             
             if (fileSize > 1024 * 1024 && sysVO.getIsEPGZip() != 0 ) {
 
@@ -152,7 +152,7 @@ public class EPGQueryHandle {
     			ZipOutputStream zipOut = null;
     			
 				try {
-					log.info("¿ªÊ¼Ñ¹ËõEPGÎªZIP: "  + desZIPPath);
+					log.info("å¼€å§‹å‹ç¼©EPGä¸ºZIP: "  + desZIPPath);
 					out = new FileOutputStream(desZIPPath);
 					
 					zipOut = new ZipOutputStream(out);
@@ -160,9 +160,9 @@ public class EPGQueryHandle {
 					ZipEntry entry = new ZipEntry("epg.xml");
 					zipOut.putNextEntry(entry);
 					zipOut.write(EPGXMLStr.getBytes());
-					log.info("½áÊøÑ¹ËõEPGÎªZIP: "  + desZIPPath);
+					log.info("ç»“æŸå‹ç¼©EPGä¸ºZIP: "  + desZIPPath);
 				} catch (Exception e) {
-					log.error("EPG ĞÅÏ¢´òZIP°ü³ö´í£º" + e.getMessage());
+					log.error("EPG ä¿¡æ¯æ‰“ZIPåŒ…å‡ºé”™ï¼š" + e.getMessage());
 				}  finally {
 					if (zipOut != null) {
 						zipOut.close();
@@ -181,7 +181,7 @@ public class EPGQueryHandle {
             }
             
         } catch (Exception e) {
-        	log.error("EPG¶ÁÈ¡ÎÄ¼şÊ§°Ü: " + filename);
+        	log.error("EPGè¯»å–æ–‡ä»¶å¤±è´¥: " + filename);
         	EPGXMLStr = utilXML.getReturnXML(bsData, 1);
         }
 
@@ -191,20 +191,20 @@ public class EPGQueryHandle {
         	}
             utilXML.SendUpXML(EPGXMLStr, bsData);
         } catch (CommonException e) {
-            log.error("ÉÏ·¢ "+ bsData.getStatusQueryType() +" ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+            log.error("ä¸Šå‘ "+ bsData.getStatusQueryType() +" ä¿¡æ¯å¤±è´¥: " + e.getMessage());
         }
 	}
 	
 	/**
-	 * ¸üĞÂÈë¿âEPGĞÅÏ¢±í
-	 * @param ĞèÒª¸üĞÂµÄXMLÊı¾İ
+	 * æ›´æ–°å…¥åº“EPGä¿¡æ¯è¡¨
+	 * @param éœ€è¦æ›´æ–°çš„XMLæ•°æ®
 	 * @throws DaoException 
 	 */
 	public static void upEPGTable(List<EPGQueryVo> EPGQueryVoList) throws DaoException {
 
 		Statement statement = null;
 		Connection conn = null;
-		log.info("EPG ĞÅÏ¢¿ªÊ¼Èë¿â"); 
+		log.info("EPG ä¿¡æ¯å¼€å§‹å…¥åº“"); 
 		try {
 			conn = DaoSupport.getJDBCConnection();
 			conn.setAutoCommit(false);
@@ -215,8 +215,8 @@ public class EPGQueryHandle {
 				// insert into epginfo(ScanTime, Freq, ProgramID, Program,
 				// ProgramType, StartTime, ProgramLen, State, Encryption,
 				// Lastdatetime)
-				// values ('2000-01-01 08:54:55', 482000, 101, 'Hello', 'ÓéÀÖ',
-				// '2002-09-01 10:00:00', '120', '²¥·Å', 0, '2000-01-01 08:54:55')
+				// values ('2000-01-01 08:54:55', 482000, 101, 'Hello', 'å¨±ä¹',
+				// '2002-09-01 10:00:00', '120', 'æ’­æ”¾', 0, '2000-01-01 08:54:55')
 				strBuff.append("insert into epginfo(ScanTime, Freq, ProgramID, Program, ProgramType, StartTime, ProgramLen, State, Encryption, Lastdatetime) ");
 				strBuff.append(" values(");
 				strBuff.append("'" + vo.getScanTime() + "', ");
@@ -236,18 +236,18 @@ public class EPGQueryHandle {
 					statement.executeUpdate(strBuff.toString());
 
 				} catch (Exception e) {
-					log.error("EPGĞÅÏ¢¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
-					log.error("EPGĞÅÏ¢¸üĞÂÊı¾İ¿â´íÎó SQL£º\n" + strBuff.toString());
+					log.error("EPGä¿¡æ¯æ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
+					log.error("EPGä¿¡æ¯æ›´æ–°æ•°æ®åº“é”™è¯¯ SQLï¼š\n" + strBuff.toString());
 				} finally {
 					DaoSupport.close(statement);
 				}
 				if(i % 5000 == 0) {
-					log.info("EPG ĞÅÏ¢ÒÑ¾­Èë¿â: " + i + " ÌõÊı¾İ");
+					log.info("EPG ä¿¡æ¯å·²ç»å…¥åº“: " + i + " æ¡æ•°æ®");
 				}
 			}
 			 conn.commit();
 		} catch (Exception e) {
-			log.error("EPGĞÅÏ¢¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
+			log.error("EPGä¿¡æ¯æ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
@@ -255,12 +255,12 @@ public class EPGQueryHandle {
 		} finally {
 			DaoSupport.close(conn);
 		}
-		log.info("EPGĞÅÏ¢¸üĞÂÊı¾İ¿â³É¹¦! ×Ü¹²Èë¿â: " + EPGQueryVoList.size() + " ÌõÊı¾İ");
+		log.info("EPGä¿¡æ¯æ›´æ–°æ•°æ®åº“æˆåŠŸ! æ€»å…±å…¥åº“: " + EPGQueryVoList.size() + " æ¡æ•°æ®");
 	}
 	
 	/**
-	 * Êı¾İ¿âÈ¡µÃEPGĞÅÏ¢, Ä¬ÈÏÈ¡µÃ3ÌìµÄÊı¾İ
-	 * @param EPGÊ±¼ä
+	 * æ•°æ®åº“å–å¾—EPGä¿¡æ¯, é»˜è®¤å–å¾—3å¤©çš„æ•°æ®
+	 * @param EPGæ—¶é—´
 	 * @throws DaoException 
 	 */
 	public static List<EPGQueryVo> getEPGInfoByScanTime(String scanTime) throws DaoException {
@@ -269,7 +269,7 @@ public class EPGQueryHandle {
 		Connection conn = DaoSupport.getJDBCConnection();
 		StringBuffer strBuff = new StringBuffer();
 		
-		// È¡µÃÈıÌìµÄEPGĞÅÏ¢
+		// å–å¾—ä¸‰å¤©çš„EPGä¿¡æ¯
 		String newDate = CommonUtility.getDayBefOrAftNMonth(scanTime, 3);
 		
 		List<EPGQueryVo> EPGQueryVoList = new ArrayList();
@@ -297,19 +297,19 @@ public class EPGQueryHandle {
 				vo.setProgramLen(rs.getString("ProgramLen"));
 				vo.setState(rs.getString("State"));
 				vo.setEncryption(rs.getString("Encryption"));
-				//TODO  Ìí¼ÓÀ¬»øÂÊÅĞ¶Ï 
+				//TODO  æ·»åŠ åƒåœ¾ç‡åˆ¤æ–­ 
 				EPGQueryVoList.add(vo);
 			}
 		} catch (Exception e) {
-			log.error("Êı¾İ¿âÈ¡µÃEPGĞÅÏ¢´íÎó: " + e.getMessage());
-			log.error("Êı¾İ¿âÈ¡µÃEPGĞÅÏ¢´íÎó SQL: " + strBuff.toString());
+			log.error("æ•°æ®åº“å–å¾—EPGä¿¡æ¯é”™è¯¯: " + e.getMessage());
+			log.error("æ•°æ®åº“å–å¾—EPGä¿¡æ¯é”™è¯¯ SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
 		}
 		
-		log.info("Êı¾İ¿âÈ¡µÃEPGĞÅÏ¢³É¹¦!");
+		log.info("æ•°æ®åº“å–å¾—EPGä¿¡æ¯æˆåŠŸ!");
 		return EPGQueryVoList;
 	}
     

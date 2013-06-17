@@ -18,7 +18,7 @@ import com.bvcom.transmit.vo.rec.SetAutoRecordChannelVO;
 import com.bvcom.transmit.vo.video.AlarmTimeSetVO;
 
 /**
- * ÔËĞĞÍ¼
+ * è¿è¡Œå›¾
  * @author Bian Jiang
  *
  */
@@ -40,15 +40,15 @@ public class AlarmTimeSetHandle {
     }
     
     /**
-     * 1. ÏÂ·¢¸øÖ¸¶¨Í¨µÀµÄIPM
-     * 2. ÉÏ±¨ĞÅÏ¢¸øÖĞĞÄ
+     * 1. ä¸‹å‘ç»™æŒ‡å®šé€šé“çš„IPM
+     * 2. ä¸ŠæŠ¥ä¿¡æ¯ç»™ä¸­å¿ƒ
      *
      */
     public void downXML() {
-        // ·µ»ØÊı¾İ
+        // è¿”å›æ•°æ®
         String upString = "";
 //        List IPMList = new ArrayList();
-        List IPMList = coreData.getIPMList();//IPMµÄÁĞ±íĞÅÏ¢
+        List IPMList = coreData.getIPMList();//IPMçš„åˆ—è¡¨ä¿¡æ¯
         
         Document document = null;
         
@@ -58,14 +58,14 @@ public class AlarmTimeSetHandle {
             document = utilXML.StringToXML(this.downString);
             AlarmTimeSet.parse(document);
         } catch (CommonException e) {
-            log.error("ÈÎÎñÂ¼ÏñStringToXML Error: " + e.getMessage());
+            log.error("ä»»åŠ¡å½•åƒStringToXML Error: " + e.getMessage());
         };
         
         List<AlarmTimeSetVO> RecordTaskSetList = AlarmTimeSet.getIndexByDownXml(document);
         
         SetAutoRecordChannelVO recordVO = null;
         
-        // È¡µÃÏÂ·¢IPM URLÁĞ±íĞÅÏ¢
+        // å–å¾—ä¸‹å‘IPM URLåˆ—è¡¨ä¿¡æ¯
         for(int i= 0; i<RecordTaskSetList.size(); i++) {
             AlarmTimeSetVO vo = RecordTaskSetList.get(i);
             
@@ -82,16 +82,16 @@ public class AlarmTimeSetHandle {
             recordVO = null;
         }
         
-        // IPM ÏÂ·¢Ö¸Áî,  
+        // IPM ä¸‹å‘æŒ‡ä»¤,  
         for (int i=0; i< IPMList.size(); i++) {
             IPMInfoVO ipm = (IPMInfoVO) IPMList.get(i);
             try {
-                // ÔËĞĞÍ¼ĞÅÏ¢ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+                // è¿è¡Œå›¾ä¿¡æ¯ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
                 utilXML.SendDownNoneReturn(this.downString, ipm.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
             } catch (CommonException e) {
-                log.error("ÔËĞĞÍ¼ÏòIPMÏÂ·¢ÈÎÎñÂ¼Ïñ³ö´í£º" + ipm.getURL());
+                log.error("è¿è¡Œå›¾å‘IPMä¸‹å‘ä»»åŠ¡å½•åƒå‡ºé”™ï¼š" + ipm.getURL());
             }
-        } // IPM ÏÂ·¢Ö¸Áî END
+        } // IPM ä¸‹å‘æŒ‡ä»¤ END
         
 
         upString = AlarmTimeSet.ReturnXMLByURL(this.bsData, 0);
@@ -99,7 +99,7 @@ public class AlarmTimeSetHandle {
         try {
             utilXML.SendUpXML(upString, bsData);
         } catch (CommonException e) {
-            log.error("ÈÎÎñÂ¼ÏñÑ¡Ì¨ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+            log.error("ä»»åŠ¡å½•åƒé€‰å°ä¿¡æ¯å¤±è´¥: " + e.getMessage());
         }
         
         bsData = null;

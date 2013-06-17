@@ -29,12 +29,12 @@ public class NVRHDParamSetHandle {
     }
     
     /**
-     * 1. ÏÂ·¢¸øËùÓĞµÄTSC
-     * 2. ÉÏ±¨ĞÅÏ¢¸øÖĞĞÄ
+     * 1. ä¸‹å‘ç»™æ‰€æœ‰çš„TSC
+     * 2. ä¸ŠæŠ¥ä¿¡æ¯ç»™ä¸­å¿ƒ
      *
      */
     public void downXML() {
-        // ·µ»ØÊı¾İ
+        // è¿”å›æ•°æ®
         String upString = "";
         
         Document document = null;
@@ -42,50 +42,50 @@ public class NVRHDParamSetHandle {
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("¸ßÇåÂ¼ÏñÏà¹ØÉèÖÃStringToXML Error: " + e.getMessage());
+            log.error("é«˜æ¸…å½•åƒç›¸å…³è®¾ç½®StringToXML Error: " + e.getMessage());
         };
         
         MemCoreData coreData = MemCoreData.getInstance();
-        // È¡µÃTSCÅäÖÃÎÄ¼şĞÅÏ¢
+        // å–å¾—TSCé…ç½®æ–‡ä»¶ä¿¡æ¯
         List TSCList = coreData.getTSCList();
         List SMGList = coreData.getSMGCardList();
         
-        // TSC ÏÂ·¢Ö¸Áî,  
-        // FIXME Ä¿Ç°Ö»¿¼ÂÇÒ»Ì×TSCµÄÇé¿ö
+        // TSC ä¸‹å‘æŒ‡ä»¤,  
+        // FIXME ç›®å‰åªè€ƒè™‘ä¸€å¥—TSCçš„æƒ…å†µ
         String url = "";
         for (int i=0; i< TSCList.size(); i++) {
             TSCInfoVO tsc = (TSCInfoVO) TSCList.get(i);
             try {
                 if(!url.equals(tsc.getURL())) {
-                    // ÈÎÎñÂ¼ÏñĞÅÏ¢ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+                    // ä»»åŠ¡å½•åƒä¿¡æ¯ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
                     utilXML.SendDownXML(this.downString, tsc.getURL(), CommonUtility.TASK_WAIT_TIMEOUT, bsData);
                     url = tsc.getURL();
                 }
             } catch (CommonException e) {
-                log.error("¸ßÇåÂ¼ÏñÏà¹ØÉèÖÃÏòTSCÏÂ·¢ÈÎÎñÂ¼Ïñ³ö´í£º" + tsc.getURL());
+                log.error("é«˜æ¸…å½•åƒç›¸å…³è®¾ç½®å‘TSCä¸‹å‘ä»»åŠ¡å½•åƒå‡ºé”™ï¼š" + tsc.getURL());
                 upString = "";
             }
-        } // TSC ÏÂ·¢Ö¸Áî END
+        } // TSC ä¸‹å‘æŒ‡ä»¤ END
         
-        // ¸ßÇåÉèÖÃ
+        // é«˜æ¸…è®¾ç½®
         for (int i=0; i<SMGList.size(); i++) {
         	SMGCardInfoVO smg = (SMGCardInfoVO) SMGList.get(i);
             try {
-                // ¸ßÇåÏà¹ØÅäÖÃ
+                // é«˜æ¸…ç›¸å…³é…ç½®
                 if (smg.getHDFlag() == 1 && smg.getHDURL() != null && !smg.getHDURL().trim().equals("")) {
-                	// ¸ßÇå×ªÂëÏÂ·¢
+                	// é«˜æ¸…è½¬ç ä¸‹å‘
                 	utilXML.SendDownNoneReturn(this.downString, smg.getHDURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
                 }
                 
             } catch (CommonException e) {
-                log.error("ÏÂ·¢×Ô¶¯Â¼Ïñµ½SMG³ö´í£º" + smg.getURL());
+                log.error("ä¸‹å‘è‡ªåŠ¨å½•åƒåˆ°SMGå‡ºé”™ï¼š" + smg.getURL());
             }
         }
         try {
     		upString = utilXML.getReturnXML(bsData, 0);
             utilXML.SendUpXML(upString, bsData);
         } catch (CommonException e) {
-            log.error("¸ßÇåÂ¼ÏñÏà¹ØÉèÖÃĞÅÏ¢Ê§°Ü: " + e.getMessage());
+            log.error("é«˜æ¸…å½•åƒç›¸å…³è®¾ç½®ä¿¡æ¯å¤±è´¥: " + e.getMessage());
         }
         
         bsData = null;

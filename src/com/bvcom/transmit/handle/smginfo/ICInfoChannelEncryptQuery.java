@@ -36,13 +36,13 @@ public class ICInfoChannelEncryptQuery {
 	        this.bsData = bsData;
 	    }
 	    /**
-	     * 1. ¸ù¾İÆ½Ì¨ÏÂ·¢µÄĞ¡¿¨¿¨ºÅ£¬ÏÂ·¢¸ø°å¿¨£¨´ÓĞ¡¿¨¶ÔÓ¦¹ØÏµÖĞÕÒµ½°å¿¨URL£©£¬µÈ´ı°å¿¨·µ»ØÊÚÈ¨ĞÅÏ¢£¬È»ºóºÏ²¢ĞÅÏ¢²¢ÉÏ±¨¸øÖĞĞÄ£¬ÉÏ±¨µÄµØÖ·ÎªÂíÈü¿ËÂÖ²¥URL
+	     * 1. æ ¹æ®å¹³å°ä¸‹å‘çš„å°å¡å¡å·ï¼Œä¸‹å‘ç»™æ¿å¡ï¼ˆä»å°å¡å¯¹åº”å…³ç³»ä¸­æ‰¾åˆ°æ¿å¡URLï¼‰ï¼Œç­‰å¾…æ¿å¡è¿”å›æˆæƒä¿¡æ¯ï¼Œç„¶ååˆå¹¶ä¿¡æ¯å¹¶ä¸ŠæŠ¥ç»™ä¸­å¿ƒï¼Œä¸ŠæŠ¥çš„åœ°å€ä¸ºé©¬èµ›å…‹è½®æ’­URL
 	     */
 	    public void downXML() {
 	    	//String CenterURL=coreData.getSysVO().getCenterRoundChannelURL();
-	    	//log.error("ÉÏ·¢ "+ bsData.getStatusQueryType()+"ÂÖ²¥ÉÏ±¨URL:"+CenterURL);
+	    	//log.error("ä¸Šå‘ "+ bsData.getStatusQueryType()+"è½®æ’­ä¸ŠæŠ¥URL:"+CenterURL);
 	    	
-	    	//¸ù¾İĞ¡¿¨¿¨ºÅ²éÕÒ°å¿¨URL
+	    	//æ ¹æ®å°å¡å¡å·æŸ¥æ‰¾æ¿å¡URL
 	    	List<String> cardlist=new ArrayList<String>();
 	    	Document document;
 	  		try {
@@ -52,7 +52,7 @@ public class ICInfoChannelEncryptQuery {
 	  			e1.printStackTrace();
 	  		}
 	  		
-	    	//ÏÂ·¢Ğ­Òé¸øËùÓĞµÄ°å¿¨
+	    	//ä¸‹å‘åè®®ç»™æ‰€æœ‰çš„æ¿å¡
 	  		List<String> smgUrlList_Setup1=new ArrayList<String>();
 	  		List<String> smgUrlList_tmp=new ArrayList<String>();
 	  		for(int i=0;i<cardlist.size();i++){
@@ -60,17 +60,17 @@ public class ICInfoChannelEncryptQuery {
 	  			String url =getSmgUrlByCardNo(cardno);
 	  			if(url.equals("")) continue;
 	  			String sendXml = MakeSendXml(this.bsData,cardno);
-	  			//±È¶Ô½«ÏàÍ¬°å×ÓĞÅÏ¢·Åµ½
+	  			//æ¯”å¯¹å°†ç›¸åŒæ¿å­ä¿¡æ¯æ”¾åˆ°
 	  			if(url.contains("Setup1")){
 	  				smgUrlList_Setup1.add(url+","+sendXml);	
 	  			}
 	  			else {
-	  				//ÁÙÊ±´æ·Å×÷Îª±È¶ÔÓÃ
+	  				//ä¸´æ—¶å­˜æ”¾ä½œä¸ºæ¯”å¯¹ç”¨
 	  				smgUrlList_tmp.add(url+","+sendXml);
 	  			}
 	  		}
 	  		
-	  		//±È¶Ô
+	  		//æ¯”å¯¹
 	  		List<String> smgUrlList_Setup2=new ArrayList<String>();
 	  		for(int i=0;i<smgUrlList_Setup1.size();i++){
 	  			String setupStr1 = smgUrlList_Setup1.get(i);
@@ -92,10 +92,10 @@ public class ICInfoChannelEncryptQuery {
 	  			}
 	  		}
 	  		
-	  		//====ÊÇ·ñÒªÉ¾³ı½ÚÄ¿ÊÚÈ¨±íÖĞµÄËùÓĞ½ÚÄ¿ĞÅÏ¢===
+	  		//====æ˜¯å¦è¦åˆ é™¤èŠ‚ç›®æˆæƒè¡¨ä¸­çš„æ‰€æœ‰èŠ‚ç›®ä¿¡æ¯===
 	  		delete_allchannelencrypt();
 	  		
-	  		//Í¨µÀ1µÄĞ¡¿¨ÊÚÈ¨ĞÅÏ¢
+	  		//é€šé“1çš„å°å¡æˆæƒä¿¡æ¯
 	  		String url = "";
 	        for (int i=0; i< smgUrlList_Setup1.size(); i++) {
 	            String smgStr = (String) smgUrlList_Setup1.get(i);
@@ -106,10 +106,10 @@ public class ICInfoChannelEncryptQuery {
 	                    url = smgStr;
 	                }
 	            } catch (Exception e) {
-	                log.error("Ğ¡¿¨¿¨ºÅ·¢ËÍÊ§°Ü£º" + smgStr);
+	                log.error("å°å¡å¡å·å‘é€å¤±è´¥ï¼š" + smgStr);
 	            }
 	        } 
-	        //Í¨µÀ2µÄĞ¡¿¨ÊÚÈ¨ĞÅÏ¢
+	        //é€šé“2çš„å°å¡æˆæƒä¿¡æ¯
 	        
 	        url = "";
 	        for (int i=0; i< smgUrlList_Setup2.size(); i++) {
@@ -121,23 +121,23 @@ public class ICInfoChannelEncryptQuery {
 	                    url = smgStr;
 	                }
 	            } catch (Exception e) {
-	                log.error("Ğ¡¿¨¿¨ºÅ·¢ËÍÊ§°Ü£º" + smgStr);
+	                log.error("å°å¡å¡å·å‘é€å¤±è´¥ï¼š" + smgStr);
 	            }
 	        } 
-	    	//ÉÏ±¨ÖĞĞÄÆ½Ì¨·µ»ØĞÅÏ¢
+	    	//ä¸ŠæŠ¥ä¸­å¿ƒå¹³å°è¿”å›ä¿¡æ¯
 	    	String returnstr="";
 	        try {
 	        	returnstr = getReturnXML(this.bsData, 0);
 	            utilXML.SendUpXML(returnstr, bsData);
 	        } catch (CommonException e) {
-	            log.error("ÉÏ·¢ "+ bsData.getStatusQueryType() +" ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+	            log.error("ä¸Šå‘ "+ bsData.getStatusQueryType() +" ä¿¡æ¯å¤±è´¥: " + e.getMessage());
 	        }
-	        //¿ªÆô´ò°üÉÏ±¨Ïß³Ì£º²ÎÊı Í¨µÀ2µÄÁĞ±íĞÅÏ¢
+	        //å¼€å¯æ‰“åŒ…ä¸ŠæŠ¥çº¿ç¨‹ï¼šå‚æ•° é€šé“2çš„åˆ—è¡¨ä¿¡æ¯
 	        ICInfoUpCenterThread ICInfoThread = new ICInfoUpCenterThread("", bsData,smgUrlList_Setup2);
 	        ICInfoThread.start();
 	    }
 	    
-	    //É¾³ıĞ¡¿¨¿¨ºÅĞÅÏ¢
+	    //åˆ é™¤å°å¡å¡å·ä¿¡æ¯
  	    private boolean delete_allchannelencrypt(){
  	    	boolean ret =false;
  	    	try
@@ -152,7 +152,7 @@ public class ICInfoChannelEncryptQuery {
  				}
  				catch (Exception e)
  				{
- 					log.info("É¾³ıĞ¡¿¨¿¨ºÅĞÅÏ¢£º"+e.getMessage());
+ 					log.info("åˆ é™¤å°å¡å¡å·ä¿¡æ¯ï¼š"+e.getMessage());
  				}
  				finally {
  					DaoSupport.close(statement);
@@ -167,7 +167,7 @@ public class ICInfoChannelEncryptQuery {
  	    	return ret;
  	   }
  	    
-	    //¸ù¾İ¿¨ºÅÏÂ·¢Ö¸¶¨µÄĞ­Òé
+	    //æ ¹æ®å¡å·ä¸‹å‘æŒ‡å®šçš„åè®®
 	    @SuppressWarnings("unused")
 		private String MakeSendXml(MSGHeadVO head,String cardno){
 	    	 StringBuffer strBuf = new StringBuffer();
@@ -185,11 +185,11 @@ public class ICInfoChannelEncryptQuery {
 	    }
 	    
 //	    <ICInfoChannelEncryptQuery >
-//	    <ICInfo  CardNO= ¡°123456¡± />
-//	    <ICInfo  CardNO= ¡°234567¡± />
+//	    <ICInfo  CardNO= â€œ123456â€ />
+//	    <ICInfo  CardNO= â€œ234567â€ />
 //	    </ICInfoChannelEncryptQuery >
 
-	    //½âÎöĞ¡¿¨¿¨ºÅ
+	    //è§£æå°å¡å¡å·
 	    @SuppressWarnings("unchecked")
 		private List<String> parseCardNo(Document document){
 			List<String> list=new ArrayList<String>();
@@ -202,13 +202,13 @@ public class ICInfoChannelEncryptQuery {
 				try {
 					cardno=ICInfo.attribute("CardNO").getValue();
 				} catch (Exception ex) {
-					log.error("Ğ¡¿¨ÊÚÈ¨ĞÅÏ¢³ö´í"+ex);
+					log.error("å°å¡æˆæƒä¿¡æ¯å‡ºé”™"+ex);
 				}
 				list.add(cardno);
 			}
 			return list;
 		}
-	    //¸ù¾İĞ¡¿¨¿¨ºÅ»ñÈ¡°å¿¨µÄURL
+	    //æ ¹æ®å°å¡å¡å·è·å–æ¿å¡çš„URL
 	    
 	    private String getSmgUrlByCardNo(String cardno){
 	    	String smgUrl="";
@@ -234,7 +234,7 @@ public class ICInfoChannelEncryptQuery {
 				}
 				catch (Exception e)
 				{
-					log.info("»ñÈ¡Ğ¡¿¨¿¨ºÅĞÅÏ¢£º"+e.getMessage());
+					log.info("è·å–å°å¡å¡å·ä¿¡æ¯ï¼š"+e.getMessage());
 				}
 				finally {
 					DaoSupport.close(rs);
@@ -258,15 +258,15 @@ public class ICInfoChannelEncryptQuery {
 	        strBuf.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
 	        strBuf.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\"> \r\n");
 	        if(0==value){
-	            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r\n");
+	            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r\n");
 	        }else if(1==value){
-	            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"Ê§°Ü\"/>\r\n");
+	            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"å¤±è´¥\"/>\r\n");
 	        }
 	        strBuf.append("</Msg>");
 	        return strBuf.toString();
 	    }
 	    
-	    //ÖĞĞÄÉÏ±¨½Ó¿ÚÏß³Ì
+	    //ä¸­å¿ƒä¸ŠæŠ¥æ¥å£çº¿ç¨‹
 	    public class ICInfoUpCenterThread extends Thread{
 	    	 private List<String> checkListSetup2;
 	    	 private MSGHeadVO bsData = new MSGHeadVO();
@@ -275,7 +275,7 @@ public class ICInfoChannelEncryptQuery {
 		    		this.checkListSetup2 = checkList;
 		    	 }
 	    	 public void run(){
-	    		//ÑÓÊ±µÈ´ı50·ÖÖÓ
+	    		//å»¶æ—¶ç­‰å¾…50åˆ†é’Ÿ
 				try {
 				   if(this.checkListSetup2.size()>0){
 	    		    	try {
@@ -288,11 +288,11 @@ public class ICInfoChannelEncryptQuery {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				//½«°å¿¨·µ»ØµÄĞ¡¿¨½ÚÄ¿ÊÚÈ¨ĞÅÏ¢£¬´ÓÊı¾İ¿âÖĞ¶ÁÈ¡³öÀ´²¢·¢ËÍ¸øÖĞĞÄÆ½Ì¨
-				//´ò°üĞ­ÒéÉÏ±¨¸øÖĞĞÄ
+				//å°†æ¿å¡è¿”å›çš„å°å¡èŠ‚ç›®æˆæƒä¿¡æ¯ï¼Œä»æ•°æ®åº“ä¸­è¯»å–å‡ºæ¥å¹¶å‘é€ç»™ä¸­å¿ƒå¹³å°
+				//æ‰“åŒ…åè®®ä¸ŠæŠ¥ç»™ä¸­å¿ƒ
     		  	String strICInfoChannelEncrypt=MakeUptoCenter(bsData,0);
     			String CenterURL=coreData.getSysVO().getCenterRoundChannelURL();
-    	    	log.info("ÉÏ·¢ "+ bsData.getStatusQueryType()+"Ğ¡¿¨½ÚÄ¿ÊÚÈ¨ÉÏ±¨ÖĞĞÄÆ½Ì¨URL:"+CenterURL);
+    	    	log.info("ä¸Šå‘ "+ bsData.getStatusQueryType()+"å°å¡èŠ‚ç›®æˆæƒä¸ŠæŠ¥ä¸­å¿ƒå¹³å°URL:"+CenterURL);
     	    	utilXML.SendUpXML(strICInfoChannelEncrypt, CenterURL);
 	    	}
 	    	
@@ -306,17 +306,17 @@ public class ICInfoChannelEncryptQuery {
 	 	        strBuf.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
 	 	        strBuf.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\"> \r\n");
 	 	        if(0==value){
-	 	            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r\n");
+	 	            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r\n");
 	 	        }else if(1==value){
-	 	            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"Ê§°Ü\"/>\r\n");
+	 	            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"å¤±è´¥\"/>\r\n");
 	 	        }
 	 	        strBuf.append("\r\n<ReturnInfo>");
 	 	        strBuf.append("\r\n<ICInfoChannelEncryptQuery>");
 	 	        
 	 	        
 	// 	        <ICInfo  CardNO="XXXX">
-	// 	        <ChannelEncrypt  ChannelName= ¡±¡±  Freq =¡±8000¡±  ServiceID=¡¯¡¯  ProgramID=¡±¡± Encrypt= ¡±1¡±/>
-	// 	        <ChannelEncrypt  ChannelName= ¡±¡±  Freq =¡±8000¡±  ServiceID=¡¯¡¯  ProgramID=¡±¡± Encrypt= ¡±0¡±/>
+	// 	        <ChannelEncrypt  ChannelName= â€â€  Freq =â€8000â€  ServiceID=â€™â€™  ProgramID=â€â€ Encrypt= â€1â€/>
+	// 	        <ChannelEncrypt  ChannelName= â€â€  Freq =â€8000â€  ServiceID=â€™â€™  ProgramID=â€â€ Encrypt= â€0â€/>
 	// 	        </ICInfo >
  	        
 	 	        List cardnolist = getCardNoFromDB();
@@ -365,7 +365,7 @@ public class ICInfoChannelEncryptQuery {
 	 				}
 	 				catch (Exception e)
 	 				{
-	 					log.info("·Ö×é»ñÈ¡Ğ¡¿¨¿¨ºÅĞÅÏ¢£º"+e.getMessage());
+	 					log.info("åˆ†ç»„è·å–å°å¡å¡å·ä¿¡æ¯ï¼š"+e.getMessage());
 	 				}
 	 				finally {
 	 					DaoSupport.close(rs);
@@ -380,7 +380,7 @@ public class ICInfoChannelEncryptQuery {
 	 	    	return cardnoList;
 	 	    }
 	   	 	
-	   	 		//¸ù¾İĞ¡¿¨¿¨ºÅ»ñÈ¡½ÚÄ¿µÄÊÚÈ¨ĞÅÏ¢
+	   	 		//æ ¹æ®å°å¡å¡å·è·å–èŠ‚ç›®çš„æˆæƒä¿¡æ¯
 		       @SuppressWarnings({ "unchecked", "unused" })
 		       private List getICChannelInfo(String cardno){
 		    	   
@@ -410,7 +410,7 @@ public class ICInfoChannelEncryptQuery {
 		 				}
 		 				catch (Exception e)
 		 				{
-		 					log.info("»ñÈ¡Ğ¡¿¨¿¨ºÅÊÚÈ¨ĞÅÏ¢£º"+e.getMessage());
+		 					log.info("è·å–å°å¡å¡å·æˆæƒä¿¡æ¯ï¼š"+e.getMessage());
 		 				}
 		 				finally {
 		 					DaoSupport.close(rs);
@@ -427,7 +427,7 @@ public class ICInfoChannelEncryptQuery {
 		       }
 	    }
 	    
-	    //Ğ¡¿¨Ö¸Áî·¢ËÍÏß³Ì
+	    //å°å¡æŒ‡ä»¤å‘é€çº¿ç¨‹
 	    public  class ICInfoChannelEncryptQueryThread extends Thread {
 	    	
 	    	 private String smgUrl;
@@ -435,7 +435,7 @@ public class ICInfoChannelEncryptQuery {
 	    	 private MSGHeadVO bsData = new MSGHeadVO();
 	    	 private List<String> checkListSetup2;
 	    	 public ICInfoChannelEncryptQueryThread(String centerDownStr, MSGHeadVO bsData,List<String> checkList) {
-	    		//¸ø°å¿¨·¢ËÍ²»Í¬µÄ¿¨ºÅÃüÁî,°å¿¨·µ»ØµÄÊ±ºòÒª´øÉÏ´ËĞ¡¿¨¿¨ºÅ
+	    		//ç»™æ¿å¡å‘é€ä¸åŒçš„å¡å·å‘½ä»¤,æ¿å¡è¿”å›çš„æ—¶å€™è¦å¸¦ä¸Šæ­¤å°å¡å¡å·
              	String[] tmp=centerDownStr.split(",");
              	if(tmp.length>1){
              	 smgUrl=tmp[0];
@@ -451,7 +451,7 @@ public class ICInfoChannelEncryptQuery {
 		    		}
 		    		else
 		    		{
-		    			//Èç¹ûÍ¨µÀ1ºÍÍ¨µÀ2Í¬Ê±²éÑ¯Ğ¡¿¨ÊÚÈ¨ĞÅÏ¢£¬ÄÇÃ´ĞèÒªµÈ´ıÍ¨µÀ1´¦ÀíÍê
+		    			//å¦‚æœé€šé“1å’Œé€šé“2åŒæ—¶æŸ¥è¯¢å°å¡æˆæƒä¿¡æ¯ï¼Œé‚£ä¹ˆéœ€è¦ç­‰å¾…é€šé“1å¤„ç†å®Œ
 		    		    if(this.checkListSetup2.size()>0){
 		    		    	try {
 								Thread.sleep(CommonUtility.CHANNEL_SCAN_WAIT_TIMEOUT);
@@ -460,18 +460,18 @@ public class ICInfoChannelEncryptQuery {
 							}
 		    		    }
 		    		}
-					// Ğ¡¿¨¿¨ºÅÊÚÈ¨ĞÅÏ¢ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+					// å°å¡å¡å·æˆæƒä¿¡æ¯ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
 	    			Document document = null;
 	    		  	try {
 	    		  		String returnStr = utilXML.SendDownXML(downStr, smgUrl,CommonUtility.CHANNEL_SCAN_WAIT_TIMEOUT, bsData);
-	    		  		log.info("Ğ¡¿¨¿¨ºÅ½ÚÄ¿ÊÚÈ¨ĞÅÏ¢²éÑ¯Ö¸ÁîÏÂ·¢Íê³É:"+smgUrl);
+	    		  		log.info("å°å¡å¡å·èŠ‚ç›®æˆæƒä¿¡æ¯æŸ¥è¯¢æŒ‡ä»¤ä¸‹å‘å®Œæˆ:"+smgUrl);
 	    		  		document = utilXML.StringToXML(returnStr);
 			            document.setXMLEncoding("UTF-8");
 					} catch (CommonException e) {
 						System.out.println(e.getMessage());
 					}
 				
-					//µÈ´ı»ñÈ¡Êı¾İ¿â½ÚÄ¿ÊÚÈ¨ĞÅÏ¢    
+					//ç­‰å¾…è·å–æ•°æ®åº“èŠ‚ç›®æˆæƒä¿¡æ¯    
 			        try {
 			            ICInfoChannelEncryptParase(document);
 			        } catch (Exception e) {
@@ -484,20 +484,20 @@ public class ICInfoChannelEncryptQuery {
 	 	    /*
 	 	     * Author:tqy
 	 	     * Date :2012-10-18
-	 	     * Ğ¡¿¨¿¨ºÅÊÚÈ¨ĞÅÏ¢Ïà¹Ø½Ó¿Ú
+	 	     * å°å¡å¡å·æˆæƒä¿¡æ¯ç›¸å…³æ¥å£
 	 	     */
 	 	    @SuppressWarnings("unchecked")
 	 		private void ICInfoChannelEncryptParase(Document document)
 	 	    {
 	 	    	List<String> cardnoList = new ArrayList<String>();
 	 	    	List<ICInfoChannelEncryptObject> channelencryptList = new ArrayList<ICInfoChannelEncryptObject>();
-	 	    	//½âÎö¡¢	
+	 	    	//è§£æã€	
 	 	    	Element root = document.getRootElement();
 	 	    	Element ele = null;
 	 	          
 	 	        for (Iterator iter = root.elementIterator(); iter.hasNext();) {
 	 	              ele = (Element) iter.next();
-	 	              //<Return Type="ICInfoChannelEncryptQuery" Value="0" Desc="³É¹¦"/>
+	 	              //<Return Type="ICInfoChannelEncryptQuery" Value="0" Desc="æˆåŠŸ"/>
 	 	              for(Iterator<Element> ite=ele.elementIterator();ite.hasNext();){
 	 	            	//<ICInfoChannelEncryptQuery >
 	 	  				 Element ICInfoEncryptQuery = ite.next();
@@ -515,7 +515,7 @@ public class ICInfoChannelEncryptQuery {
 	 	  	  	  				String programID=ChannelEncrypt.attributeValue("ProgramID");
 	 	  	  	  				String encrypt=ChannelEncrypt.attributeValue("Encrypt");
 	 	  						
-	 	  	  	  				//½«Ğ¡¿¨ÊÚÈ¨ĞÅÏ¢Ìí¼Óµ½¶ÓÁĞÖĞ
+	 	  	  	  				//å°†å°å¡æˆæƒä¿¡æ¯æ·»åŠ åˆ°é˜Ÿåˆ—ä¸­
 	 	  	  	  				ICInfoChannelEncryptObject channelObj = new ICInfoChannelEncryptObject();
 	 	  	  	  				
 	 	  	  	  				channelObj.setCardno(cardno);
@@ -529,8 +529,8 @@ public class ICInfoChannelEncryptQuery {
 	 	  				 }
 	 	              }
 	 	         }
-	 	    	//Èë¿â
-	 	    	//¸ù¾İ¿¨ºÅ²éÑ¯£¬ÈôÓĞÔòÉ¾³ı¼ÇÂ¼£¬ÖØĞÂ²åÈë¼ÇÂ¼
+	 	    	//å…¥åº“
+	 	    	//æ ¹æ®å¡å·æŸ¥è¯¢ï¼Œè‹¥æœ‰åˆ™åˆ é™¤è®°å½•ï¼Œé‡æ–°æ’å…¥è®°å½•
 	 	        for(int i=0;i<cardnoList.size();i++){
 	 	        	String cardno = cardnoList.get(i);
 	 	        	if(query_channelencrypt_cardno(cardno)){
@@ -567,7 +567,7 @@ public class ICInfoChannelEncryptQuery {
 	 				}
 	 				catch (Exception e)
 	 				{
-	 					log.info("²åÈëĞ¡¿¨ÊÚÈ¨ĞÅÏ¢£º"+e.getMessage());
+	 					log.info("æ’å…¥å°å¡æˆæƒä¿¡æ¯ï¼š"+e.getMessage());
 	 				}
 	 				finally {
 	 					DaoSupport.close(statement);
@@ -580,7 +580,7 @@ public class ICInfoChannelEncryptQuery {
 	 			}
 	 	    	
 	 	    }
-	 	    //²éÑ¯Ğ¡¿¨ĞÅÏ¢
+	 	    //æŸ¥è¯¢å°å¡ä¿¡æ¯
 	 	    private boolean query_channelencrypt_cardno(String cardno){
 	 	    	boolean ret =false;
 	 	    	try
@@ -600,7 +600,7 @@ public class ICInfoChannelEncryptQuery {
 	 				}
 	 				catch (Exception e)
 	 				{
-	 					log.info("»ñÈ¡Ğ¡¿¨¿¨ºÅĞÅÏ¢£º"+e.getMessage());
+	 					log.info("è·å–å°å¡å¡å·ä¿¡æ¯ï¼š"+e.getMessage());
 	 				}
 	 				finally {
 	 					DaoSupport.close(rs);
@@ -615,7 +615,7 @@ public class ICInfoChannelEncryptQuery {
 	 			}
 	 	    	return ret;
 	 	    }
-	 	    //É¾³ıĞ¡¿¨¿¨ºÅĞÅÏ¢
+	 	    //åˆ é™¤å°å¡å¡å·ä¿¡æ¯
 	 	    private boolean delete_channelencrypt_cardno(String cardno){
 	 	    	boolean ret =false;
 	 	    	try
@@ -630,7 +630,7 @@ public class ICInfoChannelEncryptQuery {
 	 				}
 	 				catch (Exception e)
 	 				{
-	 					log.info("É¾³ıĞ¡¿¨¿¨ºÅĞÅÏ¢£º"+e.getMessage());
+	 					log.info("åˆ é™¤å°å¡å¡å·ä¿¡æ¯ï¼š"+e.getMessage());
 	 				}
 	 				finally {
 	 					DaoSupport.close(statement);

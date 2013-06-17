@@ -12,10 +12,10 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.rec.ProvisionalRecordTaskSetVO;
 
-//任务录像下载
+//浠诲姟褰曞儚涓嬭浇
 public class NVRTaskRecordDownInquiryParse {
 
-	//任务录像下载解析xml得到通道号的数组
+	//浠诲姟褰曞儚涓嬭浇瑙ｆ瀽xml寰楀埌閫氶亾鍙风殑鏁扮粍
 	@SuppressWarnings("unchecked")
 	public List<ProvisionalRecordTaskSetVO> getIndexByDownXml(Document document){
 		List<ProvisionalRecordTaskSetVO> indexlist = new ArrayList();
@@ -39,7 +39,7 @@ public class NVRTaskRecordDownInquiryParse {
 		
 	}
 	
-	// 任务录像下载回复xml打包
+	// 浠诲姟褰曞儚涓嬭浇鍥炲xml鎵撳寘
 	public String ReturnXMLByURL(MSGHeadVO head,ProvisionalRecordTaskSetVO vo,int value) {
 		//		
 		// String date;
@@ -54,9 +54,9 @@ public class NVRTaskRecordDownInquiryParse {
 		+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 		+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"NVRVideoHistoryInquiry\" Value=\"0\" Desc=\"成功\"/>";
+			xml += "<Return Type=\"NVRVideoHistoryInquiry\" Value=\"0\" Desc=\"鎴愬姛\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"NVRVideoHistoryInquiry\" Value=\"1\" Desc=\"失败\"/>";
+			xml += "<Return Type=\"NVRVideoHistoryInquiry\" Value=\"1\" Desc=\"澶辫触\"/>";
 			xml +=	"</Msg>";
 			return xml;
 		}

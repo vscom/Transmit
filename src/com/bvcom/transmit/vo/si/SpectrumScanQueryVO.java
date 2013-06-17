@@ -2,7 +2,7 @@ package com.bvcom.transmit.vo.si;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//频谱扫描
+//棰戣氨鎵弿
 public class SpectrumScanQueryVO {
 	
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -19,13 +19,13 @@ public class SpectrumScanQueryVO {
 	
 	private String StepFreq;
 	
-	private int Freq;//一个频点对应一个level（返回参数）
+	private int Freq;//涓�涓鐐瑰搴斾竴涓猯evel锛堣繑鍥炲弬鏁帮級
 	
 	private String level; 
 	
 	private int ReuturnValue;
     
-    private String Comment;//失败原因
+    private String Comment;//澶辫触鍘熷洜
 
 	public MSGHeadVO getMSGHead() {
 		return MSGHead;

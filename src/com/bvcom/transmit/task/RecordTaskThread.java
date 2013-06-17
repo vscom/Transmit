@@ -18,7 +18,7 @@ import com.bvcom.transmit.vo.rec.ProvisionalRecordTaskSetVO;
 import com.bvcom.transmit.vo.rec.SetAutoRecordChannelVO;
 
 /**
- * ÈÎÎñÂ¼Ïñ´¦Àí, É¾³ıÒÑ¾­¹ıÆÚµÄÈÎÎñÂ¼Ïñ
+ * ä»»åŠ¡å½•åƒå¤„ç†, åˆ é™¤å·²ç»è¿‡æœŸçš„ä»»åŠ¡å½•åƒ
  * @author Bian Jiang
  * @data 2010.09.27
  *
@@ -34,12 +34,12 @@ public class RecordTaskThread extends Thread {
     }
     
     /**
-     * ÈÎÎñÂ¼Ïñ´¦Àí
+     * ä»»åŠ¡å½•åƒå¤„ç†
      */
     @SuppressWarnings("unchecked")
 	private void recordTaskProcess() {
     	
-    	log.info("ÈÎÎñÂ¼ÏñÏß³Ì¿ªÊ¼");
+    	log.info("ä»»åŠ¡å½•åƒçº¿ç¨‹å¼€å§‹");
     	ProvisionalRecordTaskSetHandle RecordTaskSetHandle = new ProvisionalRecordTaskSetHandle();
     	
     	try {
@@ -54,23 +54,23 @@ public class RecordTaskThread extends Thread {
 						
 					if(isExpireDays) {
 			       		try {
-			       		// ÒÑ¾­¹ıÆÚÈÎÎñ²»É¾³ı£¬Ö»¸üĞÂ±í×´Ì¬
+			       		// å·²ç»è¿‡æœŸä»»åŠ¡ä¸åˆ é™¤ï¼Œåªæ›´æ–°è¡¨çŠ¶æ€
 							SetAutoRecordChannelVO recordVO = new SetAutoRecordChannelVO();
 			       			//FreqList.add(vo.getFreq());
 			       			recordVO.setFreq(vo.getFreq());
 			       			recordVO.setServiceID(vo.getServiceID());
 			       			
-			       			//Ò»¶ÔÒ»½ÚÄ¿Ó³Éä±í£º¸üĞÂ¶ÔÓ¦µÄÈÎÎñÂ¼ÖÆµÄ½ÚÄ¿×´Ì¬
+			       			//ä¸€å¯¹ä¸€èŠ‚ç›®æ˜ å°„è¡¨ï¼šæ›´æ–°å¯¹åº”çš„ä»»åŠ¡å½•åˆ¶çš„èŠ‚ç›®çŠ¶æ€
 			       			recordVO = setAutoRecordChannelHandle.delRecordTaskIndex(recordVO);
-			       			//ÈÎÎñÂ¼Ïñ±í£ºstatusFlag =0 ±êÊ¶ÎŞĞ§ÈÎÎñ¡¢¹ıÆÚÈÎÎñ
+			       			//ä»»åŠ¡å½•åƒè¡¨ï¼šstatusFlag =0 æ ‡è¯†æ— æ•ˆä»»åŠ¡ã€è¿‡æœŸä»»åŠ¡
 			       			RecordTaskSetHandle.updateRecordTaskIndex(vo);
 			       			
 						} catch (DaoException e) {
-							log.error("ÈÎÎñÂ¼ÏñÉ¾³ı³ö´í: " + e.getMessage());
+							log.error("ä»»åŠ¡å½•åƒåˆ é™¤å‡ºé”™: " + e.getMessage());
 						}
 					}
 				}
-				//ÔÚÒ»¶ÔÒ»½ÚÄ¿Ó³Éä±íÖĞÇå³ıÈÎÎñÂ¼ÖÆ
+				//åœ¨ä¸€å¯¹ä¸€èŠ‚ç›®æ˜ å°„è¡¨ä¸­æ¸…é™¤ä»»åŠ¡å½•åˆ¶
 				if(recordTaskList.size() == 0) {
 					setAutoRecordChannelHandle.updateRecordTaskIndex();
 				}
@@ -84,14 +84,14 @@ public class RecordTaskThread extends Thread {
 			}
 			
 		} catch (DaoException e) {
-			log.error("ÈÎÎñÂ¼Ïñ´¦Àí³ö´í: " + e.getMessage());
+			log.error("ä»»åŠ¡å½•åƒå¤„ç†å‡ºé”™: " + e.getMessage());
 			recordTaskProcess();
 		}
     	
     }
     
     /**
-     * true: ÒÑ¾­¹ıÈ¥ flase:Ã»ÓĞ¹ıÆÚ
+     * true: å·²ç»è¿‡å» flase:æ²¡æœ‰è¿‡æœŸ
      * @param vo
      * @return
      */
@@ -106,7 +106,7 @@ public class RecordTaskThread extends Thread {
 			long startData = dateFormat.parse(startTime).getTime();
 			long nowData = dateFormat.parse(nowTime).getTime();
 
-			// ·ÖÖÓÎªµ¥Î»
+			// åˆ†é’Ÿä¸ºå•ä½
 			long dataTime = (nowData - startData)/(1000*60);
 
 			if (dataTime <= 0 || dataTime > (vo.getExpireDays() * 24 * 60)) {

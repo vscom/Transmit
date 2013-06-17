@@ -12,10 +12,10 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.alarm.LoopAlaInfVO;
 
-//循切报警设置
+//寰垏鎶ヨ璁剧疆
 public class LoopAlaInfParse {
 	
-	//循切报警设置解析xml得到通道号的数组
+	//寰垏鎶ヨ璁剧疆瑙ｆ瀽xml寰楀埌閫氶亾鍙风殑鏁扮粍
 	@SuppressWarnings("unchecked")
 	public List<LoopAlaInfVO> getIndexByDownXml(Document document){
 		List<LoopAlaInfVO> indexlist = new ArrayList();
@@ -39,7 +39,7 @@ public class LoopAlaInfParse {
 		
 	}
 	
-	// 循切报警设置回复xml打包
+	// 寰垏鎶ヨ璁剧疆鍥炲xml鎵撳寘
 	public String ReturnXMLByURL(MSGHeadVO head, int value) {
 
 		String xml = null;
@@ -49,9 +49,9 @@ public class LoopAlaInfParse {
 				+ CommonUtility.getDateTime()+ "\" SrcCode=\"" + head.getDstCode()
 				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"LoopAlaInf\" Value=\"0\" Desc=\"成功\"/>";
+			xml += "<Return Type=\"LoopAlaInf\" Value=\"0\" Desc=\"鎴愬姛\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"LoopAlaInf\" Value=\"1\" Desc=\"失败\"/>";
+			xml += "<Return Type=\"LoopAlaInf\" Value=\"1\" Desc=\"澶辫触\"/>";
 		}
 		xml += "</Msg>";
 		return xml;

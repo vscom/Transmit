@@ -44,11 +44,11 @@ public class GetNvrStatus {
     
     
     /**
-     * 1. ½«Ğ­ÒéÒÀ´Î·¢ËÍ¸øTSC¡¢RTVM
-     * 2. µÈ´ı½ÓÊÕËùÓĞTSC¡¢RTVMµÄ·µ»ØĞÅÏ¢
-     * 3. ²éÑ¯epg.xmlÊÇ·ñÉú³É
-     * 4. ´ò°ü°å¿¨×´Ì¬ĞÅÏ¢µÄĞ­Òé
-     * 5. °Ñ×´Ì¬Ğ­Òé·µ»Ø¸øÖĞĞÄ
+     * 1. å°†åè®®ä¾æ¬¡å‘é€ç»™TSCã€RTVM
+     * 2. ç­‰å¾…æ¥æ”¶æ‰€æœ‰TSCã€RTVMçš„è¿”å›ä¿¡æ¯
+     * 3. æŸ¥è¯¢epg.xmlæ˜¯å¦ç”Ÿæˆ
+     * 4. æ‰“åŒ…æ¿å¡çŠ¶æ€ä¿¡æ¯çš„åè®®
+     * 5. æŠŠçŠ¶æ€åè®®è¿”å›ç»™ä¸­å¿ƒ
      */
     @SuppressWarnings("unchecked")
 	public void downXML() {
@@ -61,9 +61,9 @@ public class GetNvrStatus {
 			TSCInfoVO tsc=tscs.get(j);
 			isErr=utilXML.SendUpXML(downString, tsc.getURL());
 		}
-		//·¢ËÍµ½Rtvm
+		//å‘é€åˆ°Rtvm
 		MonitorProgramQueryVO rtvsVO = new MonitorProgramQueryVO();
-        // 0:¿ÕÏĞ 1:Ò»¶ÔÒ»¼àÊÓ 2:ÂÖ²¥¼à²âÊ¹ÓÃ 3:ÊÖ¶¯Ñ¡Ì¨ 4:×Ô¶¯ÂÖ²¥ 5:¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+        // 0:ç©ºé—² 1:ä¸€å¯¹ä¸€ç›‘è§† 2:è½®æ’­ç›‘æµ‹ä½¿ç”¨ 3:æ‰‹åŠ¨é€‰å° 4:è‡ªåŠ¨è½®æ’­ 5:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
         try {
 			rtvsVO = MonitorProgramQueryHandle.GetChangeProgramInfo(rtvsVO, 1);
 			if(rtvsVO.getRTVSResetURL()==null||rtvsVO.getRTVSResetURL().equals("")){
@@ -82,17 +82,17 @@ public class GetNvrStatus {
 				}	
 			}
 		} catch (DaoException e1) {
-			log.error("È¡µÃRTVMµÄURL´íÎó: " + e1.getMessage());
+			log.error("å–å¾—RTVMçš„URLé”™è¯¯: " + e1.getMessage());
 			isErr=false;
 		}
 		isErr=utilXML.SendUpXML(downString, rtvsVO.getRTVSResetURL());	
 	*/
-	    //±í£ºSMG_CARD_INFO
+	    //è¡¨ï¼šSMG_CARD_INFO
 	    
-	    //²½Öè1£º´ÓÍ¨µÀ×´Ì¬±íÖĞ»ñÈ¡Í¨µÀ×ÜÊıTOTALºÍÍ¨µÀÖµINDEX
-		//²½Öè2£º´ÓÍ¨µÀÓ³Éä±íÖĞÕÒµ½Í¨µÀ¶ÔÓ¦µÄ×Ô¶¯Â¼ÖÆ½ÚÄ¿ĞÅÏ¢£¬¸ù¾İSERVICEID,FREQ»ñÈ¡½ÚÄ¿Ãû
-	    //²½Öè3£º´ÓÈÎÎñÂ¼Ïñ±íÖĞÕÒµ½Í¨µÀ¶ÔÓ¦µÄÈÎÎñ½ÚÄ¿¡¢¸ù¾İSERVICEID,FREQ»ñÈ¡½ÚÄ¿Ãû
-	    //²½Öè4£º´ÓÒ»¶ÔÒ»¼àÊÓ±íÖĞÕÒµ½ÊÖ¶¯Ñ¡ÔñµÄ½ÚÄ¿ĞÅÏ¢¡¢¸ù¾İSERVICEID,FREQ»ñÈ¡½ÚÄ¿Ãû
+	    //æ­¥éª¤1ï¼šä»é€šé“çŠ¶æ€è¡¨ä¸­è·å–é€šé“æ€»æ•°TOTALå’Œé€šé“å€¼INDEX
+		//æ­¥éª¤2ï¼šä»é€šé“æ˜ å°„è¡¨ä¸­æ‰¾åˆ°é€šé“å¯¹åº”çš„è‡ªåŠ¨å½•åˆ¶èŠ‚ç›®ä¿¡æ¯ï¼Œæ ¹æ®SERVICEID,FREQè·å–èŠ‚ç›®å
+	    //æ­¥éª¤3ï¼šä»ä»»åŠ¡å½•åƒè¡¨ä¸­æ‰¾åˆ°é€šé“å¯¹åº”çš„ä»»åŠ¡èŠ‚ç›®ã€æ ¹æ®SERVICEID,FREQè·å–èŠ‚ç›®å
+	    //æ­¥éª¤4ï¼šä»ä¸€å¯¹ä¸€ç›‘è§†è¡¨ä¸­æ‰¾åˆ°æ‰‹åŠ¨é€‰æ‹©çš„èŠ‚ç›®ä¿¡æ¯ã€æ ¹æ®SERVICEID,FREQè·å–èŠ‚ç›®å
     
     	List<SMGCardInfoVO> NvrStatusList = new ArrayList();
     	@SuppressWarnings("unused")
@@ -120,11 +120,11 @@ public class GetNvrStatus {
 					smginfo.setURL(url);
 					int status = rs.getInt("smgStatus");
 					smginfo.setStatus(status);
-					//¸ù¾İÍ¨µÀºÅ»ñÈ¡ËùÓĞ×Ô¶¯Â¼ÖÆµÄ½ÚÄ¿ĞÅÏ¢
+					//æ ¹æ®é€šé“å·è·å–æ‰€æœ‰è‡ªåŠ¨å½•åˆ¶çš„èŠ‚ç›®ä¿¡æ¯
 					smginfo.setAutorecordList(GetAutoRecordVOByIndex(index));
-					//¸ù¾İÍ¨µÀºÅ»ñÈ¡ËùÓĞÈÎÎñÂ¼ÖÆµÄ½ÚÄ¿ĞÅÏ¢
+					//æ ¹æ®é€šé“å·è·å–æ‰€æœ‰ä»»åŠ¡å½•åˆ¶çš„èŠ‚ç›®ä¿¡æ¯
 					smginfo.setTaskrecordList(GetTaskRecordVOByIndex(index));
-					//¸ù¾İÍ¨µÀºÅ»ñÈ¡ËùÓĞÊÓÆµµÄ½ÚÄ¿ĞÅÏ¢
+					//æ ¹æ®é€šé“å·è·å–æ‰€æœ‰è§†é¢‘çš„èŠ‚ç›®ä¿¡æ¯
 					smginfo.setRealvideoList(GetRealVideoVOByIndex(index));
 					NvrStatusList.add(smginfo);
 				}
@@ -138,14 +138,14 @@ public class GetNvrStatus {
 		{
 			System.out.println(ex.getMessage());
 		}
-		//ÉÏ±¨ĞÅÏ¢¸øÆ½Ì¨
+		//ä¸ŠæŠ¥ä¿¡æ¯ç»™å¹³å°
 		String upString = "";
-		// ÉÏ±¨»Ø¸´µÄxml¸øÖĞĞÄ,×Ô¼º·µ»Ø³É¹¦
+		// ä¸ŠæŠ¥å›å¤çš„xmlç»™ä¸­å¿ƒ,è‡ªå·±è¿”å›æˆåŠŸ
 		upString = ReturnXMLByURL(this.bsData, NvrStatusList);
 		try {
 			utilXML.SendUpXML(upString, bsData);
 		} catch (CommonException e) {
-			log.error("Í¨µÀ×´Ì¬»Ø¸´Ê§°Ü: " + e.getMessage());
+			log.error("é€šé“çŠ¶æ€å›å¤å¤±è´¥: " + e.getMessage());
 		}
 
 		bsData = null;
@@ -155,7 +155,7 @@ public class GetNvrStatus {
     }
     
     
-	// Í¨µÀ×´Ì¬²éÑ¯»Ø¸´xml´ò°ü
+	// é€šé“çŠ¶æ€æŸ¥è¯¢å›å¤xmlæ‰“åŒ…
 	public String ReturnXMLByURL(MSGHeadVO head, List voList) {
 
 		String xml = null;
@@ -164,23 +164,23 @@ public class GetNvrStatus {
 				+ head.getCenterMsgID() + "\" Type=\"MonUp\" DateTime=\""
 				+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">\r\n";
-		xml += "<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r\n";
+		xml += "<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r\n";
 		xml +="<ReturnInfo>\r\n";
 		xml +="<GetNvrIndexTotal Total=\""+voList.size()+"\">\r\n";
 		
 		for(int i=0;i<voList.size();i++){
 			SMGCardInfoVO vo =  (SMGCardInfoVO)voList.get(i);
-			//¶«ÈíĞ­Òé´æÔÚÎÊÌâ£ºÀàĞÍ²»Æ¥Åä
-			//Í¨µÀ²éÑ¯µÄÒµÎñÀàĞÍ£ºIndexType£¨0 ´ú±í Í£ÓÃ£¬1 ´ú±íÊµÊ±ÊÓÆµ£¬2 ÂÖ²¥¸¨Öú£¬3 ÂÖÑ­²âÁ¿£¬4 ×Ô¶¯Â¼Ïñ £¬5ÈÎÎñÂ¼Ïñ £¬6Êı¾İ²É¼¯£¬7¿ÕÏĞ£©
-			//Í¨µÀÉèÖÃÒµÎñÀàĞÍ£º0 ´ú±í Í£ÓÃ£¬1 ´ú±íÊµÊ±ÊÓÆµ£¬2 ÂÖ²¥¸¨Öú£¬3 ÂÖÑ­²âÁ¿£¬4Â¼Ïñ ¡¢5¿ÕÏĞ
+			//ä¸œè½¯åè®®å­˜åœ¨é—®é¢˜ï¼šç±»å‹ä¸åŒ¹é…
+			//é€šé“æŸ¥è¯¢çš„ä¸šåŠ¡ç±»å‹ï¼šIndexTypeï¼ˆ0 ä»£è¡¨ åœç”¨ï¼Œ1 ä»£è¡¨å®æ—¶è§†é¢‘ï¼Œ2 è½®æ’­è¾…åŠ©ï¼Œ3 è½®å¾ªæµ‹é‡ï¼Œ4 è‡ªåŠ¨å½•åƒ ï¼Œ5ä»»åŠ¡å½•åƒ ï¼Œ6æ•°æ®é‡‡é›†ï¼Œ7ç©ºé—²ï¼‰
+			//é€šé“è®¾ç½®ä¸šåŠ¡ç±»å‹ï¼š0 ä»£è¡¨ åœç”¨ï¼Œ1 ä»£è¡¨å®æ—¶è§†é¢‘ï¼Œ2 è½®æ’­è¾…åŠ©ï¼Œ3 è½®å¾ªæµ‹é‡ï¼Œ4å½•åƒ ã€5ç©ºé—²
 			int type = Integer.valueOf(vo.getIndexType());
-			//Í£ÓÃ£ºIndexType=\"0\" Desc=\"´ËÍ¨µÀÍ£ÓÃ\"/
+			//åœç”¨ï¼šIndexType=\"0\" Desc=\"æ­¤é€šé“åœç”¨\"/
 			if(type==0){
 				xml+="<GetNvrIndexStatus TaskState=\"1\"  Index=\""+vo.getIndex()+"\"  Status=\""+vo.getStatus()+"\" >\r\n";
-				xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"0\" OldDesc =\"´ËÍ¨µÀÍ£ÓÃ\"/>\r\n";
+				xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"0\" OldDesc =\"æ­¤é€šé“åœç”¨\"/>\r\n";
 				xml+="</GetNvrIndexStatus>\r\n";
 			}
-			//ÊµÊ±ÊÓÆµ
+			//å®æ—¶è§†é¢‘
 			if(type==1)
 			{
 				for(int j=0;j<vo.getRealvideoList().size();j++)
@@ -188,44 +188,44 @@ public class GetNvrStatus {
 					MonitorProgramQueryVO obj = (MonitorProgramQueryVO)vo.getRealvideoList().get(j);
 					if((obj.getProgramName()=="")||(obj.getProgramName()==null))
 					{
-						// IndexType=\"1\" Desc=\"ÊµÊ±ÊÓÆµ:²¥·Å[½ÚÄ¿ÃûÎª¿Õ]"+"\"/
+						// IndexType=\"1\" Desc=\"å®æ—¶è§†é¢‘:æ’­æ”¾[èŠ‚ç›®åä¸ºç©º]"+"\"/
 						xml+="<GetNvrIndexStatus TaskState=\"1\"  Index=\""+vo.getIndex()+"\"  Status=\""+vo.getStatus()+"\">\r\n";
-						xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"1\" OldDesc =\"ÊµÊ±ÊÓÆµ:²¥·Å[½ÚÄ¿ÃûÎª¿Õ]\"/>\r\n";
+						xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"1\" OldDesc =\"å®æ—¶è§†é¢‘:æ’­æ”¾[èŠ‚ç›®åä¸ºç©º]\"/>\r\n";
 						xml+="</GetNvrIndexStatus>\r\n";
 					}
 					else
 					{
-						//IndexType=\"1\" Desc=\"ÊµÊ±ÊÓÆµ:²¥·Å"+obj.getProgramName() +"\"/
+						//IndexType=\"1\" Desc=\"å®æ—¶è§†é¢‘:æ’­æ”¾"+obj.getProgramName() +"\"/
 						xml+="<GetNvrIndexStatus TaskState=\"1\"  Index=\""+vo.getIndex()+"\"  Status=\""+vo.getStatus()+"\" >\r\n";
-						xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"1\" OldDesc =\"ÊµÊ±ÊÓÆµ:²¥·Å"+obj.getProgramName() +"\"/>\r\n";
+						xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"1\" OldDesc =\"å®æ—¶è§†é¢‘:æ’­æ”¾"+obj.getProgramName() +"\"/>\r\n";
 						xml+="</GetNvrIndexStatus>\r\n";
 					}
 				}
 			}
-			//ÂÖ²¥¸¨Öú:IndexType=\"2\" Desc=\"´ËÍ¨µÀÎªÂÖ²¥¸¨Öú\"/
+			//è½®æ’­è¾…åŠ©:IndexType=\"2\" Desc=\"æ­¤é€šé“ä¸ºè½®æ’­è¾…åŠ©\"/
 			if(type ==2){
 				xml+="<GetNvrIndexStatus TaskState=\"1\"  Index=\""+vo.getIndex()+"\"  Status=\""+vo.getStatus()+"\" >\r\n";
-				xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"2\" OldDesc =\"´ËÍ¨µÀÎªÂÖ²¥¸¨Öú\"/>\r\n";
+				xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"2\" OldDesc =\"æ­¤é€šé“ä¸ºè½®æ’­è¾…åŠ©\"/>\r\n";
 				xml+="</GetNvrIndexStatus>\r\n";
 			}
-			//ÂÖÑ­²âÁ¿: IndexType=\"3\" Desc=\"´ËÍ¨µÀÎªÂÖÑ­²âÁ¿\"/
+			//è½®å¾ªæµ‹é‡: IndexType=\"3\" Desc=\"æ­¤é€šé“ä¸ºè½®å¾ªæµ‹é‡\"/
 			if(type ==3){
 				xml+="<GetNvrIndexStatus TaskState=\"1\"  Index=\""+vo.getIndex()+"\"  Status=\""+vo.getStatus()+"\">\r\n";
-				xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"3\" OldDesc =\"´ËÍ¨µÀÎªÂÖÑ­²âÁ¿\"/>\r\n";
+				xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"3\" OldDesc =\"æ­¤é€šé“ä¸ºè½®å¾ªæµ‹é‡\"/>\r\n";
 				xml+="</GetNvrIndexStatus>\r\n";
 			}
-//			 <GetNvrIndexStatus  TaskState =¡±1¡±  Index="1" Status="1" >
-//			<OldTask  Index="1" IndexType=¡°4¡± OldDesc="×Ô¶¯Â¼Ïñ CCTV-3 £¬CCTV-4"> 
+//			 <GetNvrIndexStatus  TaskState =â€1â€  Index="1" Status="1" >
+//			<OldTask  Index="1" IndexType=â€œ4â€ OldDesc="è‡ªåŠ¨å½•åƒ CCTV-3 ï¼ŒCCTV-4"> 
 //			<AutoVideo  Index="1" VideoStatus="0"  Program="CCTV-3 "  ProgramID="457"
 //			 Freq = "45700"  ServiceID="457" />    
 //			<AutoVideo  Index="1"  VideoStatus="1"  Program="CCTV-4 " ProgramID="459" 
 //			Freq = "45900"  ServiceID="459" />
 //			</OldTask >
-//			<NewTask  Index="1" IndexType=¡°1¡± NewDesc="ÊµÊ±ÊÓÆµ£¬²¥·ÅCCTV-1 " />
+//			<NewTask  Index="1" IndexType=â€œ1â€ NewDesc="å®æ—¶è§†é¢‘ï¼Œæ’­æ”¾CCTV-1 " />
 //			</GetNvrIndexStatus>
-			//×Ô¶¯Â¼ÖÆ
+			//è‡ªåŠ¨å½•åˆ¶
 			if(type ==4){
-				String desc ="×Ô¶¯Â¼Ïñ:";
+				String desc ="è‡ªåŠ¨å½•åƒ:";
 				String remark="";
 				for(int j=0;j<vo.getAutorecordList().size();j++)
 				{
@@ -244,13 +244,13 @@ public class GetNvrStatus {
 					}
 				}
 				if(remark.trim().equals("")){
-					remark="×Ô¶¯Â¼Ïñ:ÎŞÂ¼ÖÆµÄ½ÚÄ¿ĞÅÏ¢";
+					remark="è‡ªåŠ¨å½•åƒ:æ— å½•åˆ¶çš„èŠ‚ç›®ä¿¡æ¯";
 					desc=remark;
 				}
 
 				//IndexType=\"4\" Desc=\""+desc+"\"
 				xml+="<GetNvrIndexStatus TaskState=\"1\"  Index=\""+vo.getIndex()+"\" Status=\""+vo.getStatus()+"\" >\r\n";
-				//<OldTask  Index="1" IndexType=¡°4¡± OldDesc="×Ô¶¯Â¼Ïñ CCTV-3 £¬CCTV-4"> 
+				//<OldTask  Index="1" IndexType=â€œ4â€ OldDesc="è‡ªåŠ¨å½•åƒ CCTV-3 ï¼ŒCCTV-4"> 
 				xml+="<OldTask  Index=\""+vo.getIndex()+"\" IndexType=\"4\" OldDesc =\""+desc+"\">";
 				for(int j=0;j<vo.getAutorecordList().size();j++)
 				{
@@ -261,14 +261,14 @@ public class GetNvrStatus {
 				xml+="</OldTask>";
 				xml+="</GetNvrIndexStatus>\r\n";
 			}
-			//ÈÎÎñÂ¼Ïñ
-//			<GetNvrIndexStatus  TaskState =¡±1¡± Index="2" Status="1" >
-//			<OldTask  Index="2" IndexType=¡°5¡± OldDesc ="ÈÎÎñÂ¼Ïñ£¬CCTV -5 "> 
+			//ä»»åŠ¡å½•åƒ
+//			<GetNvrIndexStatus  TaskState =â€1â€ Index="2" Status="1" >
+//			<OldTask  Index="2" IndexType=â€œ5â€ OldDesc ="ä»»åŠ¡å½•åƒï¼ŒCCTV -5 "> 
 //			<TaskVideo  Index="2" VideoStatus="0" TaskID= " 100" />
 //			</OldTask>
 //			</GetNvrIndexStatus>
 			if(type==5){
-				String desc ="ÈÎÎñÂ¼Ïñ£º";
+				String desc ="ä»»åŠ¡å½•åƒï¼š";
 				String remark ="";
 				for(int j=0;j<vo.getTaskrecordList().size();j++)
 				{
@@ -287,7 +287,7 @@ public class GetNvrStatus {
 					}
 				}
 				if(remark.trim().equals("")){
-					remark="ÈÎÎñÂ¼Ïñ£ºÎŞÂ¼ÖÆµÄ½ÚÄ¿ĞÅÏ¢";
+					remark="ä»»åŠ¡å½•åƒï¼šæ— å½•åˆ¶çš„èŠ‚ç›®ä¿¡æ¯";
 					desc=remark;
 				}
 				
@@ -303,19 +303,19 @@ public class GetNvrStatus {
 				xml+="</OldTask>";
 				xml+="</GetNvrIndexStatus>\r\n";
 			}
-			//Êı¾İ²É¼¯ IndexType=\"6\" Desc=\"´ËÍ¨µÀÊı¾İ²É¼¯\"/
+			//æ•°æ®é‡‡é›† IndexType=\"6\" Desc=\"æ­¤é€šé“æ•°æ®é‡‡é›†\"/
 			if(type ==6){
 				xml+="<GetNvrIndexStatus TaskState=\"1\"  Index=\""+vo.getIndex()+"\" Status=\""+vo.getStatus()+"\" >\r\n";
-				xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"6\" OldDesc =\"´ËÍ¨µÀÊı¾İ²É¼¯\"/>\r\n";
+				xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"6\" OldDesc =\"æ­¤é€šé“æ•°æ®é‡‡é›†\"/>\r\n";
 				xml+="</GetNvrIndexStatus>\r\n";
 			}
-			//¿ÕÏĞ
-//			 <GetNvrIndexStatus TaskState =¡±1¡±  Index="2"  Status="0" >
-//			  <OldTask  Index="2"  IndexType=¡°1¡± OldDesc ="ÊµÊ±ÊÓÆµ£¬²¥·ÅCCTV-1 "/> IndexType=\"7\" Desc=\"´ËÍ¨µÀ¿ÕÏĞ\"/>
+			//ç©ºé—²
+//			 <GetNvrIndexStatus TaskState =â€1â€  Index="2"  Status="0" >
+//			  <OldTask  Index="2"  IndexType=â€œ1â€ OldDesc ="å®æ—¶è§†é¢‘ï¼Œæ’­æ”¾CCTV-1 "/> IndexType=\"7\" Desc=\"æ­¤é€šé“ç©ºé—²\"/>
 //			</GetNvrIndexStatus>
 			if(type ==7){
-				xml+="<GetNvrIndexStatus TaskState=\"1\" Index=\""+vo.getIndex()+"\" Status=\""+vo.getStatus()+"\"¡¡>\r\n";
-				xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"7\" OldDesc =\"´ËÍ¨µÀ¿ÕÏĞ\"/>\r\n";
+				xml+="<GetNvrIndexStatus TaskState=\"1\" Index=\""+vo.getIndex()+"\" Status=\""+vo.getStatus()+"\"ã€€>\r\n";
+				xml+="<OldTask  Index=\""+vo.getIndex()+"\"  IndexType=\"7\" OldDesc =\"æ­¤é€šé“ç©ºé—²\"/>\r\n";
 				xml+="</GetNvrIndexStatus>\r\n";
 			}
 		}
@@ -324,32 +324,32 @@ public class GetNvrStatus {
 
 	}
 
-//===================V2.4Ğ­Òé=================
+//===================V2.4åè®®=================
 	
 //	<GetNvrIndexTotal  Total="16" >
-//	 <GetNvrIndexStatus  TaskState =¡±1¡±  Index="1" Status="1" >
-//	<OldTask  Index="1" IndexType=¡°4¡± OldDesc="×Ô¶¯Â¼Ïñ CCTV-3 £¬CCTV-4"> 
+//	 <GetNvrIndexStatus  TaskState =â€1â€  Index="1" Status="1" >
+//	<OldTask  Index="1" IndexType=â€œ4â€ OldDesc="è‡ªåŠ¨å½•åƒ CCTV-3 ï¼ŒCCTV-4"> 
 //	<AutoVideo  Index="1" VideoStatus="0"  Program="CCTV-3 "  ProgramID="457"
 //	 Freq = "45700"  ServiceID="457" />    
 //	<AutoVideo  Index="1"  VideoStatus="1"  Program="CCTV-4 " ProgramID="459" 
 //	Freq = "45900"  ServiceID="459" />
 //	</OldTask >
-//	<NewTask  Index="1" IndexType=¡°1¡± NewDesc="ÊµÊ±ÊÓÆµ£¬²¥·ÅCCTV-1 " />
+//	<NewTask  Index="1" IndexType=â€œ1â€ NewDesc="å®æ—¶è§†é¢‘ï¼Œæ’­æ”¾CCTV-1 " />
 //	</GetNvrIndexStatus>
-//	<GetNvrIndexStatus  TaskState =¡±1¡± Index="2" Status="1" >
-//	<OldTask  Index="2" IndexType=¡°5¡± OldDesc ="ÈÎÎñÂ¼Ïñ£¬CCTV -5 "> 
+//	<GetNvrIndexStatus  TaskState =â€1â€ Index="2" Status="1" >
+//	<OldTask  Index="2" IndexType=â€œ5â€ OldDesc ="ä»»åŠ¡å½•åƒï¼ŒCCTV -5 "> 
 //	<TaskVideo  Index="2" VideoStatus="0" TaskID= " 100" />
 //	</OldTask>
 //	</GetNvrIndexStatus>
-//	 <GetNvrIndexStatus TaskState =¡±1¡±  Index="2"  Status="0" >
-//	  <OldTask  Index="2"  IndexType=¡°1¡± OldDesc ="ÊµÊ±ÊÓÆµ£¬²¥·ÅCCTV-1 "/>
+//	 <GetNvrIndexStatus TaskState =â€1â€  Index="2"  Status="0" >
+//	  <OldTask  Index="2"  IndexType=â€œ1â€ OldDesc ="å®æ—¶è§†é¢‘ï¼Œæ’­æ”¾CCTV-1 "/>
 //	</GetNvrIndexStatus>
 //	< /GetNvrIndexTotal  >
 
 	
 	
 	
-    //¸ù¾İÍ¨µÀºÅ»ñÈ¡×Ô¶¯Â¼ÖÆµÄ½ÚÄ¿ĞÅÏ¢
+    //æ ¹æ®é€šé“å·è·å–è‡ªåŠ¨å½•åˆ¶çš„èŠ‚ç›®ä¿¡æ¯
     @SuppressWarnings("unchecked")
 	private List<SetAutoRecordChannelVO> GetAutoRecordVOByIndex(int index) throws DaoException
     {
@@ -358,13 +358,13 @@ public class GetNvrStatus {
 		Statement statement = null;
 		Connection conn = DaoSupport.getJDBCConnection();
 		ResultSet rs = null;
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("select * from channelremapping where StatusFlag != 0 and devIndex = " + index );
 		strBuff.append("  order by devIndex");
 		try {
 			statement = conn.createStatement();
 			rs = statement.executeQuery(strBuff.toString());
-			// ¿âÖĞ´æÔÚÏà¹ØµÄ½ÚÄ¿·µ»ØÏà¹ØµÄÉè±¸Í¨µÀ
+			// åº“ä¸­å­˜åœ¨ç›¸å…³çš„èŠ‚ç›®è¿”å›ç›¸å…³çš„è®¾å¤‡é€šé“
 			while(rs.next()){
 				SetAutoRecordChannelVO autorecordVo= new SetAutoRecordChannelVO();
 				int freq = Integer.parseInt(rs.getString("freq"));
@@ -388,8 +388,8 @@ public class GetNvrStatus {
 				autorecord.add(autorecordVo);
 			}
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØĞÅÏ¢´íÎó1: " + e.getMessage());
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØĞÅÏ¢´íÎó1 SQL: " + strBuff.toString());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³ä¿¡æ¯é”™è¯¯1: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³ä¿¡æ¯é”™è¯¯1 SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
@@ -399,7 +399,7 @@ public class GetNvrStatus {
     	return autorecord;
     }
     
-   //¸ù¾İÍ¨µÀºÅ»ñÈ¡×Ô¶¯Â¼ÖÆµÄ½ÚÄ¿ĞÅÏ¢
+   //æ ¹æ®é€šé“å·è·å–è‡ªåŠ¨å½•åˆ¶çš„èŠ‚ç›®ä¿¡æ¯
     @SuppressWarnings({ "unused", "unchecked", "static-access" })
 	private List<ProvisionalRecordTaskSetVO> GetTaskRecordVOByIndex(int index) throws DaoException
     {
@@ -419,7 +419,7 @@ public class GetNvrStatus {
 				vo.setFreq(Integer.parseInt(rs.getString("Freq")));
 				vo.setServiceID(Integer.parseInt(rs.getString("ServiceID")));
 				
-				//²éÑ¯½ÚÄ¿Ãû
+				//æŸ¥è¯¢èŠ‚ç›®å
 				SetAutoRecordChannelVO obj = new SetAutoRecordChannelVO();
 				obj.setFreq(Integer.parseInt(rs.getString("Freq")));
 				obj.setServiceID(Integer.parseInt(rs.getString("ServiceID")));
@@ -430,7 +430,7 @@ public class GetNvrStatus {
 				taskrecord.add(vo);
 			}
 		} catch (Exception e) {
-			log.error("ÈÎÎñÂ¼Ïñ²éÑ¯Êı¾İ¿â´íÎó: " + e.getMessage());
+			log.error("ä»»åŠ¡å½•åƒæŸ¥è¯¢æ•°æ®åº“é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
@@ -444,13 +444,13 @@ public class GetNvrStatus {
     {
     	List<MonitorProgramQueryVO> realvideo = new ArrayList();
     	MonitorProgramQueryVO rtvsVO = new MonitorProgramQueryVO();
-        // 0:¿ÕÏĞ 1:Ò»¶ÔÒ»¼àÊÓ 2:ÂÖ²¥¼à²âÊ¹ÓÃ 3:ÊÖ¶¯Ñ¡Ì¨ 4:×Ô¶¯ÂÖ²¥ 5:¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+        // 0:ç©ºé—² 1:ä¸€å¯¹ä¸€ç›‘è§† 2:è½®æ’­ç›‘æµ‹ä½¿ç”¨ 3:æ‰‹åŠ¨é€‰å° 4:è‡ªåŠ¨è½®æ’­ 5:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
         try {
 			rtvsVO = MonitorProgramQueryHandle.GetChangeProgramInfo(rtvsVO, 3);
 		} catch (DaoException e1) {
-			log.error("È¡µÃÊµÊ±ÊÓÆµ½ÚÄ¿Ó³ÉäĞÅÏ¢: " + e1.getMessage());
+			log.error("å–å¾—å®æ—¶è§†é¢‘èŠ‚ç›®æ˜ å°„ä¿¡æ¯: " + e1.getMessage());
 		}
-		//²éÑ¯½ÚÄ¿Ãû
+		//æŸ¥è¯¢èŠ‚ç›®å
 		if(rtvsVO==null){
 			
 		}

@@ -24,7 +24,7 @@ import com.bvcom.transmit.vo.rec.SetAutoRecordChannelVO;
 import com.bvcom.transmit.vo.video.MonitorProgramQueryVO;
 
 /**
- * ¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+ * å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
  * @author Bian Jiang
  * @date 2010.12.9
  */
@@ -47,43 +47,43 @@ public class MosaicConfigHandle {
     
     
     /**
-     * 1. È¡µÃIPMËùÓĞµÄµØÖ·
-     * 2. ¸ù¾İ RecordType: 0:²»Â¼Ïñ 1:ÒìÌ¬´¥·¢Â¼Ïñ 2:×Ô¶¯Â¼Ïñ 3:¶à»­ÃæºÏ³É(ÂíÈü¿Ë), ÏÂ·¢¸øRecordType=3µÄIPMµØÖ·
-     * 3. ÏòÖĞĞÄÉÏ±¨³É¹¦ĞÅÏ¢
+     * 1. å–å¾—IPMæ‰€æœ‰çš„åœ°å€
+     * 2. æ ¹æ® RecordType: 0:ä¸å½•åƒ 1:å¼‚æ€è§¦å‘å½•åƒ 2:è‡ªåŠ¨å½•åƒ 3:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹), ä¸‹å‘ç»™RecordType=3çš„IPMåœ°å€
+     * 3. å‘ä¸­å¿ƒä¸ŠæŠ¥æˆåŠŸä¿¡æ¯
      */
     public void downXML() {
-        // ·µ»ØÊı¾İ
+        // è¿”å›æ•°æ®
         String upString = "";
        
         boolean isErr = false;
         
-        List IPMList = coreData.getIPMList();//IPMµÄÁĞ±íĞÅÏ¢
+        List IPMList = coreData.getIPMList();//IPMçš„åˆ—è¡¨ä¿¡æ¯
         
         MonitorProgramQueryVO rtvsVO = new MonitorProgramQueryVO();
-        // 0:¿ÕÏĞ 1:Ò»¶ÔÒ»¼àÊÓ 2:ÂÖ²¥¼à²âÊ¹ÓÃ 3:ÊÖ¶¯Ñ¡Ì¨ 4:×Ô¶¯ÂÖ²¥ 5:¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+        // 0:ç©ºé—² 1:ä¸€å¯¹ä¸€ç›‘è§† 2:è½®æ’­ç›‘æµ‹ä½¿ç”¨ 3:æ‰‹åŠ¨é€‰å° 4:è‡ªåŠ¨è½®æ’­ 5:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
         try {
 			rtvsVO = MonitorProgramQueryHandle.GetChangeProgramInfo(rtvsVO, 5);
 		} catch (DaoException e1) {
-			log.error("È¡µÃ¶à»­ÃæºÏ³É(ÂíÈü¿Ë)URL´íÎó: " + e1.getMessage());
+			log.error("å–å¾—å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)URLé”™è¯¯: " + e1.getMessage());
 			isErr = true;
 		}
         
-        // IPM ÏÂ·¢Ö¸Áî
+        // IPM ä¸‹å‘æŒ‡ä»¤
         for (int i=0; i< IPMList.size(); i++) {
             IPMInfoVO ipm = (IPMInfoVO) IPMList.get(i);
             try {
-            	// RecordType: 0:²»Â¼Ïñ 1:ÒìÌ¬´¥·¢Â¼Ïñ 2:×Ô¶¯Â¼Ïñ 3:¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+            	// RecordType: 0:ä¸å½•åƒ 1:å¼‚æ€è§¦å‘å½•åƒ 2:è‡ªåŠ¨å½•åƒ 3:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
             	if (ipm.getRecordType() == 3) {
-            		// ÈÎÎñÂ¼ÏñĞÅÏ¢ÏÂ·¢ timeout 1000*3 ÈıÃë
+            		// ä»»åŠ¡å½•åƒä¿¡æ¯ä¸‹å‘ timeout 1000*3 ä¸‰ç§’
                     utilXML.SendDownNoneReturn(this.downString, ipm.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
             	}
             } catch (CommonException e) {
-                log.error("ÏòIPMÏÂ·¢¶à»­ÃæºÏ³É(ÂíÈü¿Ë)³ö´í£º" + ipm.getURL());
+                log.error("å‘IPMä¸‹å‘å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)å‡ºé”™ï¼š" + ipm.getURL());
                 isErr = true;
             }
-        } // IPM ÏÂ·¢Ö¸Áî END
+        } // IPM ä¸‹å‘æŒ‡ä»¤ END
         
-        // RTVSĞŞ¸ÄÊäÈëÁ÷µÄIPºÍ¶Ë¿Ú
+        // RTVSä¿®æ”¹è¾“å…¥æµçš„IPå’Œç«¯å£
         RTVSResetConfigParse RTVSReset = new RTVSResetConfigParse();
         rtvsVO.setFreq(rtvsVO.getFreq());
         rtvsVO.setServiceID(rtvsVO.getServiceID());
@@ -92,13 +92,13 @@ public class MosaicConfigHandle {
         
         
         if (isErr) {
-            // Ê§°Ü
+            // å¤±è´¥
             upString = utilXML.getReturnXML(bsData, 1);
         } else {
 	        try {
 	        	upString = utilXML.SendDownXML(rtvsString, rtvsVO.getRTVSResetURL(), CommonUtility.CHANGE_PROGRAM_QUERY, bsData);
 	        } catch (CommonException e) {
-	            log.error("¶à»­ÃæºÏ³É(ÂíÈü¿Ë)ÏÂ·¢RTVSĞŞ¸ÄÊäÈëÁ÷µÄIPºÍ¶Ë¿Ú³ö´í£º" + rtvsVO.getRTVSResetURL());
+	            log.error("å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)ä¸‹å‘RTVSä¿®æ”¹è¾“å…¥æµçš„IPå’Œç«¯å£å‡ºé”™ï¼š" + rtvsVO.getRTVSResetURL());
 	            isErr = true;
 	        }
         }
@@ -110,18 +110,18 @@ public class MosaicConfigHandle {
             url = RTVSReset.getReturnURL(document);
         } catch (CommonException e) {
         	isErr = true;
-            log.error("ÊÓÆµURL StringToXML Error: " + e.getMessage());
+            log.error("è§†é¢‘URL StringToXML Error: " + e.getMessage());
         }
         
         if (isErr) {
-            // Ê§°Ü
+            // å¤±è´¥
             upString = getReturnXML(url, bsData, 1);
         } else {
 	        try {
 	        	 upString = getReturnXML(url, bsData, 0);
 	            utilXML.SendUpXML(upString, bsData);
 	        } catch (CommonException e) {
-	            log.error("¶à»­ÃæºÏ³É(ÂíÈü¿Ë)ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+	            log.error("å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)ä¿¡æ¯å¤±è´¥: " + e.getMessage());
 	        }
         }
         
@@ -132,10 +132,10 @@ public class MosaicConfigHandle {
     }
     
     /**
-     * È¡µÃ·µ»ØµÄXMLĞÅÏ¢
-     * @param head XMLÊı¾İ¶ÔÏó 
-     * @param value 0:³É¹¦ 1:Ê§°Ü
-     * @return XMLÎÄ±¾ĞÅÏ¢
+     * å–å¾—è¿”å›çš„XMLä¿¡æ¯
+     * @param head XMLæ•°æ®å¯¹è±¡ 
+     * @param value 0:æˆåŠŸ 1:å¤±è´¥
+     * @return XMLæ–‡æœ¬ä¿¡æ¯
      */
     public String getReturnXML(String url, MSGHeadVO head, int value) {
         
@@ -147,9 +147,9 @@ public class MosaicConfigHandle {
         strBuf.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuf.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\"> \r\n");
         if(0==value){
-            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r\n");
+            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r\n");
         }else if(1==value){
-            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"Ê§°Ü\"/>\r\n");
+            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"å¤±è´¥\"/>\r\n");
         }
         strBuf.append("<ReturnInfo> \r\n <MosaicUrl URL=\"" + url	+ "\" /> \r\n</ReturnInfo>\r\n");
         strBuf.append("</Msg>");

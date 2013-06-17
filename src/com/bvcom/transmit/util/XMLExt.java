@@ -11,8 +11,8 @@ import org.dom4j.InvalidXPathException;
 
 
 /**
- * XML½ÚµãÊô"¶ÁĞ´Àà£¬ ·â×°¶ÔÊô"Attribute)»òÎÄ±¾½Úµã±ê"TextĞÍNode)"br>
- * ¶ÁĞ´´úÂë£¬ÓÃ»§Ö»""Ìá¹©DocumentÒıÓÃºÍxqlÓï¾ä"
+ * XMLèŠ‚ç‚¹å±"è¯»å†™ç±»ï¼Œ å°è£…å¯¹å±"Attribute)æˆ–æ–‡æœ¬èŠ‚ç‚¹æ ‡"Textå‹Node)"br>
+ * è¯»å†™ä»£ç ï¼Œç”¨æˆ·åª""æä¾›Documentå¼•ç”¨å’Œxqlè¯­å¥"
  * 
  * @author liyh
  * @since 2007-3-26
@@ -23,8 +23,8 @@ public class XMLExt {
     private static Logger logger = Logger.getLogger(XMLExt.class.getSimpleName());
 
     /**
-     * ÔÚÖ¸¶¨DocumentÖĞÖ´ĞĞÖ¸¶¨xqlÓï¾ä£¬¶ÁÈ¡Ä³Êô"Öµ"<br>
-     * ¸ÃxqlÓï¾äÒªÇó²éÑ¯µ½ÊôĞÔÃû£¬Àı"/Msg/@MsgID"
+     * åœ¨æŒ‡å®šDocumentä¸­æ‰§è¡ŒæŒ‡å®šxqlè¯­å¥ï¼Œè¯»å–æŸå±"å€¼"<br>
+     * è¯¥xqlè¯­å¥è¦æ±‚æŸ¥è¯¢åˆ°å±æ€§åï¼Œä¾‹"/Msg/@MsgID"
      * 
      * @param xql
      * @param doc
@@ -36,14 +36,14 @@ public class XMLExt {
         if (!resultList.isEmpty() && resultList.size() != 0) {
             return ((Attribute) resultList.get(0)).getValue();
         } else {
-            logger.info("info: Ö´ĞĞxqlÓï¾ä" + xql + "Ê±ÎŞ¼ÇÂ¼·µ»Ø");
-            throw new InvalidXPathException("info: Ö´ĞĞxqlÓï¾ä" + xql + "Ê±ÎŞ¼ÇÂ¼·µ»Ø");
+            logger.info("info: æ‰§è¡Œxqlè¯­å¥" + xql + "æ—¶æ— è®°å½•è¿”å›");
+            throw new InvalidXPathException("info: æ‰§è¡Œxqlè¯­å¥" + xql + "æ—¶æ— è®°å½•è¿”å›");
         }
     }
 
     /**
-     * ÔÚÖ¸¶¨DocumentÖĞÖ´ĞĞÖ¸¶¨xqlÓï¾ä£¬¶ÁÈ¡¶à¸öÊôĞÔ""br>
-     * ¸ÃxqlÓï¾äÒªÇó²éÑ¯µ½ÊôĞÔÃû£¬Àı"/Msg/IDQueryReport/TsItem/@ICCardNo"
+     * åœ¨æŒ‡å®šDocumentä¸­æ‰§è¡ŒæŒ‡å®šxqlè¯­å¥ï¼Œè¯»å–å¤šä¸ªå±æ€§""br>
+     * è¯¥xqlè¯­å¥è¦æ±‚æŸ¥è¯¢åˆ°å±æ€§åï¼Œä¾‹"/Msg/IDQueryReport/TsItem/@ICCardNo"
      * 
      * @param xql
      * @param doc
@@ -62,15 +62,15 @@ public class XMLExt {
             }
             return returnList;
         } else {
-            logger.info("info: Ö´ĞĞxqlÓï¾ä" + xql + "Ê±ÎŞ¼ÇÂ¼·µ»Ø");
-            throw new InvalidXPathException("info: Ö´ĞĞxqlÓï¾ä" + xql + "Ê±ÎŞ¼ÇÂ¼·µ»Ø");
+            logger.info("info: æ‰§è¡Œxqlè¯­å¥" + xql + "æ—¶æ— è®°å½•è¿”å›");
+            throw new InvalidXPathException("info: æ‰§è¡Œxqlè¯­å¥" + xql + "æ—¶æ— è®°å½•è¿”å›");
         }
 
     }
 
     /**
-     * ÔÚÖ¸¶¨DocumentÖĞÖ´ĞĞÖ¸¶¨xqlÓï¾ä£¬¶ÁÈ¡Ä³Êô""br>
-     * ¸ÃxqlÓï¾äÒªÇó²éÑ¯µ½ÊôĞÔÃû£¬Àı"/Msg/@MsgID"
+     * åœ¨æŒ‡å®šDocumentä¸­æ‰§è¡ŒæŒ‡å®šxqlè¯­å¥ï¼Œè¯»å–æŸå±""br>
+     * è¯¥xqlè¯­å¥è¦æ±‚æŸ¥è¯¢åˆ°å±æ€§åï¼Œä¾‹"/Msg/@MsgID"
      * 
      * @param xql
      * @param doc
@@ -84,14 +84,14 @@ public class XMLExt {
         if (!resultList.isEmpty() && resultList.size() != 0) {
             return (Attribute) resultList.get(0);
         } else {
-            logger.info("info: Ö´ĞĞxqlÓï¾ä" + xql + "Ê±ÎŞ¼ÇÂ¼·µ»Ø");
-            throw new InvalidXPathException("info: Ö´ĞĞxqlÓï¾ä" + xql + "Ê±ÎŞ¼ÇÂ¼·µ»Ø");
+            logger.info("info: æ‰§è¡Œxqlè¯­å¥" + xql + "æ—¶æ— è®°å½•è¿”å›");
+            throw new InvalidXPathException("info: æ‰§è¡Œxqlè¯­å¥" + xql + "æ—¶æ— è®°å½•è¿”å›");
         }
 
     }
 
     /**
-     * ¸ù¾İxqlÓï¾ä£¬²éÑ¯¶à¸öÊô"¸ÃxqlÓï¾äÒªÇó²éÑ¯µ½ÊôĞÔÃû£¬Àı"/Msg/IDQueryReport/TsItem/@ICCardNo"
+     * æ ¹æ®xqlè¯­å¥ï¼ŒæŸ¥è¯¢å¤šä¸ªå±"è¯¥xqlè¯­å¥è¦æ±‚æŸ¥è¯¢åˆ°å±æ€§åï¼Œä¾‹"/Msg/IDQueryReport/TsItem/@ICCardNo"
      * 
      * @param xql
      * @param doc
@@ -112,15 +112,15 @@ public class XMLExt {
             }
             return returnList;
         } else {
-            logger.info("info: Ö´ĞĞxqlÓï¾ä" + xql + "Ê±ÎŞ¼ÇÂ¼·µ»Ø");
-            throw new InvalidXPathException("info: Ö´ĞĞxqlÓï¾ä" + xql + "Ê±ÎŞ¼ÇÂ¼·µ»Ø");
+            logger.info("info: æ‰§è¡Œxqlè¯­å¥" + xql + "æ—¶æ— è®°å½•è¿”å›");
+            throw new InvalidXPathException("info: æ‰§è¡Œxqlè¯­å¥" + xql + "æ—¶æ— è®°å½•è¿”å›");
         }
 
     }
 
     /**
-     * ÔÚÖ¸¶¨DocumentÖĞÖ´ĞĞÖ¸¶¨xqlÓï¾ä£¬¶ÁÈ¡Ä³ÔªËØ"br>
-     * ¸ÃxqlÓï¾äÒªÇó²éÑ¯µ½ÊôĞÔÃû£¬Àı"/Msg/Return"
+     * åœ¨æŒ‡å®šDocumentä¸­æ‰§è¡ŒæŒ‡å®šxqlè¯­å¥ï¼Œè¯»å–æŸå…ƒç´ "br>
+     * è¯¥xqlè¯­å¥è¦æ±‚æŸ¥è¯¢åˆ°å±æ€§åï¼Œä¾‹"/Msg/Return"
      * 
      * @param xql
      * @param doc
@@ -133,14 +133,14 @@ public class XMLExt {
         if (!resultList.isEmpty() && resultList.size() != 0) {
             return (Element) resultList.get(0);
         } else {
-            logger.info("Ö´ĞĞxqlÓï¾ä" + xql + "Ê±ÎŞ¼ÇÂ¼·µ»Ø");
-            throw new InvalidXPathException("Ö´ĞĞxqlÓï¾ä" + xql + "Ê±ÎŞ¼ÇÂ¼·µ»Ø");
+            logger.info("æ‰§è¡Œxqlè¯­å¥" + xql + "æ—¶æ— è®°å½•è¿”å›");
+            throw new InvalidXPathException("æ‰§è¡Œxqlè¯­å¥" + xql + "æ—¶æ— è®°å½•è¿”å›");
         }
     }
 
     /**
-     * ÔÚÖ¸¶¨DocumentÖĞÖ´ĞĞÖ¸¶¨xqlÓï¾ä£¬¶ÁÈ¡¶à¸öÔªËØ"<br>
-     * ¸ÃxqlÓï¾äÒªÇó²éÑ¯µ½ÊôĞÔÃû£¬Àı"/Msg/IDQueryReport/TsItem"
+     * åœ¨æŒ‡å®šDocumentä¸­æ‰§è¡ŒæŒ‡å®šxqlè¯­å¥ï¼Œè¯»å–å¤šä¸ªå…ƒç´ "<br>
+     * è¯¥xqlè¯­å¥è¦æ±‚æŸ¥è¯¢åˆ°å±æ€§åï¼Œä¾‹"/Msg/IDQueryReport/TsItem"
      * 
      * @param xql
      * @param doc
@@ -161,17 +161,17 @@ public class XMLExt {
             }
             return list;
         } else {
-            logger.info("Ö´ĞĞxqlÓï¾ä" + xql + "Ê±ÎŞ¼ÇÂ¼·µ»Ø");
-            throw new InvalidXPathException("xmlPath ¿ÉÄÜÓĞÎó!");
+            logger.info("æ‰§è¡Œxqlè¯­å¥" + xql + "æ—¶æ— è®°å½•è¿”å›");
+            throw new InvalidXPathException("xmlPath å¯èƒ½æœ‰è¯¯!");
         }
 
     }
     
     /**
-     * È¡µÃElementÖĞÖ¸¶¨ÊôĞÔµÄÖµ
+     * å–å¾—Elementä¸­æŒ‡å®šå±æ€§çš„å€¼
      * @param el
      * @param strAttribute 
-     * @return String È¡µÃµÄÖµ
+     * @return String å–å¾—çš„å€¼
      * @throws InvalidXPathException
      * 
      * @author Bian Jiang
@@ -181,15 +181,15 @@ public class XMLExt {
         String retStr = null;
         
         if (el == null || strAttribute == null || strAttribute.equals("")) {
-            logger.info("ÔªËØ»òÊôĞÔÎª¿Õ");
-            throw new InvalidXPathException("ÔªËØ»òÊôĞÔÎª¿Õ");
+            logger.info("å…ƒç´ æˆ–å±æ€§ä¸ºç©º");
+            throw new InvalidXPathException("å…ƒç´ æˆ–å±æ€§ä¸ºç©º");
         }
         
         try {
             retStr = el.attribute(strAttribute).getValue();
         } catch (Exception ex) {
-            logger.error("È¡µÃÊı¾İ³ö´í£¬¸ÃĞĞÊı¾İÎª£º" + el.asXML());
-            throw new InvalidXPathException("È¡µÃÊı¾İ³ö´í£¬¸ÃĞĞÊı¾İÎª " + el.asXML());
+            logger.error("å–å¾—æ•°æ®å‡ºé”™ï¼Œè¯¥è¡Œæ•°æ®ä¸ºï¼š" + el.asXML());
+            throw new InvalidXPathException("å–å¾—æ•°æ®å‡ºé”™ï¼Œè¯¥è¡Œæ•°æ®ä¸º " + el.asXML());
         }
         return retStr;
     }

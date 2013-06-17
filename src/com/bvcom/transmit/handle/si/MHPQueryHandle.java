@@ -30,13 +30,13 @@ public class MHPQueryHandle {
     }
     
 	public void downXML(){
-		log.info("读取MHP信息");
-		// MHP信息 
+		log.info("璇诲彇MHP淇℃伅");
+		// MHP淇℃伅 
         Document document = null;
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("读取MHP StringToXML Error: " + e.getMessage());
+            log.error("璇诲彇MHP StringToXML Error: " + e.getMessage());
         }
 		
         MHPQueryParse MHPQueryParse = new MHPQueryParse();
@@ -66,7 +66,7 @@ public class MHPQueryHandle {
         try {
             utilXML.SendUpXML(returnStr, bsData);
         } catch (CommonException e) {
-            log.error("上发 "+ bsData.getStatusQueryType() +" 信息失败: " + e.getMessage());
+            log.error("涓婂彂 "+ bsData.getStatusQueryType() +" 淇℃伅澶辫触: " + e.getMessage());
         }
 		
 		

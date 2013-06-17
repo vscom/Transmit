@@ -1,5 +1,5 @@
 package com.bvcom.transmit.parse.si;
-//ÆµÆ×É¨Ãè
+//é¢‘è°±æ‰«æ
 public class SpectrumScanQueryParse {
 
 	

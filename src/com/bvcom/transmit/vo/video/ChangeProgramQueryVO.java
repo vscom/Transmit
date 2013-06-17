@@ -28,7 +28,7 @@ public class ChangeProgramQueryVO {
     private String Comment;
     
     
-    //v2.5协议新增
+    //v2.5鍗忚鏂板
     //CodingFormat="cbr" Width="960" Height="544" Fps="25" Bps="1500000"
     
     private String CodingFormat;

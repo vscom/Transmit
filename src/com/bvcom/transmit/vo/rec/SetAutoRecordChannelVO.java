@@ -1,7 +1,7 @@
 package com.bvcom.transmit.vo.rec;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
-//×Ô¶¯Â¼Ïñ
+//è‡ªåŠ¨å½•åƒ
 public class SetAutoRecordChannelVO {
 	
 		private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -22,11 +22,11 @@ public class SetAutoRecordChannelVO {
 	    private int DownIndex = 0;
 	    
 	    /**
-	     * TSC·¢ËÍµÄÍ¨µÀºÅ
+	     * TSCå‘é€çš„é€šé“å·
 	     */
 	    private int TscIndex = 0;
 	    /**
-	     * IPM·¢ËÍµÄÍ¨µÀºÅ
+	     * IPMå‘é€çš„é€šé“å·
 	     */
 	    private int IpmIndex = 0;
 	    
@@ -56,9 +56,9 @@ public class SetAutoRecordChannelVO {
 	    
 	    private String smgURL;
 	    
-	    private int RecordType; //  0£º²»Â¼Ïñ£¬1:´ú±í¹ÊÕÏ´¥·¢Â¼ÖÆ   2£º24Ğ¡Ê±Â¼Ïñ(Ä¬ÈÏ)	3: ÈÎÎñÂ¼Ïñ
+	    private int RecordType; //  0ï¼šä¸å½•åƒï¼Œ1:ä»£è¡¨æ•…éšœè§¦å‘å½•åˆ¶   2ï¼š24å°æ—¶å½•åƒ(é»˜è®¤)	3: ä»»åŠ¡å½•åƒ
 	    
-	    private String Comment;//Ê§°ÜÔ­Òò
+	    private String Comment;//å¤±è´¥åŸå› 
 
 		public String getComment() {
 			return Comment;
@@ -181,8 +181,8 @@ public class SetAutoRecordChannelVO {
 		}
 
 		/**
-		 * 0£º²»Â¼Ïñ£¬1:´ú±í¹ÊÕÏ´¥·¢Â¼ÖÆ   2£º24Ğ¡Ê±Â¼Ïñ(Ä¬ÈÏ)	3: ÈÎÎñÂ¼Ïñ  4: ÂíÈü¿ËºÏ³ÉÂÖ²¥
-		 * Type: 4: ÂíÈü¿ËºÏ³ÉÂÖ²¥ add By: Bian Jiang 2012.3.21
+		 * 0ï¼šä¸å½•åƒï¼Œ1:ä»£è¡¨æ•…éšœè§¦å‘å½•åˆ¶   2ï¼š24å°æ—¶å½•åƒ(é»˜è®¤)	3: ä»»åŠ¡å½•åƒ  4: é©¬èµ›å…‹åˆæˆè½®æ’­
+		 * Type: 4: é©¬èµ›å…‹åˆæˆè½®æ’­ add By: Bian Jiang 2012.3.21
 		 * @return
 		 */
 		public int getRecordType() {
@@ -190,8 +190,8 @@ public class SetAutoRecordChannelVO {
 		}
 
 		/**
-		 * 0£º²»Â¼Ïñ£¬1:´ú±í¹ÊÕÏ´¥·¢Â¼ÖÆ   2£º24Ğ¡Ê±Â¼Ïñ(Ä¬ÈÏ)	3: ÈÎÎñÂ¼Ïñ  4: ÂíÈü¿ËºÏ³ÉÂÖ²¥
-		 * Type: 4: ÂíÈü¿ËºÏ³ÉÂÖ²¥ add By: Bian Jiang 2012.3.21
+		 * 0ï¼šä¸å½•åƒï¼Œ1:ä»£è¡¨æ•…éšœè§¦å‘å½•åˆ¶   2ï¼š24å°æ—¶å½•åƒ(é»˜è®¤)	3: ä»»åŠ¡å½•åƒ  4: é©¬èµ›å…‹åˆæˆè½®æ’­
+		 * Type: 4: é©¬èµ›å…‹åˆæˆè½®æ’­ add By: Bian Jiang 2012.3.21
 		 * @param recordType
 		 */
 		public void setRecordType(int recordType) {
@@ -231,7 +231,7 @@ public class SetAutoRecordChannelVO {
 		}
 
 		/**
-		 * TSC·¢ËÍµÄÍ¨µÀºÅ
+		 * TSCå‘é€çš„é€šé“å·
 		 * @return
 		 */
 		public int getTscIndex() {
@@ -239,7 +239,7 @@ public class SetAutoRecordChannelVO {
 		}
 
 		/**
-		 * TSC·¢ËÍµÄÍ¨µÀºÅ
+		 * TSCå‘é€çš„é€šé“å·
 		 * @param tscIndex
 		 */
 		public void setTscIndex(int tscIndex) {

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//报警上报（频率相关）
+//鎶ヨ涓婃姤锛堥鐜囩浉鍏筹級
 //public class AlarmSearchFSetVO {
 //	
 //	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -25,7 +25,7 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 //    
 //    private int ReturnValue;
 //    
-//    private String Comment;//失败原因
+//    private String Comment;//澶辫触鍘熷洜
 //
 //	public MSGHeadVO getMSGHead() {
 //		return MSGHead;

@@ -12,10 +12,10 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.alarm.AlarmProgramThresholdSetVO;
 
-//报警门限（节目相关）
+//鎶ヨ闂ㄩ檺锛堣妭鐩浉鍏筹級
 public class AlarmProgramThresholdSetParse {
 	
-	//节目报警门限解析xml得到通道号的数组
+	//鑺傜洰鎶ヨ闂ㄩ檺瑙ｆ瀽xml寰楀埌閫氶亾鍙风殑鏁扮粍
 	@SuppressWarnings("unchecked")
 	public List<AlarmProgramThresholdSetVO> getIndexByDownXml(Document document){
 		List<AlarmProgramThresholdSetVO> indexlist = new ArrayList();
@@ -37,7 +37,7 @@ public class AlarmProgramThresholdSetParse {
 		
 	}
 	
-	//节目报警门限解析回复的xml对象
+	//鑺傜洰鎶ヨ闂ㄩ檺瑙ｆ瀽鍥炲鐨剎ml瀵硅薄
 	@SuppressWarnings("unchecked")
 	public AlarmProgramThresholdSetVO getReturnByXml(Document document){
 		AlarmProgramThresholdSetVO vo = new AlarmProgramThresholdSetVO();
@@ -48,14 +48,14 @@ public class AlarmProgramThresholdSetParse {
 		int value  = Integer.parseInt(Return.attribute("Value").getValue());
 		if(!type.equals("AlarmProgramThresholdSet")){
 			vo.setReturnValue(1);
-			vo.setComment("节目报警门限xml的type错误");
+			vo.setComment("鑺傜洰鎶ヨ闂ㄩ檺xml鐨則ype閿欒");
 			return vo;
 		}
 		vo.setReturnValue(value);
 		return vo;
 	}
 	
-	// 节目报警门限回复xml打包
+	// 鑺傜洰鎶ヨ闂ㄩ檺鍥炲xml鎵撳寘
 	public String ReturnXMLByURL(MSGHeadVO head,int value) {
 
 		String xml = null;
@@ -65,9 +65,9 @@ public class AlarmProgramThresholdSetParse {
 		+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 		+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"AlarmProgramThresholdSet\" Value=\"0\" Desc=\"成功\"/>";
+			xml += "<Return Type=\"AlarmProgramThresholdSet\" Value=\"0\" Desc=\"鎴愬姛\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"AlarmProgramThresholdSet\" Value=\"1\" Desc=\"失败\"/>";
+			xml += "<Return Type=\"AlarmProgramThresholdSet\" Value=\"1\" Desc=\"澶辫触\"/>";
 		}
 		xml += "</Msg>";
 		return xml;

@@ -1,5 +1,5 @@
 /**
- * controlAlarm (java×ª·¢)
+ * controlAlarm (javaè½¬å‘)
  * 
  * ReadEPGandMHP.java    2007.7.25
  * 
@@ -35,13 +35,13 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.SysInfoVO;
 
 /**
- *    ½ÓÊÕÒ»¸östring ÀàĞÍµÄ²ÎÊı Í¬Ê±ÅĞ¶ÏStringÖĞµÄ×Ö¶Î°Ñ¸ø×Ö·û×ª»¯³Éxml¡£
- * ÌáÈ¡xmlµÄÖÆ¶¨×Ö¶ÎÀ´×é³ÉÒ»¸öÎÄ¼şÃû×Ö£¬¸ù¾İ¸ÄÃû×Öµ½ÖÆ¶¨Î»ÖÃ¶ÁÈ¡ÎÄ¼ş¡£
- * ²¢°Ñ¸øÎÄ¼şÒÔStringĞÎÊ½·µ»Ø¸øµ÷ÓÃÕß¡£
+ *    æ¥æ”¶ä¸€ä¸ªstring ç±»å‹çš„å‚æ•° åŒæ—¶åˆ¤æ–­Stringä¸­çš„å­—æ®µæŠŠç»™å­—ç¬¦è½¬åŒ–æˆxmlã€‚
+ * æå–xmlçš„åˆ¶å®šå­—æ®µæ¥ç»„æˆä¸€ä¸ªæ–‡ä»¶åå­—ï¼Œæ ¹æ®æ”¹åå­—åˆ°åˆ¶å®šä½ç½®è¯»å–æ–‡ä»¶ã€‚
+ * å¹¶æŠŠç»™æ–‡ä»¶ä»¥Stringå½¢å¼è¿”å›ç»™è°ƒç”¨è€…ã€‚
  * @version  V1.0
  * @author Bian Jiang
  * 
- * content ¶Ôepg mhp xmlÎÄ¼ş²Ù×÷µÄÀà
+ * content å¯¹epg mhp xmlæ–‡ä»¶æ“ä½œçš„ç±»
  */
 
 public class ReadEPGandMHP {
@@ -51,17 +51,17 @@ public class ReadEPGandMHP {
     MemCoreData coreData = MemCoreData.getInstance();
     
 	public void downXML(String epgstr, MSGHeadVO bsData) throws CommonException {
-		log.info("¶ÁÈ¡TableĞÅÏ¢");
+		log.info("è¯»å–Tableä¿¡æ¯");
 		
         SysInfoVO sysVO = coreData.getSysVO();
         UtilXML utilXML = new UtilXML();
-		// ´ÓXMLÎÄ¼şÖĞÈ¡µÃµÄÊ±¼äĞÅÏ¢
+		// ä»XMLæ–‡ä»¶ä¸­å–å¾—çš„æ—¶é—´ä¿¡æ¯
 		String dataStr = null;
 		
-		// µ±Ç°µÄÊ±¼äÄ¿Â¼Ãû
+		// å½“å‰çš„æ—¶é—´ç›®å½•å
 		String data = null;
 		
-		// È¡µÃÇ°Ò»¸öĞ¡Ê±µÄÊ±¼ä
+		// å–å¾—å‰ä¸€ä¸ªå°æ—¶çš„æ—¶é—´
 		
 		Document document = null;
 		String filename = null;
@@ -73,8 +73,8 @@ public class ReadEPGandMHP {
 		root = document.getRootElement();
 		Element ele = null;
 
-		log.info("¶ÁÈ¡TableĞÅÏ¢");
-		// PSIĞÅÏ¢
+		log.info("è¯»å–Tableä¿¡æ¯");
+		// PSIä¿¡æ¯
 		ele = root.element("table");
 		dataStr = ele.attributeValue("QueryTime").trim();
 		
@@ -82,7 +82,7 @@ public class ReadEPGandMHP {
 			dataStr = CommonUtility.getDateTime();
 		}
 		
-		// ÆµµãĞÅÏ¢
+		// é¢‘ç‚¹ä¿¡æ¯
 		String freqInfo = getFreqInfo(document);
 		
 		data = CommonUtility.getDateHour(dataStr);
@@ -91,22 +91,22 @@ public class ReadEPGandMHP {
 		
 		File readFilePath = new File(filename);
 
-		log.info("´Ó " + filename + " Ä¿Â¼¶ÁÈ¡TableÎÄ¼şĞÅÏ¢");
+		log.info("ä» " + filename + " ç›®å½•è¯»å–Tableæ–‡ä»¶ä¿¡æ¯");
 		
-		// ·µ»Øµ±Ç°ËùÓĞÆµµãĞÅÏ¢
+		// è¿”å›å½“å‰æ‰€æœ‰é¢‘ç‚¹ä¿¡æ¯
 		File file = new File(filename);
 		
 		String desPath = sysVO.getTomcatHome() + "/webapps/PSI/";
 
-		CommonUtility.CreateFolder(desPath); //´´½¨ÎÄ¼ş¼Ğ
-		CommonUtility.CreateFolder(desPath + data + "/"); //´´½¨ÎÄ¼ş¼Ğ
+		CommonUtility.CreateFolder(desPath); //åˆ›å»ºæ–‡ä»¶å¤¹
+		CommonUtility.CreateFolder(desPath + data + "/"); //åˆ›å»ºæ–‡ä»¶å¤¹
 
 		desPath = desPath + data + "/" + "Table.zip";
 		
 		String sendString = "";
 		
 		if(freqInfo.equals("") || freqInfo.toUpperCase().equals("ALL")) {
-			log.info("È¡µÃËùÓĞÆµµã±íĞÅÏ¢");
+			log.info("å–å¾—æ‰€æœ‰é¢‘ç‚¹è¡¨ä¿¡æ¯");
 			
 			try {
 				FileOutputStream out = new FileOutputStream(desPath);
@@ -123,11 +123,11 @@ public class ReadEPGandMHP {
 						for (int i=0; i < fileDir.length; i++) {
 							String ZipEntryName = fileListStr[i];
 							Document fileHeaderDoc = null;
-							log.info("¶ÁÈ¡TableÎÄ¼ş£º" + ZipEntryName);
+							log.info("è¯»å–Tableæ–‡ä»¶ï¼š" + ZipEntryName);
 							try {
 					            fileHeaderDoc = readFromFile(fileDir[i]);	
 							} catch (CommonException ce) {
-								log.error("ÎÄ¼ş¶ÁÈ¡Ê§°Ü£º" + fileListStr[i]);
+								log.error("æ–‡ä»¶è¯»å–å¤±è´¥ï¼š" + fileListStr[i]);
 								if (i != fileDir.length - 1) {
 									continue;
 								} else if(zipFlg){
@@ -135,24 +135,24 @@ public class ReadEPGandMHP {
 								}
 							}
 
-				            // È¡µÃÎÄ¼şÃû--ÆµµãĞÅÏ¢
+				            // å–å¾—æ–‡ä»¶å--é¢‘ç‚¹ä¿¡æ¯
 				            String freqStr = ZipEntryName.substring(0, ZipEntryName.indexOf(".xml"));
-				            // ĞŞ¸ÄÍ·²¿ÎÄ¼ş
+				            // ä¿®æ”¹å¤´éƒ¨æ–‡ä»¶
 				            utilXML.AmendXML(fileHeaderDoc, bsData, freqStr, "");
 				            
 							ZipEntry entry = new ZipEntry(ZipEntryName);
 							zipOut.putNextEntry(entry);
 							zipOut.write(fileHeaderDoc.asXML().getBytes());
 							zipFlg = true;
-							log.info("zipÑ¹Ëõ½áÊø");
+							log.info("zipå‹ç¼©ç»“æŸ");
 						}
 						
 						if(fileDir.length == 0) {
 							isError = 1;
 						}
 					} catch (CommonException ex) {
-						log.error("TableÎÄ¼ş¶ÁÈ¡Ê§°Ü£º" + ex.getMessage());
-						throw new CommonException("Ã»ÓĞÏàÓ¦µÄ±íÎÄ¼ş(Table)");
+						log.error("Tableæ–‡ä»¶è¯»å–å¤±è´¥ï¼š" + ex.getMessage());
+						throw new CommonException("æ²¡æœ‰ç›¸åº”çš„è¡¨æ–‡ä»¶(Table)");
 					} finally {
 						if (zipOut != null) {
 							zipOut.close();
@@ -169,11 +169,11 @@ public class ReadEPGandMHP {
 				}
 
 			} catch (FileNotFoundException e) {
-				log.error("ÕÒ²»µ½ÎÄ¼ş£º" + e.getMessage());
-				throw new CommonException("Ã»ÓĞÕÒµ½ÏàÓ¦Êı¾İ");
+				log.error("æ‰¾ä¸åˆ°æ–‡ä»¶ï¼š" + e.getMessage());
+				throw new CommonException("æ²¡æœ‰æ‰¾åˆ°ç›¸åº”æ•°æ®");
 			} catch (IOException ex) {
-				log.error("I/O³ö´í");
-				throw new CommonException("I/O³ö´í£º" + ex.getMessage());
+				log.error("I/Oå‡ºé”™");
+				throw new CommonException("I/Oå‡ºé”™ï¼š" + ex.getMessage());
 			}
 			
 			String redirect = "http://" + sysVO.getLocalRedirectIp() + ":"
@@ -187,8 +187,8 @@ public class ReadEPGandMHP {
 	        
 			//xmlUtil.replaceXMLMsgHeader(document, bsData);
 		} else {
-			// ²éÑ¯Ö¸¶¨Æµµã
-			log.info("Ö»È¡µÃ " + freqInfo + " Æµµã±íĞÅÏ¢");
+			// æŸ¥è¯¢æŒ‡å®šé¢‘ç‚¹
+			log.info("åªå–å¾— " + freqInfo + " é¢‘ç‚¹è¡¨ä¿¡æ¯");
 			
 			filename += "\\" + freqInfo + ".xml";
 			
@@ -198,7 +198,7 @@ public class ReadEPGandMHP {
 			
             long fileSize = readFilePath.length(); // M
             
-            log.info("Table ÎÄ¼ş´óĞ¡: " + fileSize);
+            log.info("Table æ–‡ä»¶å¤§å°: " + fileSize);
             
             String fileStr = CommonUtility.readStringFormFile(readFilePath);
             
@@ -212,7 +212,7 @@ public class ReadEPGandMHP {
 	            
 	            String body = sendString.substring(start);
 	            newEPGStr.append(sendString.substring(0, start));
-	            newEPGStr.append("\r\n<Return Type=\"table\" Value=\"0\" Desc=\"³É¹¦\" Redirect=\"\"/>\r\n");
+	            newEPGStr.append("\r\n<Return Type=\"table\" Value=\"0\" Desc=\"æˆåŠŸ\" Redirect=\"\"/>\r\n");
 	            newEPGStr.append(body);
 	            
 	            sendString = newEPGStr.toString();
@@ -222,8 +222,8 @@ public class ReadEPGandMHP {
     			desPath = sysVO.getTomcatHome() + "/webapps/PSI/";
 
     			data = CommonUtility.getDateHour(dataStr);
-    			CommonUtility.CreateFolder(desPath); //´´½¨ÎÄ¼ş¼Ğ
-    			CommonUtility.CreateFolder(desPath + data + "/"); //´´½¨ÎÄ¼ş¼Ğ
+    			CommonUtility.CreateFolder(desPath); //åˆ›å»ºæ–‡ä»¶å¤¹
+    			CommonUtility.CreateFolder(desPath + data + "/"); //åˆ›å»ºæ–‡ä»¶å¤¹
 
     			desPath = desPath + data + "/" + "Table.zip";
     			
@@ -231,7 +231,7 @@ public class ReadEPGandMHP {
     			ZipOutputStream zipOut = null;
     			
 				try {
-					log.info("¿ªÊ¼Ñ¹ËõTableÎªZIP: "  + desPath);
+					log.info("å¼€å§‹å‹ç¼©Tableä¸ºZIP: "  + desPath);
 					out = new FileOutputStream(desPath);
 					
 					zipOut = new ZipOutputStream(out);
@@ -239,9 +239,9 @@ public class ReadEPGandMHP {
 					ZipEntry entry = new ZipEntry(freqInfo + ".xml");
 					zipOut.putNextEntry(entry);
 					zipOut.write(fileStr.getBytes());
-					log.info("½áÊøÑ¹ËõTableÎªZIP: "  + desPath);
+					log.info("ç»“æŸå‹ç¼©Tableä¸ºZIP: "  + desPath);
 				} catch (Exception e) {
-					log.error("Table ĞÅÏ¢´òZIP°ü³ö´í£º" + e.getMessage());
+					log.error("Table ä¿¡æ¯æ‰“ZIPåŒ…å‡ºé”™ï¼š" + e.getMessage());
 				}  finally {
 					if (zipOut != null) {
 						try {
@@ -263,7 +263,7 @@ public class ReadEPGandMHP {
             }
 		}
 		
-		log.info("¶ÁÈ¡TableĞÅÏ¢½áÊø");
+		log.info("è¯»å–Tableä¿¡æ¯ç»“æŸ");
 		
         try {
         	if(sendString.equals("")) {
@@ -271,7 +271,7 @@ public class ReadEPGandMHP {
         	}
             utilXML.SendUpXML(sendString, bsData);
         } catch (CommonException e) {
-            log.error("ÉÏ·¢ "+ bsData.getStatusQueryType() +" ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+            log.error("ä¸Šå‘ "+ bsData.getStatusQueryType() +" ä¿¡æ¯å¤±è´¥: " + e.getMessage());
         }
 		
         sysVO = null;
@@ -289,17 +289,17 @@ public class ReadEPGandMHP {
                 + "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
         xml += "<table Freq=\"\" QueryTime=\"" + CommonUtility.getDateTime() + "\" />";
         if(0==value){
-            xml += "<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Redirect=\"" + Redirec + "\" Freq = \"" + Freq + "\" Desc=\"³É¹¦\" />";
+            xml += "<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Redirect=\"" + Redirec + "\" Freq = \"" + Freq + "\" Desc=\"æˆåŠŸ\" />";
         }else if(1==value){
-            xml += "<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"Ê§°Ü\" />";
+            xml += "<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"å¤±è´¥\" />";
         }
         xml += "</Msg>";
         return xml;
     }
     
 	/**
-	 *  ½ÓÊÕxml¸ñÊ½µÄString
-	 *  ·µ»Ø Document
+	 *  æ¥æ”¶xmlæ ¼å¼çš„String
+	 *  è¿”å› Document
 	 * @param str
 	 * @return Document
 	 */
@@ -308,12 +308,12 @@ public class ReadEPGandMHP {
 			Document document = DocumentHelper.parseText(str);
 			return document;
 		} catch (DocumentException de) {
-			throw new CommonException("Ìá½»µÄxml¸ñÊ½´íÎó" + de.getMessage());
+			throw new CommonException("æäº¤çš„xmlæ ¼å¼é”™è¯¯" + de.getMessage());
 		}
 	}
 	/**
-	 * ½ÓÊÕ Document
-	 * ·µ»Ø ·ûºÏxml¸ñÊ½µÄString
+	 * æ¥æ”¶ Document
+	 * è¿”å› ç¬¦åˆxmlæ ¼å¼çš„String
 	 * 
 	 * @param document
 	 * @return String
@@ -332,35 +332,35 @@ public class ReadEPGandMHP {
 			writer.close();
 			return XMLData;
 		} catch (IOException e) {
-			throw new CommonException("document´íÎó" + e.getMessage());
+			throw new CommonException("documenté”™è¯¯" + e.getMessage());
 		}
 	}
 
 	/**
-	 * ½ÓÊÕ String Ò»¸ö·ûºÏxml¸ñÊ½µÄÎÄ¼şµÄ¾ø¶ÔÂ·¾¶
-	 * ·µ»Ø Documnet
+	 * æ¥æ”¶ String ä¸€ä¸ªç¬¦åˆxmlæ ¼å¼çš„æ–‡ä»¶çš„ç»å¯¹è·¯å¾„
+	 * è¿”å› Documnet
 	 * @param fileName
 	 * @return Documnet
 	 */
 	public Document readXmlFromFile(String fileName) throws CommonException {
 		try {
-			log.info("¶ÁÈ¡ÎÄ¼ş£º" + fileName);
+			log.info("è¯»å–æ–‡ä»¶ï¼š" + fileName);
 			FileReader fileReaderf = new FileReader(fileName);
 			SAXReader sReader = new SAXReader();
 			sReader.setEncoding("GB2312");
 			Document document = sReader.read(fileReaderf);
-			log.info("ÎÄ¼ş¶ÁÈ¡½áÊø");
+			log.info("æ–‡ä»¶è¯»å–ç»“æŸ");
 			return document;
 		} catch (FileNotFoundException fe) {
-		    throw new CommonException("Ã»ÓĞÏàÓ¦Êı¾İÎÄ¼ş¡£");
+		    throw new CommonException("æ²¡æœ‰ç›¸åº”æ•°æ®æ–‡ä»¶ã€‚");
 		} catch (DocumentException de) {
-		    throw new CommonException("¶ÁÈ¡ÎÄ¼ş³ö´í " + de.getMessage());
+		    throw new CommonException("è¯»å–æ–‡ä»¶å‡ºé”™ " + de.getMessage());
 		}
 	}
 	
 	/**
-	 * ½ÓÊÕ String Ò»¸ö·ûºÏxml¸ñÊ½µÄÎÄ¼şµÄ¾ø¶ÔÂ·¾¶
-	 * ·µ»Ø Documnet
+	 * æ¥æ”¶ String ä¸€ä¸ªç¬¦åˆxmlæ ¼å¼çš„æ–‡ä»¶çš„ç»å¯¹è·¯å¾„
+	 * è¿”å› Documnet
 	 * @param fileName
 	 * @return Documnet
 	 */
@@ -373,11 +373,11 @@ public class ReadEPGandMHP {
 			Document document = sReader.read(fileReaderf);
 			return document;
 		} catch (FileNotFoundException fe) {
-			log.error("ÎÄ¼ş¶ÁÈ¡Ê§°Ü£º" + fe.getMessage());
-		    throw new CommonException("Ã»ÓĞÕÒµ½ÎÄ¼ş " + fe.getMessage());
+			log.error("æ–‡ä»¶è¯»å–å¤±è´¥ï¼š" + fe.getMessage());
+		    throw new CommonException("æ²¡æœ‰æ‰¾åˆ°æ–‡ä»¶ " + fe.getMessage());
 		} catch (DocumentException de) {
-			log.error("¶ÁÈ¡ÎÄ¼şÊ§°Ü£º" + de.getMessage());
-		    throw new CommonException("¶ÁÈ¡ÎÄ¼ş³ö´í " + de.getMessage());
+			log.error("è¯»å–æ–‡ä»¶å¤±è´¥ï¼š" + de.getMessage());
+		    throw new CommonException("è¯»å–æ–‡ä»¶å‡ºé”™ " + de.getMessage());
 		} finally {
 			if (fileReaderf != null) {
 				try {
@@ -390,9 +390,9 @@ public class ReadEPGandMHP {
 	}
 	
 	/**
-	 * È¡µÃÆµµãĞÅÏ¢
+	 * å–å¾—é¢‘ç‚¹ä¿¡æ¯
 	 * @param doc
-	 * @return String Æµµã
+	 * @return String é¢‘ç‚¹
 	 */
 	public String getFreqInfo(Document doc) {
 		String freqStr = "";

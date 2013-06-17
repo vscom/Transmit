@@ -16,7 +16,7 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.video.MonitorProgramQueryVO;
 
 /**
- * ÂÖÑ²¼à²âÉèÖÃ
+ * è½®å·¡ç›‘æµ‹è®¾ç½®
  * @author Bian Jiang
  *
  */
@@ -36,33 +36,33 @@ public class ProgramPatrolHandle {
     }
     
     /**
-     * 1. ÏÂ·¢¸øËùÓĞµÄIPM
-     * 2. ÉÏ±¨³É¹¦ĞÅÏ¢¸øÖĞĞÄ
+     * 1. ä¸‹å‘ç»™æ‰€æœ‰çš„IPM
+     * 2. ä¸ŠæŠ¥æˆåŠŸä¿¡æ¯ç»™ä¸­å¿ƒ
      */
     public void downXML() {
-        // ·µ»ØÊı¾İ
+        // è¿”å›æ•°æ®
         String upString = "";
         MemCoreData coreData = MemCoreData.getInstance();
-        // È¡µÃIPMÅäÖÃÎÄ¼şĞÅÏ¢
+        // å–å¾—IPMé…ç½®æ–‡ä»¶ä¿¡æ¯
         List IPMList = coreData.getIPMList();
         
         ProgramPatrolParse programPatrolParse = new ProgramPatrolParse();
         
-        // IPM ÏÂ·¢Ö¸Áî
+        // IPM ä¸‹å‘æŒ‡ä»¤
         for (int i=0; i< IPMList.size(); i++) {
             IPMInfoVO ipm = (IPMInfoVO) IPMList.get(i);
             try {
-                // ÔËĞĞÍ¼ĞÅÏ¢ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+                // è¿è¡Œå›¾ä¿¡æ¯ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
             	upString = utilXML.SendDownXML(this.downString, ipm.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
             } catch (CommonException e) {
-                log.error("ÂÖÑ²¼à²âÉèÖÃIPMÏÂ·¢³ö´í£º" + ipm.getURL());
+                log.error("è½®å·¡ç›‘æµ‹è®¾ç½®IPMä¸‹å‘å‡ºé”™ï¼š" + ipm.getURL());
             }
             
             if(upString != null && !upString.trim().equals("")) {
             	break;
             }
             
-        } // IPM ÏÂ·¢Ö¸Áî END
+        } // IPM ä¸‹å‘æŒ‡ä»¤ END
         
         if(upString.equals("")) {
         	upString = utilXML.getReturnXML(this.bsData, 1);
@@ -71,8 +71,8 @@ public class ProgramPatrolHandle {
             try {
                 document = utilXML.StringToXML(upString);
             } catch (CommonException e) {
-                log.error("ÂÖÑ²¼à²âÉèÖÃStringToXML Error: " + e.getMessage());
-                log.error("ÂÖÑ²¼à²âÉèÖÃ: " + upString);
+                log.error("è½®å·¡ç›‘æµ‹è®¾ç½®StringToXML Error: " + e.getMessage());
+                log.error("è½®å·¡ç›‘æµ‹è®¾ç½®: " + upString);
             }
             List<MonitorProgramQueryVO> programPatrolList = programPatrolParse.parseReturnXml(document);
             
@@ -80,8 +80,8 @@ public class ProgramPatrolHandle {
             	document.setXMLEncoding("GB2312");
 				MonitorProgramQueryHandle.updataProgramPatrolGroup(programPatrolList, document.asXML());
 			} catch (DaoException e) {
-				log.error("ÂÖÑ²¼à²âÈººÅ¸üĞÂÊı¾İ¿âÊ§°Ü: " + e.getMessage());
-				log.error("ÂÖÑ²¼à²âÉèÖÃ: " + upString);
+				log.error("è½®å·¡ç›‘æµ‹ç¾¤å·æ›´æ–°æ•°æ®åº“å¤±è´¥: " + e.getMessage());
+				log.error("è½®å·¡ç›‘æµ‹è®¾ç½®: " + upString);
 			}
             
         }
@@ -89,7 +89,7 @@ public class ProgramPatrolHandle {
         try {
             utilXML.SendUpXML(upString, bsData);
         } catch (CommonException e) {
-            log.error("ÂÖÑ²¼à²âÉèÖÃÉÏ±¨Ê§°Ü: " + e.getMessage());
+            log.error("è½®å·¡ç›‘æµ‹è®¾ç½®ä¸ŠæŠ¥å¤±è´¥: " + e.getMessage());
         }
         
         bsData = null;

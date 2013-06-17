@@ -1,37 +1,37 @@
 package com.bvcom.transmit.core.system;
 
 /** *//**  
- * ¼àÊÓĞÅÏ¢µÄJavaBeanÀà.  
+ * ç›‘è§†ä¿¡æ¯çš„JavaBeanç±».  
  * @author  amg  
  * @version 1.0   
- * Creation date: 2008-4-25 - ÉÏÎç10:37:00  
+ * Creation date: 2008-4-25 - ä¸Šåˆ10:37:00  
  */  
 public class MonitorInfoBean {   
-    /** *//** ¿ÉÊ¹ÓÃÄÚ´æ. */  
+    /** *//** å¯ä½¿ç”¨å†…å­˜. */  
     private long totalMemory;   
        
-    /** *//** Ê£ÓàÄÚ´æ. */  
+    /** *//** å‰©ä½™å†…å­˜. */  
     private long freeMemory;   
        
-    /** *//** ×î´ó¿ÉÊ¹ÓÃÄÚ´æ. */  
+    /** *//** æœ€å¤§å¯ä½¿ç”¨å†…å­˜. */  
     private long maxMemory;   
        
-    /** *//** ²Ù×÷ÏµÍ³. */  
+    /** *//** æ“ä½œç³»ç»Ÿ. */  
     private String osName;   
        
-    /** *//** ×ÜµÄÎïÀíÄÚ´æ. */  
+    /** *//** æ€»çš„ç‰©ç†å†…å­˜. */  
     private long totalMemorySize;   
        
-    /** *//** Ê£ÓàµÄÎïÀíÄÚ´æ. */  
+    /** *//** å‰©ä½™çš„ç‰©ç†å†…å­˜. */  
     private long freePhysicalMemorySize;   
        
-    /** *//** ÒÑÊ¹ÓÃµÄÎïÀíÄÚ´æ. */  
+    /** *//** å·²ä½¿ç”¨çš„ç‰©ç†å†…å­˜. */  
     private long usedMemory;   
        
-    /** *//** Ïß³Ì×ÜÊı. */  
+    /** *//** çº¿ç¨‹æ€»æ•°. */  
     private int totalThread;   
        
-    /** *//** cpuÊ¹ÓÃÂÊ. */  
+    /** *//** cpuä½¿ç”¨ç‡. */  
     private double cpuRatio;   
   
     public long getFreeMemory() {   

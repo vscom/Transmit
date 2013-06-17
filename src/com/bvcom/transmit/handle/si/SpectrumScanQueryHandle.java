@@ -13,7 +13,7 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.SMGCardInfoVO;
 
 /**
- * ÆµÆ×É¨Ãè
+ * é¢‘è°±æ‰«æ
  * @author Bian Jiang
  *
  */
@@ -45,20 +45,20 @@ public class SpectrumScanQueryHandle {
         for (int i=0; i< SMGSendList.size(); i++) {
             SMGCardInfoVO smg = (SMGCardInfoVO) SMGSendList.get(i);
             try {
-                // ÆµÆ×É¨ÃèĞÅÏ¢ÏÂ·¢ timeout 1000*60*10 Ê®·ÖÖÓ
+                // é¢‘è°±æ‰«æä¿¡æ¯ä¸‹å‘ timeout 1000*60*10 ååˆ†é’Ÿ
                 retXML = utilXML.SendDownXML(this.downString, smg.getURL(), CommonUtility.CHANNEL_SCAN_WAIT_TIMEOUT, bsData);
                 
                 retXML = CommonUtility.RegReplaceString(retXML, "ScanTime");
                 break;
             } catch (Exception e) {
-                log.error("ÏòSMGÏÂ·¢ ÆµÆ×É¨Ãè³ö´í£º" + smg.getURL());
+                log.error("å‘SMGä¸‹å‘ é¢‘è°±æ‰«æå‡ºé”™ï¼š" + smg.getURL());
             }
         }
         
         try {
             utilXML.SendUpXML(retXML, bsData);
         } catch (CommonException e) {
-            log.error("ÉÏ·¢ÆµÆ×É¨ÃèĞÅÏ¢Ê§°Ü: " + e.getMessage());
+            log.error("ä¸Šå‘é¢‘è°±æ‰«æä¿¡æ¯å¤±è´¥: " + e.getMessage());
         }
     }
     

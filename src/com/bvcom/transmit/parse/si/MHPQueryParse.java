@@ -33,7 +33,7 @@ public class MHPQueryParse {
 	
 
 	/**
-	 * MHP 回复信息
+	 * MHP 鍥炲淇℃伅
 	 * @param head
 	 * @param vo
 	 * @param value
@@ -48,9 +48,9 @@ public class MHPQueryParse {
         strBuff.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuff.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">");
 		if(0==value){
-            strBuff.append("<Return Type=\"MHPQuery\" Value=\"0\" Desc=\"成功\"/>");
+            strBuff.append("<Return Type=\"MHPQuery\" Value=\"0\" Desc=\"鎴愬姛\"/>");
 		}else if(1==value){
-            strBuff.append("<Return Type=\"MHPQuery\" Value=\"1\" Desc=\"失败\"/>");
+            strBuff.append("<Return Type=\"MHPQuery\" Value=\"1\" Desc=\"澶辫触\"/>");
 		}
 		strBuff.append("<ReturnInfo>");
 		

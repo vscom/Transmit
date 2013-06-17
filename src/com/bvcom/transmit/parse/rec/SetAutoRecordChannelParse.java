@@ -12,10 +12,10 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.rec.SetAutoRecordChannelVO;
 
-//×Ô¶¯Â¼Ïñ
+//è‡ªåŠ¨å½•åƒ
 public class SetAutoRecordChannelParse {
 
-	//×Ô¶¯Â¼Ïñ½âÎöxmlµÃµ½Í¨µÀºÅµÄÊı×é
+	//è‡ªåŠ¨å½•åƒè§£æxmlå¾—åˆ°é€šé“å·çš„æ•°ç»„
 	@SuppressWarnings("unchecked")
 //	public List<SetAutoRecordChannelVO> getDownXml(Document document){
 //		List<SetAutoRecordChannelVO> indexlist = new ArrayList();
@@ -210,7 +210,7 @@ public class SetAutoRecordChannelParse {
 		return strBuff.toString();
 	}
 	
-	// ×Ô¶¯Â¼Ïñ»Ø¸´xml´ò°ü
+	// è‡ªåŠ¨å½•åƒå›å¤xmlæ‰“åŒ…
 	public String ReturnXMLByURL(MSGHeadVO head, int value,int temp) {
 		
 		String xml = null;
@@ -220,13 +220,13 @@ public class SetAutoRecordChannelParse {
 				+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"SetAutoRecordChannel\" Value=\"0\" Desc=\"³É¹¦\"/>";
+			xml += "<Return Type=\"SetAutoRecordChannel\" Value=\"0\" Desc=\"æˆåŠŸ\"/>";
 		}else if(1==value){
 			if(temp==-1){
-				xml += "<Return Type=\"SetAutoRecordChannel\" Value=\"1\" Desc=\"Ê§°Ü-Ã»ÓĞ¸ü¶àµÄ×ÊÔ´¿ÉÓÃ\"/>";
+				xml += "<Return Type=\"SetAutoRecordChannel\" Value=\"1\" Desc=\"å¤±è´¥-æ²¡æœ‰æ›´å¤šçš„èµ„æºå¯ç”¨\"/>";
 				xml +="</Msg>";
 			}else{
-				xml += "<Return Type=\"SetAutoRecordChannel\" Value=\"1\" Desc=\"Ê§°Ü-Ã»ÓĞ¸ü¶àµÄ×ÊÔ´¿ÉÓÃ,Ê£Óà×ÊÔ´£º"+temp+"\"/>";
+				xml += "<Return Type=\"SetAutoRecordChannel\" Value=\"1\" Desc=\"å¤±è´¥-æ²¡æœ‰æ›´å¤šçš„èµ„æºå¯ç”¨,å‰©ä½™èµ„æºï¼š"+temp+"\"/>";
 				xml +="</Msg>";
 			}
 			return xml;

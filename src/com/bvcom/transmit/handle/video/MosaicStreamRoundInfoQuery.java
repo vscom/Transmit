@@ -58,23 +58,23 @@ public class MosaicStreamRoundInfoQuery {
     
     
     /**
-     * 1. ½âÎöxml»ñÈ¡½ÚÄ¿ĞÅÏ¢
-     * 2. ÅĞ¶Ï¸Ã½ÚÄ¿ÊÇ·ñÒÑ¾­ÉèÖÃÎªÒ»¶ÔÒ»
-     * 3. °Ñ²»ÊÇµÄÏÂ·¢×Ô¶¯Â¼Ïñ¸ø°å¿¨
-     * 4. ¸üĞÂ½ÚÄ¿Ó³Éä±írecordType = 4
-     * 4. ÏÂ·¢¶à»­
-     * 5. ÏÂ·¢RTVM
-     * 6. ·µ»ØÆ½Ì¨
-     * TODO ÂíÈü¿Ë¹ıÆÚÉ¾³ıÏà¹ØµÄ½ÚÄ¿ĞÅÏ¢ 
-     * Ä¿Ç°Ö»¸ø¸ø°å¿¨ÏÂ·¢DelÃüÁî£¬ 
-     * ĞèÒªÉ¾³ırecordType = 4µÄ½ÚÄ¿
-     * »¹ĞèÒª¸ü¾ßÕâĞ©ĞÅÏ¢ÏÂ·¢SetÃüÁî
+     * 1. è§£æxmlè·å–èŠ‚ç›®ä¿¡æ¯
+     * 2. åˆ¤æ–­è¯¥èŠ‚ç›®æ˜¯å¦å·²ç»è®¾ç½®ä¸ºä¸€å¯¹ä¸€
+     * 3. æŠŠä¸æ˜¯çš„ä¸‹å‘è‡ªåŠ¨å½•åƒç»™æ¿å¡
+     * 4. æ›´æ–°èŠ‚ç›®æ˜ å°„è¡¨recordType = 4
+     * 4. ä¸‹å‘å¤šç”»
+     * 5. ä¸‹å‘RTVM
+     * 6. è¿”å›å¹³å°
+     * TODO é©¬èµ›å…‹è¿‡æœŸåˆ é™¤ç›¸å…³çš„èŠ‚ç›®ä¿¡æ¯ 
+     * ç›®å‰åªç»™ç»™æ¿å¡ä¸‹å‘Delå‘½ä»¤ï¼Œ 
+     * éœ€è¦åˆ é™¤recordType = 4çš„èŠ‚ç›®
+     * è¿˜éœ€è¦æ›´å…·è¿™äº›ä¿¡æ¯ä¸‹å‘Setå‘½ä»¤
      * By: Bian Jiang 2012.3.21
      * @throws DaoException 
      */
     @SuppressWarnings({ "deprecation", "unchecked", "static-access" })
 	public void downXML() throws DaoException {
-    	// ·µ»ØÊı¾İ
+    	// è¿”å›æ•°æ®
         String upString = "";
        
         boolean isErr = false;
@@ -88,11 +88,11 @@ public class MosaicStreamRoundInfoQuery {
 			iasdoc = utilXML.StringToXML(downString);
 			
 		} catch (CommonException e) {
-			log.error("String×ª»»xml´íÎó£º"+e.getMessage());
+			log.error("Stringè½¬æ¢xmlé”™è¯¯ï¼š"+e.getMessage());
 			isErr = true;
 		}
 		
-		//»ñÈ¡Æ½Ì¨ÏÂ·¢µÄÂÖ²¥´°ÌåÊı
+		//è·å–å¹³å°ä¸‹å‘çš„è½®æ’­çª—ä½“æ•°
 		int windowNum = getParseWindowNum(document);
 		if(windowNum==1){
 			StreamRoundInfoQueryHandle streamRoundInfoQuery = new StreamRoundInfoQueryHandle(this.downString, this.bsData);
@@ -105,36 +105,36 @@ public class MosaicStreamRoundInfoQuery {
          	this.downString = this.downString.replaceAll("Version=\"2.5\"", "Version=\"2.4\"");
          }
 		
-		//ÏÈ½«ÂÖ²¥µÄ½ÚÄ¿É¾³ı£º£¨µ±Æ½Ì¨Ã»ÓĞµã»÷Í£Ö¹°´Å¥Ê±ºò£¬ĞèÒªÏÈÇå³ıÂÖ²¥µÄ½ÚÄ¿ĞÅÏ¢£©
-		//¸ü¸ÄÒ»¶ÔÒ»ÊµÊ±ÊÓÆµ±íµÄÒµÎñÀàĞÍ×´Ì¬recordtype=4
-    	// È¡µÃÂíÈü¿ËÏà¹ØµÄ½ÚÄ¿ĞÅÏ¢
+		//å…ˆå°†è½®æ’­çš„èŠ‚ç›®åˆ é™¤ï¼šï¼ˆå½“å¹³å°æ²¡æœ‰ç‚¹å‡»åœæ­¢æŒ‰é’®æ—¶å€™ï¼Œéœ€è¦å…ˆæ¸…é™¤è½®æ’­çš„èŠ‚ç›®ä¿¡æ¯ï¼‰
+		//æ›´æ”¹ä¸€å¯¹ä¸€å®æ—¶è§†é¢‘è¡¨çš„ä¸šåŠ¡ç±»å‹çŠ¶æ€recordtype=4
+    	// å–å¾—é©¬èµ›å…‹ç›¸å…³çš„èŠ‚ç›®ä¿¡æ¯
 		StopPlayingVideoHandle stopPlayingVideoHandle =new StopPlayingVideoHandle();
 		@SuppressWarnings("unused")
 		List<SetAutoRecordChannelVO> voList = stopPlayingVideoHandle.getProgramInfoByIndex();
-		//Í¬Ê±¸üĞÂÒ»¶ÔÒ»½ÚÄ¿±í£¬½«recordtype=4 ĞŞ¸ÄÎª³õÊ¼×´Ì¬
+		//åŒæ—¶æ›´æ–°ä¸€å¯¹ä¸€èŠ‚ç›®è¡¨ï¼Œå°†recordtype=4 ä¿®æ”¹ä¸ºåˆå§‹çŠ¶æ€
 		stopPlayingVideoHandle.updateMosaicChannelMapping(voList);
 		
 		
     	List<String> channlLists=new ArrayList<String>();
         SetAutoRecordChannelHandle handle = new SetAutoRecordChannelHandle();
-        List SMGSendList = new ArrayList();//SMGµÄÁĞ±íĞÅÏ¢
+        List SMGSendList = new ArrayList();//SMGçš„åˆ—è¡¨ä¿¡æ¯
 		List channelSendList = new ArrayList();//Channel Index List
 		List<SetAutoRecordChannelVO> autoRecordList = new ArrayList();
 		
-    	//½âÎö³ö½ÚÄ¿ĞÅÏ¢
+    	//è§£æå‡ºèŠ‚ç›®ä¿¡æ¯
     	channlLists=parse(document);
     	List<String> channlList=new ArrayList<String>();
-    	//´æ·Å·ÇÒ»¶ÔÒ»µÄ½ÚÄ¿ĞÅÏ¢¡¢½ÚÄ¿·Ö£¨Ò»¶ÔÒ»¡¢·ÇÒ»¶ÔÒ»£©
+    	//å­˜æ”¾éä¸€å¯¹ä¸€çš„èŠ‚ç›®ä¿¡æ¯ã€èŠ‚ç›®åˆ†ï¼ˆä¸€å¯¹ä¸€ã€éä¸€å¯¹ä¸€ï¼‰
     	channlList = isChannlExist(channlLists);
-    	//Èç¹ûchannlList.size() ²»µÈÓÚ0
-    	//ÄÇÃ´°Ñ¼¯ºÏÖĞµÄ½ÚÄ¿ĞÅÏ¢·â×°Îª×Ô¶¯Â¼ÏñÏÂ·¢µ½°å¿¨
+    	//å¦‚æœchannlList.size() ä¸ç­‰äº0
+    	//é‚£ä¹ˆæŠŠé›†åˆä¸­çš„èŠ‚ç›®ä¿¡æ¯å°è£…ä¸ºè‡ªåŠ¨å½•åƒä¸‹å‘åˆ°æ¿å¡
     	if(channlList.size()!=0){
-    		//°Ñ½ÚÄ¿·â×°³É×Ô¶¯Â¼ÏñÏÂ·¢µ½°å¿¨
+    		//æŠŠèŠ‚ç›®å°è£…æˆè‡ªåŠ¨å½•åƒä¸‹å‘åˆ°æ¿å¡
     		 autoRecordList = setAutoRecord(channlList);
     	     int channel = 0;
     	     for(int i=0;i<autoRecordList.size();i++){   
     	    	 SetAutoRecordChannelVO vo = (SetAutoRecordChannelVO)autoRecordList.get(i);
-	    		 //½«°å¿¨ºÅ´æÈëchannelSendListÖĞ£¬ÇÒ±£Ö¤channelSendListÎŞÖØ¸´µÄÍ¨µÀºÅ
+	    		 //å°†æ¿å¡å·å­˜å…¥channelSendListä¸­ï¼Œä¸”ä¿è¯channelSendListæ— é‡å¤çš„é€šé“å·
     	    	 int channelIndex = vo.getDevIndex();
     	    	 if (channel != channelIndex && channelIndex != 0) {
 					boolean isHasIndex = false;
@@ -150,7 +150,7 @@ public class MosaicStreamRoundInfoQuery {
 					}
     	    	 }
     	    	channel = channelIndex;
-    	    	// *************ÏÂ·¢smg(ĞèÒª¸øÄÄĞ©°å¿¨·¢ĞÅÏ¢)**************
+    	    	// *************ä¸‹å‘smg(éœ€è¦ç»™å“ªäº›æ¿å¡å‘ä¿¡æ¯)**************
 	    		CommonUtility.checkSMGChannelIndex(channelIndex, SMGSendList);
     	    }
     	
@@ -165,15 +165,15 @@ public class MosaicStreamRoundInfoQuery {
     	    
     	     /*
     		
-    		//»ñÈ¡ĞèÒª¸øsmg°å¿¨ ÏÂ·¢µÄ url
+    		//è·å–éœ€è¦ç»™smgæ¿å¡ ä¸‹å‘çš„ url
     		List<SMGCardInfoVO> smgList=new ArrayList<SMGCardInfoVO>();
-    		//ÖØĞÂ·ÖÅä×ÊÔ´£ºÎŞ·¨ÕÒµ½Ò»¶ÔÒ»µÄ½ÚÄ¿ĞÅÏ¢£¬ÓĞÒ»¶ÔÒ»µÄ½ÚÄ¿ĞÅÏ¢
+    		//é‡æ–°åˆ†é…èµ„æºï¼šæ— æ³•æ‰¾åˆ°ä¸€å¯¹ä¸€çš„èŠ‚ç›®ä¿¡æ¯ï¼Œæœ‰ä¸€å¯¹ä¸€çš„èŠ‚ç›®ä¿¡æ¯
     		getSmgUrl(channlList,smgList);
     		String url="";
     		for(int i=0;i<smgList.size();i++){
     			SMGCardInfoVO smg = (SMGCardInfoVO) smgList.get(i);
     			if(smg.getIndexType().equals("AutoRecord")){
-    				//´ËµØ·½´¦ÀíÎªµÚÒ»¸ö×Ô¶¯Â¼ÖÆÍ¨µÀ
+    				//æ­¤åœ°æ–¹å¤„ç†ä¸ºç¬¬ä¸€ä¸ªè‡ªåŠ¨å½•åˆ¶é€šé“
 	    			if(!url.equals(smg.getURL().trim())){
 	    				try {
 							utilXML.SendDownNoneReturn(msgStr, smg.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
@@ -184,16 +184,16 @@ public class MosaicStreamRoundInfoQuery {
 		
 							}
 						} catch (CommonException e) {
-							log.error("ÏÂ·¢×Ô¶¯Â¼Ïñµ½SMG³ö´í£º" + smg.getURL());
+							log.error("ä¸‹å‘è‡ªåŠ¨å½•åƒåˆ°SMGå‡ºé”™ï¼š" + smg.getURL());
 							isErr = true;
 						}
 	    			}
     			}
     		}
     		*/
-    	     //ÂíÈü¿ËÂÖ²¥ÉèÖÃµÄÊ±ºò£¬²»ĞèÒª¸øTSCÏÂ·¢×Ô¶¯Â¼ÖÆ£¬Ö»ĞèÒª¸øIASºÍSMG
+    	     //é©¬èµ›å…‹è½®æ’­è®¾ç½®çš„æ—¶å€™ï¼Œä¸éœ€è¦ç»™TSCä¸‹å‘è‡ªåŠ¨å½•åˆ¶ï¼Œåªéœ€è¦ç»™IASå’ŒSMG
     	     
-    	     //1£ºÃ»ÓĞ¸øTSCºÍIPM·¢ËÍ³É¹¦Ê±²»ÔÚ¸ø°å¿¨·¢ĞÅÏ¢
+    	     //1ï¼šæ²¡æœ‰ç»™TSCå’ŒIPMå‘é€æˆåŠŸæ—¶ä¸åœ¨ç»™æ¿å¡å‘ä¿¡æ¯
  	        if(autoRecordList.size() > 0) {
  	        
  	        	String url = "";
@@ -206,7 +206,7 @@ public class MosaicStreamRoundInfoQuery {
  		                if (!url.equals(smg.getURL().trim())) {
  		                msgStr = msgStr.replaceAll("QAM=\"64\"", "QAM=\"QAM64\"");
  		                msgStr = msgStr.replaceAll("QAM=\"\"", "QAM=\"QAM64\"");
- 		                // ×Ô¶¯Â¼ÏñÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+ 		                // è‡ªåŠ¨å½•åƒä¸‹å‘ timeout 1000*30 ä¸‰åç§’
  		                utilXML.SendDownNoneReturn(setAutoRecordChannel.replaceString(msgStr), smg.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
  		                url = smg.getURL().trim();
  		                }
@@ -216,10 +216,10 @@ public class MosaicStreamRoundInfoQuery {
  	
  						}
  		            } catch (CommonException e) {
- 		                log.error("ÏÂ·¢×Ô¶¯Â¼Ïñµ½SMG³ö´í£º" + smg.getURL());
+ 		                log.error("ä¸‹å‘è‡ªåŠ¨å½•åƒåˆ°SMGå‡ºé”™ï¼š" + smg.getURL());
  		            }
  		            
- 		           //¸üĞÂ°å¿¨µÄURLµØÖ·
+ 		           //æ›´æ–°æ¿å¡çš„URLåœ°å€
 		            try {
 		            	handle.updateSMGURLByDevIndex(smg.getIndex(), smg.getURL());
 		            } catch (Exception ex) {
@@ -229,26 +229,26 @@ public class MosaicStreamRoundInfoQuery {
  	        }
  	            
     		/*
-    		// ¸üĞÂ½ÚÄ¿Ó³Éä±í 
+    		// æ›´æ–°èŠ‚ç›®æ˜ å°„è¡¨ 
     		SetAutoRecordChannelHandle setAutoRecordChannel = new SetAutoRecordChannelHandle();
-    		// RecordType 0£º²»Â¼Ïñ£¬1:´ú±í¹ÊÕÏ´¥·¢Â¼ÖÆ   2£º24Ğ¡Ê±Â¼Ïñ(Ä¬ÈÏ)	3: ÈÎÎñÂ¼Ïñ  4: ÂíÈü¿ËºÏ³ÉÂÖ²¥
+    		// RecordType 0ï¼šä¸å½•åƒï¼Œ1:ä»£è¡¨æ•…éšœè§¦å‘å½•åˆ¶   2ï¼š24å°æ—¶å½•åƒ(é»˜è®¤)	3: ä»»åŠ¡å½•åƒ  4: é©¬èµ›å…‹åˆæˆè½®æ’­
             for(int i=0; i< autoRecordList.size(); i++) {
             	SetAutoRecordChannelVO vo = (SetAutoRecordChannelVO)autoRecordList.get(i);
     			try {
-    				// 4: ÂíÈü¿ËºÏ³ÉÂÖ²¥ Add By: Bian Jiang 2012.3.21
+    				// 4: é©¬èµ›å…‹åˆæˆè½®æ’­ Add By: Bian Jiang 2012.3.21
         			vo.setRecordType(4);
 					setAutoRecordChannel.upChannelRemappingIndex(vo);
 				} catch (DaoException e) {
-					log.error("¸üĞÂÂíÈü¿ËºÏ³ÉÂÖ²¥³ö´í£º" + e.getLocalizedMessage());
+					log.error("æ›´æ–°é©¬èµ›å…‹åˆæˆè½®æ’­å‡ºé”™ï¼š" + e.getLocalizedMessage());
 				}
             }
             */
     	}
     	
-    	//ÏÂ·¢¸ø¶à»­
-    	//Ôö¼Ó¶à»­ÃæµÄÍ¨µÀºÅ
+    	//ä¸‹å‘ç»™å¤šç”»
+    	//å¢åŠ å¤šç”»é¢çš„é€šé“å·
     	
-    	//½âÎö³ö½ÚÄ¿ĞÅÏ¢
+    	//è§£æå‡ºèŠ‚ç›®ä¿¡æ¯
     	channlLists=parse(iasdoc);
     	
     	List ipmList=coreData.getIPMList();
@@ -260,17 +260,17 @@ public class MosaicStreamRoundInfoQuery {
 					utilXML.SendDownNoneReturn(iasdoc.asXML(), ipm.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
 					
 				} catch (CommonException e) {
-					log.error("ÂíÈü¿ËÂÖÑµÏÂ·¢¶à»­´íÎó£º"+e.getMessage());
+					log.error("é©¬èµ›å…‹è½®è®­ä¸‹å‘å¤šç”»é”™è¯¯ï¼š"+e.getMessage());
 					isErr = true;
 				}
     		}
     	}
     	MonitorProgramQueryVO rtvsVO = new MonitorProgramQueryVO();
-        // 0:¿ÕÏĞ 1:Ò»¶ÔÒ»¼àÊÓ 2:ÂÖ²¥¼à²âÊ¹ÓÃ 3:ÊÖ¶¯Ñ¡Ì¨ 4:×Ô¶¯ÂÖ²¥ 5:¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+        // 0:ç©ºé—² 1:ä¸€å¯¹ä¸€ç›‘è§† 2:è½®æ’­ç›‘æµ‹ä½¿ç”¨ 3:æ‰‹åŠ¨é€‰å° 4:è‡ªåŠ¨è½®æ’­ 5:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
         try {
 			rtvsVO = MonitorProgramQueryHandle.GetChangeProgramInfo(rtvsVO, 5);
 		} catch (DaoException e1) {
-			log.error("È¡µÃ¶à»­ÃæºÏ³É(ÂíÈü¿Ë)URL´íÎó: " + e1.getMessage());
+			log.error("å–å¾—å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)URLé”™è¯¯: " + e1.getMessage());
 			isErr = true;
 		}
     	
@@ -282,13 +282,13 @@ public class MosaicStreamRoundInfoQuery {
         
         
         if (isErr) {
-            // Ê§°Ü
+            // å¤±è´¥
             upString = utilXML.getReturnXML(bsData, 1);
         } else {
 	        try {
 	        	upString = utilXML.SendDownXML(rtvsString, rtvsVO.getRTVSResetURL(), CommonUtility.CHANGE_PROGRAM_QUERY, bsData);
 	        } catch (CommonException e) {
-	            log.error("¶à»­ÃæºÏ³É(ÂíÈü¿Ë)ÏÂ·¢RTVSĞŞ¸ÄÊäÈëÁ÷µÄIPºÍ¶Ë¿Ú³ö´í£º" + rtvsVO.getRTVSResetURL());
+	            log.error("å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)ä¸‹å‘RTVSä¿®æ”¹è¾“å…¥æµçš„IPå’Œç«¯å£å‡ºé”™ï¼š" + rtvsVO.getRTVSResetURL());
 	            isErr = true;
 	        }
         }
@@ -300,25 +300,25 @@ public class MosaicStreamRoundInfoQuery {
             url = RTVSReset.getReturnURL(doc);
         } catch (CommonException e) {
         	isErr = true;
-            log.error("ÊÓÆµURL StringToXML Error: " + e.getMessage());
+            log.error("è§†é¢‘URL StringToXML Error: " + e.getMessage());
         }
         
         if (isErr) {
-            // Ê§°Ü
+            // å¤±è´¥
             upString = getReturnXML(url, bsData, 1);
         } else {
 	        try {
 	        	upString = getReturnXML(url, bsData, 0);
 	            utilXML.SendUpXML(upString, bsData);
-	            //³É¹¦ºóÆô¶¯ ÂíÈü¿Ëµ½µã ·¢ËÍ×Ô¶¯Â¼ÏñÉ¾³ıĞ­Òé
+	            //æˆåŠŸåå¯åŠ¨ é©¬èµ›å…‹åˆ°ç‚¹ å‘é€è‡ªåŠ¨å½•åƒåˆ é™¤åè®®
 	            
 	        } catch (CommonException e) {
-	            log.error("¶à»­ÃæºÏ³É(ÂíÈü¿Ë)ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+	            log.error("å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)ä¿¡æ¯å¤±è´¥: " + e.getMessage());
 	        }
         }
         
-        //³É¹¦ºóÆô¶¯ ÂíÈü¿Ëµ½µã ·¢ËÍ×Ô¶¯Â¼ÏñÉ¾³ıĞ­Òé¡¢
-        //±£´æÂíÈü¿ËÂÖ²¥ ³ÖĞø Ê±¼ä µ½ AutoAnalysisTime.properties  
+        //æˆåŠŸåå¯åŠ¨ é©¬èµ›å…‹åˆ°ç‚¹ å‘é€è‡ªåŠ¨å½•åƒåˆ é™¤åè®®ã€
+        //ä¿å­˜é©¬èµ›å…‹è½®æ’­ æŒç»­ æ—¶é—´ åˆ° AutoAnalysisTime.properties  
 //        AutoAnalysisTimeQueryConfigFile autoAnalysisTimeOueryConfigFile=new AutoAnalysisTimeQueryConfigFile();
 //        int hours=Integer.parseInt(RunTime);
 //        Date date=new Date();
@@ -336,7 +336,7 @@ public class MosaicStreamRoundInfoQuery {
        
         
         
-        //by tqy Èç¹ûRUNTIME=""£¬²»½øĞĞÂíÈü¿ËÂÖ²¥Í£Ö¹Ïß³Ì£¬Ö»ÓĞÊÓÆµÍ£Ö¹Ğ­ÒéÏÂ·¢Ê±ºò£¬²Å½øĞĞ´¦Àí
+        //by tqy å¦‚æœRUNTIME=""ï¼Œä¸è¿›è¡Œé©¬èµ›å…‹è½®æ’­åœæ­¢çº¿ç¨‹ï¼Œåªæœ‰è§†é¢‘åœæ­¢åè®®ä¸‹å‘æ—¶å€™ï¼Œæ‰è¿›è¡Œå¤„ç†
         
 //        AutoAnalysisTimeQueryConfigFile autoAnalysisTimeOueryConfigFile=new AutoAnalysisTimeQueryConfigFile();
 //        String StopTime = autoAnalysisTimeOueryConfigFile.getStreamRoundInfoQueryStopTime();
@@ -357,7 +357,7 @@ public class MosaicStreamRoundInfoQuery {
 //		strDate[5]=sEndDate[2];
 //		
 //		Date stopDate = new Date(Integer.parseInt(strDate[0]) - 1900, Integer.parseInt(strDate[1]) - 1, Integer.parseInt(strDate[2]), Integer.parseInt(strDate[3]), Integer.parseInt(strDate[4]), Integer.parseInt(strDate[5]));
-//		//ÈôÊ±¼ä¹ıÆÚ£¬É¾³ıÂíÈü¿ËÂÖ²¥£¬ÄÇÃ´±È¶Ô£¬Æô¶¯ĞÂÒµÎñ£¬·ñÔò²»Æô¶¯¶¨Ê±Æ÷
+//		//è‹¥æ—¶é—´è¿‡æœŸï¼Œåˆ é™¤é©¬èµ›å…‹è½®æ’­ï¼Œé‚£ä¹ˆæ¯”å¯¹ï¼Œå¯åŠ¨æ–°ä¸šåŠ¡ï¼Œå¦åˆ™ä¸å¯åŠ¨å®šæ—¶å™¨
 //		if (stopDate.before(new Date())) {
 //			Timer stopTimer=new Timer();
 //	        stopTimer.schedule(new MosaicStreamRoundInfoStopTimerTask(), stopDate);
@@ -369,7 +369,7 @@ public class MosaicStreamRoundInfoQuery {
         utilXML = null;
     }
     
-    //»ñÈ¡ÂÖ²¥´°Ìå¸öÊı
+    //è·å–è½®æ’­çª—ä½“ä¸ªæ•°
     @SuppressWarnings({ "deprecation", "unchecked", "unused" })
 	private int getParseWindowNum(Document document){
     	int windowNum =1;
@@ -422,7 +422,7 @@ public class MosaicStreamRoundInfoQuery {
     				String ServiceID=Channel.attributeValue("ServiceID");
     				String VideoPID=Channel.attributeValue("VideoPID");
     				String AudioPID=Channel.attributeValue("AudioPID");
-    				//Èç¹ûÊÇÒ»¶ÔÒ»µÄ£¬ÄÇÃ´½«»ñÈ¡µ½Í¨µÀºÅ£¬·ñÔò£¬Í¨µÀºÅÎª¿Õ
+    				//å¦‚æœæ˜¯ä¸€å¯¹ä¸€çš„ï¼Œé‚£ä¹ˆå°†è·å–åˆ°é€šé“å·ï¼Œå¦åˆ™ï¼Œé€šé“å·ä¸ºç©º
     				//by tqy 2012-05-15
    					Channel.addAttribute("DevIndex", getDevIndex(Freq,ServiceID));
     				channlList.add(Freq+","+SymbolRate+","+QAM+","+ServiceID+","+VideoPID+","+AudioPID);
@@ -454,26 +454,26 @@ public class MosaicStreamRoundInfoQuery {
 	    			}
 	    			
 				} catch (Exception e) {
-					log.error("²éÑ¯×Ô¶¯Â¼ÏñÊÇ·ñ´æÔÚ´íÎó£º"+e.getMessage());
+					log.error("æŸ¥è¯¢è‡ªåŠ¨å½•åƒæ˜¯å¦å­˜åœ¨é”™è¯¯ï¼š"+e.getMessage());
 				}finally{
 					DaoSupport.close(statement);
 					DaoSupport.close(rs);
 				}
 	    	}
     	} catch (Exception e) {
-    		log.error("²éÑ¯×Ô¶¯Â¼ÏñÊÇ·ñ´æÔÚ´íÎó£º"+e.getMessage());
+    		log.error("æŸ¥è¯¢è‡ªåŠ¨å½•åƒæ˜¯å¦å­˜åœ¨é”™è¯¯ï¼š"+e.getMessage());
     	}finally{
     		try {
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("¹Ø±Õ×Ô¶¯Â¼Ïñ²éÑ¯Á¬½Ó´íÎó£º"+e.getMessage());
+				log.error("å…³é—­è‡ªåŠ¨å½•åƒæŸ¥è¯¢è¿æ¥é”™è¯¯ï¼š"+e.getMessage());
 			}
     	}
     	return channlList;
     }
     
     /* 
-     *  °ÑÊı×é×ª»»ÎªSetAutoRecordChannelVO¶ÔÏóµÄlist
+     *  æŠŠæ•°ç»„è½¬æ¢ä¸ºSetAutoRecordChannelVOå¯¹è±¡çš„list
      *  By: Bian Jiang 2012.3.21
      */
     @SuppressWarnings("static-access")
@@ -509,24 +509,24 @@ public class MosaicStreamRoundInfoQuery {
 	    			vo.setAudioPID(Integer.parseInt(strArr[5]));
 	    			try
 	    			{
-	    				//»ñÈ¡½ÚÄ¿Ãû³ÆºÍHDFLAG
+	    				//è·å–èŠ‚ç›®åç§°å’ŒHDFLAG
 		    			vo = setAutoRecordChannel.getHDFlagByProgram(vo);	
-	    				// ·ÖÅäÍ¨µÀĞÅÏ¢
+	    				// åˆ†é…é€šé“ä¿¡æ¯
 		    			setAutoRecordChannel.GetChannelRemappingbyFreq(vo);
 	    			}catch(Exception ex1)
 	    			{
 	    				log.error(ex1.getMessage());
 	    			}
 	    			
-	    			// 4: ÂíÈü¿ËºÏ³ÉÂÖ²¥ Add By: Bian Jiang 2012.3.21
+	    			// 4: é©¬èµ›å…‹åˆæˆè½®æ’­ Add By: Bian Jiang 2012.3.21
 	    			vo.setRecordType(4);
 	    			autoRecordList.add(vo);
-	    			//by tqy Ìí¼Óµ½×Ô¶¯Â¼ÖÆÒ»¶ÔÒ»±íÖĞ
+	    			//by tqy æ·»åŠ åˆ°è‡ªåŠ¨å½•åˆ¶ä¸€å¯¹ä¸€è¡¨ä¸­
 	    			saveMosaicProgramToMonitor(vo);
 	    			
 				} catch (Exception e) {
 					e.printStackTrace();
-					log.error("²éÑ¯×Ô¶¯Â¼ÏñÊÇ·ñ´æÔÚ´íÎó£º"+e.getMessage());
+					log.error("æŸ¥è¯¢è‡ªåŠ¨å½•åƒæ˜¯å¦å­˜åœ¨é”™è¯¯ï¼š"+e.getMessage());
 				}finally{
 					//DaoSupport.close(statement);
 					//DaoSupport.close(rs);
@@ -553,7 +553,7 @@ public class MosaicStreamRoundInfoQuery {
     			}
 
 			} catch (Exception e) {
-				log.error("²éÑ¯×Ô¶¯Â¼ÏñÊÇ·ñ´æÔÚ´íÎó£º"+e.getMessage());
+				log.error("æŸ¥è¯¢è‡ªåŠ¨å½•åƒæ˜¯å¦å­˜åœ¨é”™è¯¯ï¼š"+e.getMessage());
 			}finally{
 				DaoSupport.close(statement);
 				DaoSupport.close(rs);
@@ -561,12 +561,12 @@ public class MosaicStreamRoundInfoQuery {
 			*/
 			
 		} catch (Exception e) {
-			log.error("²éÑ¯×Ô¶¯Â¼ÏñÊÇ·ñ´æÔÚ´íÎó£º"+e.getMessage());
+			log.error("æŸ¥è¯¢è‡ªåŠ¨å½•åƒæ˜¯å¦å­˜åœ¨é”™è¯¯ï¼š"+e.getMessage());
 		}finally{
 //    		try {
 //				DaoSupport.close(conn);
 //			} catch (DaoException e) {
-//				log.error("¹Ø±Õ×Ô¶¯Â¼Ïñ²éÑ¯Á¬½Ó´íÎó£º"+e.getMessage());
+//				log.error("å…³é—­è‡ªåŠ¨å½•åƒæŸ¥è¯¢è¿æ¥é”™è¯¯ï¼š"+e.getMessage());
 //			}
     	}
     	return autoRecordList;
@@ -575,7 +575,7 @@ public class MosaicStreamRoundInfoQuery {
    public void saveMosaicProgramToMonitor(SetAutoRecordChannelVO vo ) throws DaoException
    {
 	   		SetAutoRecordChannelHandle handle = new SetAutoRecordChannelHandle();
-	   		//Ôö¼ÓÅĞ¶ÏÈç¹û¸ÃÂ¼ÏñÖ®Ç°ÒÑ¾­´æÔÚ²¢ÇÒ×´Ì¬ÎªÂ¼ÖÆ Ôò»¹°´ÕÕÔ­À´Í¨µÀÏÂ·¢
+	   		//å¢åŠ åˆ¤æ–­å¦‚æœè¯¥å½•åƒä¹‹å‰å·²ç»å­˜åœ¨å¹¶ä¸”çŠ¶æ€ä¸ºå½•åˆ¶ åˆ™è¿˜æŒ‰ç…§åŸæ¥é€šé“ä¸‹å‘
 			 Statement statement = null;
 			 ResultSet rs = null;
 			 Connection conn = null;
@@ -584,7 +584,7 @@ public class MosaicStreamRoundInfoQuery {
 				 String sql="SELECT * FROM channelremapping where delflag =0 and Freq = "+vo.getFreq()+" and ServiceId = "+vo.getServiceID()+" and RecordType = 2 and StatusFlag = 1;";
 				 boolean temp=false;
 				 int tscindex=0;
-				 //Ìí¼Óias index  Ji Long  2011-08-09
+				 //æ·»åŠ ias index  Ji Long  2011-08-09
 				 int iasindex=0;
 				 try {
 					 statement=conn.createStatement();
@@ -595,7 +595,7 @@ public class MosaicStreamRoundInfoQuery {
 						 iasindex=rs.getInt("IpmIndex");
 					 }
 				} catch (Exception e) {
-					log.error("²éÑ¯×Ô¶¯Â¼Ïñ×´Ì¬´íÎó£º"+e.getMessage());
+					log.error("æŸ¥è¯¢è‡ªåŠ¨å½•åƒçŠ¶æ€é”™è¯¯ï¼š"+e.getMessage());
 				}finally{
 					DaoSupport.close(statement);
 					DaoSupport.close(rs);
@@ -604,15 +604,15 @@ public class MosaicStreamRoundInfoQuery {
 					 vo.setTscIndex(tscindex);
 					 vo.setIpmIndex(iasindex);
 				 }else{
-					 //TODO Èç¹ûÊÇ¸ßÇå½ÚÄ¿ÔòÆ½¾ù·ÖÅä¸ßÇå½ÚÄ¿¸øTSC 
-					 //·ñÔò°ÑÍ¬Ò»¸öÆµµãµÄ½ÚÄ¿·¢¸øÍ¬Ò»¸ötsc
+					 //TODO å¦‚æœæ˜¯é«˜æ¸…èŠ‚ç›®åˆ™å¹³å‡åˆ†é…é«˜æ¸…èŠ‚ç›®ç»™TSC 
+					 //å¦åˆ™æŠŠåŒä¸€ä¸ªé¢‘ç‚¹çš„èŠ‚ç›®å‘ç»™åŒä¸€ä¸ªtsc
 					vo.setTscIndex(handle.getTSCIndex(vo.getHDFlag(),vo.getFreq()));
 					
-					//ias Í¨µÀºÅ Æ½¾ù·ÖÅä  Ò»¸ö¸ßÇåµÈÓÚ5¸ö±êÇå  Ji Long 
+					//ias é€šé“å· å¹³å‡åˆ†é…  ä¸€ä¸ªé«˜æ¸…ç­‰äº5ä¸ªæ ‡æ¸…  Ji Long 
 					//vo.setIpmIndex(handle.getIASIndex(vo.getHDFlag(),vo.getFreq()));
 				 }
 				 
-				 //statusflag =1 ´ú±íÓĞĞ§µÄ½ÚÄ¿ĞÅÏ¢
+				 //statusflag =1 ä»£è¡¨æœ‰æ•ˆçš„èŠ‚ç›®ä¿¡æ¯
 				 handle.upChannelRemappingIndex(vo);
 			 } catch (Exception e) {
 				 e.printStackTrace();
@@ -671,10 +671,10 @@ public class MosaicStreamRoundInfoQuery {
 	
 	
     /**
-     * È¡µÃ·µ»ØµÄXMLĞÅÏ¢
-     * @param head XMLÊı¾İ¶ÔÏó 
-     * @param value 0:³É¹¦ 1:Ê§°Ü
-     * @return XMLÎÄ±¾ĞÅÏ¢
+     * å–å¾—è¿”å›çš„XMLä¿¡æ¯
+     * @param head XMLæ•°æ®å¯¹è±¡ 
+     * @param value 0:æˆåŠŸ 1:å¤±è´¥
+     * @return XMLæ–‡æœ¬ä¿¡æ¯
      */
     private String getReturnXML(String url, MSGHeadVO head, int value) {
         
@@ -686,9 +686,9 @@ public class MosaicStreamRoundInfoQuery {
         strBuf.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuf.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\"> \r\n");
         if(0==value){
-            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r\n");
+            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r\n");
         }else if(1==value){
-            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"Ê§°Ü\"/>\r\n");
+            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"å¤±è´¥\"/>\r\n");
         }
         strBuf.append("<ReturnInfo> \r\n ");
         strBuf.append("<StreamRoundInfoQuery WindowNumber = \""+WindowNumber+"\"> \r\n ");
@@ -739,7 +739,7 @@ public class MosaicStreamRoundInfoQuery {
 						CommonUtility.checkSMGChannelIndex(DevIndex, smgList);
 					}
 				} catch (Exception e) {
-					log.info("²éÑ¯°å¿¨Í¨µÀ´íÎó£º"+e.getMessage());
+					log.info("æŸ¥è¯¢æ¿å¡é€šé“é”™è¯¯ï¼š"+e.getMessage());
 				}finally{
 					DaoSupport.close(statement);
 					DaoSupport.close(rs);
@@ -751,7 +751,7 @@ public class MosaicStreamRoundInfoQuery {
 			try {
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.info("¹Ø±ÕÁ¬½Ó´íÎó£º"+e.getMessage());
+				log.info("å…³é—­è¿æ¥é”™è¯¯ï¼š"+e.getMessage());
 			}
 		}
 	}
@@ -772,7 +772,7 @@ public class MosaicStreamRoundInfoQuery {
 						DevIndex=rs.getString("DevIndex");
 					}
 				} catch (Exception e) {
-					log.info("²éÑ¯°å¿¨Í¨µÀ´íÎó£º"+e.getMessage());
+					log.info("æŸ¥è¯¢æ¿å¡é€šé“é”™è¯¯ï¼š"+e.getMessage());
 				}finally{
 					DaoSupport.close(statement);
 					DaoSupport.close(rs);
@@ -783,7 +783,7 @@ public class MosaicStreamRoundInfoQuery {
 			try {
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.info("¹Ø±ÕÁ¬½Ó´íÎó£º"+e.getMessage());
+				log.info("å…³é—­è¿æ¥é”™è¯¯ï¼š"+e.getMessage());
 			}
 		}
 		return DevIndex;

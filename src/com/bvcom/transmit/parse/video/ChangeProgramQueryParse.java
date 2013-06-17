@@ -7,10 +7,10 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.video.ChangeProgramQueryVO;
 
-//ÊÖ¶¯Ñ¡Ì¨
+//æ‰‹åŠ¨é€‰å°
 public class ChangeProgramQueryParse {
 
-	// ÊÖ¶¯Ñ¡Ì¨ÏÂ·¢xml½âÎö³É¶ÔÏó
+	// æ‰‹åŠ¨é€‰å°ä¸‹å‘xmlè§£æžæˆå¯¹è±¡
 	public ChangeProgramQueryVO getDownObject(Document document) {
 
 		ChangeProgramQueryVO vo = new ChangeProgramQueryVO();
@@ -90,7 +90,7 @@ public class ChangeProgramQueryParse {
 
 	}
 
-	// ÊÖ¶¯Ñ¡Ì¨»Ø¸´ÉÏ±¨xml½âÎö
+	// æ‰‹åŠ¨é€‰å°å›žå¤ä¸ŠæŠ¥xmlè§£æž
 	public ChangeProgramQueryVO getReturnObject(Document document) {
 
 		ChangeProgramQueryVO vo = new ChangeProgramQueryVO();
@@ -104,7 +104,7 @@ public class ChangeProgramQueryParse {
 
 		if (!type.equals("ChangeProgramQuery")) {
 			vo.setReutnValue(1);
-			vo.setComment("ÊÖ¶¯Ñ¡Ì¨xmlµÄTypeÀàÐÍ²»Æ¥Åä");
+			vo.setComment("æ‰‹åŠ¨é€‰å°xmlçš„Typeç±»åž‹ä¸åŒ¹é…");
 			return vo;
 
 		}
@@ -119,7 +119,7 @@ public class ChangeProgramQueryParse {
 
 	}
 
-	// ÊÖ¶¯Ñ¡Ì¨»Ø¸´xml´ò°ü
+	// æ‰‹åŠ¨é€‰å°å›žå¤xmlæ‰“åŒ…
 	public String ReturnXMLByURL(MSGHeadVO head, String url , int value, int channelIndex) {
 
 		String xml = null;
@@ -129,9 +129,9 @@ public class ChangeProgramQueryParse {
 				+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\"" + head.getCenterMsgID() +"\"> \r\n";
 		if(0==value){
-			xml += "<Return Type=\"ChangeProgramQuery\" Value=\"0\" Desc=\"³É¹¦\"/> \r\n";
+			xml += "<Return Type=\"ChangeProgramQuery\" Value=\"0\" Desc=\"æˆåŠŸ\"/> \r\n";
 		}else if(1==value){
-			xml += "<Return Type=\"ChangeProgramQuery\" Value=\"1\" Desc=\"Ê§°Ü\"/> \r\n";
+			xml += "<Return Type=\"ChangeProgramQuery\" Value=\"1\" Desc=\"å¤±è´¥\"/> \r\n";
 		}
 		xml += "<ReturnInfo><RealStreamURL Index=\"" + channelIndex + "\" URL=\"" + url
 				+ "\"/></ReturnInfo>\r\n";

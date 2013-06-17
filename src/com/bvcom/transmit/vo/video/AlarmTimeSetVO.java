@@ -2,7 +2,7 @@ package com.bvcom.transmit.vo.video;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//ÔËĞĞÍ¼
+//è¿è¡Œå›¾
 public class AlarmTimeSetVO {
 	
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -56,7 +56,7 @@ public class AlarmTimeSetVO {
     
     private int ReuturnValue;
     
-    private String Comment;//Ê§°ÜÔ­Òò
+    private String Comment;//å¤±è´¥åŸå› 
 
 	public MSGHeadVO getMSGHead() {
 		return MSGHead;

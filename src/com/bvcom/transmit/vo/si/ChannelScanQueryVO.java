@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
-//ÆµµÀÉ¨Ãè
+//é¢‘é“æ‰«æ
 public class ChannelScanQueryVO {
 
     private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -39,7 +39,7 @@ public class ChannelScanQueryVO {
     
     private int  HDTV;
     
-    //added by tqy ½ÚÄ¿ÀàĞÍ
+    //added by tqy èŠ‚ç›®ç±»å‹
     
     private String ServiceType;
 
@@ -207,8 +207,8 @@ public class ChannelScanQueryVO {
 	}
 
 	/**
-	 * ScanType=0Îª¼òµ¥
-	 * µ±ScanType=1Ê±ÎªÏêÏ¸É¨Ãè
+	 * ScanType=0ä¸ºç®€å•
+	 * å½“ScanType=1æ—¶ä¸ºè¯¦ç»†æ‰«æ
 	 * @return
 	 */
 	public int getScanType() {
@@ -226,8 +226,8 @@ public class ChannelScanQueryVO {
 	}
 
 	/**
-	 * ScanType=0Îª¼òµ¥
-	 * µ±ScanType=1Ê±ÎªÏêÏ¸É¨Ãè
+	 * ScanType=0ä¸ºç®€å•
+	 * å½“ScanType=1æ—¶ä¸ºè¯¦ç»†æ‰«æ
 	 * @return
 	 */
 	public void setScanType(int scanType) {

@@ -12,7 +12,7 @@ import com.bvcom.transmit.vo.rec.ProvisionalRecordTaskSetVO;
 
 public class NVRSteamRateSetParse {
 
-	//实时视频流率解析xml得到通道号的数组
+	//瀹炴椂瑙嗛娴佺巼瑙ｆ瀽xml寰楀埌閫氶亾鍙风殑鏁扮粍
 	@SuppressWarnings("unchecked")
 	public List<ProvisionalRecordTaskSetVO> getIndexByDownXml(Document document){
 		List<ProvisionalRecordTaskSetVO> indexlist = new ArrayList();

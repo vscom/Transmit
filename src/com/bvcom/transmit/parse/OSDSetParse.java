@@ -14,7 +14,7 @@ import com.bvcom.transmit.vo.OSDSetVO;
 //osd
 public class OSDSetParse {
 
-	//osd解析xml得到通道号的数组
+	//osd瑙ｆ瀽xml寰楀埌閫氶亾鍙风殑鏁扮粍
 	@SuppressWarnings("unchecked")
 	public List<OSDSetVO> getIndexByDownXml(Document document){
 		List<OSDSetVO> indexlist = new ArrayList();
@@ -37,7 +37,7 @@ public class OSDSetParse {
 		
 	}
 	
-	// osd回复xml打包
+	// osd鍥炲xml鎵撳寘
 	public String ReturnXMLByURL(MSGHeadVO head, int value) {
 		
 		String xml = null;
@@ -47,9 +47,9 @@ public class OSDSetParse {
 				+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"OSDSet\" Value=\"0\" Desc=\"成功\"/>";
+			xml += "<Return Type=\"OSDSet\" Value=\"0\" Desc=\"鎴愬姛\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"OSDSet\" Value=\"1\" Desc=\"失败\"/>";
+			xml += "<Return Type=\"OSDSet\" Value=\"1\" Desc=\"澶辫触\"/>";
 			xml +="</Msg>";
 			return xml;
 		}

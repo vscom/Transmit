@@ -44,8 +44,8 @@ public class AgentInfoSet {
     
     
     /**
-     * 1. ½âÎöÍ¨µÀÉèÖÃĞ­Òé
-     * 2. ĞŞ¸ÄÅäÖÃÎÄ¼şÓëÊı¾İ¿â
+     * 1. è§£æé€šé“è®¾ç½®åè®®
+     * 2. ä¿®æ”¹é…ç½®æ–‡ä»¶ä¸æ•°æ®åº“
      */
     public void downXML() {
     	boolean isErr=true;
@@ -53,7 +53,7 @@ public class AgentInfoSet {
 		try {
 			document = utilXML.StringToXML(downString);
 		} catch (CommonException e) {
-			log.info("×Ö·û´®×ª»»xml´íÎó£º"+e.getMessage());
+			log.info("å­—ç¬¦ä¸²è½¬æ¢xmlé”™è¯¯ï¼š"+e.getMessage());
 			isErr=false;
 		}
 		/*
@@ -62,9 +62,9 @@ public class AgentInfoSet {
 			TSCInfoVO tsc=tscs.get(j);
 			isErr=utilXML.SendUpXML(downString, tsc.getURL());
 		}
-		//·¢ËÍµ½Rtvm
+		//å‘é€åˆ°Rtvm
 		MonitorProgramQueryVO rtvsVO = new MonitorProgramQueryVO();
-        // 0:¿ÕÏĞ 1:Ò»¶ÔÒ»¼àÊÓ 2:ÂÖ²¥¼à²âÊ¹ÓÃ 3:ÊÖ¶¯Ñ¡Ì¨ 4:×Ô¶¯ÂÖ²¥ 5:¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+        // 0:ç©ºé—² 1:ä¸€å¯¹ä¸€ç›‘è§† 2:è½®æ’­ç›‘æµ‹ä½¿ç”¨ 3:æ‰‹åŠ¨é€‰å° 4:è‡ªåŠ¨è½®æ’­ 5:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
         try {
 			rtvsVO = MonitorProgramQueryHandle.GetChangeProgramInfo(rtvsVO, 1);
 			if(rtvsVO.getRTVSResetURL()==null||rtvsVO.getRTVSResetURL().equals("")){
@@ -83,18 +83,18 @@ public class AgentInfoSet {
 				}	
 			}
 		} catch (DaoException e1) {
-			log.error("È¡µÃRTVMµÄURL´íÎó: " + e1.getMessage());
+			log.error("å–å¾—RTVMçš„URLé”™è¯¯: " + e1.getMessage());
 			isErr=false;
 		}
 		isErr=utilXML.SendUpXML(downString, rtvsVO.getRTVSResetURL());
 		*/
 		
-		//½âÎöxmlĞŞ¸Ä¸útransmitÏà¹ØÅäÖÃÏî
+		//è§£æxmlä¿®æ”¹è·Ÿtransmitç›¸å…³é…ç½®é¡¹
     	List<String> AgentInfoList=parse(document);
     	for(int i=0;i<AgentInfoList.size();i++){
     		String[] agent=AgentInfoList.get(i).split(",");
     		String value=agent[2].trim();
-    		//SI ÀàĞÍ°üÀ¨ÀàĞÍÎª£¨1¡¢2¡¢3¡¢4¡¢8¡¢10£©
+    		//SI ç±»å‹åŒ…æ‹¬ç±»å‹ä¸ºï¼ˆ1ã€2ã€3ã€4ã€8ã€10ï¼‰
     		if(value.equalsIgnoreCase("SI")){
     			for(int j=0;j<AgentInfoList.size();j++){
     				String[] agen=AgentInfoList.get(j).split(",");
@@ -115,7 +115,7 @@ public class AgentInfoSet {
 	        		}
     			}
     		}
-    		//VIDEO ÀàĞÍ°üÀ¨ÀàĞÍÎª£¨1¡¢2¡¢3¡¢4¡¢9¡¢10¡¢11¡¢12:ÂíÈü¿ËÂÖ²¥Â·¾¶£©
+    		//VIDEO ç±»å‹åŒ…æ‹¬ç±»å‹ä¸ºï¼ˆ1ã€2ã€3ã€4ã€9ã€10ã€11ã€12:é©¬èµ›å…‹è½®æ’­è·¯å¾„ï¼‰
     		if(value.equalsIgnoreCase("VIDEO")){
     			for(int j=0;j<AgentInfoList.size();j++){
     				String[] agen=AgentInfoList.get(j).split(",");
@@ -140,8 +140,8 @@ public class AgentInfoSet {
 	        		}
     			}
     		}
-    		//SMS ÀàĞÍ°üÀ¨ÀàĞÍÎª£¨1¡¢2¡¢3¡¢4¡¢5¡¢7¡¢10£©  5,7
-    		/*ÓÉSMS¡¢CAS³ÌĞò´¦Àí
+    		//SMS ç±»å‹åŒ…æ‹¬ç±»å‹ä¸ºï¼ˆ1ã€2ã€3ã€4ã€5ã€7ã€10ï¼‰  5,7
+    		/*ç”±SMSã€CASç¨‹åºå¤„ç†
     		if(value.equalsIgnoreCase("SMS")){
     			for(int j=0;j<AgentInfoList.size();j++){
     				String[] agen=AgentInfoList.get(j).split(",");
@@ -160,7 +160,7 @@ public class AgentInfoSet {
 	        		}
 	        	}
     		}
-    		//CAS ÀàĞÍ°üÀ¨ÀàĞÍÎª£¨1¡¢2¡¢3¡¢4¡¢5¡¢6¡¢10£©  5,6
+    		//CAS ç±»å‹åŒ…æ‹¬ç±»å‹ä¸ºï¼ˆ1ã€2ã€3ã€4ã€5ã€6ã€10ï¼‰  5,6
     		if(value.equalsIgnoreCase("CAS")){
     			for(int j=0;j<AgentInfoList.size();j++){
     				String[] agen=AgentInfoList.get(j).split(",");
@@ -183,7 +183,7 @@ public class AgentInfoSet {
     	}
     	String returnstr="";
     	
-    	//·â×°MemCoreData¶ÔÏóµÄÄÚÈİ ±£´æTransmitConfig.xml
+    	//å°è£…MemCoreDataå¯¹è±¡çš„å†…å®¹ ä¿å­˜TransmitConfig.xml
     	isErr=saveMemCoreDataToTransmitConfig(coreData);
     	
     	if(isErr){
@@ -194,7 +194,7 @@ public class AgentInfoSet {
         try {
             utilXML.SendUpXML(returnstr, bsData);
         } catch (CommonException e) {
-            log.error("ÉÏ·¢ "+ bsData.getStatusQueryType() +" ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+            log.error("ä¸Šå‘ "+ bsData.getStatusQueryType() +" ä¿¡æ¯å¤±è´¥: " + e.getMessage());
         }
         
         
@@ -299,11 +299,11 @@ public class AgentInfoSet {
         strBuf.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuf.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\"> \r\n");
         if(0==value){
-            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r\n");
+            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r\n");
         }else if(1==value){
-            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"Ê§°Ü\"/>\r\n");
+            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"å¤±è´¥\"/>\r\n");
             strBuf.append("<ErrReport>\r\n");
-            strBuf.append("<RebootSetRecord Comment=\"ÄÚ²¿´íÎó\"/>\r\n");
+            strBuf.append("<RebootSetRecord Comment=\"å†…éƒ¨é”™è¯¯\"/>\r\n");
             strBuf.append("</ErrReport>\r\n");
         }
         strBuf.append("</Msg>");

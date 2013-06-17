@@ -1,5 +1,5 @@
 /**
- * transmit (java×ª·¢)
+ * transmit (javaè½¬å‘)
  * 
  * SMGInfoVO.java    2009.11.12
  * 
@@ -13,12 +13,12 @@ import java.util.List;
 
 /**
  * 
- *  SMG Éè±¸µ¥°å¿¨ËùĞèÒªµÄÅäÖÃÎÄ¼şĞÅÏ¢
+ *  SMG è®¾å¤‡å•æ¿å¡æ‰€éœ€è¦çš„é…ç½®æ–‡ä»¶ä¿¡æ¯
  * 
  * @version  V1.0
  * @author Bian Jiang
  * @Date 2009.11.12
- * @update 2010.05.25 Ôö¼Ó¶Ô¸ßÇå×ªÂëµÄÖ§³Ö
+ * @update 2010.05.25 å¢åŠ å¯¹é«˜æ¸…è½¬ç çš„æ”¯æŒ
  */
 public class SMGCardInfoVO {
     
@@ -91,8 +91,8 @@ public class SMGCardInfoVO {
         System.out.println("--------------- SMGInfo List End----------------");
     }
 	
-	//Í¨µÀ°å¿¨ÏêÏ¸ĞÅÏ¢
-	//Ğ¡¿¨¿¨ºÅĞÅÏ¢
+	//é€šé“æ¿å¡è¯¦ç»†ä¿¡æ¯
+	//å°å¡å¡å·ä¿¡æ¯
 	private String smgCamCard;
 	
 	private String smgCamPostion;
@@ -124,11 +124,11 @@ public class SMGCardInfoVO {
 	}
 	
 	
-	//Í¨µÀ°å¿¨µÄ½ÚÄ¿Ó³ÉäĞÅÏ¢£º×Ô¶¯Â¼ÖÆ¡¢ÈÎÎñÂ¼ÖÆ
-	//Status="0" IndexType=¡°4¡± Desc="×Ô¶¯Â¼Ïñ CCTV-3 £¬CCTV-4"
+	//é€šé“æ¿å¡çš„èŠ‚ç›®æ˜ å°„ä¿¡æ¯ï¼šè‡ªåŠ¨å½•åˆ¶ã€ä»»åŠ¡å½•åˆ¶
+	//Status="0" IndexType=â€œ4â€ Desc="è‡ªåŠ¨å½•åƒ CCTV-3 ï¼ŒCCTV-4"
 	//<Channel Program="CCTV-3 " ProgramID="457" Freq = "45700"  ServiceID="457" /> 
 	//<Channel TaskID= " 100" />
-	//Í¨µÀ×´Ì¬
+	//é€šé“çŠ¶æ€
 	private int Status;
 
 	public int getStatus() {
@@ -139,7 +139,7 @@ public class SMGCardInfoVO {
 		Status = status;
 	}
 	
-	//×Ô¶¯Â¼ÖÆ½ÚÄ¿ÃèÊö
+	//è‡ªåŠ¨å½•åˆ¶èŠ‚ç›®æè¿°
 	private String Desc;
 
 	@SuppressWarnings("unchecked")
@@ -169,10 +169,10 @@ public class SMGCardInfoVO {
 	public void setDesc(String desc) {
 		Desc = desc;
 	}
-	//×Ô¶¯Â¼Ïñ½ÚÄ¿ĞÅÏ¢
+	//è‡ªåŠ¨å½•åƒèŠ‚ç›®ä¿¡æ¯
     @SuppressWarnings("unchecked")
 	private List autorecordList = new ArrayList();
-    //ÈÎÎñÂ¼Ïñ½ÚÄ¿
+    //ä»»åŠ¡å½•åƒèŠ‚ç›®
     @SuppressWarnings("unchecked")
 	private List taskrecordList = new ArrayList();
     

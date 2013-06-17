@@ -128,9 +128,9 @@ public class ConstellationQueryParse {
 		downString.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
 		downString.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\"> \r\n");
         if(0==value){
-        	downString.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r\n");
+        	downString.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r\n");
         }else if(1==value){
-        	downString.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"Ê§°Ü\"/>\r\n");
+        	downString.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"å¤±è´¥\"/>\r\n");
         }
         downString.append("<ReturnInfo>\r\n");
         downString.append(" <ConstellationQuery Freq=\"" + freq + "\" QAM=\"" + qam + "\" MER=\"" + mer + "\"> \r\n");

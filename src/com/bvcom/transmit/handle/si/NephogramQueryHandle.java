@@ -13,7 +13,7 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.SMGCardInfoVO;
 import com.bvcom.transmit.vo.SysInfoVO;
 /**
- * Web2.0 ÐÇ×ùÍ¼ Add By Bian Jiang 2011.1.7
+ * Web2.0 æ˜Ÿåº§å›¾ Add By Bian Jiang 2011.1.7
  * @author Bian Jiang
  *
  */
@@ -37,7 +37,7 @@ public class NephogramQueryHandle {
     public void downXML() {
 		List SMGSendList = new ArrayList();
 
-		// 3:GetIndexSet(ÐÔÄÜÖ¸±êºÍÐÇ×ùÍ¼)
+		// 3:GetIndexSet(æ€§èƒ½æŒ‡æ ‡å’Œæ˜Ÿåº§å›¾)
 		CommonUtility.checkSMGChannelType("GetIndexSet", SMGSendList);
 		UtilXML xmlUtil = new UtilXML();
 
@@ -48,19 +48,19 @@ public class NephogramQueryHandle {
 		for (int i = 0; i < SMGSendList.size(); i++) {
 			SMGCardInfoVO smg = (SMGCardInfoVO) SMGSendList.get(i);
 			try {
-				// ÆµµÀÉ¨ÃèÐÅÏ¢ÏÂ·¢ timeout 1000*60*3 Èý·ÖÖÓ
+				// é¢‘é“æ‰«æä¿¡æ¯ä¸‹å‘ timeout 1000*60*3 ä¸‰åˆ†é’Ÿ
 				returnStr = utilXML.SendDownXML(downString, smg
 						.getURL(), CommonUtility.CONN_WAIT_TIMEOUT,
 						bsData);
 				if(returnStr == null || returnStr.equals("")) {
-					log.error("È¡µÃÐÇ×ùÍ¼Ê§°Ü: " + smg.getURL());
+					log.error("å–å¾—æ˜Ÿåº§å›¾å¤±è´¥: " + smg.getURL());
 					continue;
 				}
 				
 				break;
 			} catch (CommonException e) {
-				log.error("ÏòSMGÏÂ·¢ÐÇ×ùÍ¼³ö´íÐÅÏ¢£º" + e.getMessage());
-				log.error("ÏòSMGÏÂ·¢ÐÇ×ùÍ¼³ö´íURL£º" + smg.getURL());
+				log.error("å‘SMGä¸‹å‘æ˜Ÿåº§å›¾å‡ºé”™ä¿¡æ¯ï¼š" + e.getMessage());
+				log.error("å‘SMGä¸‹å‘æ˜Ÿåº§å›¾å‡ºé”™URLï¼š" + smg.getURL());
 			}
 		}
 		
@@ -70,7 +70,7 @@ public class NephogramQueryHandle {
 		try {
 			utilXML.SendUpXML(returnStr, bsData);
 		} catch (CommonException e) {
-			log.error("ÉÏ·¢ÆµµÀÉ¨ÃèÐÅÏ¢Ê§°Ü: " + e.getMessage());
+			log.error("ä¸Šå‘é¢‘é“æ‰«æä¿¡æ¯å¤±è´¥: " + e.getMessage());
 		}
 
 		bsData = null;

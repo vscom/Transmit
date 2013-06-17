@@ -1,5 +1,5 @@
 /**
- * controlAlarm (java×ª·¢)
+ * controlAlarm (javaè½¬å‘)
  * 
  * CommonUtility.java    2007.7.26
  * 
@@ -43,7 +43,7 @@ import com.bvcom.transmit.vo.SMGCardInfoVO;
 import com.bvcom.transmit.vo.TSCInfoVO;
 
 /**
- * »ù´¡Àà Ö÷ÒªÊÇ»ñµÃÏµÍ³Ê±¼ä£¬ÑéÖ¤Ê±¼ä¸ñÊ½£¬¶ÁÈ¡xmlµÈµÄ»ù´¡·½·¨¡£
+ * åŸºç¡€ç±» ä¸»è¦æ˜¯è·å¾—ç³»ç»Ÿæ—¶é—´ï¼ŒéªŒè¯æ—¶é—´æ ¼å¼ï¼Œè¯»å–xmlç­‰çš„åŸºç¡€æ–¹æ³•ã€‚
  * @version  V1.0
  * @author YYZ
  *
@@ -73,27 +73,27 @@ public class CommonUtility {
     
 	public static final int ALARM_NEW_CHANNEL_SCAN_TASK_TIME = (1000*60*60*2);
 	
-    // 50·ÖÖÓ
+    // 50åˆ†é’Ÿ
     public static final int CHANNEL_SCAN_WAIT_TIMEOUT = (1000*60*50);
-    // 5·ÖÖÓ
+    // 5åˆ†é’Ÿ
     public static final int CHANNEL_SCAN_WAIT_TIMEOUT2 = (1000*60*5);
-	// 3Ãë=1000*3
+	// 3ç§’=1000*3
     public static final int CONN_WAIT_TIMEOUT = (100*3);
-    // 10ÃëChangeProgramQueryHandle
+    // 10ç§’ChangeProgramQueryHandle
     public static final int CHANGE_PROGRAM_QUERY = (1000*10);
-    // 20Ãë
+    // 20ç§’
     public static final int TASK_WAIT_TIMEOUT = (1000*20);
     
     public static final int HISTORY_DOWN_WAIT_TIMEOUT = (1000*10);
-    // 1Ãë
+    // 1ç§’
     public static final int VIDEO_RETURN_WAIT_TIME = (1000);
     
-    // 1Ğ¡Ê±
+    // 1å°æ—¶
     public static final int RECORD_TASK_WAIT_TIME = (1000*60*60);
     
     public static final int REPLY_ALARM_ERROR_TIME = (1000*60);
     
-    // ÔİÍ£3Ãë£¬ÓÃÓÚ½ÚÄ¿µÄ½âÂëºÍRTV³ÌĞòµÄÖØÆô
+    // æš‚åœ3ç§’ï¼Œç”¨äºèŠ‚ç›®çš„è§£ç å’ŒRTVç¨‹åºçš„é‡å¯
     public static final int VIDEO_CHANGE_SLEEPTIME = (500);
     
     public static final int SMG_NVR_SLEEPTIME = (1000*1);
@@ -113,12 +113,12 @@ public class CommonUtility {
     public static final String XML_MSG_END = "</Msg>";
     
     /**
-     * ±¨¾¯´ÎÊı
+     * æŠ¥è­¦æ¬¡æ•°
      */
     public static int AlarmDatebaseDumpCount = 0; 
     
     /**
-     * ±¨¾¯´ÎÊı
+     * æŠ¥è­¦æ¬¡æ•°
      * @return
      */
 	public static int getAlarmDatebaseDumpCount() {
@@ -209,9 +209,9 @@ public class CommonUtility {
 	}
 	
     /**
-     * ¸ñÊ½»¯Ê±¼äÎªyyyy-MM-dd-HHµÄ¸ñÊ½
+     * æ ¼å¼åŒ–æ—¶é—´ä¸ºyyyy-MM-dd-HHçš„æ ¼å¼
      * @param dateTime
-     * @return String ¸ñÊ½»¯ºóµÄyyyy-MM-dd-HH×Ö·û´®
+     * @return String æ ¼å¼åŒ–åçš„yyyy-MM-dd-HHå­—ç¬¦ä¸²
      */
 	public static String getDateHour (String dateTime) {
 		
@@ -225,7 +225,7 @@ public class CommonUtility {
 	}
 
 	/**
-	 * ¸ù¾İÊ±¼ä´´½¨ÎÄ¼şÂ·¾¶
+	 * æ ¹æ®æ—¶é—´åˆ›å»ºæ–‡ä»¶è·¯å¾„
 	 * @param receFilePath
 	 * @param dataTimeStr
 	 * @return dataFlod
@@ -234,11 +234,11 @@ public class CommonUtility {
 		
 		String dataFlod = "";
 		String desData = getDateHour(dataTimeStr);
-        // ´´½¨Ä¿Â¼
+        // åˆ›å»ºç›®å½•
         String fileFlod = receFilePath + "\\";
         CommonUtility.CreateFolder(fileFlod);
         String[] dataFold = desData.split("-");
-        // ´´½¨Ä¿Â¼
+        // åˆ›å»ºç›®å½•
         for(int i=0; i<dataFold.length-1; i++) {
         	fileFlod += dataFold[i] + "/";
         	dataFlod += dataFold[i] + "/";
@@ -306,9 +306,9 @@ public class CommonUtility {
 	}
 	
     /**
-     * ¸ñÊ½»¯Ê±¼äÎªyyyy-MM-dd-HHµÄ¸ñÊ½
+     * æ ¼å¼åŒ–æ—¶é—´ä¸ºyyyy-MM-dd-HHçš„æ ¼å¼
      * @param dateTime
-     * @return String ¸ñÊ½»¯ºóµÄyyyy-MM-dd-HH×Ö·û´®
+     * @return String æ ¼å¼åŒ–åçš„yyyy-MM-dd-HHå­—ç¬¦ä¸²
      */
 	public static String getDateHourPath (String dateTime) {
 		
@@ -367,10 +367,10 @@ public class CommonUtility {
 	}
 	
 	/**
-	 * ½ÓÊÕPostÖĞµÄÊı¾İÁ÷,SMSUP¾Í·ÅÔÚStoreFilePathÖĞ.Down·ÅÔÚ×Ö·û´®getStringÖĞ
-	 * ·µ»Ø¶Áµ½µÄÃüÁî×Ö·û´®»ò´æÎÄ¼şÂ·¾¶
+	 * æ¥æ”¶Postä¸­çš„æ•°æ®æµ,SMSUPå°±æ”¾åœ¨StoreFilePathä¸­.Downæ”¾åœ¨å­—ç¬¦ä¸²getStringä¸­
+	 * è¿”å›è¯»åˆ°çš„å‘½ä»¤å­—ç¬¦ä¸²æˆ–å­˜æ–‡ä»¶è·¯å¾„
 	 * @param Reader
-	 * @return ¶Áµ½µÄÃüÁî×Ö·û´®»ò´æÎÄ¼şÂ·¾¶
+	 * @return è¯»åˆ°çš„å‘½ä»¤å­—ç¬¦ä¸²æˆ–å­˜æ–‡ä»¶è·¯å¾„
 	 */
 	public static String readStringFromURL(Reader rd) throws IOException {
 		BufferedReader reader = null;
@@ -387,7 +387,7 @@ public class CommonUtility {
 			return getString;
 		} catch (IOException ioe) {
 			log.info("IOException: " + ioe.getMessage());
-			/**Êä³ö´íÎóĞÅÏ¢µ½ÎÄ¼ş*/
+			/**è¾“å‡ºé”™è¯¯ä¿¡æ¯åˆ°æ–‡ä»¶*/
     		PrintWriter pw;
 			try {
 				pw = new PrintWriter(new File("D:/IOException.log"));
@@ -463,7 +463,7 @@ public class CommonUtility {
 //    			out.write(new String("\n").getBytes());
 //    			while((smallString=reader.readLine())!= null){
 //    				out.write(smallString.getBytes());
-//    				out.write(new String("\n").getBytes());             //Èç¹û¶ÁÈ¡µÄÖĞsmallStringÃ¿¶ÁÒ»ĞĞµÄÊ±ºòÒÑ¾­°üÀ¨¿Õ¸ñ,ÔòÕâÀïÒªÈ¥µô.
+//    				out.write(new String("\n").getBytes());             //å¦‚æœè¯»å–çš„ä¸­smallStringæ¯è¯»ä¸€è¡Œçš„æ—¶å€™å·²ç»åŒ…æ‹¬ç©ºæ ¼,åˆ™è¿™é‡Œè¦å»æ‰.
 //    			}
 //    			out.flush();
 //    			out.close();
@@ -490,7 +490,7 @@ public class CommonUtility {
 	
 	
 	static int num = 1;
-	public static String readStringFromReaderByLi(DataInputStream dis, int length) {       //¶ÁÈ¡zipÎÄ¼şÊ±ºòµ÷ÓÃ
+	public static String readStringFromReaderByLi(DataInputStream dis, int length) {       //è¯»å–zipæ–‡ä»¶æ—¶å€™è°ƒç”¨
 		
 		try {
 			int len = 1024;
@@ -555,7 +555,7 @@ public class CommonUtility {
 			return null;
     	} catch (SocketTimeoutException ste) {
     		log.error("Read from "+urlString);
-			log.error("¶Á³¬Ê±"+urlString);
+			log.error("è¯»è¶…æ—¶"+urlString);
             log.error("readStringFromURLToFile:" + "SocketTimeoutException: "+ste.getMessage());
 			lastExceptionError = SocketTimeoutExceptionError;
 			return null;
@@ -568,7 +568,7 @@ public class CommonUtility {
 
 	}
 	static int count =1;
-	public static String readStringFromURL(String urlString, int readTimeout) {		   //¶ÁÈ¡´óÎÄ¼şµÄÊ±ºòµ÷ÓÃ
+	public static String readStringFromURL(String urlString, int readTimeout) {		   //è¯»å–å¤§æ–‡ä»¶çš„æ—¶å€™è°ƒç”¨
 		try {
 			log.info("Begin Read From URL");
     		URL url = new URL(urlString);
@@ -609,7 +609,7 @@ public class CommonUtility {
 			return null;
     	} catch (SocketTimeoutException ste) {
     		log.error("Read from "+urlString+" end "+CommonUtility.getDateTime());
-			log.error("¶Á³¬Ê±"+urlString);
+			log.error("è¯»è¶…æ—¶"+urlString);
             log.error("readStringFromURL:" + "SocketTimeoutException: "+ste.getMessage());
 			lastExceptionError = CommonUtility.SocketTimeoutExceptionError;
 			return null;
@@ -649,7 +649,7 @@ public class CommonUtility {
 			return null;
     	} catch (SocketTimeoutException ste) {
     		log.error("Read from "+urlString+" end "+CommonUtility.getDateTime());
-            log.error("¶Á³¬Ê±"+urlString);
+            log.error("è¯»è¶…æ—¶"+urlString);
             log.error("readCharArrayFromURL:" + "SocketTimeoutException: "+ste.getMessage());
 			lastExceptionError = SocketTimeoutExceptionError;
 			return null;
@@ -679,25 +679,25 @@ public class CommonUtility {
 //				buff.append(new String(rArray, 0, retVal, "GB2312"));
 //			}
 		} catch (FileNotFoundException e) {
-			log.error("ÕÒ²»µ½ÎÄ¼ş£º" + e.getMessage());
-			throw new CommonException("ÏàÓ¦Êı¾İ²»´æÔÚ");
+			log.error("æ‰¾ä¸åˆ°æ–‡ä»¶ï¼š" + e.getMessage());
+			throw new CommonException("ç›¸åº”æ•°æ®ä¸å­˜åœ¨");
 		}catch (IOException e) {
-			log.error("I/O³ö´í");
-			throw new CommonException("I/O³ö´í£º" + e.getMessage());
+			log.error("I/Oå‡ºé”™");
+			throw new CommonException("I/Oå‡ºé”™ï¼š" + e.getMessage());
 		} finally {
 
 			if (br != null) {
 				try {
 					br.close();
 				} catch (IOException e) {
-					log.error("Á÷¹Ø±ÕÊ§°Ü£º" + e.getMessage());
+					log.error("æµå…³é—­å¤±è´¥ï¼š" + e.getMessage());
 				}
 			}
 			if (fileIn != null) {
 				try {
 					fileIn.close();
 				} catch (IOException e) {
-					log.error("ÎÄ¼ş¹Ø±ÕÊ§°Ü£º" + e.getMessage());
+					log.error("æ–‡ä»¶å…³é—­å¤±è´¥ï¼š" + e.getMessage());
 				}
 			}
 		}
@@ -705,9 +705,9 @@ public class CommonUtility {
 	}
 	
 	/**
-	 * ´´½¨ÎÄ¼ş¼Ğ ÈôÎÄ¼ş¼Ğ²»´æÔÚ¾Í´´½¨,´æÔÚ¾ÍÍË³ö ÀıÈç:½¨ÎÄ¼ş¼Ğtemp  Path = "d:/temp/"
-	 * @param Path  Òª´´½¨ÎÄ¼ş¼ĞÂ·¾¶
-	 * @return  ³É¹¦true Ê§°Üfalse
+	 * åˆ›å»ºæ–‡ä»¶å¤¹ è‹¥æ–‡ä»¶å¤¹ä¸å­˜åœ¨å°±åˆ›å»º,å­˜åœ¨å°±é€€å‡º ä¾‹å¦‚:å»ºæ–‡ä»¶å¤¹temp  Path = "d:/temp/"
+	 * @param Path  è¦åˆ›å»ºæ–‡ä»¶å¤¹è·¯å¾„
+	 * @return  æˆåŠŸtrue å¤±è´¥false
 	 */
 	public static Boolean CreateFolder(String Path) throws SecurityException{
 		try {
@@ -722,12 +722,12 @@ public class CommonUtility {
 	}
 	
 	/**
-	 * ½«StoreStr¶ÔÏó´æÈëÎÄ¼ş,
+	 * å°†StoreStrå¯¹è±¡å­˜å…¥æ–‡ä»¶,
 	 * 
 	 * @param String
-	 *            Òª±£´æµÄ×Ö·û´®
+	 *            è¦ä¿å­˜çš„å­—ç¬¦ä¸²
 	 * @param filename
-	 *            ´æÈëÎ»ÖÃ
+	 *            å­˜å…¥ä½ç½®
 	 * @return
 	 */
 	public static int StoreIntoFile(String StoreStr, String filename) {
@@ -735,12 +735,12 @@ public class CommonUtility {
 			if(StoreStr == null || StoreStr.equals("")) {
 				return 0;
 			}
-			log.info("ÎÄ¼ş±£´æµ½£º" + filename);
+			log.info("æ–‡ä»¶ä¿å­˜åˆ°ï¼š" + filename);
 			FileWriter outWriter = new FileWriter(filename);
 			outWriter.write(StoreStr);
 			outWriter.flush();
 			outWriter.close();
-			log.info("ÎÄ¼ş±£´æ³É¹¦");
+			log.info("æ–‡ä»¶ä¿å­˜æˆåŠŸ");
 			return 1;
 		} catch (IOException ioe) {
 			log.error("StoreIntoFile, IOException: " + ioe
@@ -750,7 +750,7 @@ public class CommonUtility {
 	}
 	
     /**
-     * Ğ´ÎÄ¼şÊ±×ªÂëÎªGB2312
+     * å†™æ–‡ä»¶æ—¶è½¬ç ä¸ºGB2312
      * @param StoreStr
      * @param filename
      */
@@ -759,14 +759,14 @@ public class CommonUtility {
         	if(StoreStr == null || StoreStr.equals("")) {
         		return;
         	}
-            //log.info("ÎÄ¼ş±£´æµ½£º" + filename);
+            //log.info("æ–‡ä»¶ä¿å­˜åˆ°ï¼š" + filename);
             FileOutputStream os = new FileOutputStream(filename);
             
             Writer out = new OutputStreamWriter(os, "GB2312");
             out.write(StoreStr);
             out.close();
             os.close();
-            //log.info("ÎÄ¼ş±£´æ³É¹¦");
+            //log.info("æ–‡ä»¶ä¿å­˜æˆåŠŸ");
         } catch (IOException ioe) {
             log.error("WriteFile, IOException: " + ioe
                     .getMessage());
@@ -775,22 +775,22 @@ public class CommonUtility {
     }
     
 	/**
-	 * ´òÓ¡´íÎó¶ÑÕ»
+	 * æ‰“å°é”™è¯¯å †æ ˆ
 	 * @param ce
 	 */
 	public static void printErrorTrace (Exception ce) {
-		// ´òÓ¡¶ÑÕ»´íÎó
+		// æ‰“å°å †æ ˆé”™è¯¯
         StackTraceElement[] trace = ce.getStackTrace();
-        // ´æ·ÅĞÅÏ¢ÄÚÈİ
+        // å­˜æ”¾ä¿¡æ¯å†…å®¹
         StringBuffer errorBuffer = new StringBuffer();
         for (int i=0; i < trace.length; i++) {
         	errorBuffer.append("\tat " + trace[i] + "\n");
         }
-		log.error("´íÎó¶ÑÕ»£º\n" + errorBuffer.toString());
+		log.error("é”™è¯¯å †æ ˆï¼š\n" + errorBuffer.toString());
 	}
 	
 	  /**
-	   * ½«Ò»¸öÈÕÆÚ×Ö·û´®×ª»¯³ÉÈÕÆÚ
+	   * å°†ä¸€ä¸ªæ—¥æœŸå­—ç¬¦ä¸²è½¬åŒ–æˆæ—¥æœŸ
 	   * @param sDate String
 	   * @return Date yyyy-mm-dd
 	   */
@@ -801,19 +801,19 @@ public class CommonUtility {
 	      date = df.parse(sDate);
 	    }
 	    catch (Exception e) {
-	      log.error("ÈÕÆÚ×ª»»Ê§°Ü:" + e.getMessage());
+	      log.error("æ—¥æœŸè½¬æ¢å¤±è´¥:" + e.getMessage());
 	    }
 	    return date;
 	  }
 	  
 	  /**
 	   * 
-	   * È¡µÃÖ¸¶¨Ê±¼äµÄÇ°»òºó¼¸¸öĞ¡Ê±£¬ÕıÊıÎªºóN¸öĞ¡Ê±£¬¸ºÊıÎªÇ°¼¸¸öĞ¡Ê±
-	   * Ê±¼ä×Ö·û´® ¸ñÊ½Îª"yyyy-MM-dd HH:mm:ss"
+	   * å–å¾—æŒ‡å®šæ—¶é—´çš„å‰æˆ–åå‡ ä¸ªå°æ—¶ï¼Œæ­£æ•°ä¸ºåNä¸ªå°æ—¶ï¼Œè´Ÿæ•°ä¸ºå‰å‡ ä¸ªå°æ—¶
+	   * æ—¶é—´å­—ç¬¦ä¸² æ ¼å¼ä¸º"yyyy-MM-dd HH:mm:ss"
 	   * 
-	   * @param dateTimeStr Ê±¼ä×Ö·û´® ¸ñÊ½Îª"yyyy-MM-dd HH:mm:ss"
-	   * @param nHour Æ«ÒÆÊ±¼ä ÕıÊıÎªºóN¸öĞ¡Ê±£¬¸ºÊıÎªÇ°¼¸¸öĞ¡Ê±
-	   * @return String Æ«ÒÆºóµÄÊ±¼ä´®
+	   * @param dateTimeStr æ—¶é—´å­—ç¬¦ä¸² æ ¼å¼ä¸º"yyyy-MM-dd HH:mm:ss"
+	   * @param nHour åç§»æ—¶é—´ æ­£æ•°ä¸ºåNä¸ªå°æ—¶ï¼Œè´Ÿæ•°ä¸ºå‰å‡ ä¸ªå°æ—¶
+	   * @return String åç§»åçš„æ—¶é—´ä¸²
 	   */
 	  public static String getHourOfDayBefOrAftNHour(String dateTimeStr, int nHour) {
 			Calendar calendar = Calendar.getInstance();
@@ -832,12 +832,12 @@ public class CommonUtility {
 	  
 	  /**
 	   * 
-	   * È¡µÃÖ¸¶¨Ê±¼äµÄÇ°»òºó¼¸Ìì£¬ÕıÊıÎªºóNÌì£¬¸ºÊıÎªÇ°¼¸Ìì
-	   * Ê±¼ä×Ö·û´® ¸ñÊ½Îª"yyyy-MM-dd HH:mm:ss"
+	   * å–å¾—æŒ‡å®šæ—¶é—´çš„å‰æˆ–åå‡ å¤©ï¼Œæ­£æ•°ä¸ºåNå¤©ï¼Œè´Ÿæ•°ä¸ºå‰å‡ å¤©
+	   * æ—¶é—´å­—ç¬¦ä¸² æ ¼å¼ä¸º"yyyy-MM-dd HH:mm:ss"
 	   * 
-	   * @param dateTimeStr Ê±¼ä×Ö·û´® ¸ñÊ½Îª"yyyy-MM-dd HH:mm:ss"
-	   * @param nHour Æ«ÒÆÊ±¼ä ÕıÊıÎªºóNÌì£¬¸ºÊıÎªÇ°¼¸Ìì
-	   * @return String Æ«ÒÆºóµÄÊ±¼ä´®
+	   * @param dateTimeStr æ—¶é—´å­—ç¬¦ä¸² æ ¼å¼ä¸º"yyyy-MM-dd HH:mm:ss"
+	   * @param nHour åç§»æ—¶é—´ æ­£æ•°ä¸ºåNå¤©ï¼Œè´Ÿæ•°ä¸ºå‰å‡ å¤©
+	   * @return String åç§»åçš„æ—¶é—´ä¸²
 	   */
 	  public static String getDayBefOrAftNMonth(String dateTimeStr, int nDay) {
 			Calendar calendar = Calendar.getInstance();
@@ -855,19 +855,19 @@ public class CommonUtility {
 	  }
       
         /**
-         * ¼ì²éSMGÍ¨µÀÀàĞÍ
-         * Í¨µÀÀàĞÍ(1:ChannelScanQuery(ÆµµÀÉ¨ÃèºÍÖ¸±ê²éÑ¯) 2: AutoRecord(×Ô¶¯Â¼Ïñ)) 3:GetIndexSet(ĞÔÄÜÖ¸±êºÍĞÇ×ùÍ¼)
+         * æ£€æŸ¥SMGé€šé“ç±»å‹
+         * é€šé“ç±»å‹(1:ChannelScanQuery(é¢‘é“æ‰«æå’ŒæŒ‡æ ‡æŸ¥è¯¢) 2: AutoRecord(è‡ªåŠ¨å½•åƒ)) 3:GetIndexSet(æ€§èƒ½æŒ‡æ ‡å’Œæ˜Ÿåº§å›¾)
          * @param indexType
          * @param SMGSendList
          * @return List<SMGSendList>
          */
         public static List checkSMGChannelType(String indexType, List SMGSendList) {
-            // ºËĞÄÊı¾İ½á¹¹Êı¾İ
+            // æ ¸å¿ƒæ•°æ®ç»“æ„æ•°æ®
             MemCoreData coreData = MemCoreData.getInstance();
             
-            // È¡µÃSMGÅäÖÃÎÄ¼şĞÅÏ¢
+            // å–å¾—SMGé…ç½®æ–‡ä»¶ä¿¡æ¯
             List SMGCardList = coreData.getSMGCardList();
-            // È¥µôURLµØÖ·Ïà¹Ø
+            // å»æ‰URLåœ°å€ç›¸å…³
             String oneURL = "";
             for (int i=0; i< SMGCardList.size(); i++) {
                 SMGCardInfoVO smg = (SMGCardInfoVO) SMGCardList.get(i);
@@ -875,9 +875,9 @@ public class CommonUtility {
                     continue;
                 }
                 if(indexType.equals(smg.getIndexType())) {
-                    // ÀàĞÍÏàÍ¬µÄÊı¾İ±£´æµ½ListÖĞ
+                    // ç±»å‹ç›¸åŒçš„æ•°æ®ä¿å­˜åˆ°Listä¸­
                     SMGSendList.add(smg);
-                    // FIXME ÎªÁË²âÊÔÈ¥µô±È½Ï¹¦ÄÜ
+                    // FIXME ä¸ºäº†æµ‹è¯•å»æ‰æ¯”è¾ƒåŠŸèƒ½
                     oneURL = smg.getURL().trim();
                 }
             }
@@ -885,29 +885,29 @@ public class CommonUtility {
         }
         
         /**
-         * È¡µÃSMG URL
+         * å–å¾—SMG URL
          * @param index
          * @param TSCSendList
          * @return
          */
         @SuppressWarnings("unchecked")
 		public static void checkSMGChannelIndex(int index, List SMGSendList) {
-            // ºËĞÄÊı¾İ½á¹¹Êı¾İ
+            // æ ¸å¿ƒæ•°æ®ç»“æ„æ•°æ®
             MemCoreData coreData = MemCoreData.getInstance();
-            // È¡µÃSMGÅäÖÃÎÄ¼şĞÅÏ¢
+            // å–å¾—SMGé…ç½®æ–‡ä»¶ä¿¡æ¯
             List SMGCardList = coreData.getSMGCardList();
-            // È¥µôURLµØÖ·Ïà¹Ø
+            // å»æ‰URLåœ°å€ç›¸å…³
             String oneURL = "";
             for (int i=0; i< SMGCardList.size(); i++) {
                 SMGCardInfoVO smg = (SMGCardInfoVO) SMGCardList.get(i);
-                //by tqy ËÄÆÚ£ºSTOP
+                //by tqy å››æœŸï¼šSTOP
                 if(smg.getIndexType().equals("Stop")){
                 	continue;
                 }
                 if (oneURL.equals(smg.getURL().trim())) {
                     continue;
                 }
-                //by tqy 2012-05-20 Ôö¼Ó¿ÕÏĞÍ¨µÀµÄ´¦Àí£¬¿ÉÒÔÊ¹ÓÃ¿ÕÏĞ»òÕß×Ô¶¯Â¼ÖÆµÄÍ¨µÀ
+                //by tqy 2012-05-20 å¢åŠ ç©ºé—²é€šé“çš„å¤„ç†ï¼Œå¯ä»¥ä½¿ç”¨ç©ºé—²æˆ–è€…è‡ªåŠ¨å½•åˆ¶çš„é€šé“
                 if(smg.getIndexType().equals("AutoRecord")||smg.getIndexType().equals("Free")){
 	                if (index == smg.getIndex()) {
 	                    SMGSendList.add(smg);
@@ -921,19 +921,19 @@ public class CommonUtility {
         }
         
         /*
-         * ÅĞ¶Ïµ±Ç°Í¨µÀÊÇ·ñÍ£ÓÃ
+         * åˆ¤æ–­å½“å‰é€šé“æ˜¯å¦åœç”¨
          */
         @SuppressWarnings("unchecked")
 		public static boolean checkSMGChannelStatus(int index){
         	boolean ret =false;
-        	  // ºËĞÄÊı¾İ½á¹¹Êı¾İ
+        	  // æ ¸å¿ƒæ•°æ®ç»“æ„æ•°æ®
             MemCoreData coreData = MemCoreData.getInstance();
-            // È¡µÃSMGÅäÖÃÎÄ¼şĞÅÏ¢
+            // å–å¾—SMGé…ç½®æ–‡ä»¶ä¿¡æ¯
             List SMGCardList = coreData.getSMGCardList();
-            // È¥µôURLµØÖ·Ïà¹Ø
+            // å»æ‰URLåœ°å€ç›¸å…³
             for (int i=0; i< SMGCardList.size(); i++) {
                 SMGCardInfoVO smg = (SMGCardInfoVO) SMGCardList.get(i);
-                //by tqy ËÄÆÚ£ºSTOP
+                //by tqy å››æœŸï¼šSTOP
                 if(smg.getIndexType().equals("Stop")){
                 	ret = true;
                 	break;
@@ -942,18 +942,18 @@ public class CommonUtility {
             return ret;
         }
         /**
-         * È¡µÃ×ªÂëTSC URL
+         * å–å¾—è½¬ç TSC URL
          * @param index
          * @param TSCSendList
          * @return
          */
         public static void checkTSCChannelIndex(int index, List TSCSendList) {
-            // ºËĞÄÊı¾İ½á¹¹Êı¾İ
+            // æ ¸å¿ƒæ•°æ®ç»“æ„æ•°æ®
             MemCoreData coreData = MemCoreData.getInstance();
-            // È¡µÃTSCÅäÖÃÎÄ¼şĞÅÏ¢
+            // å–å¾—TSCé…ç½®æ–‡ä»¶ä¿¡æ¯
             List TSCList = coreData.getTSCList();
             TSCInfoVO tsc = null;
-            // È¥µôURLµØÖ·Ïà¹Ø
+            // å»æ‰URLåœ°å€ç›¸å…³
             String oneURL = "";
             for (int i=0; i< TSCList.size(); i++) {
                 tsc = (TSCInfoVO) TSCList.get(i);
@@ -985,17 +985,17 @@ public class CommonUtility {
         }
         
         /**
-         * È¡µÃ¶à»­IPM URL
+         * å–å¾—å¤šç”»IPM URL
          * @param index
          * @param TSCSendList
          * @return
          */
         public static void checkIPMChannelIndex(int index, List IPMSendList) {
-            // ºËĞÄÊı¾İ½á¹¹Êı¾İ
+            // æ ¸å¿ƒæ•°æ®ç»“æ„æ•°æ®
             MemCoreData coreData = MemCoreData.getInstance();
-            // È¡µÃIPMÅäÖÃÎÄ¼şĞÅÏ¢
+            // å–å¾—IPMé…ç½®æ–‡ä»¶ä¿¡æ¯
             List IPMList = coreData.getIPMList();
-            // È¥µôURLµØÖ·Ïà¹Ø
+            // å»æ‰URLåœ°å€ç›¸å…³
             String oneURL = "";
             IPMInfoVO ipm = null;
             for (int i=0; i< IPMList.size(); i++) {
@@ -1029,13 +1029,13 @@ public class CommonUtility {
         }
         
         /**
-         * Í¨¹ıÕıÔò±í´ïÊ½Ìæ»»ÏµÍ³µ±Ç°Ê±¼ä
-         * @param replaceString ĞèÒªÌæ»»µÄXML×Ö·û´®
-         * @param stringType ×Ö·û´®µÄÀàĞÍ
-         * @return Ìæ»»ºóµÄString
+         * é€šè¿‡æ­£åˆ™è¡¨è¾¾å¼æ›¿æ¢ç³»ç»Ÿå½“å‰æ—¶é—´
+         * @param replaceString éœ€è¦æ›¿æ¢çš„XMLå­—ç¬¦ä¸²
+         * @param stringType å­—ç¬¦ä¸²çš„ç±»å‹
+         * @return æ›¿æ¢åçš„String
          */
         public static String RegReplaceString(String replaceString, String stringType) {
-        	String regEx= stringType + "=\"(\\d+)-(\\d+)-(\\d+)(\\s)(\\d+):(\\d+):(\\d+)\""; //±íÊ¾Ò»¸ö»ò¶à¸öa 
+        	String regEx= stringType + "=\"(\\d+)-(\\d+)-(\\d+)(\\s)(\\d+):(\\d+):(\\d+)\""; //è¡¨ç¤ºä¸€ä¸ªæˆ–å¤šä¸ªa 
         	
         	Pattern p=Pattern.compile(regEx); 
 
@@ -1079,7 +1079,7 @@ public class CommonUtility {
         	
         	Date time2 = CommonUtility.dateStrToDate(EndTime);
         	
-        	// È¡µÃÊ±¼ä
+        	// å–å¾—æ—¶é—´
         	long min = ((time2.getTime() - time1.getTime())/(1000*60));
         	
 	    	if(min <= 10) {

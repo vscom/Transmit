@@ -35,14 +35,14 @@ public class NVRVideoHistoryInquiryHandle {
     }
 
     /**
-     * TSC Éú³É²¥·ÅÁĞ±í·µ»Ø¸øjava
-     * 1.½âÎöxmlµÃµ½Í¨µÀindexÁĞ±í
-     * 2.ÏÂ·¢xml¸øÏàÓ¦µÄtsc
-     * 3.tscÉÏ±¨µÄxml×ª·¢¸øÖĞĞÄ£¨»Ø¸´£©
+     * TSC ç”Ÿæˆæ’­æ”¾åˆ—è¡¨è¿”å›ç»™java
+     * 1.è§£æxmlå¾—åˆ°é€šé“indexåˆ—è¡¨
+     * 2.ä¸‹å‘xmlç»™ç›¸åº”çš„tsc
+     * 3.tscä¸ŠæŠ¥çš„xmlè½¬å‘ç»™ä¸­å¿ƒï¼ˆå›å¤ï¼‰
      */
 	@SuppressWarnings("unchecked")
 	public void downXML(){
-		 // ·µ»ØÊı¾İ
+		 // è¿”å›æ•°æ®
 		@SuppressWarnings("unused")
 		String upString = "";
         
@@ -50,14 +50,14 @@ public class NVRVideoHistoryInquiryHandle {
         
         MemCoreData coreData = MemCoreData.getInstance();
         
-        List TSCSendList = coreData.getTSCList();//tscµÄÁĞ±íĞÅÏ¢
+        List TSCSendList = coreData.getTSCList();//tscçš„åˆ—è¡¨ä¿¡æ¯
         
         
         
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("ÀúÊ·ÊÓÆµ²é¿´StringToXML Error: " + e.getMessage());
+            log.error("å†å²è§†é¢‘æŸ¥çœ‹StringToXML Error: " + e.getMessage());
         }
         NVRVideoHistoryInquiryParse nvrHistory = new NVRVideoHistoryInquiryParse();
         List<ProvisionalRecordTaskSetVO> nvrHistorylist = nvrHistory.getIndexByDownXml(document);
@@ -76,7 +76,7 @@ public class NVRVideoHistoryInquiryHandle {
         	startDataTime = vo.getStartTime();
         	endDataTime = vo.getEndTime();
         	
-        	// Del By Bian Jiang ½ÚÄ¿ĞÅÏ¢¶¼´Ó½ÚÄ¿Ó³Éä±íÈ¡µÃ 2010.9.8
+        	// Del By Bian Jiang èŠ‚ç›®ä¿¡æ¯éƒ½ä»èŠ‚ç›®æ˜ å°„è¡¨å–å¾— 2010.9.8
 //        	if (this.bsData.getVersion().equals(CommonUtility.XML_VERSION_2_3)) {
 //        		try {
 //					index = getIndexByProgram(vo);
@@ -85,7 +85,7 @@ public class NVRVideoHistoryInquiryHandle {
 //					
 //				}
 //        	} else if (this.bsData.getVersion().equals(CommonUtility.XML_VERSION_2_0)) {
-//        		// Í¨µÀÓ³ÉäÈ¡µÃµ±Ç°½ÚÄ¿ĞÅÏ¢
+//        		// é€šé“æ˜ å°„å–å¾—å½“å‰èŠ‚ç›®ä¿¡æ¯
 //        		try {
 //					index = NVRVideoHistoryInquiryHandle.getIndexByProgramForChannelRemap(vo);
 //					this.downString = this.downString.replaceAll("Index=\"" + vo.getIndex() + "\"", "Index=\"" + index + "\"");
@@ -100,26 +100,26 @@ public class NVRVideoHistoryInquiryHandle {
 			}
 			
 			/**
-			 * ¹ãÖİ¼à²âÖĞĞÄÏîÄ¿, TSC²»ĞèÒªIndexºÅ
+			 * å¹¿å·ç›‘æµ‹ä¸­å¿ƒé¡¹ç›®, TSCä¸éœ€è¦Indexå·
 			 * By: Bian Jiang
 			 * 2011.4.7
 			 */
 //			this.downString = this.downString.replaceAll("Index=\"" + index + "\"", "Index=\"" + vo.getIndex() + "\"");
 			
 			
-			//ĞŞ¸Ä¸øtscÏÂ·¢Ê±ºò ÅĞ¶ÏÊÇÄÄ¸ötscÂ¼ÖÆµÄ¾Í¸øÄÄ¸ötscÏÂ·¢  
+			//ä¿®æ”¹ç»™tscä¸‹å‘æ—¶å€™ åˆ¤æ–­æ˜¯å“ªä¸ªtscå½•åˆ¶çš„å°±ç»™å“ªä¸ªtscä¸‹å‘  
         	for(int j=0;j<TSCSendList.size();j++){
         		TSCInfoVO tsc = (TSCInfoVO) TSCSendList.get(j);
     			try {
     				int tscIndex=getTscIndex(vo);
     				if(tscIndex >= tsc.getIndexMin() && tscIndex <= tsc.getIndexMax() ){
     					if(!url.equals(tsc.getURL())) {
-//                      ÀúÊ·ÊÓÆµ²é¿´ÏÂ·¢ timeout 1000*20 ¶şÊ®Ãë
+//                      å†å²è§†é¢‘æŸ¥çœ‹ä¸‹å‘ timeout 1000*20 äºŒåç§’
     						upString = utilXML.SendDownXML(this.downString, tsc.getURL(), CommonUtility.TASK_WAIT_TIMEOUT, bsData);
     						//break;
     						url = tsc.getURL();
     						if(upString.equals("")) {
-    							log.info("·µ»ØĞÅÏ¢Îª¿Õ: " + tsc.getURL());
+    							log.info("è¿”å›ä¿¡æ¯ä¸ºç©º: " + tsc.getURL());
     							continue;
     						} else {
     							break;
@@ -128,7 +128,7 @@ public class NVRVideoHistoryInquiryHandle {
     				}
                     
                 } catch (CommonException e) {
-                    log.error("ÏÂ·¢ÀúÊ·ÊÓÆµ²é¿´µ½TSC³ö´í£º" + tsc.getURL());
+                    log.error("ä¸‹å‘å†å²è§†é¢‘æŸ¥çœ‹åˆ°TSCå‡ºé”™ï¼š" + tsc.getURL());
                     upString = "";
                 }
         	}
@@ -138,20 +138,20 @@ public class NVRVideoHistoryInquiryHandle {
         
         long t2 = System.currentTimeMillis();
         
-      //ÉÏ±¨»Ø¸´µÄxml¸øÖĞĞÄ
+      //ä¸ŠæŠ¥å›å¤çš„xmlç»™ä¸­å¿ƒ
         try {
         	int javaSleepTime = 0;
         	if(upString == null || upString.equals("")) {
         		upString = utilXML.getReturnXML(bsData, 1);
         	} else {
 //        		javaSleepTime = CommonUtility.NVRVideoSleepTime(startDataTime, endDataTime);
-//        		log.info("--> TSCÊÓÆµ²é¿´Ê±¼ä: " + ((t2-t1)) + " ms,  Java Sleep Time: " + (javaSleepTime/1000) + "s");
+//        		log.info("--> TSCè§†é¢‘æŸ¥çœ‹æ—¶é—´: " + ((t2-t1)) + " ms,  Java Sleep Time: " + (javaSleepTime/1000) + "s");
         	}
 			
         	
             utilXML.SendUpXML(upString, bsData);
         } catch (Exception e) {
-            log.error("ÀúÊ·ÊÓÆµ²é»Ø¸´Ê§°Ü: " + e.getMessage());
+            log.error("å†å²è§†é¢‘æŸ¥å›å¤å¤±è´¥: " + e.getMessage());
         }
         
         bsData = null;
@@ -161,7 +161,7 @@ public class NVRVideoHistoryInquiryHandle {
         
     }
 	
-	//»ñÈ¡¸Ã½ÚÄ¿ËùÔÚtscµÄÄÄ¸öÍ¨µÀ
+	//è·å–è¯¥èŠ‚ç›®æ‰€åœ¨tscçš„å“ªä¸ªé€šé“
 	public static int getTscIndex(ProvisionalRecordTaskSetVO vo){
 		Statement statement = null;
 		ResultSet rs = null;
@@ -177,14 +177,14 @@ public class NVRVideoHistoryInquiryHandle {
 				tscIndex=rs.getInt("TscIndex");
 			}
 		} catch (Exception e) {
-			log.error("²éÕÒ±¨¾¯¿ª¹Ø×´Ì¬¼¯ºÏ´íÎó: " + e.getMessage());
+			log.error("æŸ¥æ‰¾æŠ¥è­¦å¼€å…³çŠ¶æ€é›†åˆé”™è¯¯: " + e.getMessage());
 		} finally {
 			try {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("¹Ø±ÕÊı¾İ¿âÊ§°Ü: " + e.getMessage());
+				log.error("å…³é—­æ•°æ®åº“å¤±è´¥: " + e.getMessage());
 			}
 		}
 		
@@ -203,7 +203,7 @@ public class NVRVideoHistoryInquiryHandle {
 
 		ResultSet rs = null;
 		
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("select channelindex, DevIndex  from channelremapping where Freq = " + vo.getFreq() + " and ServiceID = " + vo.getServiceID());
 
 		try {
@@ -220,14 +220,14 @@ public class NVRVideoHistoryInquiryHandle {
 			}
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
 		}
 		strBuff = null;
-		log.info("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		log.info("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		return vo;
 	}
     
@@ -241,7 +241,7 @@ public class NVRVideoHistoryInquiryHandle {
 
 		ResultSet rs = null;
 		
-		// TODO ¿ÉÄÜ³öÏÖ¶à¸öÆµµã³öÏÖÍ¬Ò»¸ö½ÚÄ¿
+		// TODO å¯èƒ½å‡ºç°å¤šä¸ªé¢‘ç‚¹å‡ºç°åŒä¸€ä¸ªèŠ‚ç›®
 		strBuff.append("select channelindex from channelprogramstatus where Freq = " + vo.getFreq() + " and  ");
 		strBuff.append("ServiceID = " + vo.getServiceID());
 		
@@ -267,13 +267,13 @@ public class NVRVideoHistoryInquiryHandle {
 			}
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ²éÑ¯Í¨µÀÊı¾İ¿â´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒæŸ¥è¯¢é€šé“æ•°æ®åº“é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
 		}
 		strBuff = null;
-		log.info("×Ô¶¯Â¼Ïñ²éÑ¯Í¨µÀÊı¾İ¿â³É¹¦!");
+		log.info("è‡ªåŠ¨å½•åƒæŸ¥è¯¢é€šé“æ•°æ®åº“æˆåŠŸ!");
 		
 		vo.setIndex(index);
 		return index;

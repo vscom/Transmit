@@ -25,7 +25,7 @@ import com.bvcom.transmit.util.DaoException;
 /**
  * Create Data Sources
  * 
- * @author ±ß ½­
+ * @author è¾¹ æ±Ÿ
  * @sinace 2008.4.1
  * 
  */

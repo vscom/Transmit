@@ -19,7 +19,7 @@ import com.bvcom.transmit.vo.si.ChannelScanQueryVO;
 import com.bvcom.transmit.vo.si.ConstellationQueryVO;
 
 /**
- * ÐÇ×ùÍ¼  ¹ãÖÝ¼à²â Add By Bian Jiang 2010.10.12
+ * æ˜Ÿåº§å›¾  å¹¿å·žç›‘æµ‹ Add By Bian Jiang 2010.10.12
  * @author Bian Jiang
  *
  */
@@ -61,7 +61,7 @@ public class ConstellationQueryHandle {
     public void downXML() {
 		List SMGSendList = new ArrayList();
 
-		// 3:GetIndexSet(ÐÔÄÜÖ¸±êºÍÐÇ×ùÍ¼)
+		// 3:GetIndexSet(æ€§èƒ½æŒ‡æ ‡å’Œæ˜Ÿåº§å›¾)
 		CommonUtility.checkSMGChannelType("GetIndexSet", SMGSendList);
 		UtilXML xmlUtil = new UtilXML();
 
@@ -73,7 +73,7 @@ public class ConstellationQueryHandle {
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("ÐÇ×ùÍ¼StringToXML Error: " + e.getMessage());
+            log.error("æ˜Ÿåº§å›¾StringToXML Error: " + e.getMessage());
         }
         
         ConstellationQueryParse ConstellationQueryParse = new ConstellationQueryParse();
@@ -87,19 +87,19 @@ public class ConstellationQueryHandle {
 		for (int i = 0; i < SMGSendList.size(); i++) {
 			SMGCardInfoVO smg = (SMGCardInfoVO) SMGSendList.get(i);
 			try {
-				// ÆµµÀÉ¨ÃèÐÅÏ¢ÏÂ·¢ timeout 1000*60*3 Èý·ÖÖÓ
+				// é¢‘é“æ‰«æä¿¡æ¯ä¸‹å‘ timeout 1000*60*3 ä¸‰åˆ†é’Ÿ
 				returnStr = utilXML.SendDownXML(smgDownString, smg
 						.getURL(), CommonUtility.CONN_WAIT_TIMEOUT,
 						bsData);
 				if(returnStr == null || returnStr.equals("")) {
-					log.error("È¡µÃÐÇ×ùÍ¼Ê§°Ü: " + smg.getURL());
+					log.error("å–å¾—æ˜Ÿåº§å›¾å¤±è´¥: " + smg.getURL());
 					continue;
 				}
 				
 				break;
 			} catch (CommonException e) {
-				log.error("ÏòSMGÏÂ·¢ÐÇ×ùÍ¼³ö´íÐÅÏ¢£º" + e.getMessage());
-				log.error("ÏòSMGÏÂ·¢ÐÇ×ùÍ¼³ö´íURL£º" + smg.getURL());
+				log.error("å‘SMGä¸‹å‘æ˜Ÿåº§å›¾å‡ºé”™ä¿¡æ¯ï¼š" + e.getMessage());
+				log.error("å‘SMGä¸‹å‘æ˜Ÿåº§å›¾å‡ºé”™URLï¼š" + smg.getURL());
 			}
 		}
 		
@@ -107,7 +107,7 @@ public class ConstellationQueryHandle {
 	        try {
 	            document = utilXML.StringToXML(returnStr);
 	        } catch (CommonException e) {
-	            log.error("ÐÇ×ùÍ¼StringToXML Error: " + e.getMessage());
+	            log.error("æ˜Ÿåº§å›¾StringToXML Error: " + e.getMessage());
 	        }
 	        
 			voList = ConstellationQueryParse.getReturnObject(document);
@@ -121,14 +121,14 @@ public class ConstellationQueryHandle {
 		}
 		
     	if(returnStr == null || returnStr.equals("")) {
-    		log.error("È¡µÃÐÇ×ùÍ¼Ê§°Ü, Çë¹ý¼¸·ÖÖÓÔÙÊÔ¡£");
+    		log.error("å–å¾—æ˜Ÿåº§å›¾å¤±è´¥, è¯·è¿‡å‡ åˆ†é’Ÿå†è¯•ã€‚");
     		returnStr = ConstellationQueryParse.createReturnXML(voList, bsData, 1);
     	}
         	
 		try {
 			utilXML.SendUpXML(returnStr, bsData);
 		} catch (CommonException e) {
-			log.error("ÉÏ·¢ÆµµÀÉ¨ÃèÐÅÏ¢Ê§°Ü: " + e.getMessage());
+			log.error("ä¸Šå‘é¢‘é“æ‰«æä¿¡æ¯å¤±è´¥: " + e.getMessage());
 		}
 
 		bsData = null;
@@ -156,7 +156,7 @@ public class ConstellationQueryHandle {
 				double strIDate = 0;
 				double strQDate = 0;
 				
-				//IÖµ
+				//Iå€¼
 				//if(cmdInfo.getIData()[i].charAt(0) != '-')
 				if(vo.getValueI() > 0)
 					temp = vo.getValueI() - flag - ((i%4)*16);
@@ -197,7 +197,7 @@ public class ConstellationQueryHandle {
 				}
 				strIDate = temp;
 				
-				//QÖµ
+				//Qå€¼
 				//if(cmdInfo.getQData()[i].charAt(0) != '-')
 				if(vo.getValueQ() > 0)
 					temp = vo.getValueQ() - flag - (((i/4)-(i/16)*4 )*16);
@@ -250,7 +250,7 @@ public class ConstellationQueryHandle {
 				double strIDate = 0;
 				double strQDate = 0;
 				
-				//IÖµ
+				//Iå€¼
 				//if(cmdInfo.getIData()[i].charAt(0) != '-')
 				if(vo.getValueI() > 0)
 					temp = vo.getValueI() - flag - ((i%4)*16);
@@ -276,7 +276,7 @@ public class ConstellationQueryHandle {
 				
 				strIDate = temp;
 				
-				//QÖµ
+				//Qå€¼
 				//if(cmdInfo.getQData()[i].charAt(0) != '-')
 				if(vo.getValueQ() > 0)
 					temp = vo.getValueQ() - flag - (((i/4)-(i/16)*4 )*16);

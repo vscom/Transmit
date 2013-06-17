@@ -12,9 +12,9 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.MatrixQueryVO;
 
-//矩阵切换
+//鐭╅樀鍒囨崲
 public class MatrixQueryParse {
-	//矩阵切换解析xml得到通道号的数组
+	//鐭╅樀鍒囨崲瑙ｆ瀽xml寰楀埌閫氶亾鍙风殑鏁扮粍
 	@SuppressWarnings("unchecked")
 	public List<MatrixQueryVO> getIndexByDownXml(Document document){
 		List<MatrixQueryVO> indexlist = new ArrayList();
@@ -42,7 +42,7 @@ public class MatrixQueryParse {
 		
 	}
 	
-	// 矩阵切换回复xml打包
+	// 鐭╅樀鍒囨崲鍥炲xml鎵撳寘
 	public String ReturnXMLByURL(MSGHeadVO head, int value) {
 		
 		String xml = null;
@@ -52,9 +52,9 @@ public class MatrixQueryParse {
 				+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"MatrixQuery\" Value=\"0\" Desc=\"成功\"/>";
+			xml += "<Return Type=\"MatrixQuery\" Value=\"0\" Desc=\"鎴愬姛\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"MatrixQuery\" Value=\"1\" Desc=\"失败\"/>";
+			xml += "<Return Type=\"MatrixQuery\" Value=\"1\" Desc=\"澶辫触\"/>";
 			xml +="</Msg>";
 			return xml;
 		}

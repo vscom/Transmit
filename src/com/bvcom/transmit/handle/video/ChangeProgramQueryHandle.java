@@ -35,25 +35,25 @@ public class ChangeProgramQueryHandle {
     }
     
     /**
-     * 1. SMG ÏÂ·¢ÊÖ¶¯Ñ¡Ì¨
-     * 2. ³É¹¦ºó£¬ÏÂ·¢Ö¸ÁîÈë¿â(¼ÇÂ¼µ±Ç°½ÚÄ¿ĞÅÏ¢)
-     * 3. ´ÓÖ¸¶¨µØ·½(Êı¾İ¿â»òÅäÖÃÎÄ¼ş)È¡µÃÊµÊ±ÊÓÆµURL
-     * 4. URLĞ´ÈëXML²¢ÉÏ±¨XML¸øÖĞĞÄ
+     * 1. SMG ä¸‹å‘æ‰‹åŠ¨é€‰å°
+     * 2. æˆåŠŸåï¼Œä¸‹å‘æŒ‡ä»¤å…¥åº“(è®°å½•å½“å‰èŠ‚ç›®ä¿¡æ¯)
+     * 3. ä»æŒ‡å®šåœ°æ–¹(æ•°æ®åº“æˆ–é…ç½®æ–‡ä»¶)å–å¾—å®æ—¶è§†é¢‘URL
+     * 4. URLå†™å…¥XMLå¹¶ä¸ŠæŠ¥XMLç»™ä¸­å¿ƒ
      *
      */
     public void downXML() {
-        // ·µ»ØÊı¾İ
+        // è¿”å›æ•°æ®
         String upString = "";
         //List SMGSendList = new ArrayList();
         
         boolean isErr = false;
         
         MonitorProgramQueryVO rtvsVO = new MonitorProgramQueryVO();
-        // 0:¿ÕÏĞ 1:Ò»¶ÔÒ»¼àÊÓ 2:ÂÖ²¥¼à²âÊ¹ÓÃ 3:ÊÖ¶¯Ñ¡Ì¨ 4:×Ô¶¯ÂÖ²¥ 5:¶à»­ÃæºÏ³É(ÂíÈü¿Ë)
+        // 0:ç©ºé—² 1:ä¸€å¯¹ä¸€ç›‘è§† 2:è½®æ’­ç›‘æµ‹ä½¿ç”¨ 3:æ‰‹åŠ¨é€‰å° 4:è‡ªåŠ¨è½®æ’­ 5:å¤šç”»é¢åˆæˆ(é©¬èµ›å…‹)
         try {
 			rtvsVO = MonitorProgramQueryHandle.GetChangeProgramInfo(rtvsVO, 3);
 		} catch (DaoException e1) {
-			log.error("È¡µÃÊµÊ±ÊÓÆµURL´íÎó: " + e1.getMessage());
+			log.error("å–å¾—å®æ—¶è§†é¢‘URLé”™è¯¯: " + e1.getMessage());
 			isErr = true;
 		}
         
@@ -62,12 +62,12 @@ public class ChangeProgramQueryHandle {
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("ÊÖ¶¯Ñ¡Ì¨StringToXML Error: " + e.getMessage());
+            log.error("æ‰‹åŠ¨é€‰å°StringToXML Error: " + e.getMessage());
         }
-        // È¡µÃÏÂ·¢XML¶ÔÏóÊı¾İ
+        // å–å¾—ä¸‹å‘XMLå¯¹è±¡æ•°æ®
         ChangeProgramQueryVO vo = ChangeProgram.getDownObject(document);
 //        System.out.println(vo);
-        // ²é¿´ÊµÊ±ÊÓÆµÊÇ·ñÔÚÒ»¶ÔÒ»¼à²âµÄ½ÚÄ¿ÀïÃæ
+        // æŸ¥çœ‹å®æ—¶è§†é¢‘æ˜¯å¦åœ¨ä¸€å¯¹ä¸€ç›‘æµ‹çš„èŠ‚ç›®é‡Œé¢
         SetAutoRecordChannelVO SetAutoRecordChannelVO = new SetAutoRecordChannelVO();
         SetAutoRecordChannelVO.setFreq(vo.getFreq());
         SetAutoRecordChannelVO.setServiceID(vo.getServiceID());
@@ -80,7 +80,7 @@ public class ChangeProgramQueryHandle {
         }
         
         if (isRemapping == 0) {
-        	// Ã»ÓĞÈ¡µÃÒ»¶ÔÒ»¼à²â½ÚÄ¿
+        	// æ²¡æœ‰å–å¾—ä¸€å¯¹ä¸€ç›‘æµ‹èŠ‚ç›®
             try {
             	this.downString = this.downString.replaceAll("QAM=\"64\"", "QAM=\"QAM64\"");
             	this.downString = this.downString.replaceAll("QAM=\"\"", "QAM=\"QAM64\"");
@@ -88,22 +88,22 @@ public class ChangeProgramQueryHandle {
                 if (this.bsData.getVersion().equals(CommonUtility.XML_VERSION_2_3)) {
                 	this.downString = this.downString.replaceAll("Index=\"0\"", "Index=\"" + rtvsVO.getSmgIndex() + "\"");
                 }
-                // Ñ¡Ì¨ĞÅÏ¢ÏÂ·¢ timeout 1000*3 ÈıÃë
+                // é€‰å°ä¿¡æ¯ä¸‹å‘ timeout 1000*3 ä¸‰ç§’
                 utilXML.SendDownNoneReturn(this.downString, rtvsVO.getSmgURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
-                // Ö»ÓĞÒ»¸öÍ¨µÀ×öÊÖ¶¯Ñ¡Ì¨
+                // åªæœ‰ä¸€ä¸ªé€šé“åšæ‰‹åŠ¨é€‰å°
                 //break;
 
             } catch (Exception e) {
-                log.error("ÏÂ·¢ÊÖ¶¯Ñ¡Ì¨³ö´í£º" + rtvsVO.getSmgURL());
+                log.error("ä¸‹å‘æ‰‹åŠ¨é€‰å°å‡ºé”™ï¼š" + rtvsVO.getSmgURL());
                 isErr = true;
             }
         } else {
-        	// È¡µÃÒ»¶ÔÒ»¼à²â½ÚÄ¿
+        	// å–å¾—ä¸€å¯¹ä¸€ç›‘æµ‹èŠ‚ç›®
         	rtvsVO.setRtvsIP(SetAutoRecordChannelVO.getUdp());
         	rtvsVO.setRtvsPort(SetAutoRecordChannelVO.getPort());
         } 
 
-        // RTVSĞŞ¸ÄÊäÈëÁ÷µÄIPºÍ¶Ë¿Ú
+        // RTVSä¿®æ”¹è¾“å…¥æµçš„IPå’Œç«¯å£
         RTVSResetConfigParse RTVSReset = new RTVSResetConfigParse();
         rtvsVO.setRunTime(vo.getRunTime());
         rtvsVO.setFreq(vo.getFreq());
@@ -111,7 +111,7 @@ public class ChangeProgramQueryHandle {
         rtvsVO.setIndex(0);
         
         
-        //2012-07-16 µÚÒ»Í¨µÀ£ºVPID:102  APID:103 µÚ¶şÍ¨µÀĞÂÔö¼ÓVPID  vpid:502 apid:503
+        //2012-07-16 ç¬¬ä¸€é€šé“ï¼šVPID:102  APID:103 ç¬¬äºŒé€šé“æ–°å¢åŠ VPID  vpid:502 apid:503
         try
         {
 	    	if(rtvsVO.getSmgURL().contains("Setup1")){
@@ -149,10 +149,10 @@ public class ChangeProgramQueryHandle {
         
         try {
           
-        	// Ñ¡Ì¨ĞÅÏ¢ÏÂ·¢ timeout 1000*10Ê®Ãë
+        	// é€‰å°ä¿¡æ¯ä¸‹å‘ timeout 1000*10åç§’
         	upString = utilXML.SendDownXML(rtvsString, rtvsVO.getRTVSResetURL(), CommonUtility.CHANGE_PROGRAM_QUERY, bsData);//
         } catch (CommonException e) {
-            log.error("ÏÂ·¢RTVSĞŞ¸ÄÊäÈëÁ÷µÄIPºÍ¶Ë¿Ú³ö´í£º" + rtvsVO.getRTVSResetURL());
+            log.error("ä¸‹å‘RTVSä¿®æ”¹è¾“å…¥æµçš„IPå’Œç«¯å£å‡ºé”™ï¼š" + rtvsVO.getRTVSResetURL());
             isErr = true;
         }
         
@@ -163,32 +163,32 @@ public class ChangeProgramQueryHandle {
             url = RTVSReset.getReturnURL(document);
         } catch (CommonException e) {
         	isErr = true;
-            log.error("ÊÓÆµURL StringToXML Error: " + e.getMessage());
+            log.error("è§†é¢‘URL StringToXML Error: " + e.getMessage());
         }
         
         if (isErr) {
-            // Ê§°Ü
+            // å¤±è´¥
             upString = utilXML.getReturnXML(bsData, 1);
         } else if(url.equals("")){
         	upString = utilXML.getReturnXML(bsData, 1);
         }else{
-            // ³É¹¦
-            // ÊÖ¶¯Ñ¡Ì¨Èë¿â
+            // æˆåŠŸ
+            // æ‰‹åŠ¨é€‰å°å…¥åº“
             try {
                 upChangeProgramTable(vo, this.downString);
             } catch (DaoException e) {
-                log.error("ÊÖ¶¯Ñ¡Ì¨¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
+                log.error("æ‰‹åŠ¨é€‰å°æ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
             }
-            // ÊµÊ±ÊÓÆµURL ´ÓÅäÖÃÎÄ¼ş¶ÁÈ¡
+            // å®æ—¶è§†é¢‘URL ä»é…ç½®æ–‡ä»¶è¯»å–
             //MemCoreData coreData = MemCoreData.getInstance();
             upString = ChangeProgram.ReturnXMLByURL(bsData, url, 0, vo.getIndex());
         }
         
         try {
-            // µÈ´ıÒ»ÃëÖÓ£¬ÈÃSMG´ò³öÁ÷£¬·ÀÖ¹RTVSÔÚÃ»ÓĞ½Óµ½Á÷¾ÍÖØÆô¡£
+            // ç­‰å¾…ä¸€ç§’é’Ÿï¼Œè®©SMGæ‰“å‡ºæµï¼Œé˜²æ­¢RTVSåœ¨æ²¡æœ‰æ¥åˆ°æµå°±é‡å¯ã€‚
             utilXML.SendUpXML(upString, bsData);
         } catch (Exception e) {
-            log.error("ÉÏ·¢ÊÖ¶¯Ñ¡Ì¨ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+            log.error("ä¸Šå‘æ‰‹åŠ¨é€‰å°ä¿¡æ¯å¤±è´¥: " + e.getMessage());
         }
         
         bsData = null;
@@ -200,7 +200,7 @@ public class ChangeProgramQueryHandle {
     
     
     /**
-     * ¸üĞÂÈë¿âÆµµÀÉ¨Ãè±í
+     * æ›´æ–°å…¥åº“é¢‘é“æ‰«æè¡¨
      * @throws DaoException 
      */
     private static void upChangeProgramTable(ChangeProgramQueryVO vo, String downXML) throws DaoException {
@@ -214,17 +214,17 @@ public class ChangeProgramQueryHandle {
         // update channelstatus c set freq = 6000000, qam = 'QAM128' where channelindex = 1
         
 		strBuff.append("update monitorprogramquery c set ");
-		// statusFlag: 0:¿ÕÏĞ 1:Ò»¶ÔÒ»¼àÊÓ 2:ÂÖ²¥¼à²âÊ¹ÓÃ 3:ÊÖ¶¯Ñ¡Ì¨ 4:×Ô¶¯ÂÖ²¥
+		// statusFlag: 0:ç©ºé—² 1:ä¸€å¯¹ä¸€ç›‘è§† 2:è½®æ’­ç›‘æµ‹ä½¿ç”¨ 3:æ‰‹åŠ¨é€‰å° 4:è‡ªåŠ¨è½®æ’­
 		strBuff.append("statusFlag = 3, ");
 		strBuff.append(" xml = '" + downXML + "', ");
-		// RunType 1:ÊÖ¶¯Ñ¡Ì¨ 2:Ò»¶ÔÒ»¼à²â 3:ÂÖÑ¯¼à²â 4:ÂÖ²¥
+		// RunType 1:æ‰‹åŠ¨é€‰å° 2:ä¸€å¯¹ä¸€ç›‘æµ‹ 3:è½®è¯¢ç›‘æµ‹ 4:è½®æ’­
 		strBuff.append(" RunType = 1, ");
 		strBuff.append(" Freq = " + vo.getFreq() + ", ");
 		strBuff.append(" ServiceID = " + vo.getServiceID() + ", ");
 		strBuff.append(" lastDatatime = '" + CommonUtility.getDateTime() + "' ");
 		strBuff.append(" where statusFlag = 3 ");
         
-        //log.info("ÊÖ¶¯Ñ¡Ì¨¸üĞÂÊı¾İ¿â£º" + strBuff.toString());
+        //log.info("æ‰‹åŠ¨é€‰å°æ›´æ–°æ•°æ®åº“ï¼š" + strBuff.toString());
         
         try {
             statement = conn.createStatement();
@@ -232,13 +232,13 @@ public class ChangeProgramQueryHandle {
             statement.executeUpdate(strBuff.toString());
             
         } catch (Exception e) {
-            log.error("ÊÖ¶¯Ñ¡Ì¨¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
+            log.error("æ‰‹åŠ¨é€‰å°æ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
         } finally {
             DaoSupport.close(rs);
             DaoSupport.close(statement);
             DaoSupport.close(conn);
         }
-        //log.info("ÊÖ¶¯Ñ¡Ì¨¸üĞÂÊı¾İ¿â³É¹¦!");
+        //log.info("æ‰‹åŠ¨é€‰å°æ›´æ–°æ•°æ®åº“æˆåŠŸ!");
     }
     
     public String getdownXML(ChangeProgramQueryVO vo) {

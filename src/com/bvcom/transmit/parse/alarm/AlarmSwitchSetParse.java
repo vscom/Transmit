@@ -13,10 +13,10 @@ import com.bvcom.transmit.parse.alarm.domain.AlarmSwitchDao;
 import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//±¨¾¯¿ª¹Ø£¨ÆµÂÊ£©
+//æŠ¥è­¦å¼€å…³ï¼ˆé¢‘ç‡ï¼‰
 public class AlarmSwitchSetParse {
 	private static Logger log = Logger.getLogger(AlarmSwitchSetParse.class.getSimpleName());
-	// ÆµÂÊ±¨¾¯¿ª¹Ø»Ø¸´xml´ò°ü
+	// é¢‘ç‡æŠ¥è­¦å¼€å…³å›å¤xmlæ‰“åŒ…
 	public String ReturnXMLByURL(MSGHeadVO head, int value) {
 
 		String xml = null;
@@ -26,16 +26,16 @@ public class AlarmSwitchSetParse {
 		+ CommonUtility.getDateTime()+ "\" SrcCode=\"" + head.getDstCode()
 		+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"AlarmSwitchSet\" Value=\"0\" Desc=\"³É¹¦\"/>";
+			xml += "<Return Type=\"AlarmSwitchSet\" Value=\"0\" Desc=\"æˆåŠŸ\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"AlarmSwitchSet\" Value=\"1\" Desc=\"Ê§°Ü\"/>";
+			xml += "<Return Type=\"AlarmSwitchSet\" Value=\"1\" Desc=\"å¤±è´¥\"/>";
 		}
 		xml += "</Msg>";
 		return xml;
 
 	}
 	/**
-	 * ½âÎö³öÆµÂÊ±¨¾¯¿ª¹Ø×´Ì¬ ĞÅÏ¢Èë¿â
+	 * è§£æå‡ºé¢‘ç‡æŠ¥è­¦å¼€å…³çŠ¶æ€ ä¿¡æ¯å…¥åº“
 	 * @param document
 	 * JI LONG  2011-5-12 
 	 */
@@ -59,7 +59,7 @@ public class AlarmSwitchSetParse {
 				}
 			}
         }catch (Exception ex) {
-        	log.error("½âÎöÆµÂÊ¿ª¹Ø´íÎó"+ex);
+        	log.error("è§£æé¢‘ç‡å¼€å…³é”™è¯¯"+ex);
         }
         System.out.println(alarmSwitchList);
 	    dao.save(alarmSwitchList);

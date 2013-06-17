@@ -13,7 +13,7 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.si.ChannelScanQueryVO;
 import com.bvcom.transmit.vo.si.elementryPIDVO;
 
-//ÆµµÀÉ¨Ãè
+//é¢‘é“æ‰«æ
 public class ChannelScanQueryParse {
 	
 	public ChannelScanQueryVO getDownObject(Document document){
@@ -31,8 +31,8 @@ public class ChannelScanQueryParse {
 			
 			try {
 			/**
-			 * ScanType=0Îª¼òµ¥
-			 * µ±ScanType=1Ê±ÎªÏêÏ¸É¨Ãè
+			 * ScanType=0ä¸ºç®€å•
+			 * å½“ScanType=1æ—¶ä¸ºè¯¦ç»†æ‰«æ
 			 */
 				Attribute scanType = element.attribute("ScanType");
 				vo.setScanType(Integer.parseInt(scanType.getValue()));
@@ -47,7 +47,7 @@ public class ChannelScanQueryParse {
 	}
 	
 	/**
-	 * Ö¸¶¨É¨ÃèĞ­Òé´ò°ü
+	 * æŒ‡å®šæ‰«æåè®®æ‰“åŒ…
 	 * @return
 	 */
 	public String createChannelScanXML(String str,MSGHeadVO head){
@@ -150,9 +150,9 @@ public class ChannelScanQueryParse {
 	}
     
     /**
-     * Éú³É·µ»ØXMLĞÅÏ¢
+     * ç”Ÿæˆè¿”å›XMLä¿¡æ¯
      * @param head
-     * @param value 0:³É¹¦ 1: Ê§°Ü
+     * @param value 0:æˆåŠŸ 1: å¤±è´¥
      * @return
      */
     public String getReturnXML(MSGHeadVO head, int value) {
@@ -164,18 +164,18 @@ public class ChannelScanQueryParse {
                 + CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
                 + "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\"" + head.getCenterMsgID() + "\">";
         if(0==value){
-            xml += "<Return Type=\"ChangeProgramQuery\" Value=\"0\" Desc=\"³É¹¦\"/>";
+            xml += "<Return Type=\"ChangeProgramQuery\" Value=\"0\" Desc=\"æˆåŠŸ\"/>";
         }else if(1==value){
-            xml += "<Return Type=\"ChangeProgramQuery\" Value=\"1\" Desc=\"Ê§°Ü\"/>";
+            xml += "<Return Type=\"ChangeProgramQuery\" Value=\"1\" Desc=\"å¤±è´¥\"/>";
         }
         xml += "</Msg>";
         return xml;
     }
     
     /**
-     * Éú³É·µ»ØXMLĞÅÏ¢
+     * ç”Ÿæˆè¿”å›XMLä¿¡æ¯
      * @param head
-     * @param value 0:³É¹¦ 1: Ê§°Ü
+     * @param value 0:æˆåŠŸ 1: å¤±è´¥
      * @return
      */
     public String createChannelScanReturnXML( List<ChannelScanQueryVO> VOList, MSGHeadVO head, int value) {
@@ -190,9 +190,9 @@ public class ChannelScanQueryParse {
                 + CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
                 + "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\"" + head.getReplyID() + "\">\r\n");
         if(0==value){
-        	xml.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r\n");
+        	xml.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r\n");
         }else if(1==value){
-        	xml.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"Ê§°Ü\"/>\r\n");
+        	xml.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"å¤±è´¥\"/>\r\n");
         }
         
         xml.append("<ReturnInfo>\r\n");

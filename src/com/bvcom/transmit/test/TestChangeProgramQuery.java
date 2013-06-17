@@ -12,23 +12,23 @@ import com.bvcom.transmit.vo.video.ChangeProgramQueryVO;
 public class TestChangeProgramQuery {
 
 
-//	XMLÍ·
+//	XMLå¤´
 	private static String XML_HEADER = "<?xml version=\"1.0\" encoding=\"GB2312\" standalone=\"yes\"?>";
-//	MSG½ÚµãµÄVersionÊôĞÔ
+//	MSGèŠ‚ç‚¹çš„Versionå±æ€§
 	private static String MSG_VERSION = " Version=\"4\"";
-//	MSG½ÚµãµÄMsgIDÊôĞÔ
+//	MSGèŠ‚ç‚¹çš„MsgIDå±æ€§
 	private static String MSG_ID = " MsgID=\"2\"";
-	//MSG½ÚµãµÄTypeÊôĞÔ
+	//MSGèŠ‚ç‚¹çš„Typeå±æ€§
 	private static String MSG_TYPE = " Type=\"AD988MonUp\"";
-	//MSG½ÚµãµÄTimeÊôĞÔ
+	//MSGèŠ‚ç‚¹çš„Timeå±æ€§
 	private static String MSG_DATA_TIME = " DateTime=";
-	//MSG½ÚµãµÄÔ´¶Ë±àÂëÊôĞÔ
+	//MSGèŠ‚ç‚¹çš„æºç«¯ç¼–ç å±æ€§
 	private static String MSG_SRC_CODE = " SrcCode=";
-	//MSG½ÚµãµÄÄ¿±ê±àÂëÊôĞÔ
+	//MSGèŠ‚ç‚¹çš„ç›®æ ‡ç¼–ç å±æ€§
 	private static String MSG_DST_CODE = " DstCode=\"110000N01\"";
-//	MSG½ÚµãµÄÓÅÏÈ¼¶ÊôĞÔ
+//	MSGèŠ‚ç‚¹çš„ä¼˜å…ˆçº§å±æ€§
 	private static String MSG_PRIORITY = " Priority=\"1\"";
-//	MSG½ÚµãµÄÓÅÏÈ¼¶ÊôĞÔ
+//	MSGèŠ‚ç‚¹çš„ä¼˜å…ˆçº§å±æ€§
 	private static String MSG_REPLYID = " ReplyID=";
 	
 	public static void main(String[] args) throws CommonException {
@@ -66,9 +66,9 @@ public class TestChangeProgramQuery {
 		xml += "<Msg" + MSG_VERSION + 
 		  MSG_ID + MSG_TYPE + MSG_DATA_TIME + "\"" + data + "\"" + 
 		  MSG_SRC_CODE +"\"" + name + "\"" + MSG_DST_CODE + MSG_PRIORITY+MSG_REPLYID+"\"" + 1 + "\"" +">";
-		xml += "<Return Type=\"ChangeProgramQuery\" Value=\"0\" Desc=\"³É¹¦\"/><ReturnInfo><RealStreamURL Index=\"3\" URL=\"svrt://127.0.0.1/192.168.0.191:8000:HIK-DS8000HC:0:0:admin:12345/av_stream\"/></ReturnInfo></Msg>";
+		xml += "<Return Type=\"ChangeProgramQuery\" Value=\"0\" Desc=\"æˆåŠŸ\"/><ReturnInfo><RealStreamURL Index=\"3\" URL=\"svrt://127.0.0.1/192.168.0.191:8000:HIK-DS8000HC:0:0:admin:12345/av_stream\"/></ReturnInfo></Msg>";
 		
-		System.out.println("×Ö·û´®xml£º"+xml);
+		System.out.println("å­—ç¬¦ä¸²xmlï¼š"+xml);
 		
 		UtilXML uxml = new UtilXML();
 		Document document = uxml.StringToXML(xml);

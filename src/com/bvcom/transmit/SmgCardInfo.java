@@ -66,7 +66,7 @@ public class SmgCardInfo extends HttpServlet {
 	 * @throws ServletException if an error occurred
 	 * @throws IOException if an error occurred
 	 */
-	//´ıÓÅ»¯
+	//å¾…ä¼˜åŒ–
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -88,15 +88,15 @@ public class SmgCardInfo extends HttpServlet {
 		String flag =request.getParameter("type");
 		//String showparam = request.getParameter("showparam");
 		
-		if(flag==null)//Ò³ÃæË¢ĞÂ
+		if(flag==null)//é¡µé¢åˆ·æ–°
 		{
 			//System.out.println("type="+flag);
 		}
 		else 
 		{
-		    //È¡²ÎÊıĞÅÏ¢Èë¿â
+		    //å–å‚æ•°ä¿¡æ¯å…¥åº“
 		    try {
-			  // ¿ªÊ¼Í¨µÀºÅ
+			  // å¼€å§‹é€šé“å·
 		    	try
 		    	{
 			      //System.out.println(request.getParameter("smgIndex"));
@@ -158,7 +158,7 @@ public class SmgCardInfo extends HttpServlet {
 						statement.executeUpdate(strBuff2.toString());
 						
 					} catch (Exception e) {
-						//log.info("¸üĞÂÍ¨µÀ×´Ì¬±íÊ§°Ü£º"+e.getMessage());
+						//log.info("æ›´æ–°é€šé“çŠ¶æ€è¡¨å¤±è´¥ï¼š"+e.getMessage());
 					}finally{
 						DaoSupport.close(statement);
 					}
@@ -169,7 +169,7 @@ public class SmgCardInfo extends HttpServlet {
 				else
 				{
 					StringBuffer strBuff = new StringBuffer();
-					//Êı¾İ¿âÖĞÊÇ·ñ´æÔÚ´ËÍ¨µÀ£¬Èô´æÔÚ¡¢UPDATE,·ñÔòINSERT
+					//æ•°æ®åº“ä¸­æ˜¯å¦å­˜åœ¨æ­¤é€šé“ï¼Œè‹¥å­˜åœ¨ã€UPDATE,å¦åˆ™INSERT
 					strBuff.append("insert into smg_card_info(smgIndex, smgIp, smgInputtype, smgURL, updateTime,smgStatus, smgSmartCard, smgCamCard," +
 							" smgCamPostion, smgCamDesc,smgRemark)");
 					strBuff.append(" values(");
@@ -199,9 +199,9 @@ public class SmgCardInfo extends HttpServlet {
 				DaoSupport.close(conn);
 	        }catch(Exception ex) {
 	        	System.out.println(ex.getMessage());
-	        	log.error("ÈÎÎñÂ¼Ïñ²éÑ¯Êı¾İ¿â´íÎó: " + ex.getMessage());
+	        	log.error("ä»»åŠ¡å½•åƒæŸ¥è¯¢æ•°æ®åº“é”™è¯¯: " + ex.getMessage());
 	        }
-	        //¸üĞÂÒ»¶ÔÒ»ÊÓÆµ±í:ÊÖ¶¯Ñ¡Ì¨¡¢×Ô¶¯ÂÖ²¥£¨ÂíÈü¿ËÂÖ²¥£©
+	        //æ›´æ–°ä¸€å¯¹ä¸€è§†é¢‘è¡¨:æ‰‹åŠ¨é€‰å°ã€è‡ªåŠ¨è½®æ’­ï¼ˆé©¬èµ›å…‹è½®æ’­ï¼‰
 	        SMGCardInfoVO smgCardInfo = new SMGCardInfoVO();
 			smgCardInfo.setIndex(smgIndex);
 			smgCardInfo.setURL(smgURL);
@@ -272,38 +272,38 @@ public class SmgCardInfo extends HttpServlet {
 	    
 	    out.println("  </HEAD>");
 		out.println("  <BODY>");
-		out.println("<h3>ÉèÖÃÇ°¶Ë°å¿¨Í¨µÀĞÅÏ¢£º</h3>");
+		out.println("<h3>è®¾ç½®å‰ç«¯æ¿å¡é€šé“ä¿¡æ¯ï¼š</h3>");
 		out.println("  <form id=\"form1\" method=\"POST\" name=\"form1\" action=\"./smginfo?type=500\">");
 		out.println("<table border=1 cellspacing=1 >");
 		out.println("<tr>");
-		//out.println("<td width=3%> ĞòºÅ </td>");
-		out.println("<td width=4%> Í¨µÀ</td>");
-		out.println("<td width=8%> °å¿¨IP </td>");
-		out.println("<td width=4%> ÒµÎñÀàĞÍ </td>");	
-		out.println("<td width=20%> °å¿¨URL </td>");	
-		out.println("<td width=3%> µ±Ç°×´Ì¬ </td>");
-		out.println("<td width=10%> CAM¿¨ºÅ </td>");
-		out.println("<td width=10%> ÖÇÄÜ¿¨ºÅ </td>");
-		out.println("<td width=10%> Ğ¡¿¨Î»ÖÃ</td>");
-		out.println("<td width=10%>Ğ¡¿¨ÃèÊö</td>");
-		out.println("<td width=10%> ±¸×¢ĞÅÏ¢ </td>");
+		//out.println("<td width=3%> åºå· </td>");
+		out.println("<td width=4%> é€šé“</td>");
+		out.println("<td width=8%> æ¿å¡IP </td>");
+		out.println("<td width=4%> ä¸šåŠ¡ç±»å‹ </td>");	
+		out.println("<td width=20%> æ¿å¡URL </td>");	
+		out.println("<td width=3%> å½“å‰çŠ¶æ€ </td>");
+		out.println("<td width=10%> CAMå¡å· </td>");
+		out.println("<td width=10%> æ™ºèƒ½å¡å· </td>");
+		out.println("<td width=10%> å°å¡ä½ç½®</td>");
+		out.println("<td width=10%>å°å¡æè¿°</td>");
+		out.println("<td width=10%> å¤‡æ³¨ä¿¡æ¯ </td>");
 		out.println("</tr>");
 		out.println("<td width=4%> <input type =\"text\" size=\"5\" id=\"smgIndex\" name=\"smgIndex\" value =\"\" </td>");
 		out.println("<td width=8%> <input type =\"text\" size=\"15\" id=\"smgIp\" name=\"smgIp\" value =\"\"</td>");
 		out.println("<td width=4%> <select id=\"smgInputtype\" name=\"smgInputtype\" > " +
-				"<option value=\"0\">Í£ÓÃ</option>" +
-				"<option value=\"5\">¿ÕÏĞ</option>" +
-				"<option value=\"4\">Â¼Ïñ</option>" +
-				"<option value=\"1\">ÊµÊ±ÊÓÆµ</option>" +
-				"<option value=\"2\">ÂÖ²¥¸¨Öú</option>" +
-				"<option value=\"3\">ÂÖÑ­²âÁ¿</option>" +
-				"<option value=\"6\">ÆµµÀÉ¨Ãè</option>" +
-				"<option value=\"7\">Ö¸±ê²éÑ¯</option>" +
+				"<option value=\"0\">åœç”¨</option>" +
+				"<option value=\"5\">ç©ºé—²</option>" +
+				"<option value=\"4\">å½•åƒ</option>" +
+				"<option value=\"1\">å®æ—¶è§†é¢‘</option>" +
+				"<option value=\"2\">è½®æ’­è¾…åŠ©</option>" +
+				"<option value=\"3\">è½®å¾ªæµ‹é‡</option>" +
+				"<option value=\"6\">é¢‘é“æ‰«æ</option>" +
+				"<option value=\"7\">æŒ‡æ ‡æŸ¥è¯¢</option>" +
 				"</select></td>");
 		out.println("<td width=20%> <input type =\"text\" size=\"30\" id=\"smgURL\" name=\"smgURL\" value =\"\"</td>");
 		out.println("<td width=3%> <select id=\"smgStatus\" name=\"smgStatus\"> " +
-				"<option value=\"0\">Õı³£</option>" +
-				"<option value=\"1\">¹ÊÕÏ</option>" +
+				"<option value=\"0\">æ­£å¸¸</option>" +
+				"<option value=\"1\">æ•…éšœ</option>" +
 				"</select></td>");
 		
 		out.println("<td width=10%> <input type =\"text\" size=\"20\" name=\"smgSmartCard\" value =\"\"</td>");
@@ -313,27 +313,27 @@ public class SmgCardInfo extends HttpServlet {
 		out.println("<td width=10%> <input type =\"text\" size=\"20\" name=\"smgRemark\" value =\"\"</td>");
 		
 		out.println("  </table>");
-		out.println("<input type=\"submit\" name=\"smg_submit\" value=\"ÉèÖÃ\">");
-		out.println("<input type=\"reset\" name=\"smg_ret\" value=\"Çå³ı\">");
-		//out.println("<input type=\"submit\" name=\"smg_submit\" value=\"É¾³ı\">");
+		out.println("<input type=\"submit\" name=\"smg_submit\" value=\"è®¾ç½®\">");
+		out.println("<input type=\"reset\" name=\"smg_ret\" value=\"æ¸…é™¤\">");
+		//out.println("<input type=\"submit\" name=\"smg_submit\" value=\"åˆ é™¤\">");
 	
 		
 		
-		//Ë¢ĞÂ²é¿´°å¿¨×´Ì¬ĞÅÏ¢
-		out.println("<h3>²é¿´Ç°¶Ë°å¿¨Í¨µÀĞÅÏ¢£º</h3>");
+		//åˆ·æ–°æŸ¥çœ‹æ¿å¡çŠ¶æ€ä¿¡æ¯
+		out.println("<h3>æŸ¥çœ‹å‰ç«¯æ¿å¡é€šé“ä¿¡æ¯ï¼š</h3>");
 		out.println("<table border=1 cellspacing=1 >");
 		out.println("<tr>");
-		//out.println("<td width=4%> ĞòºÅ </td>");
-		out.println("<td width=3%> Í¨µÀ</td>");
-		out.println("<td width=6%> °å¿¨IP </td>");
-		out.println("<td width=5%> ÒµÎñÀàĞÍ </td>");	
-		out.println("<td width=30%> °å¿¨URL </td>");	
-		out.println("<td width=5%> ×´Ì¬ </td>");
-		out.println("<td width=10%> CAM¿¨ºÅ </td>");
-		out.println("<td width=10%> ÖÇÄÜ¿¨ºÅ </td>");
-		out.println("<td width=10%> Ğ¡¿¨Î»ÖÃ</td>");
-		out.println("<td width=10%>Ğ¡¿¨ÃèÊö</td>");
-		//out.println("<td width=10%> ±¸×¢ĞÅÏ¢ </td>");
+		//out.println("<td width=4%> åºå· </td>");
+		out.println("<td width=3%> é€šé“</td>");
+		out.println("<td width=6%> æ¿å¡IP </td>");
+		out.println("<td width=5%> ä¸šåŠ¡ç±»å‹ </td>");	
+		out.println("<td width=30%> æ¿å¡URL </td>");	
+		out.println("<td width=5%> çŠ¶æ€ </td>");
+		out.println("<td width=10%> CAMå¡å· </td>");
+		out.println("<td width=10%> æ™ºèƒ½å¡å· </td>");
+		out.println("<td width=10%> å°å¡ä½ç½®</td>");
+		out.println("<td width=10%>å°å¡æè¿°</td>");
+		//out.println("<td width=10%> å¤‡æ³¨ä¿¡æ¯ </td>");
 		out.println("</tr>");
 		try
 		{
@@ -376,20 +376,20 @@ public class SmgCardInfo extends HttpServlet {
 						str= "<td ><input type=\"text\" size=\"15\" readonly style=\"border:0px\" id =\"smgInputtype_"
 							+ (i+1)
 							+ "\" value=\" "
-							+ "Í£ÓÃ["+ inputtype+"]"
+							+ "åœç”¨["+ inputtype+"]"
 							+ "\" />"
 							+ "</td>";
-						//out.println("<td> " + "Í£ÓÃ["+ inputtype+"]</td>");
+						//out.println("<td> " + "åœç”¨["+ inputtype+"]</td>");
 						out.println(str);
 						break;
 					case 1:
 						str= "<td ><input type=\"text\" size=\"15\" readonly style=\"border:0px\" id =\"smgInputtype_"
 							+ (i+1)
 							+ "\" value=\" "
-							+ "ÊµÊ±ÊÓÆµ["+ inputtype+"]"
+							+ "å®æ—¶è§†é¢‘["+ inputtype+"]"
 							+ "\" />"
 							+ "</td>";
-						//out.println("<td> " + "ÊµÊ±ÊÓÆµ["+inputtype+ "] </td>");
+						//out.println("<td> " + "å®æ—¶è§†é¢‘["+inputtype+ "] </td>");
 						
 						out.println(str);
 						break;
@@ -397,10 +397,10 @@ public class SmgCardInfo extends HttpServlet {
 						str= "<td ><input type=\"text\" size=\"15\" readonly style=\"border:0px\" id =\"smgInputtype_"
 							+ (i+1)
 							+ "\" value=\" "
-							+ "ÂÖ²¥¸¨Öú["+ inputtype+"]"
+							+ "è½®æ’­è¾…åŠ©["+ inputtype+"]"
 							+ "\" />"
 							+ "</td>";
-						//out.println("<td> " + "ÂÖ²¥¸¨Öú["+inputtype+ " ]</td>");
+						//out.println("<td> " + "è½®æ’­è¾…åŠ©["+inputtype+ " ]</td>");
 						out.println(str);
 						
 						break;
@@ -408,10 +408,10 @@ public class SmgCardInfo extends HttpServlet {
 						str= "<td ><input type=\"text\" size=\"15\" readonly style=\"border:0px\" id =\"smgInputtype_"
 							+ (i+1)
 							+ "\" value=\" "
-							+ "ÂÖÑ­²âÁ¿["+ inputtype+"]"
+							+ "è½®å¾ªæµ‹é‡["+ inputtype+"]"
 							+ "\" />"
 							+ "</td>";
-						//out.println("<td> " + "ÂÖÑ­²âÁ¿["+inputtype+ "] </td>");
+						//out.println("<td> " + "è½®å¾ªæµ‹é‡["+inputtype+ "] </td>");
 						out.println(str);
 						
 						break;
@@ -419,20 +419,20 @@ public class SmgCardInfo extends HttpServlet {
 						str= "<td ><input type=\"text\" size=\"15\" readonly  style=\"border:0px\" id =\"smgInputtype_"
 							+ (i+1)
 							+ "\" value=\" "
-							+ "Â¼Ïñ["+ inputtype+"]"
+							+ "å½•åƒ["+ inputtype+"]"
 							+ "\" />"
 							+ "</td>";
-						//out.println("<td> " + "Â¼Ïñ["+inputtype+ "] </td>");
+						//out.println("<td> " + "å½•åƒ["+inputtype+ "] </td>");
 						out.println(str);
 						break;
 					case 5:
 						str= "<td ><input type=\"text\"  size=\"15\" readonly style=\"border:0px\" id =\"smgInputtype_"
 							+ (i+1)
 							+ "\" value=\" "
-							+ "¿ÕÏĞ["+ inputtype+"]"
+							+ "ç©ºé—²["+ inputtype+"]"
 							+ "\" />"
 							+ "</td>";
-						//out.println("<td> " + "¿ÕÏĞ["+inputtype+ "] </td>");
+						//out.println("<td> " + "ç©ºé—²["+inputtype+ "] </td>");
 						out.println(str);
 						
 						break;
@@ -440,10 +440,10 @@ public class SmgCardInfo extends HttpServlet {
 						str= "<td ><input type=\"text\" size=\"15\" readonly style=\"border:0px\" id =\"smgInputtype_"
 							+ (i+1)
 							+ "\" value=\" "
-							+ "ÆµµÀÉ¨Ãè["+ inputtype+"]"
+							+ "é¢‘é“æ‰«æ["+ inputtype+"]"
 							+ "\" />"
 							+ "</td>";
-						//out.println("<td> " + "ÆµµÀÉ¨¡¢Ö¸±ê²éÑ¯["+inputtype+ "] </td>");
+						//out.println("<td> " + "é¢‘é“æ‰«ã€æŒ‡æ ‡æŸ¥è¯¢["+inputtype+ "] </td>");
 						out.println(str);
 						
 						break;	
@@ -451,10 +451,10 @@ public class SmgCardInfo extends HttpServlet {
 						str= "<td ><input type=\"text\" size=\"15\" readonly style=\"border:0px\" id =\"smgInputtype_"
 							+ (i+1)
 							+ "\" value=\" "
-							+ "Ö¸±ê²éÑ¯["+ inputtype+"]"
+							+ "æŒ‡æ ‡æŸ¥è¯¢["+ inputtype+"]"
 							+ "\" />"
 							+ "</td>";
-						//out.println("<td> " + "ÆµµÀÉ¨¡¢Ö¸±ê²éÑ¯["+inputtype+ "] </td>");
+						//out.println("<td> " + "é¢‘é“æ‰«ã€æŒ‡æ ‡æŸ¥è¯¢["+inputtype+ "] </td>");
 						out.println(str);
 						
 						break;	
@@ -475,22 +475,22 @@ public class SmgCardInfo extends HttpServlet {
 						str= "<td ><input type=\"text\" size=\"5\" readonly  style=\"border:0px\" id =\"smgStatus_"
 							+ (i+1)
 							+ "\" value=\" "
-							+ "Õı³£"
+							+ "æ­£å¸¸"
 							+ "\" />"
 							+ "</td>";
 						out.println(str);
-						//out.println("<td> " + "Õı³£"+ "</td>");
+						//out.println("<td> " + "æ­£å¸¸"+ "</td>");
 					}
 					else
 					{
 						str= "<td ><input type=\"text\" size=\"5\" readonly style=\"border:0px\" id =\"smgStatus_"
 							+ (i+1)
 							+ "\" value=\" "
-							+ "¹ÊÕÏ"
+							+ "æ•…éšœ"
 							+ "\" />"
 							+ "</td>";
 						out.println(str);
-						//out.println("<td> " + "¹ÊÕÏ"+ "</td>");
+						//out.println("<td> " + "æ•…éšœ"+ "</td>");
 					}
 					
 					str= "<td ><input type=\"text\" readonly size=\"15\" style=\"border:0px\" id =\"smgSmartCard_"
@@ -545,7 +545,7 @@ public class SmgCardInfo extends HttpServlet {
 						+  inputtype
 						+ "\" />"
 						+ "</td>";
-					//out.println("<td> " + "Â¼Ïñ["+inputtype+ "] </td>");
+					//out.println("<td> " + "å½•åƒ["+inputtype+ "] </td>");
 					out.println(str);
 					
 					//out.println("<td> " + rs.getString("smgRemark")+ "</td>");
@@ -577,7 +577,7 @@ public class SmgCardInfo extends HttpServlet {
 		out.close();
 		
 		
-		//»ñÈ¡Í¨µÀµÄ×´Ì¬ĞÅÏ¢
+		//è·å–é€šé“çš„çŠ¶æ€ä¿¡æ¯
 		doGetNvrStatus();
 	}
 	
@@ -600,7 +600,7 @@ public class SmgCardInfo extends HttpServlet {
              statement.executeUpdate(strBuff.toString());
              
          } catch (Exception e) {
-             log.error("Ò»¶ÔÒ»½ÚÄ¿±í¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
+             log.error("ä¸€å¯¹ä¸€èŠ‚ç›®è¡¨æ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
          } finally {
              DaoSupport.close(rs);
              DaoSupport.close(statement);
@@ -625,7 +625,7 @@ public class SmgCardInfo extends HttpServlet {
              statement.executeUpdate(strBuff.toString());
              
          } catch (Exception e) {
-             log.error("Ò»¶ÔÒ»½ÚÄ¿±í¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
+             log.error("ä¸€å¯¹ä¸€èŠ‚ç›®è¡¨æ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
          } finally {
              DaoSupport.close(rs);
              DaoSupport.close(statement);
@@ -638,8 +638,8 @@ public class SmgCardInfo extends HttpServlet {
 		MemCoreData coreDate = MemCoreData.getInstance();
         List SMGCardList = coreDate.getSMGCardList();
         SMGCardList.clear();
-        //³ÌĞòÖØĞÂÆô¶¯ºó£¬Òª´ÓÊı¾İ¿âÖĞ¶ÁÈ¡Êı¾İ¡¢
-        //ÅĞ¶ÏSMG_CARD_INFO±íÖĞÊÇ·ñÓĞÊı¾İ£¬ÓĞÔò¶ÁÈ¡Êı¾İ¿âĞÅÏ¢£¬·ñÔò¶ÁÈ¡TransmitConfig.xmlÅäÖÃÎÄ¼ş
+        //ç¨‹åºé‡æ–°å¯åŠ¨åï¼Œè¦ä»æ•°æ®åº“ä¸­è¯»å–æ•°æ®ã€
+        //åˆ¤æ–­SMG_CARD_INFOè¡¨ä¸­æ˜¯å¦æœ‰æ•°æ®ï¼Œæœ‰åˆ™è¯»å–æ•°æ®åº“ä¿¡æ¯ï¼Œå¦åˆ™è¯»å–TransmitConfig.xmlé…ç½®æ–‡ä»¶
         int count =0;
         try
         {
@@ -677,7 +677,7 @@ public class SmgCardInfo extends HttpServlet {
 					rs = statement.executeQuery(strBuff.toString());
 					while(rs.next()){
 						 SMGCardInfoVO smgCardInfo = new SMGCardInfoVO();
-						 //»ñÈ¡Í¨µÀºÅ
+						 //è·å–é€šé“å·
 						 smgCardInfo.setIndex(rs.getInt("smgIndex"));
 						 //SMGURL
 						 smgCardInfo.setURL(rs.getString("smgURL"));
@@ -686,48 +686,48 @@ public class SmgCardInfo extends HttpServlet {
 						 //HDURL
 						 smgCardInfo.setHDURL("http://192.168.0.100/Setup1");
 						 
-						 //Í¨µÀÒµÎñÀàĞÍ
+						 //é€šé“ä¸šåŠ¡ç±»å‹
 						 @SuppressWarnings("unused")
 						 int inputtype=rs.getInt("smgInputtype");
 						 switch(inputtype){
-						 case 0://Í£ÓÃ
+						 case 0://åœç”¨
 							   smgCardInfo.setIndexType("Stop");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 1://ÊµÊ±ÊÓÆµ
+						 case 1://å®æ—¶è§†é¢‘
 							   smgCardInfo.setIndexType("ChangeProgramQuery");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 2://ÂÖ²¥¸¨Öú
+						 case 2://è½®æ’­è¾…åŠ©
 							   smgCardInfo.setIndexType("StreamRoundInfoQuery");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 3://ÂÖÑ­²âÁ¿
+						 case 3://è½®å¾ªæµ‹é‡
 							   smgCardInfo.setIndexType("AutoAnalysisTimeQuery");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 4://Â¼Ïñ
+						 case 4://å½•åƒ
 							   smgCardInfo.setIndexType("AutoRecord");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 5://¿ÕÏĞ
+						 case 5://ç©ºé—²
 							   smgCardInfo.setIndexType("Free");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 6://ÆµµÀÉ¨¡¢Ö¸±ê²éÑ¯
+						 case 6://é¢‘é“æ‰«ã€æŒ‡æ ‡æŸ¥è¯¢
 							   smgCardInfo.setIndexType("ChannelScanQuery");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 7://Ö¸±ê²éÑ¯
+						 case 7://æŒ‡æ ‡æŸ¥è¯¢
 							  smgCardInfo.setIndexType("GetIndexSet");
 							  SMGCardList.add(smgCardInfo);
 							  break;
 						 }
 						 
-						 //=================ÆµµÀÉ¨ÃèºÍÖ¸±ê²éÑ¯Õ¼ÓÃÒ»¸öÍ¨µÀ=============
+						 //=================é¢‘é“æ‰«æå’ŒæŒ‡æ ‡æŸ¥è¯¢å ç”¨ä¸€ä¸ªé€šé“=============
 //						 if(inputtype==6){
 //							 SMGCardInfoVO smgCardInfo1 = new SMGCardInfoVO();
-//							 //»ñÈ¡Í¨µÀºÅ
+//							 //è·å–é€šé“å·
 //							 smgCardInfo1.setIndex(rs.getInt("smgIndex"));
 //							 //SMGURL
 //							 smgCardInfo1.setURL(rs.getString("smgURL"));
@@ -758,7 +758,7 @@ public class SmgCardInfo extends HttpServlet {
 
 	
 	 /**
-     * ¸üĞÂÈë¿âÒ»¶ÔÒ»±í
+     * æ›´æ–°å…¥åº“ä¸€å¯¹ä¸€è¡¨
      * @throws DaoException 
      */
     @SuppressWarnings("unused")
@@ -769,10 +769,10 @@ public class SmgCardInfo extends HttpServlet {
         Connection conn = DaoSupport.getJDBCConnection();
         
 		strBuff.append("update monitorprogramquery c set ");
-		// statusFlag: 0:¿ÕÏĞ 1:Ò»¶ÔÒ»¼àÊÓ 2:ÂÖ²¥¼à²âÊ¹ÓÃ 3:ÊÖ¶¯Ñ¡Ì¨ 4:×Ô¶¯ÂÖ²¥,5:ÂíÈü¿ËÂÖ²¥
+		// statusFlag: 0:ç©ºé—² 1:ä¸€å¯¹ä¸€ç›‘è§† 2:è½®æ’­ç›‘æµ‹ä½¿ç”¨ 3:æ‰‹åŠ¨é€‰å° 4:è‡ªåŠ¨è½®æ’­,5:é©¬èµ›å…‹è½®æ’­
 		strBuff.append("statusFlag =");
 		strBuff.append(type+",");
-		// RunType 1:ÊÖ¶¯Ñ¡Ì¨ 2:Ò»¶ÔÒ»¼à²â 3:ÂÖÑ¯¼à²â 4:ÂÖ²¥
+		// RunType 1:æ‰‹åŠ¨é€‰å° 2:ä¸€å¯¹ä¸€ç›‘æµ‹ 3:è½®è¯¢ç›‘æµ‹ 4:è½®æ’­
 		strBuff.append(" RunType = 1, ");
 		strBuff.append(" smgURL = '"+vo.getURL()+"'");
 		//add smgindex to db 
@@ -787,14 +787,14 @@ public class SmgCardInfo extends HttpServlet {
             statement.executeUpdate(strBuff.toString());
             
         } catch (Exception e) {
-            log.error("ÊÖ¶¯Ñ¡Ì¨¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
+            log.error("æ‰‹åŠ¨é€‰å°æ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
             System.out.println(e.getMessage());
         } finally {
             DaoSupport.close(rs);
             DaoSupport.close(statement);
             DaoSupport.close(conn);
         }
-        //log.info("ÊÖ¶¯Ñ¡Ì¨¸üĞÂÊı¾İ¿â³É¹¦!");
+        //log.info("æ‰‹åŠ¨é€‰å°æ›´æ–°æ•°æ®åº“æˆåŠŸ!");
     }
     
 	/**

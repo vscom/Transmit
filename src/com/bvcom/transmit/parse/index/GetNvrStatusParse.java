@@ -12,7 +12,7 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.index.GetNvrStatusVO;
 
-//Í¨µÀ×´Ì¬²éÑ¯
+//é€šé“çŠ¶æ€æŸ¥è¯¢
 public class GetNvrStatusParse {
 	
 	@SuppressWarnings("unchecked")
@@ -34,7 +34,7 @@ public class GetNvrStatusParse {
 //		
 //	}
 	
-	// Í¨µÀ×´Ì¬²éÑ¯»Ø¸´xml´ò°ü
+	// é€šé“çŠ¶æ€æŸ¥è¯¢å›žå¤xmlæ‰“åŒ…
 	public String ReturnXMLByURL(MSGHeadVO head, List voList) {
 
 		String xml = null;
@@ -44,9 +44,9 @@ public class GetNvrStatusParse {
 				+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">\r\n";
 //		if(0==value){
-			xml += "<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r\n";
+			xml += "<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r\n";
 //		}else if(1==value){
-//			xml += "<Return Type=\"" + head.getStatusQueryType() +"\" Value=\"1\" Desc=\"Ê§°Ü\"/>";
+//			xml += "<Return Type=\"" + head.getStatusQueryType() +"\" Value=\"1\" Desc=\"å¤±è´¥\"/>";
 //			xml +="</Msg>";
 //			return xml;
 //		}

@@ -18,7 +18,7 @@ import com.bvcom.transmit.vo.SysInfoVO;
 import com.bvcom.transmit.vo.alarm.AlarmSearchPSetVO;
 
 
-//报警上报（节目相关）
+//鎶ヨ涓婃姤锛堣妭鐩浉鍏筹級
 public class AlarmSearchPSetParse {
     
 	private static Logger log = Logger.getLogger(AlarmSearchPSetParse.class.getSimpleName());
@@ -26,7 +26,7 @@ public class AlarmSearchPSetParse {
 	SysInfoVO sysVO = coreData.getSysVO();
 	 
     /**
-     * 下发XML信息
+     * 涓嬪彂XML淇℃伅
      * @param document
      * @return
      */
@@ -48,7 +48,7 @@ public class AlarmSearchPSetParse {
     }
     
     /**
-     * 上报XML信息
+     * 涓婃姤XML淇℃伅
      * @param document
      * @return
      */
@@ -161,9 +161,9 @@ public class AlarmSearchPSetParse {
         strBuf.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuf.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\"> \r\n");
         if(0==value){
-            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"成功\"/>\r\n");
+            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"鎴愬姛\"/>\r\n");
         }else if(1==value){
-            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"失败\"/>\r\n");
+            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"澶辫触\"/>\r\n");
         }
         
         strBuf.append("<ReturnInfo>\r\n");
@@ -171,7 +171,7 @@ public class AlarmSearchPSetParse {
         /*
         <ReturnInfo>
 	  		<AlarmSearchPSet Index="0" Freq="658000" ServiceID="10" VideoPID="2060" AudioPID="2061">
-	  			   <AlarmSearchP Type="31" AlarmID="123456789012" Desc="静帧" Value="1" Time="2002-08-17 15:30:00"/> 
+	  			   <AlarmSearchP Type="31" AlarmID="123456789012" Desc="闈欏抚" Value="1" Time="2002-08-17 15:30:00"/> 
 	  		</AlarmSearchPSet>
   	    </ReturnInfo>
        */
@@ -181,13 +181,13 @@ public class AlarmSearchPSetParse {
         	AlarmSearchPSetVO AlarmSearchPSet = AlarmSearchPSetList.get(i);
         	
         	if (AlarmSearchPSet.getFreq() == 0) {
-        		log.info("生成节目报警XML出错 Freq:" + AlarmSearchPSet.getFreq());
+        		log.info("鐢熸垚鑺傜洰鎶ヨXML鍑洪敊 Freq:" + AlarmSearchPSet.getFreq());
         		continue;
         	}
         	
         	if (sysVO.getIsHasAlarmID() == 1) {
         		if (AlarmSearchPSet.getAlarmID() == null || AlarmSearchPSet.getAlarmID().equals("")) {
-        			log.info("生成节目报警XML出错 Freq:" + AlarmSearchPSet.getFreq() + " AlarmID: " + AlarmSearchPSet.getAlarmID());
+        			log.info("鐢熸垚鑺傜洰鎶ヨXML鍑洪敊 Freq:" + AlarmSearchPSet.getFreq() + " AlarmID: " + AlarmSearchPSet.getAlarmID());
         			continue;
         		}
         	}

@@ -33,12 +33,12 @@ public class OSDSetHandle {
     }
     
     /**
-     * osdÉèÖÃ
-     * Ä¿Ç°Ö±½Ó·µ»Ø³É¹¦
+     * osdè®¾ç½®
+     * ç›®å‰ç›´æ¥è¿”å›æˆåŠŸ
      */
 	@SuppressWarnings("unchecked")
 	public void downXML(){
-		 // ·µ»ØÊı¾İ
+		 // è¿”å›æ•°æ®
 		@SuppressWarnings("unused")
 		String upString = "";
         
@@ -46,7 +46,7 @@ public class OSDSetHandle {
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("osdÉèÖÃStringToXML Error: " + e.getMessage());
+            log.error("osdè®¾ç½®StringToXML Error: " + e.getMessage());
         }
         
         MemCoreData coreData = MemCoreData.getInstance();
@@ -68,7 +68,7 @@ public class OSDSetHandle {
     		MonitorProgramQueryVO tsc = (MonitorProgramQueryVO) monitorProgramList.get(j);
 			try {
                 if(!url.equals(tsc.getRTVSResetURL())) {
-//                      ÀúÊ·ÊÓÆµ²é¿´ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+//                      å†å²è§†é¢‘æŸ¥çœ‹ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
                     upString = utilXML.SendDownXML(this.downString, tsc.getRTVSResetURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
                     //break;
                     url = tsc.getRTVSResetURL();
@@ -76,33 +76,33 @@ public class OSDSetHandle {
                 
                 //break;
             } catch (CommonException e) {
-                log.error("ÏÂ·¢osdÉèÖÃµ½TSC³ö´í£º" + tsc.getRTVSResetURL());
+                log.error("ä¸‹å‘osdè®¾ç½®åˆ°TSCå‡ºé”™ï¼š" + tsc.getRTVSResetURL());
             }
     	}
         
-        List TSCSendList = coreData.getTSCList();//tscµÄÁĞ±íĞÅÏ¢
+        List TSCSendList = coreData.getTSCList();//tscçš„åˆ—è¡¨ä¿¡æ¯
         
     	for(int j=0;j<TSCSendList.size();j++)
     	{
     		TSCInfoVO tsc = (TSCInfoVO) TSCSendList.get(j);
 			try {
                 if(!url.equals(tsc.getURL())) {
-                    // ÀúÊ·ÊÓÆµÏÂÔØÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+                    // å†å²è§†é¢‘ä¸‹è½½ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
                     utilXML.SendDownNoneReturn(this.downString, tsc.getURL(), CommonUtility.TASK_WAIT_TIMEOUT, bsData);
                     //break;
                     url = tsc.getURL().trim();
                 }
             } catch (CommonException e) {
-                log.error("ÏÂ·¢osdÉèÖÃµ½TSC³ö´í£º" + tsc.getURL());
+                log.error("ä¸‹å‘osdè®¾ç½®åˆ°TSCå‡ºé”™ï¼š" + tsc.getURL());
             }
     	}
         
-      //ÉÏ±¨»Ø¸´µÄxml¸øÖĞĞÄ,×Ô¼º·µ»Ø³É¹¦
+      //ä¸ŠæŠ¥å›å¤çš„xmlç»™ä¸­å¿ƒ,è‡ªå·±è¿”å›æˆåŠŸ
         upString = osdp.ReturnXMLByURL(this.bsData,0);
         try {
             utilXML.SendUpXML(upString, bsData);
         } catch (CommonException e) {
-            log.error("osdÉèÖÃ»Ø¸´Ê§°Ü: " + e.getMessage());
+            log.error("osdè®¾ç½®å›å¤å¤±è´¥: " + e.getMessage());
         }
         
         bsData = null;

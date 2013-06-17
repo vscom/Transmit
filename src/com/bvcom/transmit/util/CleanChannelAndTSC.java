@@ -16,7 +16,7 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.TSCInfoVO;
 import com.bvcom.transmit.vo.rec.SetAutoRecordChannelVO;
 /**
- * Çå¿Õ×Ô¶¯Â¼Ïñ±íÖĞµÄ½ÚÄ¿ĞÅÏ¢ Í¬Ê± ·µ»ØÇå¿ÕµÄ½ÚÄ¿ĞÅÏ¢¼¯ºÏ±ãÓÚÏÂ·¢¸øTSC
+ * æ¸…ç©ºè‡ªåŠ¨å½•åƒè¡¨ä¸­çš„èŠ‚ç›®ä¿¡æ¯ åŒæ—¶ è¿”å›æ¸…ç©ºçš„èŠ‚ç›®ä¿¡æ¯é›†åˆä¾¿äºä¸‹å‘ç»™TSC
  * @author JI LONG  2011-5-13 
  *
  */
@@ -24,7 +24,7 @@ public class CleanChannelAndTSC {
 	private static Logger log =Logger.getLogger(CleanChannelAndTSC.class.getSimpleName());
 	private static MemCoreData coreData = MemCoreData.getInstance();
 	@SuppressWarnings("unchecked")
-	private static List TSCSendList = coreData.getTSCList();//tscµÄÁĞ±íĞÅÏ¢
+	private static List TSCSendList = coreData.getTSCList();//tscçš„åˆ—è¡¨ä¿¡æ¯
 	private String downString = new String();
 	private UtilXML utilXML = new UtilXML();
 	private MSGHeadVO bsData = new MSGHeadVO();
@@ -33,7 +33,7 @@ public class CleanChannelAndTSC {
         this.bsData = bsData;
     }
 	public void chean(){
-		TSCSendList = coreData.getTSCList();//tscµÄÁĞ±íĞÅÏ¢
+		TSCSendList = coreData.getTSCList();//tscçš„åˆ—è¡¨ä¿¡æ¯
 		
 		Statement statement = null;
 		ResultSet rs = null;
@@ -58,14 +58,14 @@ public class CleanChannelAndTSC {
 				}
 			}
 		}catch (Exception e) {
-			log.error("²éÕÒ×Ô¶¯Â¼Ïñ½ÚÄ¿ĞÅÏ¢´íÎó: " + e.getMessage());
+			log.error("æŸ¥æ‰¾è‡ªåŠ¨å½•åƒèŠ‚ç›®ä¿¡æ¯é”™è¯¯: " + e.getMessage());
 		} finally {
 			try {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("¹Ø±ÕÊı¾İ¿âÊ§°Ü: " + e.getMessage());
+				log.error("å…³é—­æ•°æ®åº“å¤±è´¥: " + e.getMessage());
 			}
 		}
 		List<SetAutoRecordChannelVO> list=new ArrayList<SetAutoRecordChannelVO>(); 
@@ -97,7 +97,7 @@ public class CleanChannelAndTSC {
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("¹Ø±ÕÊı¾İ¿âÊ§°Ü: " + e.getMessage());
+				log.error("å…³é—­æ•°æ®åº“å¤±è´¥: " + e.getMessage());
 			}
 		}
 	        
@@ -111,11 +111,11 @@ public class CleanChannelAndTSC {
             TSCInfoVO tsc = (TSCInfoVO) TSCSendList.get(t);
             try {
             	if (tsc.getRecordType() != 1 && tsc.getRecordType() != 2) {
-            		// Èç¹û²»ÊÇ×Ô¶¯Â¼Ïñ»òÒìÌ¬Â¼Ïñ¾Í½øĞĞÏÂÒ»¸ö
+            		// å¦‚æœä¸æ˜¯è‡ªåŠ¨å½•åƒæˆ–å¼‚æ€å½•åƒå°±è¿›è¡Œä¸‹ä¸€ä¸ª
             		continue;
             	}
                 if (!url.equals(tsc.getURL().trim())) {
-                    // ×Ô¶¯Â¼ÏñÏÂ·¢
+                    // è‡ªåŠ¨å½•åƒä¸‹å‘
                 	retString = utilXML.SendDownXML(this.downString, tsc.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
                     url = tsc.getURL().trim();
                 }
@@ -127,10 +127,10 @@ public class CleanChannelAndTSC {
                 }
                 
             } catch (CommonException e) {
-                log.error("ÏÂ·¢×Ô¶¯Â¼Ïñµ½TSC³ö´í£º" + tsc.getURL());
+                log.error("ä¸‹å‘è‡ªåŠ¨å½•åƒåˆ°TSCå‡ºé”™ï¼š" + tsc.getURL());
             }
         }
-		//µ÷ÓÃÉ¾³ı·½·¨ °ÑÉ¾³ı±ê¼ÇÎª1µÄ ½ÚÄ¿ĞÅÏ¢Çå¿Õ
+		//è°ƒç”¨åˆ é™¤æ–¹æ³• æŠŠåˆ é™¤æ ‡è®°ä¸º1çš„ èŠ‚ç›®ä¿¡æ¯æ¸…ç©º
 		try {
 			SetAutoRecordChannelHandle.delChannelRemappingByProgram();
 		} catch (DaoException e) {

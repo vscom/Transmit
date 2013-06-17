@@ -14,12 +14,12 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.rec.ProvisionalRecordTaskSetVO;
 
-//ÈÎÎñÂ¼ÏñÉèÖÃ
+//ä»»åŠ¡å½•åƒè®¾ç½®
 public class ProvisionalRecordTaskSetParse {
 	
 	private static Logger log = Logger.getLogger(ProvisionalRecordTaskSetParse.class.getSimpleName());
 	
-	//ÈÎÎñÂ¼ÏñÉèÖÃ½âÎöxmlµÃµ½Í¨µÀºÅµÄÊı×é,¸Ãlist¶ÔÏóÖ»º¬ÓĞIndex, TaskID, Action ÊôĞÔ
+	//ä»»åŠ¡å½•åƒè®¾ç½®è§£æxmlå¾—åˆ°é€šé“å·çš„æ•°ç»„,è¯¥listå¯¹è±¡åªå«æœ‰Index, TaskID, Action å±æ€§
 	@SuppressWarnings("unchecked")
 	public List<ProvisionalRecordTaskSetVO> getIndexByDownXml(Document document){
 		List<ProvisionalRecordTaskSetVO> indexlist = new ArrayList();
@@ -111,7 +111,7 @@ public class ProvisionalRecordTaskSetParse {
 					indexlist.add(vo);
 				}
 			} catch (Exception ex) {
-				log.error("½âÎöÈÎÎñÂ¼ÏñÊ§°Ü: " + ex.getMessage());
+				log.error("è§£æä»»åŠ¡å½•åƒå¤±è´¥: " + ex.getMessage());
 			}
 			
 			
@@ -119,7 +119,7 @@ public class ProvisionalRecordTaskSetParse {
 		return indexlist;
 	}
 	
-	// ÈÎÎñÂ¼ÏñÉèÖÃ»Ø¸´xml´ò°ü
+	// ä»»åŠ¡å½•åƒè®¾ç½®å›å¤xmlæ‰“åŒ…
 	public String ReturnXMLByURL(MSGHeadVO head,int value) {
 
 		String xml = null;
@@ -129,9 +129,9 @@ public class ProvisionalRecordTaskSetParse {
 		+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 		+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"ProvisionalRecordTaskSet\" Value=\"0\" Desc=\"³É¹¦\"/>";
+			xml += "<Return Type=\"ProvisionalRecordTaskSet\" Value=\"0\" Desc=\"æˆåŠŸ\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"ProvisionalRecordTaskSet\" Value=\"1\" Desc=\"Ê§°Ü - Ã»ÓĞ¿ÉÓÃ×ÊÔ´\"/>";
+			xml += "<Return Type=\"ProvisionalRecordTaskSet\" Value=\"1\" Desc=\"å¤±è´¥ - æ²¡æœ‰å¯ç”¨èµ„æº\"/>";
 			xml +=	"</Msg>";
 			return xml;
 		}

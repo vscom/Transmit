@@ -3,7 +3,7 @@ package com.bvcom.transmit.vo.alarm;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//报警门限（频率相关）
+//鎶ヨ闂ㄩ檺锛堥鐜囩浉鍏筹級
 public class AlarmThresholdSetVO {
 
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -24,7 +24,7 @@ public class AlarmThresholdSetVO {
     
     private int ReturnValue;
     
-    private String Comment;//失败原因
+    private String Comment;//澶辫触鍘熷洜
 
 	public MSGHeadVO getMSGHead() {
 		return MSGHead;

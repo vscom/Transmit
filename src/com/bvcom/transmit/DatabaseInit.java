@@ -92,7 +92,7 @@ public class DatabaseInit extends HttpServlet {
         int endIndex = 0;
         int programNum = 0;
         
-        int clearflag =1;//²»Çå³ı½ÚÄ¿Ó³Éä±íĞÅÏ¢
+        int clearflag =1;//ä¸æ¸…é™¤èŠ‚ç›®æ˜ å°„è¡¨ä¿¡æ¯
         
         try{
         	clearflag = Integer.parseInt(request.getParameter("cleardb"));
@@ -103,13 +103,13 @@ public class DatabaseInit extends HttpServlet {
         
 //        int indexNum = Integer.parseInt(request.getParameter("IndexNum"));
         try {
-        // ¿ªÊ¼Í¨µÀºÅ
+        // å¼€å§‹é€šé“å·
         	startIndex = Integer.parseInt(request.getParameter("StartIndex"));
         }catch(Exception ex) {
         	
         }
         try {
-        // ½áÊøÍ¨µÀºÅ
+        // ç»“æŸé€šé“å·
         	endIndex = Integer.parseInt(request.getParameter("EndIndex"));
         }catch(Exception ex) {
         	
@@ -124,21 +124,21 @@ public class DatabaseInit extends HttpServlet {
         out.println("<br> ProgramNum: " + programNum);
         
         try {
-        	//Çå³ıÔ­Ê¼½ÚÄ¿Ó³Éä±í
+        	//æ¸…é™¤åŸå§‹èŠ‚ç›®æ˜ å°„è¡¨
         	if(clearflag ==0)
         	{
         		out.println("<br>recover channel from ["+startIndex+"-----"+endIndex+" ]from channelremapping");
         		delChannelIndex();
-        		//²åÈë½ÚÄ¿Ó³Éä±í
+        		//æ’å…¥èŠ‚ç›®æ˜ å°„è¡¨
 				initChannelRemappingIndex(startIndex, endIndex + 1, programNum);
         	}
         	if(clearflag ==1)
         	{
         		out.println("<br>insert into channelremapping from ["+startIndex+"-----"+endIndex+"] program info");
-        		//²åÈë½ÚÄ¿Ó³Éä±í
+        		//æ’å…¥èŠ‚ç›®æ˜ å°„è¡¨
 				initChannelRemappingIndex(startIndex, endIndex + 1, programNum);
         	}
-        	//É¾³ıÄ³Í¨µÀ½ÚÄ¿Ó³Éä
+        	//åˆ é™¤æŸé€šé“èŠ‚ç›®æ˜ å°„
         	if(clearflag==2 && startIndex==endIndex){
         		out.println("<br>delete channel-["+startIndex+"] from channelremapping");
         		delChannelIndex(startIndex);
@@ -198,7 +198,7 @@ public class DatabaseInit extends HttpServlet {
 		Statement statement = null;
 		Connection conn = DaoSupport.getJDBCConnection();
 
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		// insert into channelscanlist(Freq, QAM, SymbolRate, Program, ServiceID, VideoPID, AudioPID, EncryptFlg, HDTV, ScanTime, LastTime, LastFlag)
 		
 		// SELECT max(channelindex) FROM channelremapping c;
@@ -225,16 +225,16 @@ public class DatabaseInit extends HttpServlet {
 						statement = conn.createStatement();
 						statement.execute(strBuff.toString());
 					} catch (Exception ex) {
-						log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + ex.getMessage());
-						log.error("´íÎóSQL: " + strBuff.toString());
+						log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + ex.getMessage());
+						log.error("é”™è¯¯SQL: " + strBuff.toString());
 					}
 					channelNum++;
 					strBuff = null;
 				}
 			}
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + e.getMessage());
-			log.error("´íÎóSQL: " + strBuff.toString());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + e.getMessage());
+			log.error("é”™è¯¯SQL: " + strBuff.toString());
 			strBuff = null;
 		} finally {
 			DaoSupport.close(statement);
@@ -243,7 +243,7 @@ public class DatabaseInit extends HttpServlet {
 	}
     
     /*
-     * ³õÊ¼»¯Êı¾İ¿âÇ°ÒªÏÈÇå³ıÊı¾İ¿âÔ­Ê¼ĞÅÏ¢
+     * åˆå§‹åŒ–æ•°æ®åº“å‰è¦å…ˆæ¸…é™¤æ•°æ®åº“åŸå§‹ä¿¡æ¯
      * AUTHOR:TQY
      * DATE:2012-04-05
      */
@@ -253,14 +253,14 @@ public class DatabaseInit extends HttpServlet {
 		Connection conn = DaoSupport.getJDBCConnection();
 		boolean ret = false;
 		StringBuffer strBuff = new StringBuffer();
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("delete from channelremapping ");
 
 		try {
 			statement = conn.createStatement();
 			ret =statement.execute(strBuff.toString());
 		} catch (Exception e) {
-			log.error("È¡µÃ½ÚÄ¿ºÅ´íÎó: " + e.getMessage());
+			log.error("å–å¾—èŠ‚ç›®å·é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
@@ -276,14 +276,14 @@ public class DatabaseInit extends HttpServlet {
 		Connection conn = DaoSupport.getJDBCConnection();
 		boolean ret = false;
 		StringBuffer strBuff = new StringBuffer();
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("delete from channelremapping where DevIndex= "+devIndex);
 
 		try {
 			statement = conn.createStatement();
 			ret =statement.execute(strBuff.toString());
 		} catch (Exception e) {
-			log.error("È¡µÃ½ÚÄ¿ºÅ´íÎó: " + e.getMessage());
+			log.error("å–å¾—èŠ‚ç›®å·é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
@@ -301,7 +301,7 @@ public class DatabaseInit extends HttpServlet {
 		ResultSet rs = null;
 
 		StringBuffer strBuff = new StringBuffer();
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("SELECT max(channelindex) FROM channelremapping c");
 
 		try {
@@ -318,7 +318,7 @@ public class DatabaseInit extends HttpServlet {
 			}
 
 		} catch (Exception e) {
-			log.error("È¡µÃ½ÚÄ¿ºÅ´íÎó: " + e.getMessage());
+			log.error("å–å¾—èŠ‚ç›®å·é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);

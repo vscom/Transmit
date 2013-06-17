@@ -2,7 +2,7 @@ package com.bvcom.transmit.vo.rec;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//ÊÖ¶¯Â¼Ïñ
+//æ‰‹åŠ¨å½•åƒ
 public class ManualRecordQueryVO {
 	
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -15,7 +15,7 @@ public class ManualRecordQueryVO {
 	
 	private int ReutnValue;
 	
-	private String Comment;//Ê§°ÜÔ­Òò
+	private String Comment;//å¤±è´¥åŸå› 
 	
 	private String IP;
 	
@@ -25,7 +25,7 @@ public class ManualRecordQueryVO {
 	
 	private int ServiceID;
 	
-	//ÊÖ¶¯Â¼ÖÆµÄÎÄ¼ş±£´æÊ±¼ä
+	//æ‰‹åŠ¨å½•åˆ¶çš„æ–‡ä»¶ä¿å­˜æ—¶é—´
 	private String fileSaveTime;
 
 	public MSGHeadVO getMSGHead() {

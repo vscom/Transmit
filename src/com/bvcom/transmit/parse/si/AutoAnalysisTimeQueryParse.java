@@ -9,7 +9,7 @@ import com.bvcom.transmit.util.XMLExt;
 import com.bvcom.transmit.vo.si.AutoAnalysisTimeQueryVO;
 
 /**
- * 数据业务时间分析
+ * 鏁版嵁涓氬姟鏃堕棿鍒嗘瀽
  * @author Bian Jiang
  * @date 2010.12.30
  *

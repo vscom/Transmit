@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//Ñ­ÇÐ±¨¾¯ÉèÖÃ
+//å¾ªåˆ‡æŠ¥è­¦è®¾ç½®
 public class LoopAlaInfVO {
 	
 	private MSGHeadVO MSGHead = new MSGHeadVO();

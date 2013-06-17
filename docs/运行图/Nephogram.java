@@ -36,47 +36,47 @@ public class Nephogram extends ActionSupport {
 		-126,103,-114,113,-108,-128,115,-116,123,-100,-89,121,
 		-124,122,-112,113
 	};
-	//ÈÕÖ¾¼ÇÂ¼Õß
+	//æ—¥å¿—è®°å½•è€…
 	private static final Log loger = LogFactory.getLog(Nephogram.class);
 	
-	//¼¸ÖÖ²éÑ¯µÄ·µ»Ø×´Ì¬¼°ÃèÊö
-	//²éÑ¯³É¹¦
+	//å‡ ç§æŸ¥è¯¢çš„è¿”å›çŠ¶æ€åŠæè¿°
+	//æŸ¥è¯¢æˆåŠŸ
 	private static final String SUCCESS_FLAG = "0";
-	private static final String SUCCESS_DESC = "²éÑ¯³É¹¦";
-	//²éÑ¯Ê§°Ü
+	private static final String SUCCESS_DESC = "æŸ¥è¯¢æˆåŠŸ";
+	//æŸ¥è¯¢å¤±è´¥
 	private static final String PARSER_ERROR_FLAG = "1";
-	private static final String PARSER_ERROR_DESC = "½âÎöÔÆÍ¼Êı¾İÊ§°Ü";
-	//²éÑ¯³¬Ê±
+	private static final String PARSER_ERROR_DESC = "è§£æäº‘å›¾æ•°æ®å¤±è´¥";
+	//æŸ¥è¯¢è¶…æ—¶
 	private static final String TIME_OUT_FLAG = "2";
-	private static final String TIME_OUT_DESC = "²éÑ¯·µ»Ø³¬Ê±";
-	//´«Èë²ÎÊı²»ÕıÈ·
+	private static final String TIME_OUT_DESC = "æŸ¥è¯¢è¿”å›è¶…æ—¶";
+	//ä¼ å…¥å‚æ•°ä¸æ­£ç¡®
 	private static final String INVALID_PARAM_FLAG = "3";
-	private static final String INVALID_PARAM_DESC = "´«Èë²ÎÊı²»ÕıÈ·";
+	private static final String INVALID_PARAM_DESC = "ä¼ å…¥å‚æ•°ä¸æ­£ç¡®";
 	
-	//»ñÈ¡CMD·½Ê½Í¨Ñ¶Ïß³ÌÊ§°Ü
+	//è·å–CMDæ–¹å¼é€šè®¯çº¿ç¨‹å¤±è´¥
 	private static final String GET_THREAD_FAILED_FLAG = "4";
-	private static final String GET_THREAD_FAILED_DESC = "»ñÈ¡CMDÍ¨Ñ¶Ïß³ÌÊ§°Ü";
+	private static final String GET_THREAD_FAILED_DESC = "è·å–CMDé€šè®¯çº¿ç¨‹å¤±è´¥";
 	
-	//Ç°¶Ë´¦ÀíÒì³£
+	//å‰ç«¯å¤„ç†å¼‚å¸¸
 	private static final String AGENT_ERROR_FLAG = "5";
-	private static final String AGENT_ERROR_DESC = "Ç°¶Ë´¦ÀíÒì³£";
+	private static final String AGENT_ERROR_DESC = "å‰ç«¯å¤„ç†å¼‚å¸¸";
 	
-	//Éè±¸ÎŞÊı¾İ
+	//è®¾å¤‡æ— æ•°æ®
 	private static final String NO_DATA_FLAG = "6";
-	private static final String NO_DATA_DESC = "Éè±¸ÎŞÊı¾İ";
+	private static final String NO_DATA_DESC = "è®¾å¤‡æ— æ•°æ®";
 	
 	private static final Long OUT_TIME = 15000L;
 
-	//Í¨µÀ
+	//é€šé“
 	private String index=null;
-	//Æµµã
+	//é¢‘ç‚¹
 	private String freq=null;
-	//²éÑ¯·µ»Ø×´Ì¬
+	//æŸ¥è¯¢è¿”å›çŠ¶æ€
 	private String queryState=null;
-	//²éÑ¯·µ»Ø×´Ì¬ÃèÊö
+	//æŸ¥è¯¢è¿”å›çŠ¶æ€æè¿°
 	private String queryDesc=null;
 	
-	//CMD·µ»ØÊı¾İĞÅÏ¢
+	//CMDè¿”å›æ•°æ®ä¿¡æ¯
 	private CmdInfo cmdInfo;
 	
 	int ILen = 64;
@@ -87,13 +87,13 @@ public class Nephogram extends ActionSupport {
 	//Q
 	private byte [] qData = new byte[ILen];
 	
-	//Ç°¶Ë²ÎÊı
+	//å‰ç«¯å‚æ•°
 	private String servflatId;
 	
 	private String agentid;
  	  
 	
-	//µÈ´ıÏûÏ¢·µ»ØµÄÍ¬²½¶ÔÏó
+	//ç­‰å¾…æ¶ˆæ¯è¿”å›çš„åŒæ­¥å¯¹è±¡
 	public Object synObj = new Object();
 	
 	@Override
@@ -107,17 +107,17 @@ public class Nephogram extends ActionSupport {
 			index = "1";
 		}
 		
-		//´ÓSession»ñÈ¡µ±Ç°·şÎñÆ½Ì¨ID
+		//ä»Sessionè·å–å½“å‰æœåŠ¡å¹³å°ID
 		String servflatId = (String) ActionContext.getContext().getSession().get("servflatid");
 		
-		//Ç°¶ËĞÅÏ¢»ñÈ¡Õß
+		//å‰ç«¯ä¿¡æ¯è·å–è€…
 		List agentInfoList;
 		SysAgentinfo agentInfo;
 		SysAgentinfoDAO agentDao = new SysAgentinfoDAO();
 		
 		agentInfoList = agentDao.findByServflatId(Integer.parseInt(servflatId));
 		
-		//¸ù¾İ·şÎñÆ½Ì¨ÏÂµÄÇ°¶ËÊı£¬È¡µÃ¸÷¸öÇ°¶ËµÄipÁĞ±íºÍÇ°¶ËIDÁĞ±í
+		//æ ¹æ®æœåŠ¡å¹³å°ä¸‹çš„å‰ç«¯æ•°ï¼Œå–å¾—å„ä¸ªå‰ç«¯çš„ipåˆ—è¡¨å’Œå‰ç«¯IDåˆ—è¡¨
 		String [] ipList;
 		String [] agentIdList;
 		String [] agentCode;
@@ -133,19 +133,19 @@ public class Nephogram extends ActionSupport {
 			return SUCCESS;
 		}
 		for(int i=0; i<agentCnt; i++){
-			//»ñÈ¡·şÎñÆ½Ì¨ĞÅÏ¢
+			//è·å–æœåŠ¡å¹³å°ä¿¡æ¯
 			agentInfo = (SysAgentinfo)agentInfoList.get(i);
-			//»ñÈ¡Ä¿±êip
+			//è·å–ç›®æ ‡ip
 			ipList[i] = agentInfo.getCip();
-			//»ñÈ¡Ç°¶ËID
+			//è·å–å‰ç«¯ID
 			agentIdList[i] = String.valueOf(agentInfo.getAgentid());
-			//»ñÈ¡Ç°¶Ë±àÂë
+			//è·å–å‰ç«¯ç¼–ç 
 			agentCode[i] = agentInfo.getCcode();
 			//
 			agentType[i] =agentInfo.getCagenttype();
 		}
 		
-		///**************ĞÂÔö¼ÓÇ°¶ËĞÅÏ¢´¦Àí********by teng 2009-07-26***********
+		///**************æ–°å¢åŠ å‰ç«¯ä¿¡æ¯å¤„ç†********by teng 2009-07-26***********
 		
 		if((this.getAgentid()=="")||(this.getAgentid()==null))
 		{
@@ -157,34 +157,34 @@ public class Nephogram extends ActionSupport {
 		agentCode[0]	= agentInfo.getCcode();
 		agentType[0]	= agentInfo.getCagenttype();
 		agentIdList[0] 	= this.getAgentid();
-		///**************ĞÂÔö¼ÓÇ°¶ËĞÅÏ¢´¦Àí*******************
+		///**************æ–°å¢åŠ å‰ç«¯ä¿¡æ¯å¤„ç†*******************
 		
-		/*ÓÅ»¯´úÂë½«IPºÍ¶Ë¿Ú¶¼Ğ´³É¾²Ì¬³£Á¿
+		/*ä¼˜åŒ–ä»£ç å°†IPå’Œç«¯å£éƒ½å†™æˆé™æ€å¸¸é‡
 		 
-		//»ñÈ¡·şÎñÆ÷IP
+		//è·å–æœåŠ¡å™¨IP
 		String localip;
 		localip = LocaleHostIPS.getLocalIP();
 		
-		//»ñÈ¡µ±Ç°PORT
+		//è·å–å½“å‰PORT
 		HttpServletRequest request = ServletActionContext.getRequest();
 		int port = request.getLocalPort();
 		
-		//»ñÈ¡Web¸ùÂ·¾¶
+		//è·å–Webæ ¹è·¯å¾„
 		String webpath = request.getContextPath();
 		
-		//Éú³É½ÓÊÕ·µ»ØĞÅÏ¢µÄURL
+		//ç”Ÿæˆæ¥æ”¶è¿”å›ä¿¡æ¯çš„URL
 		String srcURL = "http://"+localip+":"+port+webpath+"/servlet/MainCtrlCMDRecvServlet";
 		
 		*/
 		String srcURL = "http://" + Constants.Local_IP + ":" + Constants.Tomcat_Port+"/Web2.0/servlet/MainCtrlCMDRecvServlet";
 		
-		//Í¬²½×ÊÔ´Ëø
+		//åŒæ­¥èµ„æºé”
 		Object synObject = new Object();
 		
-		//·¢ËÍµÄÃüÁî
+		//å‘é€çš„å‘½ä»¤
 		CmdInfo cmd = new CmdInfo();
 		
-		//Éè±¸ÀàĞÍ
+		//è®¾å¤‡ç±»å‹
 		if(Integer.valueOf(agentType[0])!=4)
 		{
 			cmd.setIndex(index);
@@ -198,7 +198,7 @@ public class Nephogram extends ActionSupport {
 			cmd.setIndex(index);
 			cmd.setRwFlag("Read");
 			cmd.setOid("12321");
-			cmd.setCmdType("1");			//SMGµÄÔÆÍ¼ĞÅÏ¢
+			cmd.setCmdType("1");			//SMGçš„äº‘å›¾ä¿¡æ¯
 			cmd.setCmdLen("0");
 			cmd.setCmdData(this.getFreq());
 		}
@@ -243,7 +243,7 @@ public class Nephogram extends ActionSupport {
 				
 				if("0".equals(ret)){
 
-					//Éè±¸ÀàĞÍ
+					//è®¾å¤‡ç±»å‹
 					if(Integer.valueOf(agentType[0])!=4)
 					{
 						byte[] data = PubFun.StringAscToBytes(cmdInfo.getCmdData());
@@ -266,7 +266,7 @@ public class Nephogram extends ActionSupport {
 								qData[i]=Byte.valueOf(cmdInfo.getIData()[i]);
 							}
 						}
-						else//MERÓĞÖµ£¬ÊÊÓÃÓÚAD988HPË«Í¨µÀ
+						else//MERæœ‰å€¼ï¼Œé€‚ç”¨äºAD988HPåŒé€šé“
 						{
 							int flag = 64;	
 							int mer = Integer.valueOf(cmdInfo.getMer());
@@ -278,7 +278,7 @@ public class Nephogram extends ActionSupport {
 									String strIDate = "";
 									String strQDate = "";
 									
-									//IÖµ
+									//Iå€¼
 									if(cmdInfo.getIData()[i].charAt(0) != '-')
 										temp = Integer.valueOf(cmdInfo.getIData()[i]) - flag - ((i%4)*16);
 									else
@@ -318,7 +318,7 @@ public class Nephogram extends ActionSupport {
 									}
 									strIDate = String.valueOf(temp);
 									
-									//QÖµ
+									//Qå€¼
 									if(cmdInfo.getQData()[i].charAt(0) != '-')
 										temp = Integer.valueOf(cmdInfo.getQData()[i]) - flag - (((i/4)-(i/16)*4 )*16);
 									else
@@ -372,7 +372,7 @@ public class Nephogram extends ActionSupport {
 									String strIDate = "";
 									String strQDate = "";
 									
-									//IÖµ
+									//Iå€¼
 									if(cmdInfo.getIData()[i].charAt(0) != '-')
 										temp = Integer.valueOf(cmdInfo.getIData()[i]) - flag - ((i%4)*16);
 									else
@@ -396,7 +396,7 @@ public class Nephogram extends ActionSupport {
 									}
 									strIDate = String.valueOf(temp);
 									
-									//QÖµ
+									//Qå€¼
 									if(cmdInfo.getQData()[i].charAt(0) != '-')
 										temp = Integer.valueOf(cmdInfo.getQData()[i]) - flag - (((i/4)-(i/16)*4 )*16);
 									else

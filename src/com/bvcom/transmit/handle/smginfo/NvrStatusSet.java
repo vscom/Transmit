@@ -40,8 +40,8 @@ public class NvrStatusSet {
     
     
     /**
-     * 1. ½âÎöÍ¨µÀÉèÖÃĞ­Òé
-     * 2. ĞŞ¸ÄÅäÖÃÎÄ¼şÓëÊı¾İ¿â
+     * 1. è§£æé€šé“è®¾ç½®åè®®
+     * 2. ä¿®æ”¹é…ç½®æ–‡ä»¶ä¸æ•°æ®åº“
      * @throws DaoException 
      */
     @SuppressWarnings("unchecked")
@@ -50,36 +50,36 @@ public class NvrStatusSet {
 		try {
 			document = utilXML.StringToXML(downString);
 		} catch (CommonException e) {
-			log.info("×Ö·û´®×ª»»xml´íÎó£º"+e.getMessage());
+			log.info("å­—ç¬¦ä¸²è½¬æ¢xmlé”™è¯¯ï¼š"+e.getMessage());
 		}
-		//½âÎöĞ­ÒéÄÚÈİ²¢±£´æ
+		//è§£æåè®®å†…å®¹å¹¶ä¿å­˜
     	List<String> strList=parse(document);
     	for(int i=0;i<strList.size();i++){
     		String[] arrStr=strList.get(i).split(",");
     		int Index=Integer.parseInt(arrStr[0].trim());
     		int IndexType=Integer.parseInt(arrStr[1].trim());
-    		//0 ´ú±í Í£ÓÃ£¬1 ´ú±íÊµÊ±ÊÓÆµ£¬2 ÂÖ²¥¸¨Öú£¬3 ÂÖÑ­²âÁ¿£¬4 Â¼Ïñ£¬5¿ÕÏĞ
-    		//1£º³õÊ¼µÄÍ¨µÀ×´Ì¬ÎªÅäÖÃÎÄ¼şÖĞµÄ×´Ì¬ĞÅÏ¢
-    		//2:Í¨¹ıÆ½Ì¨ĞŞ¸Ä´ËÅäÖÃ
-    		//3:Æ½Ì¨ÉèÖÃÍ¨µÀ×´Ì¬
-    		//4:¶ÁÈ¡×´Ì¬ĞÅÏ¢
+    		//0 ä»£è¡¨ åœç”¨ï¼Œ1 ä»£è¡¨å®æ—¶è§†é¢‘ï¼Œ2 è½®æ’­è¾…åŠ©ï¼Œ3 è½®å¾ªæµ‹é‡ï¼Œ4 å½•åƒï¼Œ5ç©ºé—²
+    		//1ï¼šåˆå§‹çš„é€šé“çŠ¶æ€ä¸ºé…ç½®æ–‡ä»¶ä¸­çš„çŠ¶æ€ä¿¡æ¯
+    		//2:é€šè¿‡å¹³å°ä¿®æ”¹æ­¤é…ç½®
+    		//3:å¹³å°è®¾ç½®é€šé“çŠ¶æ€
+    		//4:è¯»å–çŠ¶æ€ä¿¡æ¯
     		
-    		//¸üĞÂÊı¾İ¿âÒµÎñÀàĞÍ
+    		//æ›´æ–°æ•°æ®åº“ä¸šåŠ¡ç±»å‹
     		updateSmgCardInfo(Index,IndexType);
     	}
-    	//ÉÏ±¨¸øÆ½Ì¨ÉèÖÃ³É¹¦ĞÅÏ¢
+    	//ä¸ŠæŠ¥ç»™å¹³å°è®¾ç½®æˆåŠŸä¿¡æ¯
     	String returnstr="";
-    	//·â×°MemCoreData¶ÔÏóµÄÄÚÈİ ±£´æTransmitConfig.xml
+    	//å°è£…MemCoreDataå¯¹è±¡çš„å†…å®¹ ä¿å­˜TransmitConfig.xml
     	//isErr=saveMemCoreDataToTransmitConfig(coreData);
     	
     	returnstr = getReturnXML(this.bsData, 0);
         try {
             utilXML.SendUpXML(returnstr, bsData);
         } catch (CommonException e) {
-            log.error("ÉÏ·¢ "+ bsData.getStatusQueryType() +" ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+            log.error("ä¸Šå‘ "+ bsData.getStatusQueryType() +" ä¿¡æ¯å¤±è´¥: " + e.getMessage());
         }
         
-        //¸üĞÂSMGµÄÅäÖÃÎÄ¼şĞÅÏ¢
+        //æ›´æ–°SMGçš„é…ç½®æ–‡ä»¶ä¿¡æ¯
         MemCoreData coreDate = MemCoreData.getInstance();
         List SMGCardList = coreDate.getSMGCardList();
         SMGCardList.clear();
@@ -127,15 +127,15 @@ public class NvrStatusSet {
         	  SMGCardInfoVO smginfo = (SMGCardInfoVO)NvrStatusList.get(i);
         	  @SuppressWarnings("unused")
 			  SMGCardInfoVO smginfo_scan = (SMGCardInfoVO)NvrStatusList.get(i);
-              // È¡µÃÍ¨µÀĞÅÏ¢
+              // å–å¾—é€šé“ä¿¡æ¯
               smgCardInfo.setIndex(smginfo.getIndex());
               smgCardInfo.setURL(smginfo.getURL());
               smgCardInfo.setIP(smginfo.getIP());
               smgCardInfo.setHDFlag(0);
               smgCardInfo.setHDURL("http://192.168.100.101:8080/Setup/");
-              //Í¨µÀ²éÑ¯µÄÒµÎñÀàĞÍ£ºIndexType£¨0 ´ú±í Í£ÓÃ£¬1 ´ú±íÊµÊ±ÊÓÆµ£¬2 ÂÖ²¥¸¨Öú£¬3 ÂÖÑ­²âÁ¿£¬4 ×Ô¶¯Â¼Ïñ £¬5ÈÎÎñÂ¼Ïñ £¬6Êı¾İ²É¼¯£¬7¿ÕÏĞ£©
-              //Í¨µÀÉèÖÃÒµÎñÀàĞÍ£º0 ´ú±í Í£ÓÃ£¬1 ´ú±íÊµÊ±ÊÓÆµ£¬2 ÂÖ²¥¸¨Öú£¬3 ÂÖÑ­²âÁ¿£¬4Â¼Ïñ ¡¢5¿ÕÏĞ
-              // Í¨µÀÀàĞÍ(1:ChangeProgramQuery(ÊÖ¶¯Ñ¡Ì¨, ÆµµÀÉ¨Ãè ºÍÖ¸±ê) 2:GetIndexSet(Ö¸±ê²éÑ¯)  AutoRecord
+              //é€šé“æŸ¥è¯¢çš„ä¸šåŠ¡ç±»å‹ï¼šIndexTypeï¼ˆ0 ä»£è¡¨ åœç”¨ï¼Œ1 ä»£è¡¨å®æ—¶è§†é¢‘ï¼Œ2 è½®æ’­è¾…åŠ©ï¼Œ3 è½®å¾ªæµ‹é‡ï¼Œ4 è‡ªåŠ¨å½•åƒ ï¼Œ5ä»»åŠ¡å½•åƒ ï¼Œ6æ•°æ®é‡‡é›†ï¼Œ7ç©ºé—²ï¼‰
+              //é€šé“è®¾ç½®ä¸šåŠ¡ç±»å‹ï¼š0 ä»£è¡¨ åœç”¨ï¼Œ1 ä»£è¡¨å®æ—¶è§†é¢‘ï¼Œ2 è½®æ’­è¾…åŠ©ï¼Œ3 è½®å¾ªæµ‹é‡ï¼Œ4å½•åƒ ã€5ç©ºé—²
+              // é€šé“ç±»å‹(1:ChangeProgramQuery(æ‰‹åŠ¨é€‰å°, é¢‘é“æ‰«æ å’ŒæŒ‡æ ‡) 2:GetIndexSet(æŒ‡æ ‡æŸ¥è¯¢)  AutoRecord
               int inputtype = Integer.valueOf(smginfo.getIndexType());
               switch(inputtype)
               {
@@ -170,16 +170,16 @@ public class NvrStatusSet {
               if(inputtype==6){
             	  smgCardInfo = new SMGCardInfoVO();
             	  smginfo = (SMGCardInfoVO)NvrStatusList.get(i);
-                  // È¡µÃÍ¨µÀĞÅÏ¢
+                  // å–å¾—é€šé“ä¿¡æ¯
                   smgCardInfo.setIndex(smginfo.getIndex());
                   smgCardInfo.setURL(smginfo.getURL());
                   smgCardInfo.setIP(smginfo.getIP());
                   smgCardInfo.setIndexType("GetIndexSet");
                   SMGCardList.add(smgCardInfo);
               }
-              //ÊÖ¶¯Ñ¡Ì¨£ºÊµÊ±ÊÓÆµ
+              //æ‰‹åŠ¨é€‰å°ï¼šå®æ—¶è§†é¢‘
               if(inputtype==1){
-            	  //¸ü¸ÄÒ»¶ÔÒ»ÊµÊ±ÊÓÆµ±í£ºStatusFlag=3µÄSMGURL
+            	  //æ›´æ”¹ä¸€å¯¹ä¸€å®æ—¶è§†é¢‘è¡¨ï¼šStatusFlag=3çš„SMGURL
             	  try {
 					upChangeProgramTable(smgCardInfo);
 				} catch (DaoException e) {
@@ -187,16 +187,16 @@ public class NvrStatusSet {
 					e.printStackTrace();
 				}
               }
-              //Í£ÓÃÒ»¶ÔÒ»±íÖĞµÄÍ¨µÀ
+              //åœç”¨ä¸€å¯¹ä¸€è¡¨ä¸­çš„é€šé“
               if(inputtype==0){
             	  delChannelFromChannelMapping(smginfo.getIndex());
               }
               else{
             	  recoverChannelFromChannelMapping(smginfo.getIndex());
               }
-              // ¸ßÇå×ªÂë±ê¼Ç
+              // é«˜æ¸…è½¬ç æ ‡è®°
               //smgCardInfo.setHDFlag(Integer.valueOf(SMGCardInfo.attribute("HDFlag").getValue()));
-              // ¸ßÇå×ªÂëURL
+              // é«˜æ¸…è½¬ç URL
               //smgCardInfo.setHDURL(SMGCardInfo.attribute("HDURL").getValue());
         }
         coreDate.setSMGCardList(SMGCardList);
@@ -220,7 +220,7 @@ public class NvrStatusSet {
              statement.executeUpdate(strBuff.toString());
              
          } catch (Exception e) {
-             log.error("Ò»¶ÔÒ»½ÚÄ¿±í¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
+             log.error("ä¸€å¯¹ä¸€èŠ‚ç›®è¡¨æ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
          } finally {
              DaoSupport.close(rs);
              DaoSupport.close(statement);
@@ -245,7 +245,7 @@ public class NvrStatusSet {
              statement.executeUpdate(strBuff.toString());
              
          } catch (Exception e) {
-             log.error("Ò»¶ÔÒ»½ÚÄ¿±í¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
+             log.error("ä¸€å¯¹ä¸€èŠ‚ç›®è¡¨æ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
          } finally {
              DaoSupport.close(rs);
              DaoSupport.close(statement);
@@ -253,7 +253,7 @@ public class NvrStatusSet {
          }
     }
     /**
-     * ¸üĞÂÈë¿âÒ»¶ÔÒ»±í
+     * æ›´æ–°å…¥åº“ä¸€å¯¹ä¸€è¡¨
      * @throws DaoException 
      */
     private static void upChangeProgramTable(SMGCardInfoVO vo) throws DaoException {
@@ -263,9 +263,9 @@ public class NvrStatusSet {
         Connection conn = DaoSupport.getJDBCConnection();
         
 		strBuff.append("update monitorprogramquery c set ");
-		// statusFlag: 0:¿ÕÏĞ 1:Ò»¶ÔÒ»¼àÊÓ 2:ÂÖ²¥¼à²âÊ¹ÓÃ 3:ÊÖ¶¯Ñ¡Ì¨ 4:×Ô¶¯ÂÖ²¥
+		// statusFlag: 0:ç©ºé—² 1:ä¸€å¯¹ä¸€ç›‘è§† 2:è½®æ’­ç›‘æµ‹ä½¿ç”¨ 3:æ‰‹åŠ¨é€‰å° 4:è‡ªåŠ¨è½®æ’­
 		strBuff.append("statusFlag = 3, ");
-		// RunType 1:ÊÖ¶¯Ñ¡Ì¨ 2:Ò»¶ÔÒ»¼à²â 3:ÂÖÑ¯¼à²â 4:ÂÖ²¥
+		// RunType 1:æ‰‹åŠ¨é€‰å° 2:ä¸€å¯¹ä¸€ç›‘æµ‹ 3:è½®è¯¢ç›‘æµ‹ 4:è½®æ’­
 		strBuff.append(" RunType = 1, ");
 		strBuff.append(" smgURL = '"+vo.getURL()+"'");
 		strBuff.append(" ,lastDatatime = '" + CommonUtility.getDateTime() + "' ");
@@ -277,16 +277,16 @@ public class NvrStatusSet {
             statement.executeUpdate(strBuff.toString());
             
         } catch (Exception e) {
-            log.error("ÊÖ¶¯Ñ¡Ì¨¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
+            log.error("æ‰‹åŠ¨é€‰å°æ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
         } finally {
             DaoSupport.close(rs);
             DaoSupport.close(statement);
             DaoSupport.close(conn);
         }
-        //log.info("ÊÖ¶¯Ñ¡Ì¨¸üĞÂÊı¾İ¿â³É¹¦!");
+        //log.info("æ‰‹åŠ¨é€‰å°æ›´æ–°æ•°æ®åº“æˆåŠŸ!");
     }
     
-  //¸ù¾İÍ¨µÀºÅ¸üĞÂÒµÎñÀàĞÍĞÅÏ¢£¬Ôö¼ÓÅĞ¶Ï»úÖÆ£¬Èç¹ûÓĞ¶à¸öÊµÊ±ÊÓÆµ£¬±¨´í£¬ÓĞ¶à¸öÂÖÑ¯²âÁ¿£¬±¨´í£¿£¿--Æ½Ì¨Ó¦¸Ã×öÏŞÖÆ£¬Ç°¶ËÖ»¸ºÔğ´¦Àí×´Ì¬¸üĞÂ
+  //æ ¹æ®é€šé“å·æ›´æ–°ä¸šåŠ¡ç±»å‹ä¿¡æ¯ï¼Œå¢åŠ åˆ¤æ–­æœºåˆ¶ï¼Œå¦‚æœæœ‰å¤šä¸ªå®æ—¶è§†é¢‘ï¼ŒæŠ¥é”™ï¼Œæœ‰å¤šä¸ªè½®è¯¢æµ‹é‡ï¼ŒæŠ¥é”™ï¼Ÿï¼Ÿ--å¹³å°åº”è¯¥åšé™åˆ¶ï¼Œå‰ç«¯åªè´Ÿè´£å¤„ç†çŠ¶æ€æ›´æ–°
   private boolean updateSmgCardInfo(int index,int inputtype)
   {
 	  	boolean ret = false;
@@ -299,7 +299,7 @@ public class NvrStatusSet {
 			strBuff2.append("update smg_card_info set smgInputtype=");
 			strBuff2.append(inputtype+",updateTime='");
 			strBuff2.append(CommonUtility.getDateTime() + "',smgRemark='");
-			strBuff2.append("ÒµÎñÀàĞÍ±ä¸ü' where smgIndex=");
+			strBuff2.append("ä¸šåŠ¡ç±»å‹å˜æ›´' where smgIndex=");
 			strBuff2.append(index);
 			System.out.println(strBuff2.toString());
 			conn.setAutoCommit(false);
@@ -307,7 +307,7 @@ public class NvrStatusSet {
 				statement=conn.createStatement();
 				statement.executeUpdate(strBuff2.toString());
 			} catch (Exception e) {
-				//log.info("¸üĞÂÍ¨µÀ×´Ì¬±íÊ§°Ü£º"+e.getMessage());
+				//log.info("æ›´æ–°é€šé“çŠ¶æ€è¡¨å¤±è´¥ï¼š"+e.getMessage());
 				ret = false;
 			}finally{
 				DaoSupport.close(statement);
@@ -331,12 +331,12 @@ public class NvrStatusSet {
         strBuf.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuf.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\"> \r\n");
         if(0==value){
-            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r\n");
+            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r\n");
         }else if(1==value){
-            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"Ê§°Ü\"/>\r\n");
+            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"å¤±è´¥\"/>\r\n");
             strBuf.append("<ErrReport>\r\n");
-            //<NvrStatusSetRecord  Index="0"  IndexType = ¡°0¡± Comment="ÄÚ²¿´íÎó"/>
-            strBuf.append("<RebootSetRecord Comment=\"ÄÚ²¿´íÎó\"/>\r\n");
+            //<NvrStatusSetRecord  Index="0"  IndexType = â€œ0â€ Comment="å†…éƒ¨é”™è¯¯"/>
+            strBuf.append("<RebootSetRecord Comment=\"å†…éƒ¨é”™è¯¯\"/>\r\n");
             strBuf.append("</ErrReport>\r\n");
         }
         strBuf.append("</Msg>");

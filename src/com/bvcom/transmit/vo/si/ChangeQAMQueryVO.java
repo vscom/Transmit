@@ -2,7 +2,7 @@ package com.bvcom.transmit.vo.si;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//QAM¿ØÖÆ
+//QAMæŽ§åˆ¶
 public class ChangeQAMQueryVO {
 	
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -15,7 +15,7 @@ public class ChangeQAMQueryVO {
     
     private int ReuturnValue;
     
-    private String Comment;//Ê§°ÜÔ­Òò
+    private String Comment;//å¤±è´¥åŽŸå› 
 
 	public MSGHeadVO getMSGHead() {
 		return MSGHead;

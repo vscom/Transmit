@@ -28,7 +28,7 @@ public class IndexCompensationSetHandle {
     }
     
     /**
-     *Ö¸±ê²¹³¥
+     *æŒ‡æ ‡è¡¥å¿
      */
     @SuppressWarnings("unchecked")
 	public void downXML() {
@@ -39,11 +39,11 @@ public class IndexCompensationSetHandle {
          for (int i=0; i< SMGSendList.size(); i++) {
              SMGCardInfoVO smg = (SMGCardInfoVO) SMGSendList.get(i);
              try {
-                 // Ö¸±ê²¹³¥ĞÅÏ¢ÏÂ·¢ timeout 1000*60*3 Èı·ÖÖÓ
+                 // æŒ‡æ ‡è¡¥å¿ä¿¡æ¯ä¸‹å‘ timeout 1000*60*3 ä¸‰åˆ†é’Ÿ
                  utilXML.SendDownNoneReturn(this.downString, smg.getURL(), CommonUtility.CHANNEL_SCAN_WAIT_TIMEOUT, bsData);
                  break;
              } catch (CommonException e) {
-                 log.error("ÏòSMGÏÂ·¢ÆµµÀÉ¨Ãè³ö´í£º" + smg.getURL());
+                 log.error("å‘SMGä¸‹å‘é¢‘é“æ‰«æå‡ºé”™ï¼š" + smg.getURL());
              }
          }
          
@@ -53,7 +53,7 @@ public class IndexCompensationSetHandle {
          try {
              utilXML.SendUpXML(upString, bsData);
          } catch (CommonException e) {
-             log.error("ÉÏ·¢ÆµµÀÉ¨ÃèĞÅÏ¢Ê§°Ü: " + e.getMessage());
+             log.error("ä¸Šå‘é¢‘é“æ‰«æä¿¡æ¯å¤±è´¥: " + e.getMessage());
          }
          
          bsData = null;

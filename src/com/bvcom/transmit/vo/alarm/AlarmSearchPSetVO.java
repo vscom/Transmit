@@ -2,7 +2,7 @@ package com.bvcom.transmit.vo.alarm;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//±¨¾¯ÉÏ±¨£¨½ÚÄ¿Ïà¹Ø£©
+//æŠ¥è­¦ä¸ŠæŠ¥ï¼ˆèŠ‚ç›®ç›¸å…³ï¼‰
 public class AlarmSearchPSetVO {
 	
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -20,20 +20,20 @@ public class AlarmSearchPSetVO {
     private int AudioPID = 0;
     
     /**
-     * ¹ãÖİÏîÄ¿ ±¨¾¯ID
+     * å¹¿å·é¡¹ç›® æŠ¥è­¦ID
      */
     private String AlarmID = "";
     
     private int ReturnValue = 0;
     
-    private String Comment = "";//Ê§°ÜÔ­Òò
+    private String Comment = "";//å¤±è´¥åŸå› 
 
     private int Type = 0;
     
     private String Desc = "";
     
     /**
-     * 0:Ã»ÓĞ·¢Éú. 1:ÕıÔÚ·¢Éú. 2:»Ö¸´ÁË.
+     * 0:æ²¡æœ‰å‘ç”Ÿ. 1:æ­£åœ¨å‘ç”Ÿ. 2:æ¢å¤äº†.
      */
     private int Value = 0;
     
@@ -120,13 +120,13 @@ public class AlarmSearchPSetVO {
 		Desc = desc;
 	}
     /**
-     * 0:Ã»ÓĞ·¢Éú. 1:ÕıÔÚ·¢Éú. 2:»Ö¸´ÁË.
+     * 0:æ²¡æœ‰å‘ç”Ÿ. 1:æ­£åœ¨å‘ç”Ÿ. 2:æ¢å¤äº†.
      */
 	public int getValue() {
 		return Value;
 	}
     /**
-     * 0:Ã»ÓĞ·¢Éú. 1:ÕıÔÚ·¢Éú. 2:»Ö¸´ÁË.
+     * 0:æ²¡æœ‰å‘ç”Ÿ. 1:æ­£åœ¨å‘ç”Ÿ. 2:æ¢å¤äº†.
      */
 	public void setValue(int value) {
 		Value = value;
@@ -149,14 +149,14 @@ public class AlarmSearchPSetVO {
 	}
 
     /**
-     * ¹ãÖİÏîÄ¿ ±¨¾¯ID
+     * å¹¿å·é¡¹ç›® æŠ¥è­¦ID
      */
 	public String getAlarmID() {
 		return AlarmID;
 	}
 
     /**
-     * ¹ãÖİÏîÄ¿ ±¨¾¯ID
+     * å¹¿å·é¡¹ç›® æŠ¥è­¦ID
      */
 	public void setAlarmID(String alarmID) {
 		AlarmID = alarmID;

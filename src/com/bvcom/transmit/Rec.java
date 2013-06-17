@@ -67,7 +67,7 @@ public class Rec extends HttpServlet {
 		out.println("  </BODY>");
 		out.println("</HTML>");
 		
-//		// EPG信息入库测试
+//		// EPG淇℃伅鍏ュ簱娴嬭瘯
 //		EPGInsertDataTest();
 		
 		out.flush();
@@ -75,12 +75,12 @@ public class Rec extends HttpServlet {
 	}
 
 	/**
-	 * EPG信息入库测试
+	 * EPG淇℃伅鍏ュ簱娴嬭瘯
 	 */
 	public void EPGInsertDataTest() {
 		try {
 			String file = "D:\\EPGInfo\\Epg_8M.xml";
-			log.info("读取EPG信息 " + file);
+			log.info("璇诲彇EPG淇℃伅 " + file);
 			File readFilePath = new File(file);
 			String returnStr = CommonUtility.readStringFormFile(readFilePath);
 			
@@ -93,14 +93,14 @@ public class Rec extends HttpServlet {
 				List EPGList = EPGQueryParse.getReturnObject(document);
 				EPGQueryHandle EPGQueryHandle = new EPGQueryHandle();
 				EPGQueryHandle.upEPGTable(EPGList);
-				log.info("EPG信息入库完成 ");
+				log.info("EPG淇℃伅鍏ュ簱瀹屾垚 ");
 			} catch (CommonException e1) {
-				log.error("EPG XML 解析出错: " + e1.getMessage());
+				log.error("EPG XML 瑙ｆ瀽鍑洪敊: " + e1.getMessage());
 			}
 			
 		} catch (CommonException e) {
 			// TODO Auto-generated catch block
-			log.error("EPG XML 解析出错: " + e.getMessage());
+			log.error("EPG XML 瑙ｆ瀽鍑洪敊: " + e.getMessage());
 		}
 	}
 	/**
@@ -124,12 +124,12 @@ public class Rec extends HttpServlet {
 
         try {
             inReader = new InputStreamReader(request.getInputStream(),
-                    "UTF-8");// 获得链接该类的流
+                    "UTF-8");// 鑾峰緱閾炬帴璇ョ被鐨勬祦
 
             getString = CommonUtility.readStringFromURL(inReader);
 
             /**
-             * 读取请求信息
+             * 璇诲彇璇锋眰淇℃伅
              */
         } catch (IOException ex) {
             return;

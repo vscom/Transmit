@@ -19,7 +19,7 @@ public class AlarmSwitchDao {
 
 	/**
 	 * 
-	 * @return alarmSwitchList±¨¾¯¿ª¹Ø×´¼¯ºÏ JI LONG 2011-5-12
+	 * @return alarmSwitchListæŠ¥è­¦å¼€å…³çŠ¶é›†åˆ JI LONG 2011-5-12
 	 */
 	public List<AlarmSwitch> list() {
 		List<AlarmSwitch> alarmSwitchList = new ArrayList<AlarmSwitch>();
@@ -45,14 +45,14 @@ public class AlarmSwitchDao {
 				alarmSwitchList.add(alarmSwitch);
 			}
 		} catch (Exception e) {
-			log.error("²éÕÒ±¨¾¯¿ª¹Ø×´Ì¬¼¯ºÏ´íÎó: " + e.getMessage());
+			log.error("æŸ¥æ‰¾æŠ¥è­¦å¼€å…³çŠ¶æ€é›†åˆé”™è¯¯: " + e.getMessage());
 		} finally {
 			try {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("¹Ø±ÕÊı¾İ¿âÊ§°Ü: " + e.getMessage());
+				log.error("å…³é—­æ•°æ®åº“å¤±è´¥: " + e.getMessage());
 			}
 		}
 		return alarmSwitchList;
@@ -61,12 +61,12 @@ public class AlarmSwitchDao {
 	/**
 	 * 
 	 * @param alarmSwitchList
-	 *            ĞèÒª±£´æµÄ±¨¾¯¿ª¹Ø¼¯ºÏ ±£´æÊ±ºò×öÅĞ¶ÏÈç¹ûÒÑ¾­ÓĞÔğ¸üĞÂ£¬Ã»ÓĞÔğ²åÈë JI LONG 2011-5-12
+	 *            éœ€è¦ä¿å­˜çš„æŠ¥è­¦å¼€å…³é›†åˆ ä¿å­˜æ—¶å€™åšåˆ¤æ–­å¦‚æœå·²ç»æœ‰è´£æ›´æ–°ï¼Œæ²¡æœ‰è´£æ’å…¥ JI LONG 2011-5-12
 	 */
 	public void save(List<AlarmSwitch> alarmSwitchList) {
 		Statement statement = null;
 		Connection conn = null;
-		// Êı¾İ¿âÖĞµÄ¿ª¹Ø×´Ì¬
+		// æ•°æ®åº“ä¸­çš„å¼€å…³çŠ¶æ€
 		List<AlarmSwitch> list =AlarmSwitchMemory.alarmSwitchList;
 		try {
 			conn = DaoSupport.getJDBCConnection();
@@ -75,16 +75,16 @@ public class AlarmSwitchDao {
 			String sqlStr = "";
 			for (int i = 0; i < alarmSwitchList.size(); i++) {
 				AlarmSwitch as=alarmSwitchList.get(i);
-				//Èç¹û¿ª¹ØÀàĞÍÎª½ÚÄ¿¼¶
+				//å¦‚æœå¼€å…³ç±»å‹ä¸ºèŠ‚ç›®çº§
 				if(as.getSwitchType()==1){
-					//Èç¹ûfreqºÍserviceid¶¼Îªarr
+					//å¦‚æœfreqå’Œserviceidéƒ½ä¸ºarr
 					if(as.getFreq().equals("arr")&&as.getServiceID().equals("arr")){
 						delete(as.getSwitchType(),as.getFreq());
-					//Èç¹ûfreq²»µÈÓÚarr servicidÎªarr	
+					//å¦‚æœfreqä¸ç­‰äºarr servicidä¸ºarr	
 					}else if(as.getServiceID().equals("arr")&&(!as.getFreq().equals("arr"))){
 						delete(as.getSwitchType(),as.getFreq());
 					}
-				//Èç¹û¿ª¹ØÀàĞÍÎªÆµÂÊ¼¶ ²¢ÇÒÆµÂÊÎªarrÊ±	
+				//å¦‚æœå¼€å…³ç±»å‹ä¸ºé¢‘ç‡çº§ å¹¶ä¸”é¢‘ç‡ä¸ºarræ—¶	
 				}else{
 					if(as.getFreq().equals("arr")){
 						delete(as.getSwitchType(),"");
@@ -105,8 +105,8 @@ public class AlarmSwitchDao {
 					statement.executeUpdate(sqlStr);
 
 				} catch (Exception e) {
-					log.error("±¨¾¯¿ª¹ØĞÅÏ¢¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
-					log.error("±¨¾¯¿ª¹ØĞÅÏ¢¸üĞÂÊı¾İ¿â´íÎó SQL£º\n" + sqlStr);
+					log.error("æŠ¥è­¦å¼€å…³ä¿¡æ¯æ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
+					log.error("æŠ¥è­¦å¼€å…³ä¿¡æ¯æ›´æ–°æ•°æ®åº“é”™è¯¯ SQLï¼š\n" + sqlStr);
 				} finally {
 					DaoSupport.close(statement);
 				}
@@ -114,7 +114,7 @@ public class AlarmSwitchDao {
 			conn.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("±£´æ¸üĞÂ±¨¾¯¿ª¹Ø×´Ì¬¼¯ºÏ´íÎó: " + e.getMessage());
+			log.error("ä¿å­˜æ›´æ–°æŠ¥è­¦å¼€å…³çŠ¶æ€é›†åˆé”™è¯¯: " + e.getMessage());
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
@@ -123,18 +123,18 @@ public class AlarmSwitchDao {
 			try {
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("¹Ø±ÕÊı¾İ¿âÊ§°Ü: " + e.getMessage());
+				log.error("å…³é—­æ•°æ®åº“å¤±è´¥: " + e.getMessage());
 			}
 		}
 		AlarmSwitchMemory.alarmSwitchList=list();
-//		log.info("¸üĞÂºóµÄ¿ª¹Ø×´Ì¬"+AlarmSwitchMemory.alarmSwitchList);
+//		log.info("æ›´æ–°åçš„å¼€å…³çŠ¶æ€"+AlarmSwitchMemory.alarmSwitchList);
 	}
 
 	/**
-	 * ÅĞ¶Ï¸Ä±¨¾¯¿ª¹ØÊÇ·ñÒÑ¾­´æÔÚ
+	 * åˆ¤æ–­æ”¹æŠ¥è­¦å¼€å…³æ˜¯å¦å·²ç»å­˜åœ¨
 	 * @param alarmSwitchList
 	 * @param alarmSwitch
-	 * @return true´æÔÚ
+	 * @return trueå­˜åœ¨
 	 */
 	private boolean elementIsList(List<AlarmSwitch> alarmSwitchList,
 			AlarmSwitch alarmSwitch) {
@@ -151,10 +151,10 @@ public class AlarmSwitchDao {
 		return temp;
 	}
 	/**
-	 * switchValue 1±íÊ¾½ÚÄ¿¼¶  2±íÊ¾ÆµÂÊ¼¶
-	 * Èç¹û¿ª¹ØÎªÆµÂÊ¼¶ Ôò°ÑÆµÂÊ¿ª¹ØÏà¹ØµÄËùÓĞ¼ÇÂ¼É¾³ı
-	 * Èç¹û¿ª¹ØÎª½ÚÄ¿¼¶ ²¢ÇÒ freqÎªarr  Ôò°Ñ½ÚÄ¿Ïà¹ØµÄËùÓĞ¼ÇÂ¼É¾³ı
-	 * Èç¹û¿ª¹ØÎª½ÚÄ¿¼¶ ²¢ÇÒ freq²»µÈÓÚarr  Ôò°Ñ¶ÔÓ¦ freqÏÂµÄ ½ÚÄ¿Ïà¹Ø¿ª¹Ø¼ÇÂ¼É¾³ı 
+	 * switchValue 1è¡¨ç¤ºèŠ‚ç›®çº§  2è¡¨ç¤ºé¢‘ç‡çº§
+	 * å¦‚æœå¼€å…³ä¸ºé¢‘ç‡çº§ åˆ™æŠŠé¢‘ç‡å¼€å…³ç›¸å…³çš„æ‰€æœ‰è®°å½•åˆ é™¤
+	 * å¦‚æœå¼€å…³ä¸ºèŠ‚ç›®çº§ å¹¶ä¸” freqä¸ºarr  åˆ™æŠŠèŠ‚ç›®ç›¸å…³çš„æ‰€æœ‰è®°å½•åˆ é™¤
+	 * å¦‚æœå¼€å…³ä¸ºèŠ‚ç›®çº§ å¹¶ä¸” freqä¸ç­‰äºarr  åˆ™æŠŠå¯¹åº” freqä¸‹çš„ èŠ‚ç›®ç›¸å…³å¼€å…³è®°å½•åˆ é™¤ 
 	 * @param switchValue
 	 * @param freq
 	 */
@@ -176,15 +176,15 @@ public class AlarmSwitchDao {
 				statement = conn.createStatement();
 				statement.execute(sqlStr);
 			}  catch (Exception e) {
-				log.error("É¾³ı±¨¾¯¿ª¹ØĞÅÏ¢Êı¾İ¿â´íÎó: " + e.getMessage());
-				log.error("É¾³ı±¨¾¯¿ª¹ØĞÅÏ¢Êı¾İ¿â´íÎó SQL£º\n" + sqlStr);
+				log.error("åˆ é™¤æŠ¥è­¦å¼€å…³ä¿¡æ¯æ•°æ®åº“é”™è¯¯: " + e.getMessage());
+				log.error("åˆ é™¤æŠ¥è­¦å¼€å…³ä¿¡æ¯æ•°æ®åº“é”™è¯¯ SQLï¼š\n" + sqlStr);
 			} finally {
 				DaoSupport.close(statement);
 			}
 			conn.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("É¾³ı±¨¾¯¿ª¹Ø×´Ì¬´íÎó: " + e.getMessage());
+			log.error("åˆ é™¤æŠ¥è­¦å¼€å…³çŠ¶æ€é”™è¯¯: " + e.getMessage());
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
@@ -193,7 +193,7 @@ public class AlarmSwitchDao {
 			try {
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("¹Ø±ÕÊı¾İ¿âÊ§°Ü: " + e.getMessage());
+				log.error("å…³é—­æ•°æ®åº“å¤±è´¥: " + e.getMessage());
 			}
 		}
 	}

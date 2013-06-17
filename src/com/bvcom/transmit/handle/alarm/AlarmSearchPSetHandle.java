@@ -25,7 +25,7 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.alarm.AlarmSearchPSetVO;
 
 /**
- * ±¨¾¯²éÑ¯
+ * æŠ¥è­¦æŸ¥è¯¢
  * 
  * @author Bian Jiang
  * 
@@ -47,7 +47,7 @@ public class AlarmSearchPSetHandle {
 	}
 
 	/**
-	 * 1. ÏÂ·¢¸øIPM 2. ½ÓÊÕIPM·µ»ØµÄĞÅÏ¢£¬Ìæ»»FreqµÈĞÅÏ¢ 3. ÉÏ±¨ÖĞĞÄ
+	 * 1. ä¸‹å‘ç»™IPM 2. æ¥æ”¶IPMè¿”å›çš„ä¿¡æ¯ï¼Œæ›¿æ¢Freqç­‰ä¿¡æ¯ 3. ä¸ŠæŠ¥ä¸­å¿ƒ
 	 * 
 	 */
 	public void downXML() {
@@ -60,7 +60,7 @@ public class AlarmSearchPSetHandle {
 		try {
 			document = utilXML.StringToXML(this.downString);
 		} catch (CommonException e) {
-			log.error("±¨¾¯²éÑ¯StringToXML Error: " + e.getMessage());
+			log.error("æŠ¥è­¦æŸ¥è¯¢StringToXML Error: " + e.getMessage());
 		}
 		;
 
@@ -78,11 +78,11 @@ public class AlarmSearchPSetHandle {
 		for (int i = 0; i < IPMSendList.size(); i++) {
 			IPMInfoVO smg = (IPMInfoVO) IPMSendList.get(i);
 			try {
-				// ±¨¾¯²éÑ¯ĞÅÏ¢ÏÂ·¢ timeout 1000*10 10Ãë
+				// æŠ¥è­¦æŸ¥è¯¢ä¿¡æ¯ä¸‹å‘ timeout 1000*10 10ç§’
 				upString = utilXML.SendDownXML(this.downString, smg.getURL(),
 						CommonUtility.CONN_WAIT_TIMEOUT, bsData);
 			} catch (CommonException e) {
-				log.error("ÏòIPMÏÂ·¢±¨¾¯²éÑ¯ÉèÖÃ³ö´í£º" + smg.getURL());
+				log.error("å‘IPMä¸‹å‘æŠ¥è­¦æŸ¥è¯¢è®¾ç½®å‡ºé”™ï¼š" + smg.getURL());
 				upString = "";
 			}
 		}
@@ -93,13 +93,13 @@ public class AlarmSearchPSetHandle {
 			}
 			document = utilXML.StringToXML(upString);
 		} catch (CommonException e) {
-			log.error("±¨¾¯²éÑ¯StringToXML Error: " + e.getMessage());
+			log.error("æŠ¥è­¦æŸ¥è¯¢StringToXML Error: " + e.getMessage());
 			isErr = true;
 		}
 		;
 
 		if (!isErr) {
-			// Ìæ»»ÆµµãµÈĞÅÏ¢
+			// æ›¿æ¢é¢‘ç‚¹ç­‰ä¿¡æ¯
 			AlarmSearchPSetParse.replaceFreqInfo(document, voList);
 			document.setXMLEncoding("GB2312");
 			upString = document.asXML();
@@ -110,28 +110,28 @@ public class AlarmSearchPSetHandle {
 		try {
 			utilXML.SendUpXML(upString, bsData);
 		} catch (CommonException e) {
-			log.error("±¨¾¯²éÑ¯»Ø¸´Ê§°Ü: " + e.getMessage());
+			log.error("æŠ¥è­¦æŸ¥è¯¢å›å¤å¤±è´¥: " + e.getMessage());
 		}
 
 	}
 
 	/**
-	 * ½ÚÄ¿±¨¾¯Ö÷¶¯ÉÏ±¨ 1. ´ÓÊı¾İ¿âÈ¡µÃFreqµÈÁĞ±íĞÅÏ¢ 2. ¸üĞÂXMLÊı¾İĞÅÏ¢ 3. ·µ»ØĞŞ¸ÄºóµÄXML
+	 * èŠ‚ç›®æŠ¥è­¦ä¸»åŠ¨ä¸ŠæŠ¥ 1. ä»æ•°æ®åº“å–å¾—Freqç­‰åˆ—è¡¨ä¿¡æ¯ 2. æ›´æ–°XMLæ•°æ®ä¿¡æ¯ 3. è¿”å›ä¿®æ”¹åçš„XML
 	 * 
 	 */
 	public String upXML() {
-		// Êı¾İ¿âÈ¡µÃÏêÏ¸ÆµµãĞÅÏ¢
+		// æ•°æ®åº“å–å¾—è¯¦ç»†é¢‘ç‚¹ä¿¡æ¯
 		List<AlarmSearchPSetVO> rsList = new ArrayList<AlarmSearchPSetVO>();
 
 		Document document = null;
 		try {
 			document = utilXML.StringToXML(this.downString);
 		} catch (CommonException e) {
-			log.error("±¨¾¯²éÑ¯StringToXML Error: " + e.getMessage());
-			// TODO ÉÏ±¨´íÎóĞÅÏ¢
+			log.error("æŠ¥è­¦æŸ¥è¯¢StringToXML Error: " + e.getMessage());
+			// TODO ä¸ŠæŠ¥é”™è¯¯ä¿¡æ¯
 		}
 
-		// È¡µÃÉÏ±¨ÆµµãĞÅÏ¢
+		// å–å¾—ä¸ŠæŠ¥é¢‘ç‚¹ä¿¡æ¯
 		AlarmSearchPSetParse AlarmSearchPSetParse = new AlarmSearchPSetParse();
 		List<AlarmSearchPSetVO> freqList = AlarmSearchPSetParse
 				.getUpList(document);
@@ -139,7 +139,7 @@ public class AlarmSearchPSetHandle {
 		this.getFreqInfoFromDB(freqList, rsList);
 
 		if (rsList.size() > 0) {
-			// ¸üĞÂXMLĞÅÏ¢µÄFreqµÈĞÅÏ¢
+			// æ›´æ–°XMLä¿¡æ¯çš„Freqç­‰ä¿¡æ¯
 			AlarmSearchPSetParse.replaceFreqInfo(document, rsList);
 		} else {
 			return "";
@@ -149,7 +149,7 @@ public class AlarmSearchPSetHandle {
 	}
 
 	/**
-	 * ´ÓÊı¾İ¿â²éÑ¯Í¨µÀÏêÏ¸ĞÅÏ¢
+	 * ä»æ•°æ®åº“æŸ¥è¯¢é€šé“è¯¦ç»†ä¿¡æ¯
 	 * 
 	 * @param freqList
 	 * @param rsList
@@ -219,8 +219,8 @@ public class AlarmSearchPSetHandle {
 					}
 
 				} catch (Exception e) {
-					log.error("±¨¾¯ĞÅÏ¢²éÑ¯½ÚÄ¿ĞÅÏ¢´íÎó: " + e.getMessage());
-					/**Êä³ö´íÎóĞÅÏ¢µ½ÎÄ¼ş*/
+					log.error("æŠ¥è­¦ä¿¡æ¯æŸ¥è¯¢èŠ‚ç›®ä¿¡æ¯é”™è¯¯: " + e.getMessage());
+					/**è¾“å‡ºé”™è¯¯ä¿¡æ¯åˆ°æ–‡ä»¶*/
 		    		PrintWriter pw;
 					try {
 						pw = new PrintWriter(new File("D:/AlarmSearchPSetHandle.log"));
@@ -239,28 +239,28 @@ public class AlarmSearchPSetHandle {
 			}
 
 		} catch (DaoException e1) {
-			log.error("Í¨µÀ×´Ì¬²éÑ¯Êı¾İ¿â´íÎó: " + e1.getMessage());
+			log.error("é€šé“çŠ¶æ€æŸ¥è¯¢æ•°æ®åº“é”™è¯¯: " + e1.getMessage());
 		} finally {
 			try {
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("¹Ø±ÕÊı¾İ¿âÊ§°Ü: " + e.getMessage());
+				log.error("å…³é—­æ•°æ®åº“å¤±è´¥: " + e.getMessage());
 			}
 		}
 	}
 
 	/**
 	 * 
-	 * ÅĞ¶Ï¸Ã¼¯ºÏÖĞµÄ±¨¾¯¼ÇÂ¼ ¿ª¹Ø×´Ì¬ Èç¹û¿ª¹Ø×´Ì¬Îª0Ôò¶ªÆú¸Ã±¨¾¯
-	 * Ôö¼ÓÅĞ¶Ï Ôö¼ÓÔËĞĞÍ¼±¨¾¯¹ıÂË
-	 * ÅĞ¶ÏÊÇ·ñÖØ¸´±¨¾¯ÖØ¸´Ôò¶ªÆú
+	 * åˆ¤æ–­è¯¥é›†åˆä¸­çš„æŠ¥è­¦è®°å½• å¼€å…³çŠ¶æ€ å¦‚æœå¼€å…³çŠ¶æ€ä¸º0åˆ™ä¸¢å¼ƒè¯¥æŠ¥è­¦
+	 * å¢åŠ åˆ¤æ–­ å¢åŠ è¿è¡Œå›¾æŠ¥è­¦è¿‡æ»¤
+	 * åˆ¤æ–­æ˜¯å¦é‡å¤æŠ¥è­¦é‡å¤åˆ™ä¸¢å¼ƒ
 	 * @param alarmList
 	 * @return List New List
 	 */
 	public static List getFreqFromDB(List alarmList, String type) {
 
 		
-		//TODO Ôö¼Ó¹ıÂË ÂëÁ÷²ãÔËĞĞÍ¼ ±¨¾¯¹ıÂË Ji Long 2011-06-16
+		//TODO å¢åŠ è¿‡æ»¤ ç æµå±‚è¿è¡Œå›¾ æŠ¥è­¦è¿‡æ»¤ Ji Long 2011-06-16
 		AlarmTimeDao dao=new AlarmTimeDao();
 		alarmList=dao.select(alarmList);
 		
@@ -279,7 +279,7 @@ public class AlarmSearchPSetHandle {
 				 * StringBuffer strBuff = new StringBuffer(); strBuff.append("SELECT *
 				 * FROM channelremapping c where "); strBuff.append("statusFlag = 1
 				 * and Freq = " + alarmSearchPSet.getFreq());
-				 *  // Èç¹ûÊÇ½ÚÄ¿±¨¾¯µÄ¼ÓÉÏServiceID if (type.equals("AlarmSearchPSet")) {
+				 *  // å¦‚æœæ˜¯èŠ‚ç›®æŠ¥è­¦çš„åŠ ä¸ŠServiceID if (type.equals("AlarmSearchPSet")) {
 				 * strBuff.append(" and ServiceID = " +
 				 * alarmSearchPSet.getServiceID()); }
 				 * 
@@ -288,17 +288,17 @@ public class AlarmSearchPSetHandle {
 				 * false; while (rs.next()) { isTrue = true; break; } if(isTrue) {
 				 */
 				// TODO
-				// Ôö¼ÓÅĞ¶Ï Èç¹û¸Ä±¨¾¯¶ÔÓ¦µÃÆµÂÊ»ò½ÚÄ¿ µÄ±¨¾¯¿ª¹ØÒÑ¾­¹Ø±Õ
-				// Ôò¶ªµô¸Ã±¨¾¯
+				// å¢åŠ åˆ¤æ–­ å¦‚æœæ”¹æŠ¥è­¦å¯¹åº”å¾—é¢‘ç‡æˆ–èŠ‚ç›® çš„æŠ¥è­¦å¼€å…³å·²ç»å…³é—­
+				// åˆ™ä¸¢æ‰è¯¥æŠ¥è­¦
 				if (alarmIsList(alarmSearchPSet)) {
-	//				log.info("¸Ã±¨¾¯¿ª¹ØÒÑ¾­¹Ø±ÕÔò¶ªÆúÆµµã" + alarmSearchPSet.getFreq() + "½ÚÄ¿id"
-	//						+ alarmSearchPSet.getServiceID() + "±¨¾¯ÀàĞÍ"
+	//				log.info("è¯¥æŠ¥è­¦å¼€å…³å·²ç»å…³é—­åˆ™ä¸¢å¼ƒé¢‘ç‚¹" + alarmSearchPSet.getFreq() + "èŠ‚ç›®id"
+	//						+ alarmSearchPSet.getServiceID() + "æŠ¥è­¦ç±»å‹"
 	//						+ alarmSearchPSet.getAlarmType() + "");
 				} else {
 					try {
 //						conn = DaoSupport.getJDBCConnection();
 						StringBuffer strBuff = new StringBuffer();
-						// ¹ıÂËÖØ¸´±¨¾¯ ¼ªÁú
+						// è¿‡æ»¤é‡å¤æŠ¥è­¦ å‰é¾™
 						boolean falg = false;
 						int serviceID = alarmSearchPSet.getServiceID();
 						int freq = alarmSearchPSet.getFreq();
@@ -315,14 +315,14 @@ public class AlarmSearchPSetHandle {
 							strBuff.append(" and AlarmEndTime is " + "null" );
 							rs = statement.executeQuery(strBuff.toString());
 							if (rs.next()) {
-								//log.info("¸Ã±¨¾¯ÒÑ´æÔÚ²¢ÇÒ×´Ì¬Ò»ÖÂ Ôò¶ªÆú");
+								//log.info("è¯¥æŠ¥è­¦å·²å­˜åœ¨å¹¶ä¸”çŠ¶æ€ä¸€è‡´ åˆ™ä¸¢å¼ƒ");
 								continue;
 							} else {
 								falg = true;
 								strBuff = new StringBuffer();
 							}
 						} catch (Exception e) {
-							log.error("¹ıÂËÖØ¸´±¨¾¯´íÎó: " + e.getMessage());
+							log.error("è¿‡æ»¤é‡å¤æŠ¥è­¦é”™è¯¯: " + e.getMessage());
 						}
 						if(falg ){
 							AlarmSearchPSetVO vo = new AlarmSearchPSetVO();
@@ -344,35 +344,35 @@ public class AlarmSearchPSetHandle {
 							newList.add(vo);
 						}
 					} catch (Exception e) {
-						log.error("±¨¾¯ĞÅÏ¢¹ıÂË´íÎó: " + e.getMessage());
+						log.error("æŠ¥è­¦ä¿¡æ¯è¿‡æ»¤é”™è¯¯: " + e.getMessage());
 					}finally{
 						try {
 							DaoSupport.close(statement); 
 							DaoSupport.close(rs);
 						}catch (DaoException e) {
-							log.error("¹Ø±ÕÊı¾İ¿âÊ§°Ü: " + e.getMessage()); 
+							log.error("å…³é—­æ•°æ®åº“å¤±è´¥: " + e.getMessage()); 
 						}
 					}
 					
 				}
 				/*
-				 * } } catch (Exception e) { log.error("±¨¾¯ĞÅÏ¢²éÑ¯ÆµµãĞÅÏ¢´íÎó: " +
+				 * } } catch (Exception e) { log.error("æŠ¥è­¦ä¿¡æ¯æŸ¥è¯¢é¢‘ç‚¹ä¿¡æ¯é”™è¯¯: " +
 				 * e.getMessage()); } finally { DaoSupport.close(rs);
 				 * DaoSupport.close(statement); }
 				 * 
 				 * strBuff = null; }
-				 *  } catch (DaoException e1) { log.error("±¨¾¯ĞÅÏ¢²éÑ¯ÆµµãĞÅÏ¢´íÎó: " +
+				 *  } catch (DaoException e1) { log.error("æŠ¥è­¦ä¿¡æ¯æŸ¥è¯¢é¢‘ç‚¹ä¿¡æ¯é”™è¯¯: " +
 				 * e1.getMessage()); } finally { try { DaoSupport.close(conn); }
-				 * catch (DaoException e) { log.error("¹Ø±ÕÊı¾İ¿âÊ§°Ü: " + e.getMessage()); } }
+				 * catch (DaoException e) { log.error("å…³é—­æ•°æ®åº“å¤±è´¥: " + e.getMessage()); } }
 				 */
 			}
 		 } catch (Exception e) {
-				log.error("±¨¾¯ĞÅÏ¢¹ıÂË´íÎó: " + e.getMessage());
+				log.error("æŠ¥è­¦ä¿¡æ¯è¿‡æ»¤é”™è¯¯: " + e.getMessage());
 		 }finally{
 			try {
 				DaoSupport.close(conn); 
 			}catch (DaoException e) {
-				log.error("¹Ø±ÕÊı¾İ¿âÊ§°Ü: " + e.getMessage()); 
+				log.error("å…³é—­æ•°æ®åº“å¤±è´¥: " + e.getMessage()); 
 			}
 		}
 		return newList;
@@ -384,11 +384,11 @@ public class AlarmSearchPSetHandle {
 		for (AlarmSwitch as : list) {
 			if (as.getAlarmType() == vo.getType()) {
 				if (vo.getServiceID() != 0) {
-//					log.info("È·¶¨½ÚÄ¿ÊÕµ½Ğ­ÒéÖĞÆµµã" + vo.getFreq() + ", serviceid"
-//							+ vo.getServiceID() + ", ±¨¾¯ÀàĞÍ" + vo.getType());
-//					log.info("È·¶¨½ÚÄ¿ÄÚ´æÖĞ±¨¾¯Æµµã" + as.getFreq() + ", serviceid"
-//							+ as.getServiceID() + ", ±¨¾¯ÀàĞÍ" + as.getAlarmType()
-//							+ ", ±¨¾¯×´Ì¬" + as.getSwitchValue());
+//					log.info("ç¡®å®šèŠ‚ç›®æ”¶åˆ°åè®®ä¸­é¢‘ç‚¹" + vo.getFreq() + ", serviceid"
+//							+ vo.getServiceID() + ", æŠ¥è­¦ç±»å‹" + vo.getType());
+//					log.info("ç¡®å®šèŠ‚ç›®å†…å­˜ä¸­æŠ¥è­¦é¢‘ç‚¹" + as.getFreq() + ", serviceid"
+//							+ as.getServiceID() + ", æŠ¥è­¦ç±»å‹" + as.getAlarmType()
+//							+ ", æŠ¥è­¦çŠ¶æ€" + as.getSwitchValue());
 					if (as.getFreq().equals(vo.getFreq() + "")
 							&& as.getServiceID().equals(vo.getServiceID() + "")
 							&& as.getSwitchValue() == 0
@@ -397,11 +397,11 @@ public class AlarmSearchPSetHandle {
 						break;
 					}
 				} else {
-//					log.info("È·¶¨ÆµµãÊÕµ½Ğ­ÒéÖĞÆµµã" + vo.getFreq() + ", serviceid"
-//							+ vo.getServiceID() + ", ±¨¾¯ÀàĞÍ" + vo.getType());
-//					log.info("È·¶¨ÆµµãÄÚ´æÖĞ±¨¾¯Æµµã" + as.getFreq() + ", serviceid"
-//							+ as.getServiceID() + ", ±¨¾¯ÀàĞÍ" + as.getAlarmType()
-//							+ ", ±¨¾¯×´Ì¬" + as.getSwitchValue());
+//					log.info("ç¡®å®šé¢‘ç‚¹æ”¶åˆ°åè®®ä¸­é¢‘ç‚¹" + vo.getFreq() + ", serviceid"
+//							+ vo.getServiceID() + ", æŠ¥è­¦ç±»å‹" + vo.getType());
+//					log.info("ç¡®å®šé¢‘ç‚¹å†…å­˜ä¸­æŠ¥è­¦é¢‘ç‚¹" + as.getFreq() + ", serviceid"
+//							+ as.getServiceID() + ", æŠ¥è­¦ç±»å‹" + as.getAlarmType()
+//							+ ", æŠ¥è­¦çŠ¶æ€" + as.getSwitchValue());
 					if (as.getFreq().equalsIgnoreCase(vo.getFreq() + "")
 							&& as.getSwitchValue() == 0
 							&& as.getSwitchType() == 2) {
@@ -411,16 +411,16 @@ public class AlarmSearchPSetHandle {
 				}
 			}
 		}
-		//log.info("µÚÒ»´ÎÅĞ¶Ïºó¸Ã½ÚÄ¿¿ª¹Ø×´Ì¬" + temp);
+		//log.info("ç¬¬ä¸€æ¬¡åˆ¤æ–­åè¯¥èŠ‚ç›®å¼€å…³çŠ¶æ€" + temp);
 		if (temp == false) {
 			for (AlarmSwitch as : list) {
 				if (as.getAlarmType() == vo.getType()) {
 					if (vo.getServiceID() != 0) {
-//						log.info("ËùÓĞ½ÚÄ¿ÊÕµ½Ğ­ÒéÖĞÆµµã" + vo.getFreq() + ", serviceid"
-//								+ vo.getServiceID() + ", ±¨¾¯ÀàĞÍ" + vo.getType());
-//						log.info("ËùÓĞ½ÚÄ¿ÄÚ´æÖĞ±¨¾¯Æµµã" + as.getFreq() + ", serviceid"
-//								+ as.getServiceID() + ", ±¨¾¯ÀàĞÍ"
-//								+ as.getAlarmType() + ", ±¨¾¯×´Ì¬"
+//						log.info("æ‰€æœ‰èŠ‚ç›®æ”¶åˆ°åè®®ä¸­é¢‘ç‚¹" + vo.getFreq() + ", serviceid"
+//								+ vo.getServiceID() + ", æŠ¥è­¦ç±»å‹" + vo.getType());
+//						log.info("æ‰€æœ‰èŠ‚ç›®å†…å­˜ä¸­æŠ¥è­¦é¢‘ç‚¹" + as.getFreq() + ", serviceid"
+//								+ as.getServiceID() + ", æŠ¥è­¦ç±»å‹"
+//								+ as.getAlarmType() + ", æŠ¥è­¦çŠ¶æ€"
 //								+ as.getSwitchValue());
 						if ((as.getFreq().equals("arr")||as.getFreq().equals("ALL"))
 								&& as.getServiceID().equals(vo.getServiceID() + "")
@@ -430,11 +430,11 @@ public class AlarmSearchPSetHandle {
 							break;
 						}
 					} else {
-//						log.info("ËùÓĞÆµµãÊÕµ½Ğ­ÒéÖĞÆµµã" + vo.getFreq() + ", serviceid"
-//								+ vo.getServiceID() + ", ±¨¾¯ÀàĞÍ" + vo.getType());
-//						log.info("ËùÓĞÆµµãÄÚ´æÖĞ±¨¾¯Æµµã" + as.getFreq() + ", serviceid"
-//								+ as.getServiceID() + ", ±¨¾¯ÀàĞÍ"
-//								+ as.getAlarmType() + ", ±¨¾¯×´Ì¬"
+//						log.info("æ‰€æœ‰é¢‘ç‚¹æ”¶åˆ°åè®®ä¸­é¢‘ç‚¹" + vo.getFreq() + ", serviceid"
+//								+ vo.getServiceID() + ", æŠ¥è­¦ç±»å‹" + vo.getType());
+//						log.info("æ‰€æœ‰é¢‘ç‚¹å†…å­˜ä¸­æŠ¥è­¦é¢‘ç‚¹" + as.getFreq() + ", serviceid"
+//								+ as.getServiceID() + ", æŠ¥è­¦ç±»å‹"
+//								+ as.getAlarmType() + ", æŠ¥è­¦çŠ¶æ€"
 //								+ as.getSwitchValue());
 						if ((as.getFreq().equals("arr")||as.getFreq().equals("ALL"))
 								&& as.getSwitchValue() == 0) {
@@ -445,7 +445,7 @@ public class AlarmSearchPSetHandle {
 				}
 			}
 		}
-		//log.info("×îÖÕ·µ»ØÊ± ¸Ã½ÚÄ¿¿ª¹Ø×´Ì¬" + temp);
+		//log.info("æœ€ç»ˆè¿”å›æ—¶ è¯¥èŠ‚ç›®å¼€å…³çŠ¶æ€" + temp);
 		return temp;
 	}
 }

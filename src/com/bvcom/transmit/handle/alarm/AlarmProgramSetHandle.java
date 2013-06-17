@@ -29,16 +29,16 @@ public class AlarmProgramSetHandle {
     }
     
     /**
-     * 1. ÏÂ·¢¸øËùÓĞµÄIPM
-     * 2. ÉÏ±¨³É¹¦ĞÅÏ¢¸øÖĞĞÄ
+     * 1. ä¸‹å‘ç»™æ‰€æœ‰çš„IPM
+     * 2. ä¸ŠæŠ¥æˆåŠŸä¿¡æ¯ç»™ä¸­å¿ƒ
      *
      */
     public void downXML() {
-        // ·µ»ØÊı¾İ
+        // è¿”å›æ•°æ®
         String upString = "";
 //        List IPMList = new ArrayList();
         MemCoreData coreData = MemCoreData.getInstance();
-        // È¡µÃIPMÅäÖÃÎÄ¼şĞÅÏ¢
+        // å–å¾—IPMé…ç½®æ–‡ä»¶ä¿¡æ¯
         List IPMList = coreData.getIPMList();
         
 //        AlarmProgramSwitchSetParse AlarmProgramSwitch = new AlarmProgramSwitchSetParse();
@@ -49,11 +49,11 @@ public class AlarmProgramSetHandle {
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("ÈÎÎñÂ¼ÏñStringToXML Error: " + e.getMessage());
+            log.error("ä»»åŠ¡å½•åƒStringToXML Error: " + e.getMessage());
         };
         
         /**
-         * ĞÂÔöÅĞ¶Ï Èç¹ûÊÇ½ÚÄ¿¿ª¹Ø£¬Ôò±£´æÈë¿â ¶ÔÓ¦½ÚÄ¿¿ª¹Ø×´Ì¬
+         * æ–°å¢åˆ¤æ–­ å¦‚æœæ˜¯èŠ‚ç›®å¼€å…³ï¼Œåˆ™ä¿å­˜å…¥åº“ å¯¹åº”èŠ‚ç›®å¼€å…³çŠ¶æ€
          * 
          * JI LONG 2011-5-12
          */
@@ -61,49 +61,49 @@ public class AlarmProgramSetHandle {
         	AlarmProgramSwitchSetParse alarmProgramSwitchSetParse=new AlarmProgramSwitchSetParse();
         	alarmProgramSwitchSetParse.parseDB(document);
         }
-//        // È¡µÃÏÂ·¢IPM URLÁĞ±íĞÅÏ¢
+//        // å–å¾—ä¸‹å‘IPM URLåˆ—è¡¨ä¿¡æ¯
 //        if(bsData.getStatusQueryType().equals("AlarmProgramSwitchSet")) {
-//            // ±¨¾¯¿ª¹Ø½ÚÄ¿Àà
+//            // æŠ¥è­¦å¼€å…³èŠ‚ç›®ç±»
 //            //List<AlarmProgramSwitchSetVO> AlarmProgramSwitchList = AlarmProgramSwitch.getIndexByDownXml(document);
 //            
 //
 //            
-//            // È¡µÃÏÂ·¢IPM URLÁĞ±íĞÅÏ¢
+//            // å–å¾—ä¸‹å‘IPM URLåˆ—è¡¨ä¿¡æ¯
 //            for(int i= 0; i<AlarmProgramSwitchList.size(); i++) {
 //                AlarmProgramSwitchSetVO vo = AlarmProgramSwitchList.get(i);
 //                CommonUtility.checkIPMChannelIndex(vo.getIndex(), IPMList);
 //            }
 //            
 //        } else if(bsData.getStatusQueryType().equals("AlarmProgramThresholdSet")) {
-//            // ±¨¾¯ÃÅÏŞ½ÚÄ¿Àà
+//            // æŠ¥è­¦é—¨é™èŠ‚ç›®ç±»
 //            List<AlarmProgramThresholdSetVO> AlarmProgramThresholdList = AlarmProgramThreshold.getIndexByDownXml(document);
-//            // È¡µÃÏÂ·¢IPM URLÁĞ±íĞÅÏ¢
+//            // å–å¾—ä¸‹å‘IPM URLåˆ—è¡¨ä¿¡æ¯
 //            for(int i= 0; i<AlarmProgramThresholdList.size(); i++) {
 //                AlarmProgramThresholdSetVO vo = AlarmProgramThresholdList.get(i);
 //                CommonUtility.checkIPMChannelIndex(vo.getIndex(), IPMList);
 //            }
-//        } // È¡µÃÏÂ·¢IPM URLÁĞ±íĞÅÏ¢ end
+//        } // å–å¾—ä¸‹å‘IPM URLåˆ—è¡¨ä¿¡æ¯ end
         
-        // IPM ÏÂ·¢Ö¸Áî,  
+        // IPM ä¸‹å‘æŒ‡ä»¤,  
         for (int i=0; i< IPMList.size(); i++) {
             IPMInfoVO ipm = (IPMInfoVO) IPMList.get(i);
             try {
-                // ÔËĞĞÍ¼ĞÅÏ¢ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+                // è¿è¡Œå›¾ä¿¡æ¯ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
                 utilXML.SendDownNoneReturn(this.downString, ipm.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
             } catch (CommonException e) {
-                log.error("±¨¾¯½ÚÄ¿ÃÅÏŞ»ò¿ª¹ØÏòIPMÏÂ·¢ÈÎÎñÂ¼Ïñ³ö´í£º" + ipm.getURL());
+                log.error("æŠ¥è­¦èŠ‚ç›®é—¨é™æˆ–å¼€å…³å‘IPMä¸‹å‘ä»»åŠ¡å½•åƒå‡ºé”™ï¼š" + ipm.getURL());
             }
-        } // IPM ÏÂ·¢Ö¸Áî END
+        } // IPM ä¸‹å‘æŒ‡ä»¤ END
         
         upString = utilXML.getReturnXML(this.bsData, 0);
         
 //        if(bsData.getStatusQueryType().equals("AlarmProgramSwitchSet")) {
-//            // ±¨¾¯¿ª¹Ø½ÚÄ¿Àà
+//            // æŠ¥è­¦å¼€å…³èŠ‚ç›®ç±»
 //            upString = AlarmProgramSwitch.ReturnXMLByURL(this.bsData, 0);
 //            
 //            AlarmProgramSwitch = null;
 //        } else if(bsData.getStatusQueryType().equals("AlarmProgramThresholdSet")) {
-//            // ±¨¾¯ÃÅÏŞ½ÚÄ¿Àà
+//            // æŠ¥è­¦é—¨é™èŠ‚ç›®ç±»
 //            upString = AlarmProgramThreshold.ReturnXMLByURL(this.bsData, 0);
 //            
 //            AlarmProgramThreshold = null;
@@ -112,7 +112,7 @@ public class AlarmProgramSetHandle {
         try {
             utilXML.SendUpXML(upString, bsData);
         } catch (CommonException e) {
-            log.error("±¨¾¯½ÚÄ¿ÃÅÏŞ»ò¿ª¹ØÉÏ±¨ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+            log.error("æŠ¥è­¦èŠ‚ç›®é—¨é™æˆ–å¼€å…³ä¸ŠæŠ¥ä¿¡æ¯å¤±è´¥: " + e.getMessage());
         }
         
         bsData = null;

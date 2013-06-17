@@ -44,7 +44,7 @@ public class MonitorProgramQueryVO {
 	private int isReStartRTVS = 1;
 	
 	
-	 //v2.5Ğ­ÒéĞÂÔö
+	 //v2.5åè®®æ–°å¢
     //CodingFormat="cbr" Width="960" Height="544" Fps="25" Bps="1500000"
     
     private String CodingFormat;
@@ -196,14 +196,14 @@ public class MonitorProgramQueryVO {
 	}
 
 	/*
-	 * ÊÇ·ñĞèÇóÖØÆôRTVSÈí¼ş 1:ĞèÇó 0:²»ĞèÇó
+	 * æ˜¯å¦éœ€æ±‚é‡å¯RTVSè½¯ä»¶ 1:éœ€æ±‚ 0:ä¸éœ€æ±‚
 	 */
 	public int getIsReStartRTVS() {
 		return isReStartRTVS;
 	}
 
 	/*
-	 * ÊÇ·ñĞèÇóÖØÆôRTVSÈí¼ş 1:ĞèÇó 0:²»ĞèÇó
+	 * æ˜¯å¦éœ€æ±‚é‡å¯RTVSè½¯ä»¶ 1:éœ€æ±‚ 0:ä¸éœ€æ±‚
 	 */
 	public void setIsReStartRTVS(int isReStartRTVS) {
 		this.isReStartRTVS = isReStartRTVS;

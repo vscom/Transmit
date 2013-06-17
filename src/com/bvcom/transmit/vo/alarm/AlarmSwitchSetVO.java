@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//±¨¾¯¿ª¹Ø£¨ÆµÂÊ£©
+//æŠ¥è­¦å¼€å…³ï¼ˆé¢‘çŽ‡ï¼‰
 public class AlarmSwitchSetVO {
 
 	private MSGHeadVO MSGHead = new MSGHeadVO();

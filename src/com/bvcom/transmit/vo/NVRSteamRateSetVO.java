@@ -1,5 +1,5 @@
 package com.bvcom.transmit.vo;
-//实时视频流率
+//瀹炴椂瑙嗛娴佺巼
 public class NVRSteamRateSetVO {
 
 	private MSGHeadVO MSGHead = new MSGHeadVO();

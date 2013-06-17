@@ -11,15 +11,15 @@ import com.bvcom.transmit.util.UtilXML;
 import com.bvcom.transmit.vo.video.MonitorProgramQueryVO;
 
 /**
- * ÂÖÑ¯¼à²â
+ * è½®è¯¢ç›‘æµ‹
  * @author Bian Jiang
  *
  */
 public class ProgramPatrolParse {
 	/**
-	 * ĞÂÔö·½·¨½âÎöxml»ñÈ¡Æµµã¼¯ºÏ
-	 * @param document½âÎö¶ÔÏó
-	 * @return ÆµµãµÄ¼¯ºÏ
+	 * æ–°å¢æ–¹æ³•è§£æxmlè·å–é¢‘ç‚¹é›†åˆ
+	 * @param documentè§£æå¯¹è±¡
+	 * @return é¢‘ç‚¹çš„é›†åˆ
 	 */
 	public List<String> getFreqXml(Document document){
 		Element root = document.getRootElement();

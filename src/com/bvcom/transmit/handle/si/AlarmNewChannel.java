@@ -33,7 +33,7 @@ public class AlarmNewChannel extends Thread {
     MemCoreData coreData = MemCoreData.getInstance();
     
     public void run() {
-    	log.info("ĞÂÆµµÀ±¨¾¯¿ªÊ¼");
+    	log.info("æ–°é¢‘é“æŠ¥è­¦å¼€å§‹");
     	while(true) {
     		
     		downXML();
@@ -72,18 +72,18 @@ public class AlarmNewChannel extends Thread {
 
 		} catch (Exception e1) {
 			// e1.printStackTrace();
-			log.error("È¡µÃÆµµÀÉ¨ÃèĞÅÏ¢Ê§°Ü: " + channelScanPath);
+			log.error("å–å¾—é¢‘é“æ‰«æä¿¡æ¯å¤±è´¥: " + channelScanPath);
 		}
 		
         for (int i=0; i< SMGSendList.size(); i++) {
             SMGCardInfoVO smg = (SMGCardInfoVO) SMGSendList.get(i);
             try {
             	
-                // ÆµµÀÉ¨ÃèĞÅÏ¢ÏÂ·¢ timeout 1000*60*10 Ê®·ÖÖÓ
+                // é¢‘é“æ‰«æä¿¡æ¯ä¸‹å‘ timeout 1000*60*10 ååˆ†é’Ÿ
                 retXML = utilXML.SendDownXML(upString, smg.getURL(), CommonUtility.CHANNEL_SCAN_WAIT_TIMEOUT, bsData);
                 
             	if(retXML.equals("")) {
-            		log.error("ÆµµÀÉ¨Ãè½á¹ûÎª¿Õ");
+            		log.error("é¢‘é“æ‰«æç»“æœä¸ºç©º");
             		break;
             	}
             	
@@ -98,13 +98,13 @@ public class AlarmNewChannel extends Thread {
                     ChannelScanQueryVOList = getAlarmNewChannelList(ChannelScanQueryVOList);
                     
                 } catch (Exception e) {
-                    log.error("È¡µÃÆµµÀÉ¨Ãè½á¹ûÊ§°Ü Error: " + e.getMessage());
+                    log.error("å–å¾—é¢‘é“æ‰«æç»“æœå¤±è´¥ Error: " + e.getMessage());
                     e.printStackTrace();
                 }
                 
                 break;
             } catch (Exception e) {
-                log.error("ÏòSMGÏÂ·¢ÆµµÀÉ¨Ãè³ö´í£º" + smg.getURL());
+                log.error("å‘SMGä¸‹å‘é¢‘é“æ‰«æå‡ºé”™ï¼š" + smg.getURL());
             }
         }
         MemCoreData coreData = MemCoreData.getInstance();
@@ -123,15 +123,15 @@ public class AlarmNewChannel extends Thread {
         
         log.info(upString);
         
-        // ±¨¾¯ºóÈë¿â²Ù×÷
-		// Ö»ÓĞÒ»¸ö
+        // æŠ¥è­¦åå…¥åº“æ“ä½œ
+		// åªæœ‰ä¸€ä¸ª
 		CommonUtility.StoreIntoFile(retXML, channelScanPath);
         CommonUtility.StoreIntoFile(retXML, sysVO.getTomcatHome() + "/webapps/transmit/ChannelScanQuery.xml");
         
 		try {
 			utilXML.SendUpXML(upString, bsData);
 		} catch (CommonException e) {
-			log.error("ÉÏ·¢ÆµµÀÉ¨ÃèĞÅÏ¢Ê§°Ü: " + e.getMessage());
+			log.error("ä¸Šå‘é¢‘é“æ‰«æä¿¡æ¯å¤±è´¥: " + e.getMessage());
 		}
         
         for(int i=0; i<ChannelScanQueryVOList.size(); i++) {
@@ -162,7 +162,7 @@ public class AlarmNewChannel extends Thread {
 			ChannelScanQueryVO vo = VOList.get(i);
 			ResultSet rs = null;
 			strBuff = new StringBuffer();
-			// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+			// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 			strBuff.append("SELECT * FROM channelscanlist c where lastflag = 1 and Freq = " + vo.getFreq() + " and ServiceID = " + vo.getServiceID());
 
 			try {
@@ -175,7 +175,7 @@ public class AlarmNewChannel extends Thread {
 				}
 				
 			} catch (Exception e) {
-				log.error("ĞÂ½ÚÄ¿±¨¾¯´¦Àí´íÎó: " + e.getMessage());
+				log.error("æ–°èŠ‚ç›®æŠ¥è­¦å¤„ç†é”™è¯¯: " + e.getMessage());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);

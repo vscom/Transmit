@@ -1,5 +1,5 @@
 /**
- * transmit (java转发)
+ * transmit (java杞彂)
  * 
  * MemCoreData.java    2009.11.12
  * 
@@ -15,7 +15,7 @@ import com.bvcom.transmit.vo.SysInfoVO;
 
 /**
  * 
- *  系统配置信息
+ *  绯荤粺閰嶇疆淇℃伅
  * 
  * @version  V1.0
  * @author Bian Jiang
@@ -34,7 +34,7 @@ public class MemCoreData {
     private SysInfoVO sysVO = new SysInfoVO();
 
     /*
-     * 取得系统配置信息
+     * 鍙栧緱绯荤粺閰嶇疆淇℃伅
      */
     public static MemCoreData getInstance() {
         if (coreData == null)

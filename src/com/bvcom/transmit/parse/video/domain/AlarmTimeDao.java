@@ -17,14 +17,14 @@ import com.bvcom.transmit.util.DaoException;
 import com.bvcom.transmit.vo.alarm.AlarmSearchPSetVO;
 
 /**
- * ½ÚÄ¿ÔËĞĞÍ¼ dao Ji Long 2011-6-15
+ * èŠ‚ç›®è¿è¡Œå›¾ dao Ji Long 2011-6-15
  */
 public class AlarmTimeDao {
 	private static Logger log = Logger.getLogger(AlarmTimeDao.class
 			.getCanonicalName());
 
 	/**
-	 * ±£´æÔËĞĞÍ¼½ÚÄ¿ĞÅÏ¢ µ½Êı¾İ¿â
+	 * ä¿å­˜è¿è¡Œå›¾èŠ‚ç›®ä¿¡æ¯ åˆ°æ•°æ®åº“
 	 * 
 	 * @param list
 	 */
@@ -35,7 +35,7 @@ public class AlarmTimeDao {
 			conn = DaoSupport.getJDBCConnection();
 			String delOrSaveSql = "";
 			for (int i = 0; i < list.size(); i++) {
-				// ¸ù¾İÆµµãÉ¾³ıÖ®Ç°Éè¶¨µÄÔËĞĞÍ¼ĞÅÏ¢
+				// æ ¹æ®é¢‘ç‚¹åˆ é™¤ä¹‹å‰è®¾å®šçš„è¿è¡Œå›¾ä¿¡æ¯
 				delOrSaveSql = "delete FROM alarmtime where freq = "
 						+ list.get(i).getFreq() + ";";
 				try {
@@ -43,12 +43,12 @@ public class AlarmTimeDao {
 					statement.execute(delOrSaveSql);
 				} catch (Exception e) {
 					// TODO: handle exception
-					log.error("É¾³ıÓï¾ä£º"+delOrSaveSql);
-					log.error("É¾³ıÔËĞĞÍ¼×´Ì¬¼¯ºÏ´íÎó: " + e.getMessage());
+					log.error("åˆ é™¤è¯­å¥ï¼š"+delOrSaveSql);
+					log.error("åˆ é™¤è¿è¡Œå›¾çŠ¶æ€é›†åˆé”™è¯¯: " + e.getMessage());
 				} finally {
 					DaoSupport.close(statement);
 				}
-				// ±£´æĞÂµÄÔËĞĞÍ¼ĞÅÏ¢
+				// ä¿å­˜æ–°çš„è¿è¡Œå›¾ä¿¡æ¯
 				delOrSaveSql = "insert into alarmtime(Freq,ServiceID,Month,Day,Type,DayofWeek,TaskType,StartTime,EndTime,AlarmEndTime,StartDateTime,EndDateTime) values("
 						+ list.get(i).getFreq()
 						+ ","
@@ -78,28 +78,28 @@ public class AlarmTimeDao {
 					statement.executeUpdate(delOrSaveSql);
 				} catch (Exception e) {
 					// TODO: handle exception
-					log.error("²åÈëÓï¾ä£º"+delOrSaveSql);
-					log.error("±£´æÔËĞĞÍ¼×´Ì¬¼¯ºÏ´íÎó: " + e.getMessage());
+					log.error("æ’å…¥è¯­å¥ï¼š"+delOrSaveSql);
+					log.error("ä¿å­˜è¿è¡Œå›¾çŠ¶æ€é›†åˆé”™è¯¯: " + e.getMessage());
 				} finally {
 					DaoSupport.close(statement);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("±£´æorÉ¾³ıÔËĞĞÍ¼×´Ì¬¼¯ºÏ´íÎó: " + e.getMessage());
+			log.error("ä¿å­˜oråˆ é™¤è¿è¡Œå›¾çŠ¶æ€é›†åˆé”™è¯¯: " + e.getMessage());
 		} finally {
 			try {
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("¹Ø±ÕÊı¾İ¿âÊ§°Ü: " + e.getMessage());
+				log.error("å…³é—­æ•°æ®åº“å¤±è´¥: " + e.getMessage());
 			}
 		}
-		//¸üĞÂÄÚ´æÖĞÔËĞĞÍ¼ĞÅÏ¢
+		//æ›´æ–°å†…å­˜ä¸­è¿è¡Œå›¾ä¿¡æ¯
 		AlarmTimeMemory.alarmTimeList=list();
 	}
 
 	/**
-	 * È¡³öÊı¾İ¿âËùÓĞ½ÚÄ¿ĞÅÏ¢
+	 * å–å‡ºæ•°æ®åº“æ‰€æœ‰èŠ‚ç›®ä¿¡æ¯
 	 * 
 	 * @return
 	 */
@@ -138,24 +138,24 @@ public class AlarmTimeDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("²éÑ¯·â×°ÔËĞĞÍ¼×´Ì¬¼¯ºÏ´íÎó: " + e.getMessage());
+			log.error("æŸ¥è¯¢å°è£…è¿è¡Œå›¾çŠ¶æ€é›†åˆé”™è¯¯: " + e.getMessage());
 		} finally {
 			try {
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("¹Ø±ÕÊı¾İ¿âÊ§°Ü: " + e.getMessage());
+				log.error("å…³é—­æ•°æ®åº“å¤±è´¥: " + e.getMessage());
 			}
 		}
 		return list;
 	}
 
-	//¸ù¾İÔËĞĞÍ¼ĞÅÏ¢ ¹ıÂË±¨¾¯ Ji Long 2011-06-16
+	//æ ¹æ®è¿è¡Œå›¾ä¿¡æ¯ è¿‡æ»¤æŠ¥è­¦ Ji Long 2011-06-16
 	public List select(List alarmList) {
 		List<AlarmSearchPSetVO> newList=new ArrayList<AlarmSearchPSetVO>();
 		
 		for(int i=0;i<alarmList.size();i++){
 			AlarmSearchPSetVO vo=(AlarmSearchPSetVO)alarmList.get(i);
-			//Èç¹û²»ÔÚÔËĞĞÍ¼Í£²¥·¶Î§ÄÚÔò²»¹ıÂË
+			//å¦‚æœä¸åœ¨è¿è¡Œå›¾åœæ’­èŒƒå›´å†…åˆ™ä¸è¿‡æ»¤
 			if(!isAlarmTime(vo)){
 				newList.add(vo);
 			}
@@ -163,7 +163,7 @@ public class AlarmTimeDao {
 		return newList;
 	}
 	
-	//ÅĞ¶Ï¸Ã±¨¾¯ÊÇ·ñÔÚ ÔËĞĞÍ¼Í£²¥ÖĞ
+	//åˆ¤æ–­è¯¥æŠ¥è­¦æ˜¯å¦åœ¨ è¿è¡Œå›¾åœæ’­ä¸­
 	public boolean isAlarmTime(AlarmSearchPSetVO vo){
 		boolean falg=false;
 		List<AlarmTime> alarmTimeList=AlarmTimeMemory.alarmTimeList;
@@ -200,13 +200,13 @@ public class AlarmTimeDao {
 				if(at.getTaskType().equals("WeeklyTime")){
 					Date alarmDate= CommonUtility.dateStrToDate(vo.getTime());
 					int  dayoWeek=alarmDate.getDate();
-					//×ª»»ÈÕÆÚÀàĞÍ,ÒòÎªjava apiÄ¬ÈÏ»ñÈ¡µÄĞÇÆÚÊÇ´Ó0 µ½6 ÆäÖĞ0±êÊ¶ÖÜÄ©
-					//×ª»»Èç¹ûÎª0Ê±ºò¸³Öµ Îª7
+					//è½¬æ¢æ—¥æœŸç±»å‹,å› ä¸ºjava apié»˜è®¤è·å–çš„æ˜ŸæœŸæ˜¯ä»0 åˆ°6 å…¶ä¸­0æ ‡è¯†å‘¨æœ«
+					//è½¬æ¢å¦‚æœä¸º0æ—¶å€™èµ‹å€¼ ä¸º7
 					if(dayoWeek==0){
 						dayoWeek=7;
 					}
 					if(at.getDayofWeek()==dayoWeek){
-						//×ª»»ÈÕÆÚ  ×÷Îª¹ıÂË±¨¾¯ Ê±¼äÒÀ¾İ
+						//è½¬æ¢æ—¥æœŸ  ä½œä¸ºè¿‡æ»¤æŠ¥è­¦ æ—¶é—´ä¾æ®
 						Date startTime= CommonUtility.dateStrToDate(vo.getTime().split(" ")[0]+" "+at.getStartTime());
 						Date endTime  = CommonUtility.dateStrToDate(vo.getTime().split(" ")[0]+" "+at.getEndTime());
 						Date endDate  = CommonUtility.dateStrToDate(at.getAlarmEndTime());
@@ -221,7 +221,7 @@ public class AlarmTimeDao {
 					Date startTime= CommonUtility.dateStrToDate(vo.getTime().split(" ")[0]+" "+at.getStartDateTime().split(" ")[1]);
 					Date endTime  = CommonUtility.dateStrToDate(vo.getTime().split(" ")[0]+" "+at.getEndDateTime().split(" ")[1]);
 					Date endDate  = CommonUtility.dateStrToDate(at.getEndDateTime());
-					//Èç¹û±¨¾¯Ê±¼äÔÚ ÔËĞĞÍ¼ Í£²¥Ê±¼äÄÚ Ôò·µ»Øtrue ½áÊøÑ­»·
+					//å¦‚æœæŠ¥è­¦æ—¶é—´åœ¨ è¿è¡Œå›¾ åœæ’­æ—¶é—´å†… åˆ™è¿”å›true ç»“æŸå¾ªç¯
 					if(alarmDate.after(startTime)&&alarmDate.before(endDate)&&alarmDate.before(endTime)){
 						falg=true;
 						break;

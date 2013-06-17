@@ -16,7 +16,7 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.SysInfoVO;
 
 /**
- * È¡µÃÊı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼ş
+ * å–å¾—æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶
  * @author Bian Jiang
  * @data 2010.11.30
  *
@@ -38,12 +38,12 @@ public class AutoAnalysisTimeQueryConfigFile {
 		String filePath = sysInfoVO.getTomcatHome() + "\\webapps\\transmit\\WEB-INF\\classes\\AutoAnalysisTime.properties";
 		
 		try {
-			log.info("¶ÁÈ¡ÊÇ·ñ¿ªÆôÂÖ²¥¸´Î»ÅäÖÃÎÄ¼ş" + filePath);
+			log.info("è¯»å–æ˜¯å¦å¼€å¯è½®æ’­å¤ä½é…ç½®æ–‡ä»¶" + filePath);
 			
 			try {
 				inStr = new FileInputStream(filePath); 
 			} catch (FileNotFoundException e) {
-				log.error("¶ÁÈ¡ÊÇ·ñ¿ªÆôÂÖ²¥¸´Î»ÅäÖÃÎÄ¼ş" + e.getMessage());
+				log.error("è¯»å–æ˜¯å¦å¼€å¯è½®æ’­å¤ä½é…ç½®æ–‡ä»¶" + e.getMessage());
 				File newFile = new File(filePath);
 				newFile.createNewFile();
 				inStr = new FileInputStream(filePath); 
@@ -53,7 +53,7 @@ public class AutoAnalysisTimeQueryConfigFile {
 			p.load(inStr);
 			StreamRoundInfoQueryURL = p.getProperty("StreamRoundInfoQueryURL");
 		} catch (IOException ioe){
-			log.error("¶ÁÈ¡ÊÇ·ñ¿ªÆôÂÖ²¥¸´Î»ÅäÖÃÎÄ¼şÊ§°Ü£º" + ioe.getMessage());
+			log.error("è¯»å–æ˜¯å¦å¼€å¯è½®æ’­å¤ä½é…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + ioe.getMessage());
 			//CommonUtility.printErrorTrace(ioe);
 			//StartTime = "2:0:0";
 		} finally {
@@ -81,12 +81,12 @@ public class AutoAnalysisTimeQueryConfigFile {
 		String filePath = sysInfoVO.getTomcatHome() + "\\webapps\\transmit\\WEB-INF\\classes\\AutoAnalysisTime.properties";
 		
 		try {
-			log.info("¶ÁÈ¡ÊÇ·ñ¿ªÆôÂÖ²¥¸´Î»ÅäÖÃÎÄ¼ş" + filePath);
+			log.info("è¯»å–æ˜¯å¦å¼€å¯è½®æ’­å¤ä½é…ç½®æ–‡ä»¶" + filePath);
 			
 			try {
 				inStr = new FileInputStream(filePath); 
 			} catch (FileNotFoundException e) {
-				log.error("¶ÁÈ¡ÊÇ·ñ¿ªÆôÂÖ²¥¸´Î»ÅäÖÃÎÄ¼ş" + e.getMessage());
+				log.error("è¯»å–æ˜¯å¦å¼€å¯è½®æ’­å¤ä½é…ç½®æ–‡ä»¶" + e.getMessage());
 				File newFile = new File(filePath);
 				newFile.createNewFile();
 				inStr = new FileInputStream(filePath); 
@@ -96,7 +96,7 @@ public class AutoAnalysisTimeQueryConfigFile {
 			p.load(inStr);
 			Time = p.getProperty("StreamRoundInfoQueryTime");
 		} catch (IOException ioe){
-			log.error("¶ÁÈ¡ÊÇ·ñ¿ªÆôÂÖ²¥¸´Î»ÅäÖÃÎÄ¼şÊ§°Ü£º" + ioe.getMessage());
+			log.error("è¯»å–æ˜¯å¦å¼€å¯è½®æ’­å¤ä½é…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + ioe.getMessage());
 			//CommonUtility.printErrorTrace(ioe);
 			//StartTime = "2:0:0";
 		} finally {
@@ -124,12 +124,12 @@ public class AutoAnalysisTimeQueryConfigFile {
 		String filePath = sysInfoVO.getTomcatHome() + "\\webapps\\transmit\\WEB-INF\\classes\\AutoAnalysisTime.properties";
 		
 		try {
-			log.info("¶ÁÈ¡ÊÇ·ñ¿ªÆôÂÖ²¥¸´Î»ÅäÖÃÎÄ¼ş" + filePath);
+			log.info("è¯»å–æ˜¯å¦å¼€å¯è½®æ’­å¤ä½é…ç½®æ–‡ä»¶" + filePath);
 			
 			try {
 				inStr = new FileInputStream(filePath); 
 			} catch (FileNotFoundException e) {
-				log.error("¶ÁÈ¡ÊÇ·ñ¿ªÆôÂÖ²¥¸´Î»ÅäÖÃÎÄ¼ş" + e.getMessage());
+				log.error("è¯»å–æ˜¯å¦å¼€å¯è½®æ’­å¤ä½é…ç½®æ–‡ä»¶" + e.getMessage());
 				File newFile = new File(filePath);
 				newFile.createNewFile();
 				inStr = new FileInputStream(filePath); 
@@ -139,7 +139,7 @@ public class AutoAnalysisTimeQueryConfigFile {
 			p.load(inStr);
 			RebootSwitch = p.getProperty("StreamRoundInfoQueryRebootSwitch");
 		} catch (IOException ioe){
-			log.error("¶ÁÈ¡ÊÇ·ñ¿ªÆôÂÖ²¥¸´Î»ÅäÖÃÎÄ¼şÊ§°Ü£º" + ioe.getMessage());
+			log.error("è¯»å–æ˜¯å¦å¼€å¯è½®æ’­å¤ä½é…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + ioe.getMessage());
 			//CommonUtility.printErrorTrace(ioe);
 			//StartTime = "2:0:0";
 		} finally {
@@ -168,12 +168,12 @@ public class AutoAnalysisTimeQueryConfigFile {
 		String filePath = sysInfoVO.getTomcatHome() + "\\webapps\\transmit\\WEB-INF\\classes\\AutoAnalysisTime.properties";
 		
 		try {
-			log.info("¶ÁÈ¡ÊÇ·ñ¿ªÆô¼à²âÖĞĞÄËÄÆÚÖ¸¶¨É¨ÃèÅäÖÃÎÄ¼ş" + filePath);
+			log.info("è¯»å–æ˜¯å¦å¼€å¯ç›‘æµ‹ä¸­å¿ƒå››æœŸæŒ‡å®šæ‰«æé…ç½®æ–‡ä»¶" + filePath);
 			
 			try {
 				inStr = new FileInputStream(filePath); 
 			} catch (FileNotFoundException e) {
-				log.error("¶ÁÈ¡ÊÇ·ñ¿ªÆô¼à²âÖĞĞÄËÄÆÚÖ¸¶¨É¨ÃèÅäÖÃÎÄ¼ş" + e.getMessage());
+				log.error("è¯»å–æ˜¯å¦å¼€å¯ç›‘æµ‹ä¸­å¿ƒå››æœŸæŒ‡å®šæ‰«æé…ç½®æ–‡ä»¶" + e.getMessage());
 				File newFile = new File(filePath);
 				newFile.createNewFile();
 				inStr = new FileInputStream(filePath); 
@@ -183,7 +183,7 @@ public class AutoAnalysisTimeQueryConfigFile {
 			p.load(inStr);
 			ChannelScanQueryFlag = p.getProperty("ChannelScanQueryFlag");
 		} catch (IOException ioe){
-			log.error("¶ÁÈ¡ÊÇ·ñ¿ªÆô¼à²âÖĞĞÄËÄÆÚÖ¸¶¨É¨ÃèÅäÖÃÎÄ¼şÊ§°Ü£º" + ioe.getMessage());
+			log.error("è¯»å–æ˜¯å¦å¼€å¯ç›‘æµ‹ä¸­å¿ƒå››æœŸæŒ‡å®šæ‰«æé…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + ioe.getMessage());
 			//CommonUtility.printErrorTrace(ioe);
 			//StartTime = "2:0:0";
 		} finally {
@@ -211,12 +211,12 @@ public class AutoAnalysisTimeQueryConfigFile {
         String filePath = sysInfoVO.getTomcatHome() + "\\webapps\\transmit\\WEB-INF\\classes\\AutoAnalysisTime.properties";
         
         try {
-        	log.info("¶ÁÈ¡Êı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼ş" + filePath);
+        	log.info("è¯»å–æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶" + filePath);
             
         	try {
         		inStr = new FileInputStream(filePath); 
 	        } catch (FileNotFoundException e) {
-	        	log.error("ÉèÖÃÊı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼şÊ§°Ü£º" + e.getMessage());
+	        	log.error("è®¾ç½®æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + e.getMessage());
 	        	File newFile = new File(filePath);
 	        	newFile.createNewFile();
 	        	inStr = new FileInputStream(filePath); 
@@ -226,7 +226,7 @@ public class AutoAnalysisTimeQueryConfigFile {
             p.load(inStr);
             StartTime = p.getProperty("AnalysisStartTime");
         } catch (IOException ioe){
-            log.error("¶ÁÈ¡Êı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼şÊ§°Ü£º" + ioe.getMessage());
+            log.error("è¯»å–æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + ioe.getMessage());
             //CommonUtility.printErrorTrace(ioe);
             StartTime = "2:0:0";
         } finally {
@@ -255,12 +255,12 @@ public class AutoAnalysisTimeQueryConfigFile {
     	String filePath = sysInfoVO.getTomcatHome() + "\\webapps\\transmit\\WEB-INF\\classes\\AutoAnalysisTime.properties";
     	
     	try {
-    		log.info("¶ÁÈ¡Êı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼ş" + filePath);
+    		log.info("è¯»å–æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶" + filePath);
     		
     		try {
     			inStr = new FileInputStream(filePath); 
     		} catch (FileNotFoundException e) {
-    			log.error("ÉèÖÃÊı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼şÊ§°Ü£º" + e.getMessage());
+    			log.error("è®¾ç½®æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + e.getMessage());
     			File newFile = new File(filePath);
     			newFile.createNewFile();
     			inStr = new FileInputStream(filePath); 
@@ -270,7 +270,7 @@ public class AutoAnalysisTimeQueryConfigFile {
     		p.load(inStr);
     		StartTime = p.getProperty("StreamRoundInfoQueryStop");
     	} catch (IOException ioe){
-    		log.error("¶ÁÈ¡Êı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼şÊ§°Ü£º" + ioe.getMessage());
+    		log.error("è¯»å–æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + ioe.getMessage());
     		//CommonUtility.printErrorTrace(ioe);
     		StartTime = "2011-01-01 00:00:00";
     	} finally {
@@ -288,7 +288,7 @@ public class AutoAnalysisTimeQueryConfigFile {
     
     public void setAutoAnalysisTime(String StartTime) {
         
-    	log.info("ÉèÖÃÊı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼ş: " + StartTime);
+    	log.info("è®¾ç½®æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶: " + StartTime);
         Properties p = new Properties();
         
         MemCoreData coreData = MemCoreData.getInstance();
@@ -299,11 +299,11 @@ public class AutoAnalysisTimeQueryConfigFile {
         InputStream inStr = null;
         
         try {
-        	log.info("ÉèÖÃÊı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼ş" + filePath);
+        	log.info("è®¾ç½®æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶" + filePath);
         	try {
         		inStr = new FileInputStream(filePath); 
 	        } catch (FileNotFoundException e) {
-	        	log.error("ÉèÖÃÊı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼şÊ§°Ü£º" + e.getMessage());
+	        	log.error("è®¾ç½®æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + e.getMessage());
 	        	File newFile = new File(filePath);
 	        	newFile.createNewFile();
 	        	inStr = new FileInputStream(filePath); 
@@ -312,11 +312,11 @@ public class AutoAnalysisTimeQueryConfigFile {
             
             OutputStream fos = new FileOutputStream(filePath); 
             p.setProperty("AnalysisStartTime", StartTime); 
-            //ÒÔÊÊºÏÊ¹ÓÃ load ·½·¨¼ÓÔØµ½ Properties ±íÖĞµÄ¸ñÊ½£¬ 
-            //½«´Ë Properties ±íÖĞµÄÊôĞÔÁĞ±í£¨¼üºÍÔªËØ¶Ô£©Ğ´ÈëÊä³öÁ÷ 
+            //ä»¥é€‚åˆä½¿ç”¨ load æ–¹æ³•åŠ è½½åˆ° Properties è¡¨ä¸­çš„æ ¼å¼ï¼Œ 
+            //å°†æ­¤ Properties è¡¨ä¸­çš„å±æ€§åˆ—è¡¨ï¼ˆé”®å’Œå…ƒç´ å¯¹ï¼‰å†™å…¥è¾“å‡ºæµ 
             p.store(fos, "Update 'AnalysisStartTime' value"); 
         } catch (IOException ioe){
-            log.error("ÉèÖÃÊı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼şÊ§°Ü£º" + ioe.getMessage());
+            log.error("è®¾ç½®æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + ioe.getMessage());
             CommonUtility.printErrorTrace(ioe);
         } finally {
             try {
@@ -332,7 +332,7 @@ public class AutoAnalysisTimeQueryConfigFile {
     
     public void setStreamRoundInfoQueryStopTime(String StopTime) {
     	
-    	log.info("ÉèÖÃÊı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼ş: " + StopTime);
+    	log.info("è®¾ç½®æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶: " + StopTime);
     	Properties p = new Properties();
     	
     	MemCoreData coreData = MemCoreData.getInstance();
@@ -343,11 +343,11 @@ public class AutoAnalysisTimeQueryConfigFile {
     	InputStream inStr = null;
     	
     	try {
-    		log.info("ÉèÖÃÊı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼ş" + filePath);
+    		log.info("è®¾ç½®æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶" + filePath);
     		try {
     			inStr = new FileInputStream(filePath); 
     		} catch (FileNotFoundException e) {
-    			log.error("ÉèÖÃÊı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼şÊ§°Ü£º" + e.getMessage());
+    			log.error("è®¾ç½®æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + e.getMessage());
     			File newFile = new File(filePath);
     			newFile.createNewFile();
     			inStr = new FileInputStream(filePath); 
@@ -356,11 +356,11 @@ public class AutoAnalysisTimeQueryConfigFile {
     		
     		OutputStream fos = new FileOutputStream(filePath); 
     		p.setProperty("StreamRoundInfoQueryStop", StopTime); 
-    		//ÒÔÊÊºÏÊ¹ÓÃ load ·½·¨¼ÓÔØµ½ Properties ±íÖĞµÄ¸ñÊ½£¬ 
-    		//½«´Ë Properties ±íÖĞµÄÊôĞÔÁĞ±í£¨¼üºÍÔªËØ¶Ô£©Ğ´ÈëÊä³öÁ÷ 
+    		//ä»¥é€‚åˆä½¿ç”¨ load æ–¹æ³•åŠ è½½åˆ° Properties è¡¨ä¸­çš„æ ¼å¼ï¼Œ 
+    		//å°†æ­¤ Properties è¡¨ä¸­çš„å±æ€§åˆ—è¡¨ï¼ˆé”®å’Œå…ƒç´ å¯¹ï¼‰å†™å…¥è¾“å‡ºæµ 
     		p.store(fos, "Update 'StreamRoundInfoQueryStop' value"); 
     	} catch (IOException ioe){
-    		log.error("ÉèÖÃÊı¾İ·ÖÎöÊ±¼ä´æÈ¡ÅäÖÃÎÄ¼şÊ§°Ü£º" + ioe.getMessage());
+    		log.error("è®¾ç½®æ•°æ®åˆ†ææ—¶é—´å­˜å–é…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + ioe.getMessage());
     		CommonUtility.printErrorTrace(ioe);
     	} finally {
     		try {

@@ -49,14 +49,14 @@ public class AutoAnalysisTimeQueryTask {
     }
     
     public void start() {
-    	log.info("\n\n    \t------- Æô¶¯Êı¾İÒµÎñÊ±¼ä·ÖÎöÈÎÎñ: " + hourOfDay + ":" + minute + ":" + second + " ---------\n");
+    	log.info("\n\n    \t------- å¯åŠ¨æ•°æ®ä¸šåŠ¡æ—¶é—´åˆ†æä»»åŠ¡: " + hourOfDay + ":" + minute + ":" + second + " ---------\n");
     	
         scheduler.schedule(new SchedulerTask() {
             public void run() {
                 startChannelScan(); 
             }
             private void startChannelScan() {
-            	log.info("------- ¿ªÊ¼Êı¾İÒµÎñÊ±¼ä·ÖÎöÈÎÎñ: " + hourOfDay + ":" + minute + ":" + second + " ---------");
+            	log.info("------- å¼€å§‹æ•°æ®ä¸šåŠ¡æ—¶é—´åˆ†æä»»åŠ¡: " + hourOfDay + ":" + minute + ":" + second + " ---------");
             	ChannelScanQueryHandle ChannelScanQueryHandle = new ChannelScanQueryHandle();
             	ChannelScanQueryHandle.channelScanNow();
             }
@@ -68,7 +68,7 @@ public class AutoAnalysisTimeQueryTask {
     }
 
 //    public static void main(String[] args) {
-//    	log.info("Æô¶¯Êı¾İÒµÎñÊ±¼ä·ÖÎöÈÎÎñ");
+//    	log.info("å¯åŠ¨æ•°æ®ä¸šåŠ¡æ—¶é—´åˆ†æä»»åŠ¡");
 //    	AutoAnalysisTimeQueryTask alarmClock = new AutoAnalysisTimeQueryTask(10, 32, 0); 
 //        alarmClock.start(); 
 //    }

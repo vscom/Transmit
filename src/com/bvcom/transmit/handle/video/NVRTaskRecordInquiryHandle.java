@@ -21,8 +21,8 @@ import com.bvcom.transmit.vo.TSCInfoVO;
 import com.bvcom.transmit.vo.rec.ProvisionalRecordTaskSetVO;
 
 /**
- * ÈÎÎñÂ¼Ïñ²é¿´
- * FIXME Ä¿Ç°Ö»¿¼ÂÇÒ»Ì¨TSC
+ * ä»»åŠ¡å½•åƒæŸ¥çœ‹
+ * FIXME ç›®å‰åªè€ƒè™‘ä¸€å°TSC
  * @author Bian Jiang
  *
  */
@@ -34,7 +34,7 @@ public class NVRTaskRecordInquiryHandle {
     
     private static MemCoreData coreData = MemCoreData.getInstance();
     
-    List TSCSendList = coreData.getTSCList();//tscµÄÁĞ±íĞÅÏ¢
+    List TSCSendList = coreData.getTSCList();//tscçš„åˆ—è¡¨ä¿¡æ¯
     
     private String downString = new String();
     
@@ -49,14 +49,14 @@ public class NVRTaskRecordInquiryHandle {
     }
     
     /**
-     * 1. ÏÂ·¢¸øTSC
-     * 2. ½ÓÊÕTSC·µ»ØĞÅÏ¢
-     * 3. ÉÏ±¨ĞÅÏ¢¸øÖĞĞÄ
+     * 1. ä¸‹å‘ç»™TSC
+     * 2. æ¥æ”¶TSCè¿”å›ä¿¡æ¯
+     * 3. ä¸ŠæŠ¥ä¿¡æ¯ç»™ä¸­å¿ƒ
      *
      */
     public void downXML() {
         
-        // ·µ»ØÊı¾İ
+        // è¿”å›æ•°æ®
         String upString = "";
         
         Document document = null;
@@ -64,17 +64,17 @@ public class NVRTaskRecordInquiryHandle {
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("ÈÎÎñÂ¼Ïñ²é¿´StringToXML Error: " + e.getMessage());
+            log.error("ä»»åŠ¡å½•åƒæŸ¥çœ‹StringToXML Error: " + e.getMessage());
         };
         
         NVRTaskRecordInquiryParse nvrTaskRecordInquiry = new NVRTaskRecordInquiryParse();
         
         List<ProvisionalRecordTaskSetVO> NVRTaskRecordInquiryList = nvrTaskRecordInquiry.getIndexByDownXml(document);
         
-        // È¡µÃTSCÅäÖÃÎÄ¼şĞÅÏ¢
+        // å–å¾—TSCé…ç½®æ–‡ä»¶ä¿¡æ¯
 //        List TSCList = new ArrayList();
         
-        // È¡µÃÏÂ·¢TSC URLÁĞ±íĞÅÏ¢
+        // å–å¾—ä¸‹å‘TSC URLåˆ—è¡¨ä¿¡æ¯
         for(int i= 0; i<NVRTaskRecordInquiryList.size(); i++) {
             ProvisionalRecordTaskSetVO vo = NVRTaskRecordInquiryList.get(i);
             
@@ -82,30 +82,30 @@ public class NVRTaskRecordInquiryHandle {
 //            CommonUtility.checkTSCChannelIndex(vo.getIndex(), TSCList);
         }
         
-        // TSC ÏÂ·¢Ö¸Áî,  
-        // FIXME Èç¹ûÍ¬Ê±¸ø¶àÌ¨TSC·¢ËÍ£¬Ö»½ÓÊÕ×îºóÒ»´ÎµÄ·µ»ØÊı¾İ
+        // TSC ä¸‹å‘æŒ‡ä»¤,  
+        // FIXME å¦‚æœåŒæ—¶ç»™å¤šå°TSCå‘é€ï¼Œåªæ¥æ”¶æœ€åä¸€æ¬¡çš„è¿”å›æ•°æ®
         String url = "";
         for (int i=0; i< TSCSendList.size(); i++) {
             TSCInfoVO tsc = (TSCInfoVO) TSCSendList.get(i);
             try {
                 if (!url.equals(tsc.getURL())) {
-					// ÈÎÎñÂ¼ÏñĞÅÏ¢ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+					// ä»»åŠ¡å½•åƒä¿¡æ¯ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
 					upString = utilXML.SendDownXML(this.downString, tsc
 							.getURL(), CommonUtility.TASK_WAIT_TIMEOUT, bsData);
 					url = tsc.getURL();
                     if(upString.equals("")) {
-                    	log.info("·µ»ØĞÅÏ¢Îª¿Õ: " + tsc.getURL());
+                    	log.info("è¿”å›ä¿¡æ¯ä¸ºç©º: " + tsc.getURL());
                     	continue;
                     } else {
                     	break;
                     }
 				}
             } catch (CommonException e) {
-                log.error("ÈÎÎñÂ¼Ïñ²é¿´Ïò TSC ÏÂ·¢ÈÎÎñÂ¼Ïñ³ö´í£º" + tsc.getURL());
+                log.error("ä»»åŠ¡å½•åƒæŸ¥çœ‹å‘ TSC ä¸‹å‘ä»»åŠ¡å½•åƒå‡ºé”™ï¼š" + tsc.getURL());
                 upString = "";
                 continue;
             }
-        } // TSC ÏÂ·¢Ö¸Áî END
+        } // TSC ä¸‹å‘æŒ‡ä»¤ END
         
         try {
 
@@ -117,7 +117,7 @@ public class NVRTaskRecordInquiryHandle {
         	
             utilXML.SendUpXML(upString, bsData);
         } catch (Exception e) {
-            log.error("ÈÎÎñÂ¼Ïñ²é¿´ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+            log.error("ä»»åŠ¡å½•åƒæŸ¥çœ‹ä¿¡æ¯å¤±è´¥: " + e.getMessage());
         }
         
         bsData = null;
@@ -147,14 +147,14 @@ public class NVRTaskRecordInquiryHandle {
 				
 				vo.setIndex(channelindex);
 			} catch (Exception e) {
-				log.error("ÈÎÎñÂ¼Ïñ²éÑ¯Êı¾İ¿â´íÎó: " + e.getMessage());
+				log.error("ä»»åŠ¡å½•åƒæŸ¥è¯¢æ•°æ®åº“é”™è¯¯: " + e.getMessage());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			}
 		} catch (DaoException e1) {
-			log.error("ÈÎÎñÂ¼Ïñ²éÑ¯Êı¾İ¿â´íÎó: " + e1.getMessage());
+			log.error("ä»»åŠ¡å½•åƒæŸ¥è¯¢æ•°æ®åº“é”™è¯¯: " + e1.getMessage());
 		}
 		return vo;
     }

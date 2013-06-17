@@ -3,15 +3,15 @@ package com.bvcom.transmit.vo;
 public class SysInfoVO {
     
 //    private String RealVideoURL;
-	//Ç°¶ËÃû³Æ
+	//å‰ç«¯åç§°
 	private String AgentName;
-	//Ç°¶ËÀàĞÍ
+	//å‰ç«¯ç±»å‹
 	private String AgentType;
-	//ÖĞĞÄµ½Ç°¶ËµÄURL
+	//ä¸­å¿ƒåˆ°å‰ç«¯çš„URL
 	private String CenterToAgentURL;
-	//Ç°¶Ëµ½ÖĞĞÄµÄURL
+	//å‰ç«¯åˆ°ä¸­å¿ƒçš„URL
 	private String AgentToCenterURL;
-	//TSGrab½ÓÊÕÏûÏ¢µØÖ·
+	//TSGrabæ¥æ”¶æ¶ˆæ¯åœ°å€
 	private String TSGrabURL;
 	
     private String CenterAlarmURL;
@@ -24,17 +24,17 @@ public class SysInfoVO {
     
     private String sendFilePath;
     
-    //BY TQY ¼à²âÖĞĞÄËÄÆÚ  ÂÖ²¥ÉÏ±¨¸øÖĞĞÄµÄURLµØÖ·:ÂíÈü¿ËÂÖ²¥Â·¾¶
+    //BY TQY ç›‘æµ‹ä¸­å¿ƒå››æœŸ  è½®æ’­ä¸ŠæŠ¥ç»™ä¸­å¿ƒçš„URLåœ°å€:é©¬èµ›å…‹è½®æ’­è·¯å¾„
     private String CenterRoundChannelURL;
     
-    //Â¼ÏñÎÄ¼ş´æ·ÅÂ·¾¶
+    //å½•åƒæ–‡ä»¶å­˜æ”¾è·¯å¾„
     private String RecordFilePath;
     
-    //ÈÕÖ¾ÎÄ¼ş´æ·ÅÂ·¾¶
+    //æ—¥å¿—æ–‡ä»¶å­˜æ”¾è·¯å¾„
     private String LogFilePath;
     
     /**
-     * ±¨¾¯Êı¾İ±£´æÈÕÖ¾±ê¼Ç
+     * æŠ¥è­¦æ•°æ®ä¿å­˜æ—¥å¿—æ ‡è®°
      */
     private int IsAlarmLogEnable;
     
@@ -55,7 +55,7 @@ public class SysInfoVO {
     private String LocalRedirectIp;
     
     /**
-     * Êı¾İÒµÎñ·ÖÎöÊ±¼ä
+     * æ•°æ®ä¸šåŠ¡åˆ†ææ—¶é—´
      */
     private String AutoAnalysisStartTime;
     
@@ -64,26 +64,26 @@ public class SysInfoVO {
     private int MaxAutoRecordNum;
     
     /**
-     * EPGĞÅÏ¢ÊÇ·ñ´óÓÚ1M´ò°üÎªXML
+     * EPGä¿¡æ¯æ˜¯å¦å¤§äº1Mæ‰“åŒ…ä¸ºXML
      */
     private int IsEPGZip = 1;
     
     /**
-     * EPGĞÅÏ¢ÊÇ·ñ´ÓÊı¾İ¿âÈ¡µÃ 0:²»´ÓÊı¾İ¿âÈ¡µÃÊı¾İ 1:´ÓÊı¾İ¿âÈ¡µÃ
+     * EPGä¿¡æ¯æ˜¯å¦ä»æ•°æ®åº“å–å¾— 0:ä¸ä»æ•°æ®åº“å–å¾—æ•°æ® 1:ä»æ•°æ®åº“å–å¾—
      */
     private int IsEPGFromDataBase = 0;
     
     /**
-     * IsHasAlarmID ÊÇ·ñ´æÔÚAlarmID, ±¨¾¯Êı¾İÊÇ·ñÈë¿â£¬ 0:²»Èë¿â 1:Èë¿â
+     * IsHasAlarmID æ˜¯å¦å­˜åœ¨AlarmID, æŠ¥è­¦æ•°æ®æ˜¯å¦å…¥åº“ï¼Œ 0:ä¸å…¥åº“ 1:å…¥åº“
      */
     private int IsHasAlarmID = 0;
     /**
-     * ±¨¾¯ĞÅÏ¢ÊÇ·ñÖ÷¶¯²»±¨ 0:²»²¹±¨±¨¾¯ĞÅÏ¢ 1:²¹±¨±¨¾¯ĞÅÏ¢
+     * æŠ¥è­¦ä¿¡æ¯æ˜¯å¦ä¸»åŠ¨ä¸æŠ¥ 0:ä¸è¡¥æŠ¥æŠ¥è­¦ä¿¡æ¯ 1:è¡¥æŠ¥æŠ¥è­¦ä¿¡æ¯
      */
     private int IsAutoAlarmReply = 1;
     
     /**
-     * ÔÊĞí ¼Ó´óÂëÂÊºóÂ¼ÏàµÄ¸öÊı
+     * å…è®¸ åŠ å¤§ç ç‡åå½•ç›¸çš„ä¸ªæ•°
      * JI LONG 2011-5-13
      */
     private int MaxRecordMbpsFlag=0;
@@ -233,7 +233,7 @@ public class SysInfoVO {
 	}
 
 	/**
-	 * ±¨¾¯ĞÅÏ¢ÊÇ·ñÖ÷¶¯²»±¨ 0:²»²¹±¨±¨¾¯ĞÅÏ¢ 1:²¹±¨±¨¾¯ĞÅÏ¢
+	 * æŠ¥è­¦ä¿¡æ¯æ˜¯å¦ä¸»åŠ¨ä¸æŠ¥ 0:ä¸è¡¥æŠ¥æŠ¥è­¦ä¿¡æ¯ 1:è¡¥æŠ¥æŠ¥è­¦ä¿¡æ¯
 	 * @return
 	 */
 	public int getIsAutoAlarmReply() {
@@ -241,7 +241,7 @@ public class SysInfoVO {
 	}
 
 	/**
-	 * ±¨¾¯ĞÅÏ¢ÊÇ·ñÖ÷¶¯²»±¨ 0:²»²¹±¨±¨¾¯ĞÅÏ¢ 1:²¹±¨±¨¾¯ĞÅÏ¢
+	 * æŠ¥è­¦ä¿¡æ¯æ˜¯å¦ä¸»åŠ¨ä¸æŠ¥ 0:ä¸è¡¥æŠ¥æŠ¥è­¦ä¿¡æ¯ 1:è¡¥æŠ¥æŠ¥è­¦ä¿¡æ¯
 	 * @param isAutoAlarmReply
 	 */
 	public void setIsAutoAlarmReply(int isAutoAlarmReply) {
@@ -249,55 +249,55 @@ public class SysInfoVO {
 	}
 
     /**
-     * Êı¾İÒµÎñ·ÖÎöÊ±¼ä
+     * æ•°æ®ä¸šåŠ¡åˆ†ææ—¶é—´
      */
 	public String getAutoAnalysisStartTime() {
 		return AutoAnalysisStartTime;
 	}
 
     /**
-     * Êı¾İÒµÎñ·ÖÎöÊ±¼ä
+     * æ•°æ®ä¸šåŠ¡åˆ†ææ—¶é—´
      */
 	public void setAutoAnalysisStartTime(String autoAnalysisStartTime) {
 		AutoAnalysisStartTime = autoAnalysisStartTime;
 	}
 	
     /**
-     * ±¨¾¯Êı¾İ±£´æÈÕÖ¾Ê¹ÄÜ±ê¼Ç
+     * æŠ¥è­¦æ•°æ®ä¿å­˜æ—¥å¿—ä½¿èƒ½æ ‡è®°
      */
 	public int getIsAlarmLogEnable() {
 		return IsAlarmLogEnable;
 	}
 	
     /**
-     * ±¨¾¯Êı¾İ±£´æÈÕÖ¾Ê¹ÄÜ±ê¼Ç
+     * æŠ¥è­¦æ•°æ®ä¿å­˜æ—¥å¿—ä½¿èƒ½æ ‡è®°
      */
 	public void setIsAlarmLogEnable(int isAlarmLogEnable) {
 		IsAlarmLogEnable = isAlarmLogEnable;
 	}
 
     /**
-     * IsHasAlarmID ÊÇ·ñ´æÔÚAlarmID, ±¨¾¯Êı¾İÊÇ·ñÈë¿â£¬ 0:²»Èë¿â 1:Èë¿â
+     * IsHasAlarmID æ˜¯å¦å­˜åœ¨AlarmID, æŠ¥è­¦æ•°æ®æ˜¯å¦å…¥åº“ï¼Œ 0:ä¸å…¥åº“ 1:å…¥åº“
      */
 	public int getIsHasAlarmID() {
 		return IsHasAlarmID;
 	}
 	
     /**
-     * IsHasAlarmID ÊÇ·ñ´æÔÚAlarmID, ±¨¾¯Êı¾İÊÇ·ñÈë¿â£¬ 0:²»Èë¿â 1:Èë¿â
+     * IsHasAlarmID æ˜¯å¦å­˜åœ¨AlarmID, æŠ¥è­¦æ•°æ®æ˜¯å¦å…¥åº“ï¼Œ 0:ä¸å…¥åº“ 1:å…¥åº“
      */
 	public void setIsHasAlarmID(int isHasAlarmID) {
 		IsHasAlarmID = isHasAlarmID;
 	}
 
     /**
-     * EPGĞÅÏ¢ÊÇ·ñ´ÓÊı¾İ¿âÈ¡µÃ 0:²»´ÓÊı¾İ¿âÈ¡µÃÊı¾İ 1:´ÓÊı¾İ¿âÈ¡µÃ
+     * EPGä¿¡æ¯æ˜¯å¦ä»æ•°æ®åº“å–å¾— 0:ä¸ä»æ•°æ®åº“å–å¾—æ•°æ® 1:ä»æ•°æ®åº“å–å¾—
      */
 	public int getIsEPGFromDataBase() {
 		return IsEPGFromDataBase;
 	}
     /**
-     * EPGĞÅÏ¢ÊÇ·ñ´ÓÊı¾İ¿âÈ¡µÃ 0:²»´ÓÊı¾İ¿âÈ¡µÃÊı¾İ 1:´ÓÊı¾İ¿âÈ¡µÃ
+     * EPGä¿¡æ¯æ˜¯å¦ä»æ•°æ®åº“å–å¾— 0:ä¸ä»æ•°æ®åº“å–å¾—æ•°æ® 1:ä»æ•°æ®åº“å–å¾—
      */
 	public void setIsEPGFromDataBase(int isEPGFromDataBase) {
 		IsEPGFromDataBase = isEPGFromDataBase;

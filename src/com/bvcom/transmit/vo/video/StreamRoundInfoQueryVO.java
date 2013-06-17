@@ -3,7 +3,7 @@ package com.bvcom.transmit.vo.video;
 import java.util.List;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
-//×Ô¶¯ÂÖ²¥
+//è‡ªåŠ¨è½®æ’­
 public class StreamRoundInfoQueryVO {
 
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -30,7 +30,7 @@ public class StreamRoundInfoQueryVO {
     
     private String ReturnURL;
     
-    private String Comment;//Ê§°ÜÔ­Òò
+    private String Comment;//å¤±è´¥åŽŸå› 
 
 	public MSGHeadVO getMSGHead() {
 		return MSGHead;

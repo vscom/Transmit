@@ -2,7 +2,7 @@ package com.bvcom.transmit.vo.alarm;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//报警上报（环境相关）
+//鎶ヨ涓婃姤锛堢幆澧冪浉鍏筹級
 public class AlarmSearchESetVO {
 	
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -17,7 +17,7 @@ public class AlarmSearchESetVO {
     
     private int ReturnValue;
     
-    private String Comment;//失败原因
+    private String Comment;//澶辫触鍘熷洜
 
 	public MSGHeadVO getMSGHead() {
 		return MSGHead;

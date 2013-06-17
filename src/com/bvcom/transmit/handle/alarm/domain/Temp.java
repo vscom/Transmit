@@ -3,7 +3,7 @@ package com.bvcom.transmit.handle.alarm.domain;
 import java.io.Serializable;
 
 /**
- * ·â×°msgURl
+ * å°è£…msgURl
  * @author JL
  *
  */

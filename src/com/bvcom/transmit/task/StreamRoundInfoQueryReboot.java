@@ -19,14 +19,14 @@ public class StreamRoundInfoQueryReboot extends Thread{
 			date.setHours(Integer.parseInt(time.trim().split(",")[0].trim()));
 			date.setMinutes(Integer.parseInt(time.trim().split(",")[1].trim()));
 			date.setSeconds(Integer.parseInt(time.trim().split(",")[2].trim()));
-			//ÅĞ¶ÏÖ´ĞĞ¿ª¹Ø ²¢Ö´ĞĞ
+			//åˆ¤æ–­æ‰§è¡Œå¼€å…³ å¹¶æ‰§è¡Œ
 			Timer timer=new Timer();
 			timer.scheduleAtFixedRate(new StreamRoundInfoQueryRebootTask(url.trim()) , date, 24*3600*1000);
 		}
 	}
 }
 /**
- * ÄÚ²¿Àà ¸ºÔğ¸øÂÖ²¥°ì¿¨·¢ËÍ ¶¨Ê±¸´Î»Ğ­Òé
+ * å†…éƒ¨ç±» è´Ÿè´£ç»™è½®æ’­åŠå¡å‘é€ å®šæ—¶å¤ä½åè®®
  * @author Ji Long  
  *
  */

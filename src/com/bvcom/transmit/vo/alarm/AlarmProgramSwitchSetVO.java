@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//±¨¾¯¿ª¹Ø£¨½ÚÄ¿Ïà¹Ø£©
+//æŠ¥è­¦å¼€å…³ï¼ˆèŠ‚ç›®ç›¸å…³ï¼‰
 public class AlarmProgramSwitchSetVO {
 	
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -27,7 +27,7 @@ public class AlarmProgramSwitchSetVO {
     
     private int ReturnValue;
     
-    private String Comment;//Ê§°ÜÔ­Òò
+    private String Comment;//å¤±è´¥åŽŸå› 
 
 	public MSGHeadVO getMSGHead() {
 		return MSGHead;

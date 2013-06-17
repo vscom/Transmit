@@ -15,9 +15,9 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.video.MonitorProgramQueryVO;
 
 /**
- * Ñ­ÇĞ±¨¾¯ÉèÖÃ
+ * å¾ªåˆ‡æŠ¥è­¦è®¾ç½®
  * TODO
- * ±¾ÖÊÉÏÊµÊ±¼à²âºÍÂÖÑ²¼à²âµÄ±¨¾¯²éÑ¯Ã»ÓĞÈÎºÎÇø±ğ£¬ËùÒÔÎŞĞè´ÓĞ­ÒéÉÏ¼ÓÒÔÇø·Ö£¬½¨Òé´ËĞ­Òé²»ÊµÏÖ¡£
+ * æœ¬è´¨ä¸Šå®æ—¶ç›‘æµ‹å’Œè½®å·¡ç›‘æµ‹çš„æŠ¥è­¦æŸ¥è¯¢æ²¡æœ‰ä»»ä½•åŒºåˆ«ï¼Œæ‰€ä»¥æ— éœ€ä»åè®®ä¸ŠåŠ ä»¥åŒºåˆ†ï¼Œå»ºè®®æ­¤åè®®ä¸å®ç°ã€‚
  * @author Bian Jiang
  *
  */
@@ -37,26 +37,26 @@ public class LoopAlaInfHandle {
     }
     
     /**
-     * 1. ÏÂ·¢¸øÂÖÑ¯Í¨µÀµÄSMG
-     * 2. ÉÏ±¨³É¹¦ĞÅÏ¢¸øÖĞĞÄ
+     * 1. ä¸‹å‘ç»™è½®è¯¢é€šé“çš„SMG
+     * 2. ä¸ŠæŠ¥æˆåŠŸä¿¡æ¯ç»™ä¸­å¿ƒ
      *
      */
     public void downXML() {
         
         MonitorProgramQueryVO rtvsVO = new MonitorProgramQueryVO();
-        // 1:ÊÖ¶¯Ñ¡Ì¨ 2:Ò»¶ÔÒ»¼à²â 3:ÂÖÑ¯¼à²â 4:ÂÖ²¥
+        // 1:æ‰‹åŠ¨é€‰å° 2:ä¸€å¯¹ä¸€ç›‘æµ‹ 3:è½®è¯¢ç›‘æµ‹ 4:è½®æ’­
         try {
 			rtvsVO = MonitorProgramQueryHandle.GetProgramInfoByDownIndex(rtvsVO, downString);
 		} catch (DaoException e1) {
-			log.error("È¡µÃÊµÊ±ÊÓÆµURL´íÎó: " + e1.getMessage());
+			log.error("å–å¾—å®æ—¶è§†é¢‘URLé”™è¯¯: " + e1.getMessage());
 		}        
         
         String upString = "";
         try {
-            // Ñ­ÇĞ±¨¾¯ÉèÖÃĞÅÏ¢ÏÂ·¢ timeout 1000*10 10Ãë
+            // å¾ªåˆ‡æŠ¥è­¦è®¾ç½®ä¿¡æ¯ä¸‹å‘ timeout 1000*10 10ç§’
             utilXML.SendDownNoneReturn(this.downString, rtvsVO.getSmgURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
         } catch (CommonException e) {
-            log.error("ÏòSMGÏÂ·¢Ñ­ÇĞ±¨¾¯ÉèÖÃ³ö´í£º" + rtvsVO.getSmgURL());
+            log.error("å‘SMGä¸‹å‘å¾ªåˆ‡æŠ¥è­¦è®¾ç½®å‡ºé”™ï¼š" + rtvsVO.getSmgURL());
         }
         
         LoopAlaInfParse LoopAlaInf = new LoopAlaInfParse();
@@ -67,7 +67,7 @@ public class LoopAlaInfHandle {
         try {
             utilXML.SendUpXML(upString, bsData);
         } catch (CommonException e) {
-            log.error("±¨¾¯½ÚÄ¿ÃÅÏŞ»ò¿ª¹ØÉÏ±¨ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+            log.error("æŠ¥è­¦èŠ‚ç›®é—¨é™æˆ–å¼€å…³ä¸ŠæŠ¥ä¿¡æ¯å¤±è´¥: " + e.getMessage());
         }
         
         bsData = null;

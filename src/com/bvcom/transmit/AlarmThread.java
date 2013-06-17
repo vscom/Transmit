@@ -22,7 +22,7 @@ import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.alarm.AlarmSearchPSetVO;
 
 /**
- * ´¦Àí±¨¾¯ĞÅÏ¢
+ * å¤„ç†æŠ¥è­¦ä¿¡æ¯
  * 
  * @author BVCOM
  * 
@@ -51,52 +51,52 @@ public class AlarmThread extends Thread {
 		AlarmSearchPSetParse alarmSearchPSetParse = new AlarmSearchPSetParse();
 		AlarmSearchFSetParse alarmSearchFSetParse = new AlarmSearchFSetParse();
 		
-		// 1. ½ÚÄ¿ºÍÆµÂÊ±¨¾¯ÅĞ¶Ï£¬ Ö÷ÒªÊÇÅĞ¶ÏServerID
-		// 2. ´ÓalarmsearchtableÊı¾İ¿âÀï£¬ ÒÑ¾­ÓĞ·¢Éú²¢ÇÒÃ»ÓĞ»Ö¸´£¬ ²»´¦Àí
+		// 1. èŠ‚ç›®å’Œé¢‘ç‡æŠ¥è­¦åˆ¤æ–­ï¼Œ ä¸»è¦æ˜¯åˆ¤æ–­ServerID
+		// 2. ä»alarmsearchtableæ•°æ®åº“é‡Œï¼Œ å·²ç»æœ‰å‘ç”Ÿå¹¶ä¸”æ²¡æœ‰æ¢å¤ï¼Œ ä¸å¤„ç†
 		boolean isSuccess=true;
 		try {
-			// ¸üĞÂ±¨¾¯Êı¾İ¿â
+			// æ›´æ–°æŠ¥è­¦æ•°æ®åº“
 			isSuccess=updateAlarmSearchTable(alarmList);
 		} catch (Exception ex) {
-			log.error("¸üĞÂ±¨¾¯Êı¾İ¿âÊ§°Ü: " + ex.getMessage());
+			log.error("æ›´æ–°æŠ¥è­¦æ•°æ®åº“å¤±è´¥: " + ex.getMessage());
 		}
 
 		try {
-			// È¡µÃÉÏ±¨Êı¾İµÄAlarmID
+			// å–å¾—ä¸ŠæŠ¥æ•°æ®çš„AlarmID
 			getAlarmIDFromAlarmSearchTable(alarmList);
 		} catch (Exception ex) {
-			log.error("È¡µÃÉÏ±¨Êı¾İAlarmIDÊ§°Ü: " + ex.getMessage());
+			log.error("å–å¾—ä¸ŠæŠ¥æ•°æ®AlarmIDå¤±è´¥: " + ex.getMessage());
 		}
 		
 		String upString = "";
 
 		if (bsData.getStatusQueryType().equals("AlarmSearchPSet")) {
-			// ½ÚÄ¿Ïà¹Ø±¨¾¯
+			// èŠ‚ç›®ç›¸å…³æŠ¥è­¦
 
 			upString = alarmSearchPSetParse
 					.createForUpXML(bsData, alarmList, 0);
 		} else if (bsData.getStatusQueryType().equals("AlarmSearchFSet")) {
-			// ÆµÂÊÏà¹Ø±¨¾¯
+			// é¢‘ç‡ç›¸å…³æŠ¥è­¦
 			upString = alarmSearchFSetParse
 					.createForUpXML(bsData, alarmList, 0);
 		}
 
 		try {
 			if (upString != null && !upString.equals("")) {
-				// log.info("±¨¾¯ÉÏ±¨XML: " + upString);
-				// ¹Ø±Õ±¨¾¯ÈÕÖ¾ĞÅÏ¢
-				// log.info("±¨¾¯ÉÏ±¨ĞÅÏ¢:\n" +
+				// log.info("æŠ¥è­¦ä¸ŠæŠ¥XML: " + upString);
+				// å…³é—­æŠ¥è­¦æ—¥å¿—ä¿¡æ¯
+				// log.info("æŠ¥è­¦ä¸ŠæŠ¥ä¿¡æ¯:\n" +
 				// xmlUtil.replaceAlarmXMLMsgHeader(getString, bsData));
-				//log.info("ÉÏ±¨ÖĞĞÄ±¨¾¯ĞÅÏ¢£º"+upString);
+				//log.info("ä¸ŠæŠ¥ä¸­å¿ƒæŠ¥è­¦ä¿¡æ¯ï¼š"+upString);
 				if(isSuccess){
 					boolean flag = xmlUtil.SendUpXML(xmlUtil.replaceAlarmXMLMsgHeader(upString,
 							bsData, 0), bsData);
-					//Èç¹ûÉÏ±¨²»³É¹¦Ôò¸ü¸Ä±¨¾¯³É¹¦×´Ì¬ IsSuccess  0:³É¹¦ 1£ºÊ§°Ü
+					//å¦‚æœä¸ŠæŠ¥ä¸æˆåŠŸåˆ™æ›´æ”¹æŠ¥è­¦æˆåŠŸçŠ¶æ€ IsSuccess  0:æˆåŠŸ 1ï¼šå¤±è´¥
 					if(flag){
-						log.info("±¨¾¯ÉÏ±¨³É¹¦£¡");
+						log.info("æŠ¥è­¦ä¸ŠæŠ¥æˆåŠŸï¼");
 					}else{
 						upAlarmISSuccess(alarmList);
-						log.info("±¨¾¯ÉÏ±¨Ê§°Ü£¬¼ÇÂ¼alarmsearchtable±¨¾¯Êı¾İ¿â");
+						log.info("æŠ¥è­¦ä¸ŠæŠ¥å¤±è´¥ï¼Œè®°å½•alarmsearchtableæŠ¥è­¦æ•°æ®åº“");
 					}
 					
 				}else{
@@ -104,33 +104,33 @@ public class AlarmThread extends Thread {
             		try {
             			replyAlarmErrorTableHandle.upReplyAlarmErrorTable(upString, " ");
             		} catch (Exception e) {
-            			log.error("ReplyAlarmErrorTable±¨¾¯ÉÏ±¨³ö´íÊı¾İÈë¿âÊ§°Ü"+ e.getMessage());
+            			log.error("ReplyAlarmErrorTableæŠ¥è­¦ä¸ŠæŠ¥å‡ºé”™æ•°æ®å…¥åº“å¤±è´¥"+ e.getMessage());
             		}
 				}
 			} else {
-				log.debug("±¨¾¯Êı¾İupString: " + upString);
+				log.debug("æŠ¥è­¦æ•°æ®upString: " + upString);
 			}
 		} catch (Exception e) {
-			log.error("±¨¾¯½ÚÄ¿ÃÅÏŞ»ò¿ª¹ØÉÏ±¨ĞÅÏ¢Ê§°Ü: " + e.getMessage());
+			log.error("æŠ¥è­¦èŠ‚ç›®é—¨é™æˆ–å¼€å…³ä¸ŠæŠ¥ä¿¡æ¯å¤±è´¥: " + e.getMessage());
 		}
 		alarmList = null;
 		// log.info("alarmList Size: " + alarmList.size());
 
 		if ((CommonUtility.getAlarmDatebaseDumpCount() % 10000) == 0) {
-			// Ã¿10000¸ö±¨¾¯¼ÇÂ¼£¬¿ªÊ¼¶Ô±¨¾¯Êı¾İ¿â½øĞĞµ¼±í alarmsearchtable -->
+			// æ¯10000ä¸ªæŠ¥è­¦è®°å½•ï¼Œå¼€å§‹å¯¹æŠ¥è­¦æ•°æ®åº“è¿›è¡Œå¯¼è¡¨ alarmsearchtable -->
 			// alarmhistorysearchtable
-			log.warn("\n\n\n##### Start ##### ¶Ô±¨¾¯Êı¾İ¿â½øĞĞµ¼±í alarmsearchtable --> alarmhistorysearchtable |||-_-||| ");
+			log.warn("\n\n\n##### Start ##### å¯¹æŠ¥è­¦æ•°æ®åº“è¿›è¡Œå¯¼è¡¨ alarmsearchtable --> alarmhistorysearchtable |||-_-||| ");
 			try {
 				dumpAlarmDatebaseDump();
 			} catch (Exception ex) {
-				log.error("¶Ô±¨¾¯Êı¾İ¿â½øĞĞµ¼±íÊ§°Ü: " + ex.getMessage());
+				log.error("å¯¹æŠ¥è­¦æ•°æ®åº“è¿›è¡Œå¯¼è¡¨å¤±è´¥: " + ex.getMessage());
 			}
-			log.warn("###### End ###### ¶Ô±¨¾¯Êı¾İ¿â½øĞĞµ¼±í alarmsearchtable --> alarmhistorysearchtable |||-_-||| \n\n");
+			log.warn("###### End ###### å¯¹æŠ¥è­¦æ•°æ®åº“è¿›è¡Œå¯¼è¡¨ alarmsearchtable --> alarmhistorysearchtable |||-_-||| \n\n");
 		}
 	}
 
 	/**
-	 * ¿ªÊ¼¶Ô±¨¾¯Êı¾İ¿â½øĞĞµ¼±í alarmsearchtable --> alarmhistorysearchtable
+	 * å¼€å§‹å¯¹æŠ¥è­¦æ•°æ®åº“è¿›è¡Œå¯¼è¡¨ alarmsearchtable --> alarmhistorysearchtable
 	 */
 	private void dumpAlarmDatebaseDump() throws DaoException {
 		// insert into alarmhistorysearchtable select * from alarmsearchtable
@@ -146,12 +146,12 @@ public class AlarmThread extends Thread {
 		try {
 			synchronized (this) {
 				statement = conn.createStatement();
-				log.debug("±¨¾¯Êı¾İ¿âµ¼±íSQL: " + strBuff.toString());
+				log.debug("æŠ¥è­¦æ•°æ®åº“å¯¼è¡¨SQL: " + strBuff.toString());
 				statement.executeUpdate(strBuff.toString());
 			}
 		} catch (Exception e) {
-			log.error("±¨¾¯Êı¾İ¿âµ¼±í´íÎó: " + e.getMessage());
-			log.error("±¨¾¯Êı¾İ¿âµ¼±í³ö´íSQL: " + strBuff.toString());
+			log.error("æŠ¥è­¦æ•°æ®åº“å¯¼è¡¨é”™è¯¯: " + e.getMessage());
+			log.error("æŠ¥è­¦æ•°æ®åº“å¯¼è¡¨å‡ºé”™SQL: " + strBuff.toString());
 			isErr = true;
 		} finally {
 			DaoSupport.close(statement);
@@ -164,13 +164,13 @@ public class AlarmThread extends Thread {
 			try {
 				synchronized (this) {
 					statement = conn.createStatement();
-					log.debug("É¾³ı±¨¾¯Êı¾İ¿âSQL: " + strBuff.toString());
+					log.debug("åˆ é™¤æŠ¥è­¦æ•°æ®åº“SQL: " + strBuff.toString());
 					statement.executeUpdate(strBuff.toString());
 				}
 
 			} catch (Exception e) {
-				log.error("É¾³ı±¨¾¯Êı¾İ¿â´íÎó: " + e.getMessage());
-				log.error("É¾³ı±¨¾¯Êı¾İ¿â³ö´íSQL: " + strBuff.toString());
+				log.error("åˆ é™¤æŠ¥è­¦æ•°æ®åº“é”™è¯¯: " + e.getMessage());
+				log.error("åˆ é™¤æŠ¥è­¦æ•°æ®åº“å‡ºé”™SQL: " + strBuff.toString());
 				isErr = true;
 			} finally {
 				DaoSupport.close(statement);
@@ -182,7 +182,7 @@ public class AlarmThread extends Thread {
 	}
 
 	/**
-	 * È¡µÃ±¨¾¯ID
+	 * å–å¾—æŠ¥è­¦ID
 	 * 
 	 * @param alarmList
 	 * @throws DaoException
@@ -212,7 +212,7 @@ public class AlarmThread extends Thread {
 			strBuff.append(" where freq = " + alarmSearchPSet.getFreq() + " ");
 
 			if (alarmSearchPSet.getAlarmType().equals("AlarmSearchPSet")) {
-				// ½ÚÄ¿Ïà¹Ø±¨¾¯
+				// èŠ‚ç›®ç›¸å…³æŠ¥è­¦
 				strBuff.append(" and ServiceID = "
 						+ alarmSearchPSet.getServiceID() + " ");
 			}
@@ -225,14 +225,14 @@ public class AlarmThread extends Thread {
 				statement = conn.createStatement();
 
 				rs = statement.executeQuery(strBuff.toString());
-				log.debug("È¡µÃ±¨¾¯ID: " + strBuff.toString());
+				log.debug("å–å¾—æŠ¥è­¦ID: " + strBuff.toString());
 				while (rs.next()) {
 					alarmSearchPSet.setAlarmID(rs.getString("id"));
 					log.debug("AlarmID: " + alarmSearchPSet.getAlarmID());
 				}
 			} catch (Exception e) {
-				log.error("È¡µÃ½ÚÄ¿¸ßÇå±ê¼Ç´íÎó1: " + e.getMessage());
-				log.error("È¡µÃ½ÚÄ¿¸ßÇå±ê¼Ç´íÎó1 SQL: " + strBuff.toString());
+				log.error("å–å¾—èŠ‚ç›®é«˜æ¸…æ ‡è®°é”™è¯¯1: " + e.getMessage());
+				log.error("å–å¾—èŠ‚ç›®é«˜æ¸…æ ‡è®°é”™è¯¯1 SQL: " + strBuff.toString());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
@@ -245,7 +245,7 @@ public class AlarmThread extends Thread {
 	}
 
 	/**
-	 * ¸üĞÂ±¨¾¯Êı¾İ¿â
+	 * æ›´æ–°æŠ¥è­¦æ•°æ®åº“
 	 * 
 	 * @param alarmList
 	 * @throws DaoException
@@ -272,7 +272,7 @@ public class AlarmThread extends Thread {
 					.get(i);
 			StringBuffer strBuff = new StringBuffer();
 			StringBuffer sql =new StringBuffer();
-			// ¹ıÂËÖØ¸´±¨¾¯ ¼ªÁú
+			// è¿‡æ»¤é‡å¤æŠ¥è­¦ å‰é¾™
 			boolean falg = false;
 			int serviceID = alarmSearchPSet.getServiceID();
 			int freq = alarmSearchPSet.getFreq();
@@ -289,15 +289,15 @@ public class AlarmThread extends Thread {
 				strBuff.append(" and AlarmEndTime is " + "null" );
 				rs = statement.executeQuery(strBuff.toString());
 				if (rs.next()) {
-					//log.info("¸Ã±¨¾¯ÒÑ´æÔÚ²¢ÇÒ×´Ì¬Ò»ÖÂ Ôò¶ªÆú");
+					//log.info("è¯¥æŠ¥è­¦å·²å­˜åœ¨å¹¶ä¸”çŠ¶æ€ä¸€è‡´ åˆ™ä¸¢å¼ƒ");
 					continue;
 				} else {
 					falg = true;
 					strBuff = new StringBuffer();
 				}
 			} catch (Exception e) {
-				log.error("¹ıÂËÖØ¸´±¨¾¯´íÎó: " + e.getMessage());
-				/**Êä³ö´íÎóĞÅÏ¢µ½ÎÄ¼ş*/
+				log.error("è¿‡æ»¤é‡å¤æŠ¥è­¦é”™è¯¯: " + e.getMessage());
+				/**è¾“å‡ºé”™è¯¯ä¿¡æ¯åˆ°æ–‡ä»¶*/
 	    		PrintWriter pw;
 				try {
 					pw = new PrintWriter(new File("D:/AlarmThreadException.log"));
@@ -316,11 +316,11 @@ public class AlarmThread extends Thread {
 			// }
 			if (falg) {
 				if (alarmSearchPSet.getValue() == 1) {
-					// ±¨¾¯·¢Éú
+					// æŠ¥è­¦å‘ç”Ÿ
 					/*
 					 * insert into alarmsearchtable(freq, serviceID, videoPID,
 					 * audioPID, AlarmType, AlarmDesc, AlarmValue, AlarmTime,
-					 * Lastdatatime) values(1, 1, 1, 1, 1, 'ÃèÊö', 1, '2002-08-17
+					 * Lastdatatime) values(1, 1, 1, 1, 1, 'æè¿°', 1, '2002-08-17
 					 * 15:30:00', '2002-08-17 15:30:00')
 					 */
 					strBuff
@@ -337,7 +337,7 @@ public class AlarmThread extends Thread {
 					strBuff.append("'" + CommonUtility.getDateTime() + "')");
 
 				} else if (alarmSearchPSet.getValue() == 2) {
-					// ±¨¾¯»Ö¸´
+					// æŠ¥è­¦æ¢å¤
 					strBuff.append("update alarmsearchtable set ");
 					strBuff.append(" VideoPID = "
 							+ alarmSearchPSet.getVideoPID() + ", ");
@@ -359,9 +359,9 @@ public class AlarmThread extends Thread {
 					strBuff.append(" and AlarmType = "
 							+ alarmSearchPSet.getType() + " ");
 					strBuff.append(" and AlarmValue = 1 ");
-					//ÅĞ¶Ï¸Ã±¨¾¯»Ö¸´ µÄ·¢Éú×´Ì¬ÊÇ·ñÒÑ¾­Õı³£ÉÏ±¨  Ji Long 2011-06-28
-					//Èç¹ûÃ»ÓĞÕı³£ÉÏ±¨Ôò¸Ã»Ö¸´ĞÅÏ¢Ò²´æÈë±¨¾¯²¹±¨±í 
-					//µÈ´ı±¨¾¯·¢Éú×´Ì¬ÉÏ±¨³É¹¦ºó²ÅÉÏ±¨ »Ö¸´
+					//åˆ¤æ–­è¯¥æŠ¥è­¦æ¢å¤ çš„å‘ç”ŸçŠ¶æ€æ˜¯å¦å·²ç»æ­£å¸¸ä¸ŠæŠ¥  Ji Long 2011-06-28
+					//å¦‚æœæ²¡æœ‰æ­£å¸¸ä¸ŠæŠ¥åˆ™è¯¥æ¢å¤ä¿¡æ¯ä¹Ÿå­˜å…¥æŠ¥è­¦è¡¥æŠ¥è¡¨ 
+					//ç­‰å¾…æŠ¥è­¦å‘ç”ŸçŠ¶æ€ä¸ŠæŠ¥æˆåŠŸåæ‰ä¸ŠæŠ¥ æ¢å¤
 					sql.append("SELECT IsSuccess FROM alarmsearchtable where ");
 					sql.append(" where freq = " + alarmSearchPSet.getFreq());
 					sql.append(" and ServiceID = " + alarmSearchPSet.getServiceID());
@@ -377,8 +377,8 @@ public class AlarmThread extends Thread {
 							}
 						}
 					} catch (Exception e) {
-						log.debug("²éÑ¯±¨¾¯ÊÇ·ñ²¹±¨´íÎó: " + e.getMessage());
-						log.debug("²éÑ¯±¨¾¯ÊÇ·ñ²¹±¨SQL: " + sql.toString());
+						log.debug("æŸ¥è¯¢æŠ¥è­¦æ˜¯å¦è¡¥æŠ¥é”™è¯¯: " + e.getMessage());
+						log.debug("æŸ¥è¯¢æŠ¥è­¦æ˜¯å¦è¡¥æŠ¥SQL: " + sql.toString());
 					}finally{
 						DaoSupport.close(statement);
 					}
@@ -388,13 +388,13 @@ public class AlarmThread extends Thread {
 				try {
 					synchronized (this) {
 						statement = conn.createStatement();
-						log.debug("±¨¾¯Èë¿âSQL: " + strBuff.toString());
+						log.debug("æŠ¥è­¦å…¥åº“SQL: " + strBuff.toString());
 						statement.executeUpdate(strBuff.toString());
 					}
 
 				} catch (Exception e) {
-					log.error("±¨¾¯ĞÅÏ¢Èë¿â´íÎó: " + e.getMessage());
-					log.error("±¨¾¯ĞÅÏ¢Èë¿â³ö´íSQL: " + strBuff.toString());
+					log.error("æŠ¥è­¦ä¿¡æ¯å…¥åº“é”™è¯¯: " + e.getMessage());
+					log.error("æŠ¥è­¦ä¿¡æ¯å…¥åº“å‡ºé”™SQL: " + strBuff.toString());
 				} finally {
 					DaoSupport.close(statement);
 				}
@@ -436,7 +436,7 @@ public class AlarmThread extends Thread {
 			strBuff.append(" where freq = " + alarmSearchPSet.getFreq() + " ");
 
 			if (alarmSearchPSet.getAlarmType().equals("AlarmSearchPSet")) {
-				// ½ÚÄ¿Ïà¹Ø±¨¾¯
+				// èŠ‚ç›®ç›¸å…³æŠ¥è­¦
 				strBuff.append(" and ServiceID = "
 						+ alarmSearchPSet.getServiceID() + " ");
 			}
@@ -447,8 +447,8 @@ public class AlarmThread extends Thread {
 				statement = conn.createStatement();
 				statement.executeUpdate(strBuff.toString());
 			} catch (Exception e) {
-				log.error("É¾³ıÉÏ±¨Ê§°Ü±¨¾¯ĞÅÏ¢´íÎó1: " + e.getMessage());
-				log.error("É¾³ıÉÏ±¨Ê§°Ü±¨¾¯ĞÅÏ¢´íÎó1 SQL: " + strBuff.toString());
+				log.error("åˆ é™¤ä¸ŠæŠ¥å¤±è´¥æŠ¥è­¦ä¿¡æ¯é”™è¯¯1: " + e.getMessage());
+				log.error("åˆ é™¤ä¸ŠæŠ¥å¤±è´¥æŠ¥è­¦ä¿¡æ¯é”™è¯¯1 SQL: " + strBuff.toString());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);

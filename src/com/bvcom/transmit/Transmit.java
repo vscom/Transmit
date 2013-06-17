@@ -119,7 +119,7 @@ public class Transmit extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        log.info("Transmit×ª·¢¿ªÊ¼");
+        log.info("Transmitè½¬å‘å¼€å§‹");
         InputStreamReader inReader;
         String getString = null;
         Document requestDoc = null;
@@ -130,33 +130,33 @@ public class Transmit extends HttpServlet {
         try {
             try {
                 inReader = new InputStreamReader(request.getInputStream(),
-                        "GB2312");// »ñµÃÁ´½Ó¸ÃÀàµÄÁ÷
+                        "GB2312");// è·å¾—é“¾æ¥è¯¥ç±»çš„æµ
 
                 getString = CommonUtility.readStringFromURL(inReader);
 
                 /**
-                 * ¶ÁÈ¡ÇëÇóĞÅÏ¢
+                 * è¯»å–è¯·æ±‚ä¿¡æ¯
                  */
                 inReader.close();
             } catch (IOException ex) {
-                log.error("È¡µÃÊı¾İ³ö´í: " + ex.getMessage());
+                log.error("å–å¾—æ•°æ®å‡ºé”™: " + ex.getMessage());
                 ex.printStackTrace();
                 return;
             }
-            log.info("ÇëÇóĞÅÏ¢:\n" + getString);
+            log.info("è¯·æ±‚ä¿¡æ¯:\n" + getString);
     
             requestDoc = xmlUtil.StringToXML(getString);
             
             requestDoc.setXMLEncoding("GB2312");
             
-            // ´ÓÏÂ·¢µÄXmlÊı¾İÖĞÌáÈ¡Í·²¿ĞÅÏ¢
+            // ä»ä¸‹å‘çš„Xmlæ•°æ®ä¸­æå–å¤´éƒ¨ä¿¡æ¯
             boolean retFlg = xmlUtil.getInfoFromDownXml(requestDoc, bsData);
             
             try {
                 OutputStreamWriter ResponseWriter = null;
                 response.setContentType("text/html");
                 ResponseWriter = new OutputStreamWriter(response.getOutputStream(),
-                        "GB2312"); //Ïò¿Í»§¶Ë·µ»ØÈ·ÈÏĞÅÏ¢ 
+                        "GB2312"); //å‘å®¢æˆ·ç«¯è¿”å›ç¡®è®¤ä¿¡æ¯ 
                 if (!retFlg) {
                     ResponseWriter.write("Data Error !");
                     ResponseWriter.flush();
@@ -168,14 +168,14 @@ public class Transmit extends HttpServlet {
                     ResponseWriter.close();
                 }
             } catch (Exception ex) {
-                //log.error("»Ø¸´Êı¾İ³ö´í: " + ex.getMessage());
+                //log.error("å›å¤æ•°æ®å‡ºé”™: " + ex.getMessage());
             }
 
             TransmitThread transmitThread = new TransmitThread(getString, bsData);
             transmitThread.start();
             
         } catch (Exception ex) {
-            log.error("Æô¶¯ÒµÎñ´¦ÀíÏß³Ì³ö´í");
+            log.error("å¯åŠ¨ä¸šåŠ¡å¤„ç†çº¿ç¨‹å‡ºé”™");
         }
         
     }
@@ -196,30 +196,30 @@ public class Transmit extends HttpServlet {
      * @throws ServletException if an error occure
      */
     public void init() throws ServletException {
-        // ³õÊ¼»¯ÅäÖÃÎÄ¼şĞÅÏ¢
+        // åˆå§‹åŒ–é…ç½®æ–‡ä»¶ä¿¡æ¯
         ReadConfigFile configFile = new ReadConfigFile();
         configFile.initConfig();
-        log.info("ÅäÖÃÎÄ¼şĞÅÏ¢³õÊ¼»¯Íê³É");
+        log.info("é…ç½®æ–‡ä»¶ä¿¡æ¯åˆå§‹åŒ–å®Œæˆ");
         
-        // ÈÎÎñÂ¼Ïñ´¦Àí, É¾³ıÒÑ¾­¹ıÆÚµÄÈÎÎñÂ¼Ïñ
+        // ä»»åŠ¡å½•åƒå¤„ç†, åˆ é™¤å·²ç»è¿‡æœŸçš„ä»»åŠ¡å½•åƒ
         RecordTaskThread RecordTaskProcess = new RecordTaskThread();
         RecordTaskProcess.start();
         
-        //µ±Ç°¶Ë·¢ËÍ¸øÆ½Ì¨µÄĞÅÏ¢²»Í¨Ê±£¬ĞèÒªÈë¿â£¬È»ºóÆô¶¯²¹±¨»úÖÆ
+        //å½“å‰ç«¯å‘é€ç»™å¹³å°çš„ä¿¡æ¯ä¸é€šæ—¶ï¼Œéœ€è¦å…¥åº“ï¼Œç„¶åå¯åŠ¨è¡¥æŠ¥æœºåˆ¶
         ReplyAlarmErrorTaskThread replyAlarmErrorTaskThread = new ReplyAlarmErrorTaskThread();
         replyAlarmErrorTaskThread.start();
         
-        //Êı¾İ·ÖÎö
+        //æ•°æ®åˆ†æ
         AutoAnalysisTimeQueryTask autoAnalysisTimeQueryTask = new AutoAnalysisTimeQueryTask();
         autoAnalysisTimeQueryTask.start();
         
-        //TODO ÂÖ²¥¸´Î»±ê¼Ç  Ji Long
+        //TODO è½®æ’­å¤ä½æ ‡è®°  Ji Long
         //StreamRoundInfoQueryReboot streamRoundInfoQueryReboot =new StreamRoundInfoQueryReboot();
         //streamRoundInfoQueryReboot.start();
         
         
         
-        //Æô¶¯ÂíÈü¿ËÂÖ²¥ Í£Ö¹Ïß³Ì
+        //å¯åŠ¨é©¬èµ›å…‹è½®æ’­ åœæ­¢çº¿ç¨‹
         AutoAnalysisTimeQueryConfigFile autoAnalysisTimeOueryConfigFile=new AutoAnalysisTimeQueryConfigFile();
         String StopTime = autoAnalysisTimeOueryConfigFile.getStreamRoundInfoQueryStopTime();
         
@@ -239,7 +239,7 @@ public class Transmit extends HttpServlet {
 		strDate[5]=sEndDate[2];
 		
 		Date stopDate = new Date(Integer.parseInt(strDate[0]) - 1900, Integer.parseInt(strDate[1]) - 1, Integer.parseInt(strDate[2]), Integer.parseInt(strDate[3]), Integer.parseInt(strDate[4]), Integer.parseInt(strDate[5]));
-		//ÈôÊ±¼ä¹ıÆÚ£¬É¾³ıÂíÈü¿ËÂÖ²¥£¬ÄÇÃ´±È¶Ô£¬Æô¶¯ĞÂÒµÎñ£¬·ñÔò²»Æô¶¯¶¨Ê±Æ÷
+		//è‹¥æ—¶é—´è¿‡æœŸï¼Œåˆ é™¤é©¬èµ›å…‹è½®æ’­ï¼Œé‚£ä¹ˆæ¯”å¯¹ï¼Œå¯åŠ¨æ–°ä¸šåŠ¡ï¼Œå¦åˆ™ä¸å¯åŠ¨å®šæ—¶å™¨
 		if (stopDate.before(new Date())) {
 			Timer stopTimer=new Timer();
 	        //stopTimer.schedule(new MosaicStreamRoundInfoStopTimerTask(), stopDate);
@@ -247,7 +247,7 @@ public class Transmit extends HttpServlet {
 		
 		
 		
-        //ĞÂÆµµÀ±¨¾¯
+        //æ–°é¢‘é“æŠ¥è­¦
 		//AlarmNewChannel alarmNewChannel = new AlarmNewChannel();
 		//alarmNewChannel.start();
     }

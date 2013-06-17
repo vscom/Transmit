@@ -32,49 +32,49 @@ public class GetIndexSetHandle {
 	    }
 	    
 	    /**
-	     * ĞÔÄÜÖ¸±ê²éÑ¯
+	     * æ€§èƒ½æŒ‡æ ‡æŸ¥è¯¢
 	     *
 	     */
 	    @SuppressWarnings("unchecked")
 		public void downXML() {
 	    	List SMGSendList = new ArrayList();
-	    	// 3:GetIndexSet(ĞÔÄÜÖ¸±êºÍĞÇ×ùÍ¼)
+	    	// 3:GetIndexSet(æ€§èƒ½æŒ‡æ ‡å’Œæ˜Ÿåº§å›¾)
 	    	SMGSendList = CommonUtility.checkSMGChannelType("GetIndexSet", SMGSendList);
 	        
 	        String upString = "";
 	        for (int i=0; i< SMGSendList.size(); i++) {
 	            SMGCardInfoVO smg = (SMGCardInfoVO) SMGSendList.get(i);
 	            try {
-	                // ĞÔÄÜÖ¸±ê²éÑ¯ÏÂ·¢
+	                // æ€§èƒ½æŒ‡æ ‡æŸ¥è¯¢ä¸‹å‘
 	                upString = utilXML.SendDownXML(this.downString, smg.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
-	                // Ö»ÓĞÒ»¸öÍ¨µÀ×öÆµµÀÉ¨Ãè
+	                // åªæœ‰ä¸€ä¸ªé€šé“åšé¢‘é“æ‰«æ
 	                break;
 	            } catch (CommonException e) {
-	                log.error("ÏòSMGÏÂ·¢ĞÔÄÜÖ¸±ê²éÑ¯³ö´í£º" + smg.getURL());
+	                log.error("å‘SMGä¸‹å‘æ€§èƒ½æŒ‡æ ‡æŸ¥è¯¢å‡ºé”™ï¼š" + smg.getURL());
 	            }
 	        }
 	        
-	        //±£´æÈë¿â
+	        //ä¿å­˜å…¥åº“
 	        if (bsData.getStatusQueryType().equals("GetIndexSet")) {
 	            try {
 	                if (upString != null && !upString.trim().equals("")) {
 	                    this.upIndexSetTable(upString);
 	                } else {
-	                    // È¡µÃ·µ»ØÊ§°ÜµÄ´íÎóĞÅÏ¢
+	                    // å–å¾—è¿”å›å¤±è´¥çš„é”™è¯¯ä¿¡æ¯
 	                	GetIndexSetParse getindex = new GetIndexSetParse();
 	                    upString = getindex.ReturnXMLByURL(bsData, null, 1);
 	                }
 	            } catch (DaoException e) {
-	                log.error("²åÈëĞÔÄÜÖ¸±ê²éÑ¯½á¹ûÊ§°Ü: " + e.getMessage());
+	                log.error("æ’å…¥æ€§èƒ½æŒ‡æ ‡æŸ¥è¯¢ç»“æœå¤±è´¥: " + e.getMessage());
 	            } 
 	        }
 	        
-	        //·µ»Ø½á¹û
+	        //è¿”å›ç»“æœ
 	        try {
 	        	
 	            utilXML.SendUpXML(utilXML.replaceXMLMsgHeader(upString, bsData), bsData);
 	        } catch (CommonException e) {
-	            log.error("ÉÏ·¢ÆµµÀÉ¨ÃèĞÅÏ¢Ê§°Ü: " + e.getMessage());
+	            log.error("ä¸Šå‘é¢‘é“æ‰«æä¿¡æ¯å¤±è´¥: " + e.getMessage());
 	        }
 	        
 	        bsData = null;
@@ -99,7 +99,7 @@ public class GetIndexSetHandle {
 	        strBuff.append("'" + CommonUtility.getDateTime() + "'");
 	        strBuff.append(")");
 	        
-	        //log.info("ĞÔÄÜÖ¸±ê²éÑ¯²åÈëÊı¾İ¿â£º" + strBuff.toString());
+	        //log.info("æ€§èƒ½æŒ‡æ ‡æŸ¥è¯¢æ’å…¥æ•°æ®åº“ï¼š" + strBuff.toString());
 	        
 	        try {
 	            statement = conn.createStatement();
@@ -107,13 +107,13 @@ public class GetIndexSetHandle {
 	            statement.executeUpdate(strBuff.toString());
 	            
 	        } catch (Exception e) {
-	        	log.error("´íÎóSQL: " + strBuff.toString());
-	            log.error("ĞÔÄÜÖ¸±ê²éÑ¯²åÈëÊı¾İ¿â´íÎó: " + e.getMessage());
+	        	log.error("é”™è¯¯SQL: " + strBuff.toString());
+	            log.error("æ€§èƒ½æŒ‡æ ‡æŸ¥è¯¢æ’å…¥æ•°æ®åº“é”™è¯¯: " + e.getMessage());
 	        } finally {
 	            DaoSupport.close(statement);
 	            DaoSupport.close(conn);
 	        }
-	        log.info("ĞÔÄÜÖ¸±ê²éÑ¯²åÈëÊı¾İ¿â³É¹¦!");
+	        log.info("æ€§èƒ½æŒ‡æ ‡æŸ¥è¯¢æ’å…¥æ•°æ®åº“æˆåŠŸ!");
 	    	
 	    }
 		public MSGHeadVO getBsData() {

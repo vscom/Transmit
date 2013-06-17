@@ -3,10 +3,10 @@ package com.bvcom.transmit.parse.alarm;
 import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 
-//报警门限（频率相关）
+//鎶ヨ闂ㄩ檺锛堥鐜囩浉鍏筹級
 public class AlarmThresholdSetParse {
 
-	// 频率报警门限回复xml打包
+	// 棰戠巼鎶ヨ闂ㄩ檺鍥炲xml鎵撳寘
 	public String ReturnXMLByURL(MSGHeadVO head, int value) {
 
 		String xml = null;
@@ -16,9 +16,9 @@ public class AlarmThresholdSetParse {
 		+ CommonUtility.getDateTime()+ "\" SrcCode=\"" + head.getDstCode()
 		+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"AlarmThresholdSet\" Value=\"0\" Desc=\"成功\"/>";
+			xml += "<Return Type=\"AlarmThresholdSet\" Value=\"0\" Desc=\"鎴愬姛\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"AlarmThresholdSet\" Value=\"1\" Desc=\"失败\"/>";
+			xml += "<Return Type=\"AlarmThresholdSet\" Value=\"1\" Desc=\"澶辫触\"/>";
 		}
 		xml += "</Msg>";
 		return xml;

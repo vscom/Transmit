@@ -8,13 +8,13 @@ import com.bvcom.transmit.parse.alarm.domain.AlarmSwitchDao;
 /**
  * 
  * @author JI LONG 2011-5-12
- *°Ñ±¨¾¯¿ª¹Ø×´Ì¬·ÅÈëÄÚ´æ
+ *æŠŠæŠ¥è­¦å¼€å…³çŠ¶æ€æ”¾å…¥å†…å­˜
  */
 public class AlarmSwitchMemory {
 	public static List<AlarmSwitch> alarmSwitchList=new ArrayList<AlarmSwitch>();
 	public static void alarmSwitchToMemory(){
 		AlarmSwitchDao asd=new AlarmSwitchDao();
 		alarmSwitchList=asd.list();
-		//System.out.println("ÄÚ´æÖĞÃÅÏŞ¿ª¹ØĞÅÏ¢£º"+alarmSwitchList);
+		//System.out.println("å†…å­˜ä¸­é—¨é™å¼€å…³ä¿¡æ¯ï¼š"+alarmSwitchList);
 	}
 }

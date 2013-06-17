@@ -28,7 +28,7 @@ import com.bvcom.transmit.vo.TSCInfoVO;
 import com.bvcom.transmit.vo.rec.SetAutoRecordChannelVO;
 
 /**
- * ×Ô¶¯Â¼ÖÆ
+ * è‡ªåŠ¨å½•åˆ¶
  * @author FeiChunteng
  *
  */
@@ -46,9 +46,9 @@ public class SetAutoRecordChannelHandle {
     
     private static SysInfoVO sysInfoVO = coreData.getSysVO();
     
-    private static List SMGSendList = new ArrayList();//SMGµÄÁĞ±íĞÅÏ¢
-    private static List TSCSendList = coreData.getTSCList();//tscµÄÁĞ±íĞÅÏ¢
-    private static List IPMSendList = coreData.getIPMList();//IPMµÄÁĞ±íĞÅÏ¢
+    private static List SMGSendList = new ArrayList();//SMGçš„åˆ—è¡¨ä¿¡æ¯
+    private static List TSCSendList = coreData.getTSCList();//tscçš„åˆ—è¡¨ä¿¡æ¯
+    private static List IPMSendList = coreData.getIPMList();//IPMçš„åˆ—è¡¨ä¿¡æ¯
     
     public SetAutoRecordChannelHandle(String centerDownStr, MSGHeadVO bsData) {
         this.downString = centerDownStr;
@@ -59,14 +59,14 @@ public class SetAutoRecordChannelHandle {
     }
     
     /**
-     * 1. ½âÎöxmlµÃµ½×Ô¶¯Â¼ÏñµÄÈ«²¿ĞÅÏ¢
-     * 2. ×ª·¢µ½TSCºÍSMG
-     * 3. ÏÂ·¢³É¹¦ºó·µ»Ø³É¹¦¡£
+     * 1. è§£æxmlå¾—åˆ°è‡ªåŠ¨å½•åƒçš„å…¨éƒ¨ä¿¡æ¯
+     * 2. è½¬å‘åˆ°TSCå’ŒSMG
+     * 3. ä¸‹å‘æˆåŠŸåè¿”å›æˆåŠŸã€‚
      *
      */
     @SuppressWarnings("unchecked")
 	public void downXML(){
-    	 // ·µ»ØÊı¾İ
+    	 // è¿”å›æ•°æ®
 		@SuppressWarnings("unused")
 		String upString = "";
 		String smgDownString = "";
@@ -74,8 +74,8 @@ public class SetAutoRecordChannelHandle {
         List channelSendList = new ArrayList();//Channel Index List
         
         int channel = 0;
-        TSCSendList = coreData.getTSCList();//tscµÄÁĞ±íĞÅÏ¢
-        IPMSendList = coreData.getIPMList();//IPMµÄÁĞ±íĞÅÏ¢
+        TSCSendList = coreData.getTSCList();//tscçš„åˆ—è¡¨ä¿¡æ¯
+        IPMSendList = coreData.getIPMList();//IPMçš„åˆ—è¡¨ä¿¡æ¯
         SMGSendList = new ArrayList();
         
         String action = "Del";
@@ -84,20 +84,20 @@ public class SetAutoRecordChannelHandle {
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("×Ô¶¯Â¼ÏñStringToXML Error: " + e.getMessage());
+            log.error("è‡ªåŠ¨å½•åƒStringToXML Error: " + e.getMessage());
         }
         SetAutoRecordChannelParse setAutoRecordChannel = new SetAutoRecordChannelParse();
         List<SetAutoRecordChannelVO> AutoRecordlist = setAutoRecordChannel.getDownXml(document);
         
-        // ÅĞ¶ÏÊÇ·ñ×Ô¶¯Â¼ÏñÊÇ·ñ³¬¹ıÅäÖÃÎÄ¼şÖĞµÄ×î´óÖµ(MaxAutoRecordNum)
+        // åˆ¤æ–­æ˜¯å¦è‡ªåŠ¨å½•åƒæ˜¯å¦è¶…è¿‡é…ç½®æ–‡ä»¶ä¸­çš„æœ€å¤§å€¼(MaxAutoRecordNum)
         int count = 0;
-        for(int i=0; i< AutoRecordlist.size(); i++)  {//µÃµ½½âÎöºóµÄxmlµÄ¶ÔÏóÊı×éÖĞµÄÒ»¸ö²Ù×÷
+        for(int i=0; i< AutoRecordlist.size(); i++)  {//å¾—åˆ°è§£æåçš„xmlçš„å¯¹è±¡æ•°ç»„ä¸­çš„ä¸€ä¸ªæ“ä½œ
         	SetAutoRecordChannelVO vo = (SetAutoRecordChannelVO)AutoRecordlist.get(i);
         	if ((vo.getRecordType() == 1 || vo.getRecordType() == 2) && vo.getAction().equals("Set")) {
         		try {
 					if(isHaveProgramInRemapping(vo) != 1) {
 						vo = getHDFlagByProgram(vo);						
-						//ÅĞ¶ÏÊÇ·ñ¸ßÇå  ÊÇµÄ»°¼Ó5  ²»ÊÇµÄ»°¼Ó1
+						//åˆ¤æ–­æ˜¯å¦é«˜æ¸…  æ˜¯çš„è¯åŠ 5  ä¸æ˜¯çš„è¯åŠ 1
 						if(vo.getHDFlag()==0){
 							count++;
 						}else{
@@ -105,7 +105,7 @@ public class SetAutoRecordChannelHandle {
 						}
 					}
 				} catch (DaoException e) {
-					log.error("ÅĞ¶ÏÊÇ·ñÓĞ¸ü¶àµÄ×ÊÔ´Ê§°Ü: " + e.getMessage());
+					log.error("åˆ¤æ–­æ˜¯å¦æœ‰æ›´å¤šçš„èµ„æºå¤±è´¥: " + e.getMessage());
 				}
         		
         	}
@@ -116,22 +116,22 @@ public class SetAutoRecordChannelHandle {
 		} catch (DaoException e2) {
 		}
         
-		//TODO  ´æÔÚÎÊÌâ ÎÒ¸Ä ÎÒ¸Ä ÎÒ¸Ä¸Ä¸Ä 
+		//TODO  å­˜åœ¨é—®é¢˜ æˆ‘æ”¹ æˆ‘æ”¹ æˆ‘æ”¹æ”¹æ”¹ 
 		
 		if (count > sysInfoVO.getMaxAutoRecordNum()) {
-			// ×Ô¶¯Â¼Ïñ³¬¹ıÅäÖÃÎÄ¼şÖĞµÄ×î´óÖµ(MaxAutoRecordNum)
+			// è‡ªåŠ¨å½•åƒè¶…è¿‡é…ç½®æ–‡ä»¶ä¸­çš„æœ€å¤§å€¼(MaxAutoRecordNum)
 	        try {
-	        	int temp=sysInfoVO.getMaxAutoRecordNum()-getAutoRecordNumbers();//Ê£Óà×ÊÔ´
+	        	int temp=sysInfoVO.getMaxAutoRecordNum()-getAutoRecordNumbers();//å‰©ä½™èµ„æº
 	        	upString = setAutoRecordChannel.ReturnXMLByURL(this.bsData, 1,temp);
-	        	log.warn("### ×Ô¶¯Â¼Ïñ7*24Ğ¡Ê±Â¼Ïñ-Ã»ÓĞ¸ü¶àµÄ×ÊÔ´¿ÉÓÃ,Ê£Óà×ÊÔ´Îª£º"+temp+" ### ");
+	        	log.warn("### è‡ªåŠ¨å½•åƒ7*24å°æ—¶å½•åƒ-æ²¡æœ‰æ›´å¤šçš„èµ„æºå¯ç”¨,å‰©ä½™èµ„æºä¸ºï¼š"+temp+" ### ");
 	            utilXML.SendUpXML(upString, bsData);
 	        } catch (CommonException e) {
-	            log.error("×Ô¶¯Â¼Ïñ»Ø¸´Ê§°Ü: " + e.getMessage());
+	            log.error("è‡ªåŠ¨å½•åƒå›å¤å¤±è´¥: " + e.getMessage());
 	        }
 			return;
 		}
         
-        for(int i=0; i< AutoRecordlist.size(); i++)  {//µÃµ½½âÎöºóµÄxmlµÄ¶ÔÏóÊı×éÖĞµÄÒ»¸ö²Ù×÷
+        for(int i=0; i< AutoRecordlist.size(); i++)  {//å¾—åˆ°è§£æåçš„xmlçš„å¯¹è±¡æ•°ç»„ä¸­çš„ä¸€ä¸ªæ“ä½œ
 
         	SetAutoRecordChannelVO vo = (SetAutoRecordChannelVO)AutoRecordlist.get(i);
         	
@@ -139,18 +139,18 @@ public class SetAutoRecordChannelHandle {
         	
         	try {
         		
-        		 // ÎŞÂÛÊÇ²ÉÓÃÄÇ¸ö°æ±¾µÄxmlĞ­Òé×Ô¶¯Â¼Ïñ¶¼ÓÉ×ª·¢×Ô¶¯·ÖÅä½ÚÄ¿ By Bian Jiang 2010.9.6
+        		 // æ— è®ºæ˜¯é‡‡ç”¨é‚£ä¸ªç‰ˆæœ¬çš„xmlåè®®è‡ªåŠ¨å½•åƒéƒ½ç”±è½¬å‘è‡ªåŠ¨åˆ†é…èŠ‚ç›® By Bian Jiang 2010.9.6
     			 if(vo.getAction().equals("Set")) {
     				 
     				 // Get Program HDFlag
     				 vo = getHDFlagByProgram(vo);
     				 
     				 if (vo.getDownIndex() != 0) {
-    					 // ¶«ÈíÏÂ·¢ÓĞÍ¨µÀºÅµÄ´¦Àí
+    					 // ä¸œè½¯ä¸‹å‘æœ‰é€šé“å·çš„å¤„ç†
     					 GetChannelRemappingbyIndex(vo);
     				 }
-    				 /** ¹ãÖİÈ¥µô¸ßÇåÅĞ¶Ï
-					 // ¶«ÈíÏÂ·¢Ã»ÓĞÍ¨µÀºÅµÄ´¦Àí
+    				 /** å¹¿å·å»æ‰é«˜æ¸…åˆ¤æ–­
+					 // ä¸œè½¯ä¸‹å‘æ²¡æœ‰é€šé“å·çš„å¤„ç†
     				 if (vo.getHDFlag() == 1) {
     					 getHDFlagProgramIndex(vo);
     				 } else {
@@ -160,9 +160,9 @@ public class SetAutoRecordChannelHandle {
 					 
     				 GetChannelRemappingbyFreq(vo);
     				 
-    				 // È¡µÃTSCIndexÍ¨µÀºÅ By: Bian Jiang 2011.4.8
+    				 // å–å¾—TSCIndexé€šé“å· By: Bian Jiang 2011.4.8
     				 
-    				 //Ôö¼ÓÅĞ¶ÏÈç¹û¸ÃÂ¼ÏñÖ®Ç°ÒÑ¾­´æÔÚ²¢ÇÒ×´Ì¬ÎªÂ¼ÖÆ Ôò»¹°´ÕÕÔ­À´Í¨µÀÏÂ·¢
+    				 //å¢åŠ åˆ¤æ–­å¦‚æœè¯¥å½•åƒä¹‹å‰å·²ç»å­˜åœ¨å¹¶ä¸”çŠ¶æ€ä¸ºå½•åˆ¶ åˆ™è¿˜æŒ‰ç…§åŸæ¥é€šé“ä¸‹å‘
     				 Statement statement = null;
     				 ResultSet rs = null;
     				 Connection conn = null;
@@ -171,7 +171,7 @@ public class SetAutoRecordChannelHandle {
 	    				 String sql="SELECT * FROM channelremapping where Freq = "+vo.getFreq()+" and ServiceId = "+vo.getServiceID()+" and RecordType = 2 and StatusFlag = 1;";
 	    				 boolean temp=false;
 	    				 int tscindex=0;
-	    				 //Ìí¼Óias index  Ji Long  2011-08-09
+	    				 //æ·»åŠ ias index  Ji Long  2011-08-09
 	    				 int iasindex=0;
 	    				 try {
 	    					 statement=conn.createStatement();
@@ -182,7 +182,7 @@ public class SetAutoRecordChannelHandle {
 	    						 iasindex=rs.getInt("IpmIndex");
 	    					 }
 						} catch (Exception e) {
-							log.error("²éÑ¯×Ô¶¯Â¼Ïñ×´Ì¬´íÎó£º"+e.getMessage());
+							log.error("æŸ¥è¯¢è‡ªåŠ¨å½•åƒçŠ¶æ€é”™è¯¯ï¼š"+e.getMessage());
 						}finally{
 							DaoSupport.close(statement);
 							DaoSupport.close(rs);
@@ -191,16 +191,16 @@ public class SetAutoRecordChannelHandle {
 	    					 vo.setTscIndex(tscindex);
 	    					 vo.setIpmIndex(iasindex);
 	    				 }else{
-	    					 //TODO Èç¹ûÊÇ¸ßÇå½ÚÄ¿ÔòÆ½¾ù·ÖÅä¸ßÇå½ÚÄ¿¸øTSC 
-	    					 //·ñÔò°ÑÍ¬Ò»¸öÆµµãµÄ½ÚÄ¿·¢¸øÍ¬Ò»¸ötsc
+	    					 //TODO å¦‚æœæ˜¯é«˜æ¸…èŠ‚ç›®åˆ™å¹³å‡åˆ†é…é«˜æ¸…èŠ‚ç›®ç»™TSC 
+	    					 //å¦åˆ™æŠŠåŒä¸€ä¸ªé¢‘ç‚¹çš„èŠ‚ç›®å‘ç»™åŒä¸€ä¸ªtsc
 	    					vo.setTscIndex(getTSCIndex(vo.getHDFlag(),vo.getFreq()));
 	    					
-	    					//ias Í¨µÀºÅ Æ½¾ù·ÖÅä  Ò»¸ö¸ßÇåµÈÓÚ5¸ö±êÇå  Ji Long 
+	    					//ias é€šé“å· å¹³å‡åˆ†é…  ä¸€ä¸ªé«˜æ¸…ç­‰äº5ä¸ªæ ‡æ¸…  Ji Long 
 	    					vo.setIpmIndex(getIASIndex(vo.getHDFlag(),vo.getFreq()));
 	    				 }
 	    				 
 	    				 channelIndex = vo.getDevIndex();
-	    				 //statusflag =1 ´ú±íÓĞĞ§µÄ½ÚÄ¿ĞÅÏ¢
+	    				 //statusflag =1 ä»£è¡¨æœ‰æ•ˆçš„èŠ‚ç›®ä¿¡æ¯
 	    				 upChannelRemappingIndex(vo);
 	    				 action = vo.getAction();
     				 } catch (Exception e) {
@@ -209,14 +209,14 @@ public class SetAutoRecordChannelHandle {
 						DaoSupport.close(conn);
 					 }
     			 } else {
-    				 // É¾³ıÍ¨µÀÊ¹ÓÃ±ê¼Ç TODO É¾³ı·µ»ØÍ¨µÀÓĞÎÊÌâ
+    				 // åˆ é™¤é€šé“ä½¿ç”¨æ ‡è®° TODO åˆ é™¤è¿”å›é€šé“æœ‰é—®é¢˜
     				 GetIndexByProgram(vo, true);
     				 channelIndex = vo.getDevIndex();
     				 updateDelFlagChannelRemappingByProgram(vo);
     			 }
         			 
         		
-    			 //½«°å¿¨ºÅ´æÈëchannelSendListÖĞ£¬ÇÒ±£Ö¤channelSendListÎŞÖØ¸´µÄÍ¨µÀºÅ
+    			 //å°†æ¿å¡å·å­˜å…¥channelSendListä¸­ï¼Œä¸”ä¿è¯channelSendListæ— é‡å¤çš„é€šé“å·
     			if (channel != channelIndex && channelIndex != 0) {
     				boolean isHasIndex = false;
     				for(int j=0; j<channelSendList.size(); j++) {
@@ -234,11 +234,11 @@ public class SetAutoRecordChannelHandle {
     				channel = channelIndex;
     			}
 
-//                  *************ÏÂ·¢smg(ĞèÒª¸øÄÄĞ©°å¿¨·¢ĞÅÏ¢)**************
+//                  *************ä¸‹å‘smg(éœ€è¦ç»™å“ªäº›æ¿å¡å‘ä¿¡æ¯)**************
         		CommonUtility.checkSMGChannelIndex(channelIndex, SMGSendList);
         		
 			} catch (DaoException e) {
-				log.info("×Ô¶¯Â¼Ïñ¸üĞÂÊı¾İ¿â´íÎó:"+e.getMessage());
+				log.info("è‡ªåŠ¨å½•åƒæ›´æ–°æ•°æ®åº“é”™è¯¯:"+e.getMessage());
 				//e.printStackTrace();
 			}
         }
@@ -246,17 +246,17 @@ public class SetAutoRecordChannelHandle {
         
         if (channelSendList.size() != 0) {
 	        	
-	        // ¹ãÖİ¼à²â2.0°æ±¾ Í¨¹ıÍ¨µÀÓ³Éä
-        	// ÎŞÂÛÊÇ²ÉÓÃÄÇ¸ö°æ±¾µÄxmlĞ­Òé×Ô¶¯Â¼Ïñ¶¼ÓÉ×ª·¢×Ô¶¯·ÖÅä½ÚÄ¿ By Bian Jiang 2010.9.6
+	        // å¹¿å·ç›‘æµ‹2.0ç‰ˆæœ¬ é€šè¿‡é€šé“æ˜ å°„
+        	// æ— è®ºæ˜¯é‡‡ç”¨é‚£ä¸ªç‰ˆæœ¬çš„xmlåè®®è‡ªåŠ¨å½•åƒéƒ½ç”±è½¬å‘è‡ªåŠ¨åˆ†é…èŠ‚ç›® By Bian Jiang 2010.9.6
 	        //if (this.bsData.getVersion().equals(CommonUtility.XML_VERSION_2_0)) {
 	        	try {
 	        		List<SetAutoRecordChannelVO> AutoRecordlistSMGNew = GetProgramInfoByIndex(channelSendList, true);
 	        		List<SetAutoRecordChannelVO> AutoRecordlistNew = GetProgramInfoByDownIndex(channelSendList, true);	        		
 	    	       
 	    	        
-		        	// Í¨¹ıÍ¨µÀºÅÈ¡µÃËùÓĞ½ÚÄ¿ĞÅÏ¢
+		        	// é€šè¿‡é€šé“å·å–å¾—æ‰€æœ‰èŠ‚ç›®ä¿¡æ¯
 		        	if (action.equals("Del")) {
-		        		//by tqy 2012-05-23 :Ö»ÏÂ·¢É¾³ıµÄ½ÚÄ¿ĞÅÏ¢
+		        		//by tqy 2012-05-23 :åªä¸‹å‘åˆ é™¤çš„èŠ‚ç›®ä¿¡æ¯
 		        		
 		        		smgDownString = setAutoRecordChannel.createForDownXML(this.bsData, AutoRecordlistSMGNew, "Set", true);
 		        		//this.downString = setAutoRecordChannel.createForDownXML(this.bsData, AutoRecordlistNew, "Del",false);
@@ -270,7 +270,7 @@ public class SetAutoRecordChannelHandle {
 		        	}
 		        	
 				} catch (Exception e) {
-					log.error("Í¨¹ıÍ¨µÀÈ¡µÃ½ÚÄ¿ĞÅÏ¢³ö´í: " + e.getMessage());
+					log.error("é€šè¿‡é€šé“å–å¾—èŠ‚ç›®ä¿¡æ¯å‡ºé”™: " + e.getMessage());
 				}
 	        //}
 	        
@@ -279,18 +279,18 @@ public class SetAutoRecordChannelHandle {
 	        String retString = "";
 	        
 	        int isError = 0;
-	        //TODO TSCÏÂ·¢
+	        //TODO TSCä¸‹å‘
 	        for(int t=0;t<TSCSendList.size();t++){
 	            TSCInfoVO tsc = (TSCInfoVO) TSCSendList.get(t);
 	            try {
 	            	if (tsc.getRecordType() != 1 && tsc.getRecordType() != 2) {
 	            		// Add By Bian Jiang 2011.1.28
-	            		// Èç¹û²»ÊÇ×Ô¶¯Â¼Ïñ»òÒìÌ¬Â¼Ïñ¾Í½øĞĞÏÂÒ»¸ö
+	            		// å¦‚æœä¸æ˜¯è‡ªåŠ¨å½•åƒæˆ–å¼‚æ€å½•åƒå°±è¿›è¡Œä¸‹ä¸€ä¸ª
 	            		continue;
 	            	}
-	            	//Ô­Óï¾ä²»ÄÜ±£Ö¤Ò»¸ö°å¿¨Ö»·¢Ò»´Î£ºBY TQY 
+	            	//åŸè¯­å¥ä¸èƒ½ä¿è¯ä¸€ä¸ªæ¿å¡åªå‘ä¸€æ¬¡ï¼šBY TQY 
 	                if (!url.equals(tsc.getURL().trim())) {
-	                    // ×Ô¶¯Â¼ÏñÏÂ·¢
+	                    // è‡ªåŠ¨å½•åƒä¸‹å‘
 	                	retString = utilXML.SendDownXML(this.downString, tsc.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
 	                    url = tsc.getURL().trim();
 	                }
@@ -302,17 +302,17 @@ public class SetAutoRecordChannelHandle {
 	                }
 	                
 	            } catch (CommonException e) {
-	                log.error("ÏÂ·¢×Ô¶¯Â¼Ïñµ½TSC³ö´í£º" + tsc.getURL());
+	                log.error("ä¸‹å‘è‡ªåŠ¨å½•åƒåˆ°TSCå‡ºé”™ï¼š" + tsc.getURL());
 	            }
 	        }
 	        
-	        /* IPM ²»ÓÃ·¢ËÍ */
+	        /* IPM ä¸ç”¨å‘é€ */
 	        for(int t=0;t<IPMSendList.size();t++){
 	        	IPMInfoVO ipm = (IPMInfoVO) IPMSendList.get(t);
 	            try {
 	            	if(ipm.getRecordType()==2){
 	            		if (!url.equals(ipm.getURL().trim())) {
-	            			// ×Ô¶¯Â¼ÏñÏÂ·¢
+	            			// è‡ªåŠ¨å½•åƒä¸‹å‘
 	            			retString = utilXML.SendDownXML(this.downString, ipm.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
 	            			url = ipm.getURL().trim();
 	            			if(!retString.equals("")) {
@@ -325,7 +325,7 @@ public class SetAutoRecordChannelHandle {
 	            	}
 	                
 	            } catch (CommonException e) {
-	                log.error("ÏÂ·¢×Ô¶¯Â¼Ïñµ½IPM³ö´í£º" + ipm.getURL());
+	                log.error("ä¸‹å‘è‡ªåŠ¨å½•åƒåˆ°IPMå‡ºé”™ï¼š" + ipm.getURL());
 	            }
 	        }
 	        
@@ -338,10 +338,10 @@ public class SetAutoRecordChannelHandle {
 	        try {
 	            utilXML.SendUpXML(upString, bsData);
 	        } catch (CommonException e) {
-	            log.error("×Ô¶¯Â¼Ïñ»Ø¸´Ê§°Ü: " + e.getMessage());
+	            log.error("è‡ªåŠ¨å½•åƒå›å¤å¤±è´¥: " + e.getMessage());
 	        }
 	       
-	        //1£ºÃ»ÓĞ¸øTSCºÍIPM·¢ËÍ³É¹¦Ê±²»ÔÚ¸ø°å¿¨·¢ĞÅÏ¢
+	        //1ï¼šæ²¡æœ‰ç»™TSCå’ŒIPMå‘é€æˆåŠŸæ—¶ä¸åœ¨ç»™æ¿å¡å‘ä¿¡æ¯
 	        if(AutoRecordlist.size() > 0 && isError==0) {
 	        
 		        for(int l=0;l<SMGSendList.size();l++)
@@ -351,13 +351,13 @@ public class SetAutoRecordChannelHandle {
 		                if (!url.equals(smg.getURL().trim())) {
 		                smgDownString = smgDownString.replaceAll("QAM=\"64\"", "QAM=\"QAM64\"");
 		            	smgDownString = smgDownString.replaceAll("QAM=\"\"", "QAM=\"QAM64\"");
-		                // ×Ô¶¯Â¼ÏñÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+		                // è‡ªåŠ¨å½•åƒä¸‹å‘ timeout 1000*30 ä¸‰åç§’
 		                utilXML.SendDownNoneReturn(setAutoRecordChannel.replaceString(smgDownString), smg.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
 		                url = smg.getURL().trim();
 		                }
-		                // ¸ßÇåÏà¹ØÅäÖÃ
+		                // é«˜æ¸…ç›¸å…³é…ç½®
 		                if (smg.getHDFlag() == 1 && smg.getHDURL() != null && !smg.getHDURL().trim().equals("")) {
-		                	// ¸ßÇå×ªÂëÏÂ·¢
+		                	// é«˜æ¸…è½¬ç ä¸‹å‘
 		                	utilXML.SendDownNoneReturn(setAutoRecordChannel.replaceString(smgDownString), smg.getHDURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
 		                }
 		                try {
@@ -366,10 +366,10 @@ public class SetAutoRecordChannelHandle {
 	
 						}
 		            } catch (CommonException e) {
-		                log.error("ÏÂ·¢×Ô¶¯Â¼Ïñµ½SMG³ö´í£º" + smg.getURL());
+		                log.error("ä¸‹å‘è‡ªåŠ¨å½•åƒåˆ°SMGå‡ºé”™ï¼š" + smg.getURL());
 		            }
 		            
-		            //¸üĞÂ°å¿¨µÄURLµØÖ·
+		            //æ›´æ–°æ¿å¡çš„URLåœ°å€
 		            try {
 		            	updateSMGURLByDevIndex(smg.getIndex(), smg.getURL());
 		            } catch (Exception ex) {
@@ -380,8 +380,8 @@ public class SetAutoRecordChannelHandle {
 	        } 
 	        else	
 	        {
-	        	//·¢ËÍÊ§°Üºó¸üĞÂÊı¾İ¿âdelflag=1Êı¾İÒÑ¾­É¾³ı
-	            for(int i=0; i< AutoRecordlist.size(); i++)  {//µÃµ½½âÎöºóµÄxmlµÄ¶ÔÏóÊı×éÖĞµÄÒ»¸ö²Ù×÷
+	        	//å‘é€å¤±è´¥åæ›´æ–°æ•°æ®åº“delflag=1æ•°æ®å·²ç»åˆ é™¤
+	            for(int i=0; i< AutoRecordlist.size(); i++)  {//å¾—åˆ°è§£æåçš„xmlçš„å¯¹è±¡æ•°ç»„ä¸­çš„ä¸€ä¸ªæ“ä½œ
 
 	            	SetAutoRecordChannelVO vo = (SetAutoRecordChannelVO)AutoRecordlist.get(i);
 	            	try {
@@ -392,19 +392,19 @@ public class SetAutoRecordChannelHandle {
 	            }
 	        }
 		     
-	        //¶ÔÎŞÓÃµÄÊı¾İĞÅÏ¢½øĞĞ»Ö¸´ delflag =1  ÎŞÓÃ£¨ÒÑ¾­£©µÄ½ÚÄ¿ĞÅÏ¢
+	        //å¯¹æ— ç”¨çš„æ•°æ®ä¿¡æ¯è¿›è¡Œæ¢å¤ delflag =1  æ— ç”¨ï¼ˆå·²ç»ï¼‰çš„èŠ‚ç›®ä¿¡æ¯
 		    try {
-		    	// ¸üĞÂÊı¾İ¿â
+		    	// æ›´æ–°æ•°æ®åº“
 			   delChannelRemappingByProgram();
 			} catch (DaoException e1) {
 				
 			}
         } else {
         	//BY TQY 2012-04-12
-        	//ÏµÍ³Ä¬ÈÏÎªÉ¾³ıËùÓĞ½ÚÄ¿ĞÅÏ¢Ğ­Òé´¦Àí
-        	//1:Æ½Ì¨ÉèÖÃÍêºó£¬ÏÈÉÏ±¨¸øÆ½Ì¨,·ñÔòĞèÒªµÈ´ıÊ±¼ä±È½Ï³¤
-        	//2:ÔÚÏÂ·¢¸øËùÓĞµÄSMG°å¿¨½øĞĞÉ¾³ıÃüÁî
-        	//3:Í¬ÑùÒ²Òª¸øTSCÏÂ·¢É¾³ıËùÓĞ×Ô¶¯Â¼ÖÆĞÅÏ¢¡¢JAVA×ª·¢Î´´¦Àí
+        	//ç³»ç»Ÿé»˜è®¤ä¸ºåˆ é™¤æ‰€æœ‰èŠ‚ç›®ä¿¡æ¯åè®®å¤„ç†
+        	//1:å¹³å°è®¾ç½®å®Œåï¼Œå…ˆä¸ŠæŠ¥ç»™å¹³å°,å¦åˆ™éœ€è¦ç­‰å¾…æ—¶é—´æ¯”è¾ƒé•¿
+        	//2:åœ¨ä¸‹å‘ç»™æ‰€æœ‰çš„SMGæ¿å¡è¿›è¡Œåˆ é™¤å‘½ä»¤
+        	//3:åŒæ ·ä¹Ÿè¦ç»™TSCä¸‹å‘åˆ é™¤æ‰€æœ‰è‡ªåŠ¨å½•åˆ¶ä¿¡æ¯ã€JAVAè½¬å‘æœªå¤„ç†
         	if(action.equals("Del")) {
 	    		upString = setAutoRecordChannel.ReturnXMLByURL(this.bsData, 0,-1);
         	} else {
@@ -413,28 +413,28 @@ public class SetAutoRecordChannelHandle {
 	        try {
 	            utilXML.SendUpXML(upString, bsData);
 	        } catch (CommonException e) {
-	            log.error("×Ô¶¯Â¼Ïñ»Ø¸´Ê§°Ü: " + e.getMessage());
+	            log.error("è‡ªåŠ¨å½•åƒå›å¤å¤±è´¥: " + e.getMessage());
 	        }
         	
         }
         
         if(AutoRecordlist.size() == 0) {
-        	// ×Ô¶¨ÒåĞ­Òé£¬ ÈÎÎñÂ¼ÏñÉ¾³ı
-        	log.info("×Ô¶¨ÒåĞ­Òé£¬ ÈÎÎñÂ¼ÏñÉ¾³ı Start");
+        	// è‡ªå®šä¹‰åè®®ï¼Œ ä»»åŠ¡å½•åƒåˆ é™¤
+        	log.info("è‡ªå®šä¹‰åè®®ï¼Œ ä»»åŠ¡å½•åƒåˆ é™¤ Start");
             MemCoreData coreData = MemCoreData.getInstance();
-            // È¡µÃSMGÅäÖÃÎÄ¼şĞÅÏ¢
+            // å–å¾—SMGé…ç½®æ–‡ä»¶ä¿¡æ¯
             List SMGCardList = coreData.getSMGCardList();
             
             for (int i=0; i< SMGCardList.size(); i++) {
                 SMGCardInfoVO smg = (SMGCardInfoVO) SMGCardList.get(i);
                 try {
-                    // ×Ô¶¨ÒåĞ­Òé£¬ ÈÎÎñÂ¼ÏñÉ¾³ı
+                    // è‡ªå®šä¹‰åè®®ï¼Œ ä»»åŠ¡å½•åƒåˆ é™¤
                     utilXML.SendDownNoneReturn(this.downString, smg.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
                 } catch (CommonException e) {
-                    log.error("×Ô¶¨ÒåĞ­Òé, ÈÎÎñÂ¼ÏñÉ¾³ıÏòSMGÏÂ·¢ÈÎÎñÂ¼Ïñ³ö´í£º" + smg.getURL());
+                    log.error("è‡ªå®šä¹‰åè®®, ä»»åŠ¡å½•åƒåˆ é™¤å‘SMGä¸‹å‘ä»»åŠ¡å½•åƒå‡ºé”™ï¼š" + smg.getURL());
                 }
-            } // SMG ÏÂ·¢Ö¸Áî END
-            log.info("×Ô¶¨ÒåĞ­Òé£¬ ÈÎÎñÂ¼ÏñÉ¾³ı End");
+            } // SMG ä¸‹å‘æŒ‡ä»¤ END
+            log.info("è‡ªå®šä¹‰åè®®ï¼Œ ä»»åŠ¡å½•åƒåˆ é™¤ End");
         }
         
 	        bsData = null;
@@ -465,21 +465,21 @@ public class SetAutoRecordChannelHandle {
 		strBuff.append("AudioPID = " + vo.getAudioPID() + ", ");
 		strBuff.append("HDFlag = " + vo.getHDFlag() + ", ");
 		strBuff.append("lasttime = '" + CommonUtility.getDateTime() + "', ");
-		strBuff.append("indexstatus = 2 "); // Ä¬ÈÏ×Ô¶¯Â¼ÖÆ
+		strBuff.append("indexstatus = 2 "); // é»˜è®¤è‡ªåŠ¨å½•åˆ¶
 		strBuff.append("where channelindex = " + vo.getIndex());
-		//log.info("×Ô¶¯Â¼Ïñ¸üĞÂÊı¾İ¿â£º" + strBuff.toString());
+		//log.info("è‡ªåŠ¨å½•åƒæ›´æ–°æ•°æ®åº“ï¼š" + strBuff.toString());
 
 		try {
 			statement = conn.createStatement();
 			statement.executeUpdate(strBuff.toString());
 
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ¸üĞÂÊı¾İ¿â´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒæ›´æ–°æ•°æ®åº“é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 		}
 		strBuff = null;
-		log.info("×Ô¶¯Â¼Ïñ¸üĞÂÊı¾İ¿â³É¹¦!");
+		log.info("è‡ªåŠ¨å½•åƒæ›´æ–°æ•°æ®åº“æˆåŠŸ!");
 		DaoSupport.close(conn);
 
 	}
@@ -511,18 +511,18 @@ public class SetAutoRecordChannelHandle {
 			statement.executeUpdate(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ²åÈëÍ¨µÀÊı¾İ¿â´íÎó: " + e.getMessage());
-			log.error("×Ô¶¯Â¼Ïñ²åÈëÍ¨µÀÊı¾İ¿â´íÎó SQL: " + strBuff.toString());
+			log.error("è‡ªåŠ¨å½•åƒæ’å…¥é€šé“æ•°æ®åº“é”™è¯¯: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒæ’å…¥é€šé“æ•°æ®åº“é”™è¯¯ SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(statement);
 		}
 		strBuff = null;
-		//log.info("×Ô¶¯Â¼Ïñ²åÈëÍ¨µÀÊı¾İ¿â³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("è‡ªåŠ¨å½•åƒæ’å…¥é€šé“æ•°æ®åº“æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		DaoSupport.close(conn);
 	}
     
     /**
-     * ÔÚ×Ô¶¯Â¼ÏñÉ¾³ıµÄÊ±, É¾³ıÏà¹Ø½ÚÄ¿ĞÅÏ¢
+     * åœ¨è‡ªåŠ¨å½•åƒåˆ é™¤çš„æ—¶, åˆ é™¤ç›¸å…³èŠ‚ç›®ä¿¡æ¯
      * @param vo
      * @param index
      * @throws DaoException
@@ -545,13 +545,13 @@ public class SetAutoRecordChannelHandle {
 			statement.execute(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼ÏñÉ¾³ı½ÚÄ¿ĞÅÏ¢´íÎó: " + e.getMessage());
-			log.error("×Ô¶¯Â¼ÏñÉ¾³ı½ÚÄ¿ĞÅÏ¢´íÎó SQL: " + strBuff.toString());
+			log.error("è‡ªåŠ¨å½•åƒåˆ é™¤èŠ‚ç›®ä¿¡æ¯é”™è¯¯: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒåˆ é™¤èŠ‚ç›®ä¿¡æ¯é”™è¯¯ SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(statement);
 		}
 		strBuff = null;
-		//log.info("×Ô¶¯Â¼ÏñÉ¾³ı½ÚÄ¿ĞÅÏ¢³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("è‡ªåŠ¨å½•åƒåˆ é™¤èŠ‚ç›®ä¿¡æ¯æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		DaoSupport.close(conn);
 	}
     private void upFreqByIndex(SetAutoRecordChannelVO vo, int index) throws DaoException {
@@ -589,13 +589,13 @@ public class SetAutoRecordChannelHandle {
 			statement.executeUpdate(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ¸üĞÂÍ¨µÀÊı¾İ¿â´íÎó: " + e.getMessage());
-			log.error("×Ô¶¯Â¼Ïñ¸üĞÂÍ¨µÀÊı¾İ¿â´íÎó SQL: " + strBuff.toString());
+			log.error("è‡ªåŠ¨å½•åƒæ›´æ–°é€šé“æ•°æ®åº“é”™è¯¯: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒæ›´æ–°é€šé“æ•°æ®åº“é”™è¯¯ SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(statement);
 		}
 		strBuff = null;
-		//log.info("×Ô¶¯Â¼Ïñ¸üĞÂÍ¨µÀÊı¾İ¿â³É¹¦!");
+		//log.info("è‡ªåŠ¨å½•åƒæ›´æ–°é€šé“æ•°æ®åº“æˆåŠŸ!");
 		DaoSupport.close(conn);
 	}
     
@@ -610,7 +610,7 @@ public class SetAutoRecordChannelHandle {
 		
 		for(int i=0; i<downChannelSendList.size(); i++) {
 			StringBuffer strBuff = new StringBuffer();
-			// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+			// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 			strBuff.append("select *  from channelremapping where DevIndex = " + downChannelSendList.get(i));
 			
 			strBuff.append("  order by channelindex");
@@ -661,7 +661,7 @@ public class SetAutoRecordChannelHandle {
 				}
 				
 			} catch (Exception e) {
-				log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó: " + e.getMessage());
+				log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯: " + e.getMessage());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
@@ -688,7 +688,7 @@ public class SetAutoRecordChannelHandle {
 		
 		for(int i=0; i<channelSendList.size(); i++) {
 			StringBuffer strBuff = new StringBuffer();
-			// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+			// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 			if (isChannelRemapping) {
 				strBuff.append("select *  from channelremapping where DevIndex = " + channelSendList.get(i) + " and DelFlag = 0 ");
 			} else {
@@ -743,7 +743,7 @@ public class SetAutoRecordChannelHandle {
 				}
 				
 			} catch (Exception e) {
-				log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó: " + e.getMessage());
+				log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯: " + e.getMessage());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
@@ -768,7 +768,7 @@ public class SetAutoRecordChannelHandle {
 		
 		for(int i=0; i<channelSendList.size(); i++) {
 			StringBuffer strBuff = new StringBuffer();
-			// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+			// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 			if (isChannelRemapping) {
 				strBuff.append("select *  from channelremapping where DevIndex = " + channelSendList.get(i) + " and DelFlag = 1 ");
 			} else {
@@ -823,7 +823,7 @@ public class SetAutoRecordChannelHandle {
 				}
 				
 			} catch (Exception e) {
-				log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó: " + e.getMessage());
+				log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯: " + e.getMessage());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
@@ -847,7 +847,7 @@ public class SetAutoRecordChannelHandle {
 
 		ResultSet rs = null;
 		
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		if (isChannelRemapping) {
 			strBuff.append("select channelindex, DevIndex, TscIndex  from channelremapping where Freq = " + vo.getFreq() + " and ServiceID = " + vo.getServiceID());
 		} else {
@@ -872,14 +872,14 @@ public class SetAutoRecordChannelHandle {
 			}
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
 		}
 		strBuff = null;
-		//log.info("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		
 		return;
 	}
@@ -895,10 +895,10 @@ public class SetAutoRecordChannelHandle {
 
 		ResultSet rs = null;
 		
-		// ¼à²âÖĞĞÄÈıÆÚ
+		// ç›‘æµ‹ä¸­å¿ƒä¸‰æœŸ
 		//strBuff.append("select channelindex,channelFlag  from channelprogramstatus where Freq = " + vo.getFreq() + " and ServiceID = " + vo.getServiceID());
 		
-		// Í³Ò»ÆµµãÍ¬Ê±¼à²â¶àÌ×½ÚÄ¿
+		// ç»Ÿä¸€é¢‘ç‚¹åŒæ—¶ç›‘æµ‹å¤šå¥—èŠ‚ç›®
 		strBuff.append("select channelindex  from channelprogramstatus where Freq = " + vo.getFreq());
 		
 		try {
@@ -932,7 +932,7 @@ public class SetAutoRecordChannelHandle {
 						vo.setIndex(index);
 						return index;
 					}
-					// TODO Index ÓĞ¸ö×î´óÖµĞèÒªÔÚÅäÖÃÎÄ¼şÖĞÅäÖÃ
+					// TODO Index æœ‰ä¸ªæœ€å¤§å€¼éœ€è¦åœ¨é…ç½®æ–‡ä»¶ä¸­é…ç½®
 					index += 1;
 				}
 			}
@@ -958,25 +958,25 @@ public class SetAutoRecordChannelHandle {
 //				strBuff = new StringBuffer();
 //				strBuff.append("update channelprogramstatus c set channelflag = 0 where channelindex != 1 and channelindex != 11 and channelindex != 12 and channelindex != 27 and channelindex != 28 and channelindex != 29 and channelindex != 30 and channelindex != 31");
 //				statement.executeUpdate(strBuff.toString());
-//				log.info("Çå³ı×Ô¶¯Â¼Ïñ±ê¼Ç");
+//				log.info("æ¸…é™¤è‡ªåŠ¨å½•åƒæ ‡è®°");
 //			}
 
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ²éÑ¯Í¨µÀÊı¾İ¿â´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒæŸ¥è¯¢é€šé“æ•°æ®åº“é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
 		}
 		strBuff = null;
-		//log.info("×Ô¶¯Â¼Ïñ²éÑ¯Í¨µÀÊı¾İ¿â³É¹¦!");
+		//log.info("è‡ªåŠ¨å½•åƒæŸ¥è¯¢é€šé“æ•°æ®åº“æˆåŠŸ!");
 		
 		vo.setIndex(index);
 		return index;
 	}
     
     /**
-     * Í¨µÀ·ÖÅäº¯Êı£¬Í¨¹ıÉÏ²ã·¢ÉúµÄĞÅÏ¢×Ô¶¯·ÖÅäÏà¹ØÍ¨µÀ
+     * é€šé“åˆ†é…å‡½æ•°ï¼Œé€šè¿‡ä¸Šå±‚å‘ç”Ÿçš„ä¿¡æ¯è‡ªåŠ¨åˆ†é…ç›¸å…³é€šé“
      * @param vo
      * @throws DaoException
      */
@@ -995,19 +995,19 @@ public class SetAutoRecordChannelHandle {
 		ResultSet rs = null;
 		
 		strBuff = new StringBuffer();
-		//ÊÇ·ñÎªÒ»¶ÔÒ»µÄ½ÚÄ¿ĞÅÏ¢
+		//æ˜¯å¦ä¸ºä¸€å¯¹ä¸€çš„èŠ‚ç›®ä¿¡æ¯
 		strBuff.append("select DevIndex, channelindex from channelremapping where delflag =0 and freq = " + vo.getFreq() + " and ServiceID = " + vo.getServiceID());
 		
-		System.out.println("ÊÇ·ñÎªÒ»¶ÔÒ»µÄ½ÚÄ¿ĞÅÏ¢{freq+serviceid}:"+strBuff.toString());
+		System.out.println("æ˜¯å¦ä¸ºä¸€å¯¹ä¸€çš„èŠ‚ç›®ä¿¡æ¯{freq+serviceid}:"+strBuff.toString());
 		try {
 			statement = conn.createStatement();
 			
 			rs = statement.executeQuery(strBuff.toString());
 			
-			// ¿âÖĞ´æÔÚÏà¹ØµÄ½ÚÄ¿·µ»ØÏà¹ØµÄÉè±¸Í¨µÀ
+			// åº“ä¸­å­˜åœ¨ç›¸å…³çš„èŠ‚ç›®è¿”å›ç›¸å…³çš„è®¾å¤‡é€šé“
 			while(rs.next()){
 				devIndex = Integer.parseInt(rs.getString("DevIndex"));
-				//by tqy :2012-05-15 µ±Ç°Í¨µÀÍ£ÓÃ£¬»ñÈ¡ÏÂÒ»¸öÍ¨µÀĞÅÏ¢
+				//by tqy :2012-05-15 å½“å‰é€šé“åœç”¨ï¼Œè·å–ä¸‹ä¸€ä¸ªé€šé“ä¿¡æ¯
 //				if(CommonUtility.checkSMGChannelStatus(devIndex)){
 //					continue;
 //				}
@@ -1018,8 +1018,8 @@ public class SetAutoRecordChannelHandle {
 				return;
 			}
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó1: " + e.getMessage());
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó1 SQL: " + strBuff.toString());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯1: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯1 SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
@@ -1028,24 +1028,24 @@ public class SetAutoRecordChannelHandle {
 			}
 		}
 		
-		// Í¨¹ıFreq ºÍ StatusFlag À´È·¶¨Ïà¹ØµÄÆµµãÊÇ·ñ·ÖÅä
+		// é€šè¿‡Freq å’Œ StatusFlag æ¥ç¡®å®šç›¸å…³çš„é¢‘ç‚¹æ˜¯å¦åˆ†é…
 		strBuff = new StringBuffer();
 		// select * from channelremapping where devindex in (select DevIndex from channelremapping where freq = 259000) and statusflag = 0
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		//strBuff.append("select DevIndex, channelindex from channelremapping where freq = " + vo.getFreq() + " and statusflag = 0");
 		
-		//ÊÇ·ñÎªÎ´Ê¹ÓÃµÄÆµµãÍ¨µÀĞÅÏ¢
+		//æ˜¯å¦ä¸ºæœªä½¿ç”¨çš„é¢‘ç‚¹é€šé“ä¿¡æ¯
 		strBuff.append("select * from channelremapping where devindex in (select DevIndex from channelremapping where delflag =0 and freq = " + vo.getFreq() + ") and delflag =0 and statusflag = 0");
-		System.out.println("ÊÇ·ñÎªÎ´Ê¹ÓÃµÄÆµµãÍ¨µÀĞÅÏ¢{freq}"+strBuff.toString());
+		System.out.println("æ˜¯å¦ä¸ºæœªä½¿ç”¨çš„é¢‘ç‚¹é€šé“ä¿¡æ¯{freq}"+strBuff.toString());
 		try {
 			statement = conn.createStatement();
 			
 			rs = statement.executeQuery(strBuff.toString());
 			
-			// ¿âÖĞ´æÔÚÏà¹ØµÄ½ÚÄ¿·µ»ØÏà¹ØµÄÉè±¸Í¨µÀ
+			// åº“ä¸­å­˜åœ¨ç›¸å…³çš„èŠ‚ç›®è¿”å›ç›¸å…³çš„è®¾å¤‡é€šé“
 			while(rs.next()){
 				devIndex = Integer.parseInt(rs.getString("DevIndex"));
-				//by tqy :2012-05-15 µ±Ç°Í¨µÀÍ£ÓÃ£¬»ñÈ¡ÏÂÒ»¸öÍ¨µÀĞÅÏ¢
+				//by tqy :2012-05-15 å½“å‰é€šé“åœç”¨ï¼Œè·å–ä¸‹ä¸€ä¸ªé€šé“ä¿¡æ¯
 //				if(CommonUtility.checkSMGChannelStatus(devIndex)){
 //					continue;
 //				}
@@ -1056,8 +1056,8 @@ public class SetAutoRecordChannelHandle {
 				return;
 			}
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó2: " + e.getMessage());
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó2 SQL: " + strBuff.toString());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯2: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯2 SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
@@ -1066,22 +1066,22 @@ public class SetAutoRecordChannelHandle {
 			}
 		}
 		
-		// Ã»ÓĞÈ¡µÃÏà¹ØµÄÍ¨µÀ£¬ĞèÒª´ÓĞÂ·ÖÅäÒ»¸öĞÂµÄSMG°å¿¨
+		// æ²¡æœ‰å–å¾—ç›¸å…³çš„é€šé“ï¼Œéœ€è¦ä»æ–°åˆ†é…ä¸€ä¸ªæ–°çš„SMGæ¿å¡
 		strBuff = new StringBuffer();
 //		List<Integer> devIndexList = new ArrayList();
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		// SELECT * FROM channelremapping c where statusflag = 0 and Devindex not in (select devindex from channelremapping where statusflag = 1) group by devindex
 		strBuff.append("SELECT * FROM channelremapping c where delflag =0 and statusflag = 0 and Devindex not in (select devindex from channelremapping where delflag =0 and statusflag = 1) group by devindex");
-		System.out.println("Ã»ÓĞÈ¡µÃÏà¹ØµÄÍ¨µÀ£¬ĞèÒª´ÓĞÂ·ÖÅäÒ»¸öĞÂµÄSMG°å¿¨:"+strBuff.toString());
+		System.out.println("æ²¡æœ‰å–å¾—ç›¸å…³çš„é€šé“ï¼Œéœ€è¦ä»æ–°åˆ†é…ä¸€ä¸ªæ–°çš„SMGæ¿å¡:"+strBuff.toString());
 		try {
 			statement = conn.createStatement();
 			
 			rs = statement.executeQuery(strBuff.toString());
 			
-			// È¡µÃÃ»ÓĞ±»·ÖÅäµÄSMGÉè±¸
+			// å–å¾—æ²¡æœ‰è¢«åˆ†é…çš„SMGè®¾å¤‡
 			while(rs.next()){
 				devIndex = Integer.parseInt(rs.getString("DevIndex"));
-				//by tqy :2012-05-15 µ±Ç°Í¨µÀÍ£ÓÃ£¬»ñÈ¡ÏÂÒ»¸öÍ¨µÀĞÅÏ¢
+				//by tqy :2012-05-15 å½“å‰é€šé“åœç”¨ï¼Œè·å–ä¸‹ä¸€ä¸ªé€šé“ä¿¡æ¯
 //				if(CommonUtility.checkSMGChannelStatus(devIndex)){
 //					continue;
 //				}
@@ -1095,8 +1095,8 @@ public class SetAutoRecordChannelHandle {
 				
 			}
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó3: " + e.getMessage());
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó3 SQL: " + strBuff.toString());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯3: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯3 SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
@@ -1107,9 +1107,9 @@ public class SetAutoRecordChannelHandle {
 		
 		
 //		for(int i=0; i<devIndexList.size(); i++) {
-//			// Ã»ÓĞÈ¡µÃÏà¹ØµÄÍ¨µÀ£¬ĞèÒª´ÓĞÂ·ÖÅäÒ»¸öĞÂµÄSMG°å¿¨
+//			// æ²¡æœ‰å–å¾—ç›¸å…³çš„é€šé“ï¼Œéœ€è¦ä»æ–°åˆ†é…ä¸€ä¸ªæ–°çš„SMGæ¿å¡
 //			strBuff = new StringBuffer();
-//			// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+//			// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 //			// SELECT count(DevIndex) FROM channelremapping c where statusflag = 0 and devindex = 1
 //			strBuff.append("SELECT count(DevIndex), channelindex FROM channelremapping c where statusflag = 0 and devindex = " + devIndexList.get(i) + " order by channelindex");
 //			
@@ -1118,9 +1118,9 @@ public class SetAutoRecordChannelHandle {
 //				
 //				rs = statement.executeQuery(strBuff.toString());
 //				
-//				// È¡µÃÃ»ÓĞ±»·ÖÅäµÄSMGÉè±¸
+//				// å–å¾—æ²¡æœ‰è¢«åˆ†é…çš„SMGè®¾å¤‡
 //				while(rs.next()){
-//					// ±íÊ¾Ò»¸öÆµµãÍ¬Ê±´ò¼¸Ì×½ÚÄ¿£¬ĞèÒªÔö¼ÓÅäÖÃÎÄ¼ş
+//					// è¡¨ç¤ºä¸€ä¸ªé¢‘ç‚¹åŒæ—¶æ‰“å‡ å¥—èŠ‚ç›®ï¼Œéœ€è¦å¢åŠ é…ç½®æ–‡ä»¶
 //					if (Integer.parseInt(rs.getString("count(DevIndex)")) == sysInfoVO.getMAXProgram()) {
 //						devIndex = devIndexList.get(i);
 //						vo.setDevIndex(devIndex);
@@ -1133,8 +1133,8 @@ public class SetAutoRecordChannelHandle {
 //
 //				}
 //			} catch (Exception e) {
-//				log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó4: " + e.getMessage());
-//				log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó4 SQL: " + strBuff.toString());
+//				log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯4: " + e.getMessage());
+//				log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯4 SQL: " + strBuff.toString());
 //			} finally {
 //				DaoSupport.close(rs);
 //				DaoSupport.close(statement);
@@ -1147,7 +1147,7 @@ public class SetAutoRecordChannelHandle {
 		strBuff = null;
 		DaoSupport.close(conn);
 		
-		//log.info("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		return;
 	}
     
@@ -1163,7 +1163,7 @@ public class SetAutoRecordChannelHandle {
 
 		ResultSet rs = null;
 		
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("select DevIndex, channelindex, Freq from channelremapping where DownIndex = " + vo.getDownIndex());
 		
 		try {
@@ -1171,7 +1171,7 @@ public class SetAutoRecordChannelHandle {
 			
 			rs = statement.executeQuery(strBuff.toString());
 			
-			// ¿âÖĞ´æÔÚÏà¹ØµÄ½ÚÄ¿·µ»ØÏà¹ØµÄÉè±¸Í¨µÀ
+			// åº“ä¸­å­˜åœ¨ç›¸å…³çš„èŠ‚ç›®è¿”å›ç›¸å…³çš„è®¾å¤‡é€šé“
 			while(rs.next()){
 				freq = Integer.parseInt(rs.getString("Freq"));
 				
@@ -1182,18 +1182,18 @@ public class SetAutoRecordChannelHandle {
 				vo.setIndex(index);
 				
 				if(vo.getFreq() == freq) {
-					// Èç¹ûÊÇÍ¬Ò»¸öÆµµã¸üĞÂµ±Ç°½ÚÄ¿ĞÅÏ¢
+					// å¦‚æœæ˜¯åŒä¸€ä¸ªé¢‘ç‚¹æ›´æ–°å½“å‰èŠ‚ç›®ä¿¡æ¯
 					this.upChannelRemappingIndex(vo);
 				} else {
-					// ¸üĞÂÔ­Ê¼½ÚÄ¿statusFlagÎª0
+					// æ›´æ–°åŸå§‹èŠ‚ç›®statusFlagä¸º0
 					delChannelRemappingIndex(vo);
 				}
 				
 				return;
 			}
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó1: " + e.getMessage());
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó1 SQL: " + strBuff.toString());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯1: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯1 SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
@@ -1202,14 +1202,14 @@ public class SetAutoRecordChannelHandle {
 		
 		strBuff = null;
 		
-		//log.info("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		return;
 	}
     
     /**
-     * ÊÇ·ñ´æÔÚµ±Ç°½ÚÄ¿
+     * æ˜¯å¦å­˜åœ¨å½“å‰èŠ‚ç›®
      * @param vo
-     * @return 1:´æÔÚ 0:²»´æÔÚ
+     * @return 1:å­˜åœ¨ 0:ä¸å­˜åœ¨
      * @throws DaoException
      */
     public static int isHaveProgramInRemapping(SetAutoRecordChannelVO vo) throws DaoException {
@@ -1222,7 +1222,7 @@ public class SetAutoRecordChannelHandle {
 		int flag = 0;
 		ResultSet rs = null;
 		
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("select * from channelremapping where StatusFlag != 0 and freq = " + vo.getFreq() + " and ServiceID = " + vo.getServiceID());
 		
 		try {
@@ -1230,15 +1230,15 @@ public class SetAutoRecordChannelHandle {
 			
 			rs = statement.executeQuery(strBuff.toString());
 			
-			// ¿âÖĞ´æÔÚÏà¹ØµÄ½ÚÄ¿·µ»ØÏà¹ØµÄÉè±¸Í¨µÀ
+			// åº“ä¸­å­˜åœ¨ç›¸å…³çš„èŠ‚ç›®è¿”å›ç›¸å…³çš„è®¾å¤‡é€šé“
 			while(rs.next()){
 				vo.setUdp(rs.getString("udp"));
 				vo.setPort(Integer.parseInt(rs.getString("port")));
 				flag = 1;
 			}
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó1: " + e.getMessage());
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó1 SQL: " + strBuff.toString());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯1: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯1 SQL: " + strBuff.toString());
 			flag = 0;
 		} finally {
 			DaoSupport.close(rs);
@@ -1249,7 +1249,7 @@ public class SetAutoRecordChannelHandle {
 		strBuff = null;
 		
 		
-		//log.info("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		return flag;
 	}
     
@@ -1260,7 +1260,7 @@ public class SetAutoRecordChannelHandle {
 		Statement statement = null;
 		Connection conn = DaoSupport.getJDBCConnection();
 
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		
 		strBuff.append("update transmit.channelremapping c set freq= " + vo.getFreq() + ", ");
 		strBuff.append("StatusFlag = 0, ");
@@ -1274,14 +1274,14 @@ public class SetAutoRecordChannelHandle {
 			statement.execute(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + e.getMessage());
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎóSQL: " + strBuff.toString());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
 		}
 		strBuff = null;
-		log.info("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		log.info("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 	}
     
     public void upChannelRemappingIndex(SetAutoRecordChannelVO vo) throws DaoException {
@@ -1291,7 +1291,7 @@ public class SetAutoRecordChannelHandle {
 		Statement statement = null;
 		Connection conn = DaoSupport.getJDBCConnection();
 
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		
 		strBuff.append("update transmit.channelremapping c set freq= " + vo.getFreq() + ", ");
 		strBuff.append(" SymbolRate = " + vo.getSymbolRate() + ", ");
@@ -1317,21 +1317,21 @@ public class SetAutoRecordChannelHandle {
 		strBuff.append(" lasttime = '" + CommonUtility.getDateTime() + "' ");
 		strBuff.append(" where channelindex = " + vo.getIndex());
 		strBuff.append(" and devIndex = " + vo.getDevIndex());
-		System.out.println("¸üĞÂÒ»¶ÔÒ»±íÊı¾İ£º"+strBuff.toString());
+		System.out.println("æ›´æ–°ä¸€å¯¹ä¸€è¡¨æ•°æ®ï¼š"+strBuff.toString());
 		try {
 			statement = conn.createStatement();
 			
 			statement.execute(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + e.getMessage());
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎóSQL: " + strBuff.toString());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
 		}
 		strBuff = null;
-		//log.info("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 	}
     
     public static void delChannelRemappingIndex(SetAutoRecordChannelVO vo) throws DaoException {
@@ -1341,7 +1341,7 @@ public class SetAutoRecordChannelHandle {
 		Statement statement = null;
 		Connection conn = DaoSupport.getJDBCConnection();
 
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		
 		strBuff.append("update transmit.channelremapping c set ");
 		strBuff.append(" StatusFlag = 0, tscIndex = 0, freq=0, ServiceID=0, VideoPID=0, AudioPID=0, ");
@@ -1356,17 +1356,17 @@ public class SetAutoRecordChannelHandle {
 			statement.execute(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
 		}
 		strBuff = null;
-		//log.info("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 	}
     
     /**
-     * É¾³ı½ÚÄ¿Ó³Éä±íÏà¹ØµÄĞÅÏ¢
+     * åˆ é™¤èŠ‚ç›®æ˜ å°„è¡¨ç›¸å…³çš„ä¿¡æ¯
      * @param vo
      * @throws DaoException
      */
@@ -1377,7 +1377,7 @@ public class SetAutoRecordChannelHandle {
 		Statement statement = null;
 		Connection conn = DaoSupport.getJDBCConnection();
 		
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("update transmit.channelremapping c set ");
 		strBuff.append(" StatusFlag = 0, tscIndex = 0, freq=0, ServiceID=0, VideoPID=0, AudioPID=0, ");
 		strBuff.append(" DownIndex = 0, RecordType = 0, Action='', delflag = 0, udp='', port=0, smgURL='', HDFlag=0, ProgramName='', ");
@@ -1392,20 +1392,20 @@ public class SetAutoRecordChannelHandle {
 			statement.execute(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
 		}
 		strBuff = null;
 		
-		//log.info("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		return vo;
 	}
     
     
     /**
-     * É¾³ı½ÚÄ¿Ó³Éä±íÏà¹ØµÄĞÅÏ¢
+     * åˆ é™¤èŠ‚ç›®æ˜ å°„è¡¨ç›¸å…³çš„ä¿¡æ¯
      * @param vo
      * @throws DaoException
      */
@@ -1416,7 +1416,7 @@ public class SetAutoRecordChannelHandle {
 		Statement statement = null;
 		Connection conn = DaoSupport.getJDBCConnection();
 		
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("update transmit.channelremapping c set ");
 		strBuff.append(" StatusFlag = 0, tscIndex = 0, freq=0, ServiceID=0, VideoPID=0, AudioPID=0, ");
 		strBuff.append(" DownIndex = 0, RecordType = 0, Action='', delflag = 0, udp='', port=0, smgURL='', HDFlag=0, ProgramName='', ");
@@ -1429,7 +1429,7 @@ public class SetAutoRecordChannelHandle {
 			statement.execute(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
@@ -1446,7 +1446,7 @@ public class SetAutoRecordChannelHandle {
 		Statement statement = null;
 		Connection conn = DaoSupport.getJDBCConnection();
 
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		
 		strBuff.append("update transmit.channelremapping c set ");
 		strBuff.append(" delflag = 1 ");
@@ -1460,7 +1460,7 @@ public class SetAutoRecordChannelHandle {
 			statement.execute(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 		}
@@ -1480,13 +1480,13 @@ public class SetAutoRecordChannelHandle {
 			statement.execute(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
 		}
 		
-		//log.info("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 	}
     
     public static void delChannelRemappingByProgram() throws DaoException {
@@ -1496,7 +1496,7 @@ public class SetAutoRecordChannelHandle {
 		Statement statement = null;
 		Connection conn = DaoSupport.getJDBCConnection();
 
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		
 		strBuff.append("update transmit.channelremapping c set ");
 		strBuff.append(" StatusFlag = 0, freq = 0, ServiceID=0, VideoPID=0, AudioPID=0, ProgramName='', ");
@@ -1511,7 +1511,7 @@ public class SetAutoRecordChannelHandle {
 			statement.execute(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
@@ -1531,7 +1531,7 @@ public class SetAutoRecordChannelHandle {
 		boolean isReturn = false;
 		ResultSet rs = null;
 		
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("select DevIndex, channelindex from channelremapping where HDFlag = 1 and freq = " + vo.getFreq() + " and ServiceID = " + vo.getServiceID());		
 		
 		try {
@@ -1539,7 +1539,7 @@ public class SetAutoRecordChannelHandle {
 			
 			rs = statement.executeQuery(strBuff.toString());
 			
-			// ¿âÖĞ´æÔÚÏà¹ØµÄ½ÚÄ¿·µ»ØÏà¹ØµÄÉè±¸Í¨µÀ
+			// åº“ä¸­å­˜åœ¨ç›¸å…³çš„èŠ‚ç›®è¿”å›ç›¸å…³çš„è®¾å¤‡é€šé“
 			while(rs.next()){
 				devIndex = Integer.parseInt(rs.getString("DevIndex"));
 				vo.setDevIndex(devIndex);
@@ -1549,8 +1549,8 @@ public class SetAutoRecordChannelHandle {
 				return;
 			}
 		} catch (Exception e) {
-			log.error("È¡µÃ¸ßÇå½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó2: " + e.getMessage());
-			log.error("È¡µÃ¸ßÇå½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó2 SQL: " + strBuff.toString());
+			log.error("å–å¾—é«˜æ¸…èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯2: " + e.getMessage());
+			log.error("å–å¾—é«˜æ¸…èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯2 SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
@@ -1560,7 +1560,7 @@ public class SetAutoRecordChannelHandle {
 		}
 	
 		strBuff = new StringBuffer();
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("select DevIndex, channelindex from channelremapping where statusflag = 0 and HDFlag = 1");
 		
 		try {
@@ -1568,7 +1568,7 @@ public class SetAutoRecordChannelHandle {
 			
 			rs = statement.executeQuery(strBuff.toString());
 			
-			// ¿âÖĞ´æÔÚÏà¹ØµÄ½ÚÄ¿·µ»ØÏà¹ØµÄÉè±¸Í¨µÀ
+			// åº“ä¸­å­˜åœ¨ç›¸å…³çš„èŠ‚ç›®è¿”å›ç›¸å…³çš„è®¾å¤‡é€šé“
 			while(rs.next()){
 				devIndex = Integer.parseInt(rs.getString("DevIndex"));
 				vo.setDevIndex(devIndex);
@@ -1578,8 +1578,8 @@ public class SetAutoRecordChannelHandle {
 				return;
 			}
 		} catch (Exception e) {
-			log.error("È¡µÃ¸ßÇå½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó2: " + e.getMessage());
-			log.error("È¡µÃ¸ßÇå½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó2 SQL: " + strBuff.toString());
+			log.error("å–å¾—é«˜æ¸…èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯2: " + e.getMessage());
+			log.error("å–å¾—é«˜æ¸…èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯2 SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
@@ -1590,7 +1590,7 @@ public class SetAutoRecordChannelHandle {
 		strBuff = null;
 		
 		strBuff = new StringBuffer();
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("select DevIndex, channelindex from channelremapping where HDFlag = 1 and freq = " + vo.getFreq());
 		
 		try {
@@ -1598,7 +1598,7 @@ public class SetAutoRecordChannelHandle {
 			
 			rs = statement.executeQuery(strBuff.toString());
 			
-			// ¿âÖĞ´æÔÚÏà¹ØµÄ½ÚÄ¿·µ»ØÏà¹ØµÄÉè±¸Í¨µÀ
+			// åº“ä¸­å­˜åœ¨ç›¸å…³çš„èŠ‚ç›®è¿”å›ç›¸å…³çš„è®¾å¤‡é€šé“
 			while(rs.next()){
 				devIndex = Integer.parseInt(rs.getString("DevIndex"));
 				vo.setDevIndex(devIndex);
@@ -1608,8 +1608,8 @@ public class SetAutoRecordChannelHandle {
 				return;
 			}
 		} catch (Exception e) {
-			log.error("È¡µÃ¸ßÇå½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó2: " + e.getMessage());
-			log.error("È¡µÃ¸ßÇå½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó2 SQL: " + strBuff.toString());
+			log.error("å–å¾—é«˜æ¸…èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯2: " + e.getMessage());
+			log.error("å–å¾—é«˜æ¸…èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯2 SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
@@ -1620,7 +1620,7 @@ public class SetAutoRecordChannelHandle {
 		strBuff = null;
 		
 		strBuff = new StringBuffer();
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("select DevIndex, channelindex from channelremapping where HDFlag = 1 order by lasttime");
 		
 		try {
@@ -1628,7 +1628,7 @@ public class SetAutoRecordChannelHandle {
 			
 			rs = statement.executeQuery(strBuff.toString());
 			
-			// ¿âÖĞ´æÔÚÏà¹ØµÄ½ÚÄ¿·µ»ØÏà¹ØµÄÉè±¸Í¨µÀ
+			// åº“ä¸­å­˜åœ¨ç›¸å…³çš„èŠ‚ç›®è¿”å›ç›¸å…³çš„è®¾å¤‡é€šé“
 			while(rs.next()){
 				devIndex = Integer.parseInt(rs.getString("DevIndex"));
 				vo.setDevIndex(devIndex);
@@ -1638,8 +1638,8 @@ public class SetAutoRecordChannelHandle {
 				return;
 			}
 		} catch (Exception e) {
-			log.error("È¡µÃ¸ßÇå½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó2: " + e.getMessage());
-			log.error("È¡µÃ¸ßÇå½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó2 SQL: " + strBuff.toString());
+			log.error("å–å¾—é«˜æ¸…èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯2: " + e.getMessage());
+			log.error("å–å¾—é«˜æ¸…èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯2 SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
@@ -1650,7 +1650,7 @@ public class SetAutoRecordChannelHandle {
 		strBuff = null;
 		DaoSupport.close(conn);
 		
-		//log.info("È¡µÃ¸ßÇå½ÚÄ¿Ïà¹ØÍ¨µÀ³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("å–å¾—é«˜æ¸…èŠ‚ç›®ç›¸å…³é€šé“æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		return;
 	}
     
@@ -1663,7 +1663,7 @@ public class SetAutoRecordChannelHandle {
 
 		ResultSet rs = null;
 		
-		//LastFlag = 1×îºóÒ»´Î¸üĞÂµÄÆµµÀ±íÄÚÈİ¡¢ È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		//LastFlag = 1æœ€åä¸€æ¬¡æ›´æ–°çš„é¢‘é“è¡¨å†…å®¹ã€ å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		strBuff.append("select * from channelscanlist where  Freq = " + vo.getFreq() + " and ServiceID = " + vo.getServiceID() + " and LastFlag = 1");
 		
 		try {
@@ -1671,7 +1671,7 @@ public class SetAutoRecordChannelHandle {
 			
 			rs = statement.executeQuery(strBuff.toString());
 			
-			// ¿âÖĞ´æÔÚÏà¹ØµÄ½ÚÄ¿·µ»ØÏà¹ØµÄÉè±¸Í¨µÀ
+			// åº“ä¸­å­˜åœ¨ç›¸å…³çš„èŠ‚ç›®è¿”å›ç›¸å…³çš„è®¾å¤‡é€šé“
 			while(rs.next()){
 				
 				vo.setHDFlag(Integer.parseInt(rs.getString("HDTV")));
@@ -1681,8 +1681,8 @@ public class SetAutoRecordChannelHandle {
 				return vo;
 			}
 		} catch (Exception e) {
-			log.error("È¡µÃ½ÚÄ¿¸ßÇå±ê¼Ç´íÎó1: " + e.getMessage());
-			log.error("È¡µÃ½ÚÄ¿¸ßÇå±ê¼Ç´íÎó1 SQL: " + strBuff.toString());
+			log.error("å–å¾—èŠ‚ç›®é«˜æ¸…æ ‡è®°é”™è¯¯1: " + e.getMessage());
+			log.error("å–å¾—èŠ‚ç›®é«˜æ¸…æ ‡è®°é”™è¯¯1 SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
@@ -1690,12 +1690,12 @@ public class SetAutoRecordChannelHandle {
 		}
 		
 		strBuff = null;
-		//log.info("È¡µÃ½ÚÄ¿¸ßÇå±ê¼Ç³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("å–å¾—èŠ‚ç›®é«˜æ¸…æ ‡è®°æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		return vo;
 	}
     
     /**
-     * È¡µÃ7*24Ğ¡Ê±×Ô¶¯Â¼ÏñµÄ¸öÊı
+     * å–å¾—7*24å°æ—¶è‡ªåŠ¨å½•åƒçš„ä¸ªæ•°
      * @return
      * @throws DaoException
      */
@@ -1709,10 +1709,10 @@ public class SetAutoRecordChannelHandle {
 
 		ResultSet rs = null;
 		
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		//strBuff.append("SELECT count(*) FROM channelremapping c where (recordType = 2 or recordType = 1) and statusFlag = 1 ");
 		
-		//×ÊÔ´ÅĞ¶Ï¸ü¸Ä   JI LONG
+		//èµ„æºåˆ¤æ–­æ›´æ”¹   JI LONG
 		strBuff.append("SELECT HDFlag FROM channelremapping c where (recordType = 2 or recordType = 1) and statusFlag = 1 ");
 		
 		try {
@@ -1720,11 +1720,11 @@ public class SetAutoRecordChannelHandle {
 			
 			rs = statement.executeQuery(strBuff.toString());
 			
-			// ¿âÖĞ´æÔÚÏà¹ØµÄ½ÚÄ¿·µ»ØÏà¹ØµÄÉè±¸Í¨µÀ
+			// åº“ä¸­å­˜åœ¨ç›¸å…³çš„èŠ‚ç›®è¿”å›ç›¸å…³çš„è®¾å¤‡é€šé“
 			while(rs.next()){
-				//¸ü¸ÄÇ°
+				//æ›´æ”¹å‰
 				//count = Integer.parseInt(rs.getString("count(*)"));
-				//¸ü¸Äºó
+				//æ›´æ”¹å
 				int isHD=Integer.parseInt(rs.getString("HDFlag"));
 				if(isHD==0){
 					count++;
@@ -1734,8 +1734,8 @@ public class SetAutoRecordChannelHandle {
 				return count;
 			}
 		} catch (Exception e) {
-			log.error("È¡µÃ7*24Ğ¡Ê±×Ô¶¯Â¼ÏñµÄ¸öÊı: " + e.getMessage());
-			log.error("È¡µÃ7*24Ğ¡Ê±×Ô¶¯Â¼ÏñµÄ¸öÊı SQL: " + strBuff.toString());
+			log.error("å–å¾—7*24å°æ—¶è‡ªåŠ¨å½•åƒçš„ä¸ªæ•°: " + e.getMessage());
+			log.error("å–å¾—7*24å°æ—¶è‡ªåŠ¨å½•åƒçš„ä¸ªæ•° SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
@@ -1743,14 +1743,14 @@ public class SetAutoRecordChannelHandle {
 		}
 		
 		strBuff = null;
-		//log.info("È¡µÃ½ÚÄ¿¸ßÇå±ê¼Ç³É¹¦! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
+		//log.info("å–å¾—èŠ‚ç›®é«˜æ¸…æ ‡è®°æˆåŠŸ! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		return count;
 	}
     
     /**
-     * ¸üĞÂÓ³Éä±íSMG½ÓÊÕURLµØÖ·£¬ÓÃÓÚ·½±ãÎÊÌâ¶¨Î»
-     * @param devIndex SMGÉè±¸Í¨µÀºÅ
-     * @param smgURL  SMG½ÓÊÕµ½URL
+     * æ›´æ–°æ˜ å°„è¡¨SMGæ¥æ”¶URLåœ°å€ï¼Œç”¨äºæ–¹ä¾¿é—®é¢˜å®šä½
+     * @param devIndex SMGè®¾å¤‡é€šé“å·
+     * @param smgURL  SMGæ¥æ”¶åˆ°URL
      * @throws DaoException
      */
     public static void updateSMGURLByDevIndex(int devIndex, String smgURL) throws DaoException {
@@ -1760,7 +1760,7 @@ public class SetAutoRecordChannelHandle {
 		Statement statement = null;
 		Connection conn = DaoSupport.getJDBCConnection();
 
-		// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+		// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 		
 		strBuff.append("update transmit.channelremapping c set ");
 		strBuff.append(" smgURL = '" + smgURL + "' ");
@@ -1772,7 +1772,7 @@ public class SetAutoRecordChannelHandle {
 			statement.execute(strBuff.toString());
 			
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ ¸üĞÂÍ¨µÀÓ³Éä±í´íÎó: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ æ›´æ–°é€šé“æ˜ å°„è¡¨é”™è¯¯: " + e.getMessage());
 		} finally {
 			DaoSupport.close(statement);
 			DaoSupport.close(conn);
@@ -1781,8 +1781,8 @@ public class SetAutoRecordChannelHandle {
 	}
     
     /**
-     * ¸ù¾İ½ÚÄ¿Æµµã ¸ßÇå±ê¼Ç »ñÈ¡×î¼Ñ ias Í¨µÀºÅ·ÖÅä  Ji Long 
-     * @param isHD  ¸ßÇå±ê¼Ç
+     * æ ¹æ®èŠ‚ç›®é¢‘ç‚¹ é«˜æ¸…æ ‡è®° è·å–æœ€ä½³ ias é€šé“å·åˆ†é…  Ji Long 
+     * @param isHD  é«˜æ¸…æ ‡è®°
      * @param freq 
      * @return
      */
@@ -1797,11 +1797,11 @@ public class SetAutoRecordChannelHandle {
 			int count = 1;
 			
 			if(isHD == 1) {
-				// ¸ßÇå½ÚÄ¿´¦Àí
+				// é«˜æ¸…èŠ‚ç›®å¤„ç†
 				IPMInfoVO ipm = getBestIpmInfo();
 				count = ipm.getIndexMin();
 			}else{
-				//»ñÈ¡¸ÃÆµµãËùÔÚÄÇ¸öipm ²¢ÇÒ·µ»Ø¸ÃipmÊ¹ÓÃµ½µÄ×î´óÍ¨µÀºÅ
+				//è·å–è¯¥é¢‘ç‚¹æ‰€åœ¨é‚£ä¸ªipm å¹¶ä¸”è¿”å›è¯¥ipmä½¿ç”¨åˆ°çš„æœ€å¤§é€šé“å·
 				//Ji Long 2011-06-26
 				int temp=getMinIndexTsc(freq);
 				
@@ -1880,7 +1880,7 @@ public class SetAutoRecordChannelHandle {
     	return ipmIndex;
     } 
     /**
-     * È¡µÃ¸ÃÆµµãµÄias Í¨µÀºÅ
+     * å–å¾—è¯¥é¢‘ç‚¹çš„ias é€šé“å·
      * @param freq
      * @return
      */
@@ -1902,15 +1902,15 @@ public class SetAutoRecordChannelHandle {
 			}
 			
 		} catch (Exception e) {
-			log.error("²éÑ¯Êı¾İ¿âiasÍ¨µÀ´íÎó:"+e.getMessage());
-			log.error("²éÑ¯Êı¾İ¿âiasÍ¨µÀsql:"+sql);
+			log.error("æŸ¥è¯¢æ•°æ®åº“iasé€šé“é”™è¯¯:"+e.getMessage());
+			log.error("æŸ¥è¯¢æ•°æ®åº“iasé€šé“sql:"+sql);
 		}finally{
 			try {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("¹Ø±ÕÊı¾İ¿â×ÊÔ´´íÎó:"+e.getMessage());
+				log.error("å…³é—­æ•°æ®åº“èµ„æºé”™è¯¯:"+e.getMessage());
 			}
 		}
     	return iasIndex;
@@ -1927,11 +1927,11 @@ public class SetAutoRecordChannelHandle {
 			int count = 1;
 			
 			if(isHDProgram == 1) {
-				// ¸ßÇå½ÚÄ¿´¦Àí
+				// é«˜æ¸…èŠ‚ç›®å¤„ç†
 				TSCInfoVO tsc = getBestTscInfo();
 				count = tsc.getIndexMin();
 			}else{
-				//»ñÈ¡¸ÃÆµµãËùÔÚÄÇ¸ötsc ²¢ÇÒ·µ»Ø¸ÃtscÊ¹ÓÃµ½µÄ×î´óÍ¨µÀºÅ
+				//è·å–è¯¥é¢‘ç‚¹æ‰€åœ¨é‚£ä¸ªtsc å¹¶ä¸”è¿”å›è¯¥tscä½¿ç”¨åˆ°çš„æœ€å¤§é€šé“å·
 				//Ji Long 2011-06-26
 				int temp=getMinIndexTsc(freq);
 				
@@ -2025,8 +2025,8 @@ public class SetAutoRecordChannelHandle {
     }
     //TODO
     /**
-     * È¡µÃÃ»ÓĞ·ÖÅäµÄTSCIndexÍ¨µÀºÅ
-     * @param int isHDProgram ĞèÒª·ÖÅäµÄÊÇ·ñÎª¸ßÇå½ÚÄ¿ 1:¸ßÇå 0:±êÇå
+     * å–å¾—æ²¡æœ‰åˆ†é…çš„TSCIndexé€šé“å·
+     * @param int isHDProgram éœ€è¦åˆ†é…çš„æ˜¯å¦ä¸ºé«˜æ¸…èŠ‚ç›® 1:é«˜æ¸… 0:æ ‡æ¸…
      * @return
      
     public static int getTSCIndex(int isHDProgram) {
@@ -2038,14 +2038,14 @@ public class SetAutoRecordChannelHandle {
 			boolean isGetIndex = false;
 			int count = 1;
 			if(isHDProgram == 1) {
-				// ¸ßÇå½ÚÄ¿´¦Àí
+				// é«˜æ¸…èŠ‚ç›®å¤„ç†
 				TSCInfoVO tsc = getBestTscInfo();
 				count = tsc.getIndexMin();
-				str="¸ßÇå";
+				str="é«˜æ¸…";
 			}else{
 				TSCInfoVO tsc = getTsc();
 				count = tsc.getIndexMin();
-				str="±êÇå";
+				str="æ ‡æ¸…";
 			}
 			
 			for(int i=0; i<tscIndexList.size(); i++) {
@@ -2070,15 +2070,15 @@ public class SetAutoRecordChannelHandle {
 			log.error("getTSCIndex Error: " + e.getMessage());
 		}
     	
-    	log.info("±¾´ÎÍ¨µÀ·ÖÅäÇé¿ö£º"+tscIndex+str);
+    	log.info("æœ¬æ¬¡é€šé“åˆ†é…æƒ…å†µï¼š"+tscIndex+str);
     	return tscIndex;
     }
     */
     
     /**
-     * ²éÑ¯¼¯ºÏÖĞÊÇ·ñ°üº¬Ä³¸öÔªËØ
-     * °üº¬ true
-     * ²»°üº¬ false
+     * æŸ¥è¯¢é›†åˆä¸­æ˜¯å¦åŒ…å«æŸä¸ªå…ƒç´ 
+     * åŒ…å« true
+     * ä¸åŒ…å« false
      */
     private  static boolean numberIsList(Integer number,List list){
     	boolean falg=false;
@@ -2092,8 +2092,8 @@ public class SetAutoRecordChannelHandle {
     }
     
     /**
-     * ĞÂ¼Ó·½·¨£¬Èô×Ô¶¯Â¼Ïñ½ÚÄ¿Îª±êÇå Ò²Æ½¾ù·ÖÅä
-     * È¡µÃ×î¼Ñ·ÖÅä¸ßÇå½ÚÄ¿µÄIPM
+     * æ–°åŠ æ–¹æ³•ï¼Œè‹¥è‡ªåŠ¨å½•åƒèŠ‚ç›®ä¸ºæ ‡æ¸… ä¹Ÿå¹³å‡åˆ†é…
+     * å–å¾—æœ€ä½³åˆ†é…é«˜æ¸…èŠ‚ç›®çš„IPM
      * @return
      * 
      * JI  LONG 2011-5-18
@@ -2120,7 +2120,7 @@ public class SetAutoRecordChannelHandle {
     		
     		rs = statement.executeQuery(strBuff.toString());
     		
-    		// È¡µÃTSCÍ¨µÀºÅÁĞ±í
+    		// å–å¾—TSCé€šé“å·åˆ—è¡¨
     		while(rs.next()){
     			String str=rs.getString("max(IpmIndex)");
     			if(str!=null){
@@ -2128,23 +2128,23 @@ public class SetAutoRecordChannelHandle {
     			}
     		}
     	} catch (Exception e) {
-    		log.error("»ñÈ¡´íÎó1±êÇå½ÚÄ¿ipmÍ¨µÀ´íÎó: " + e.getMessage());
-    		log.error("»ñÈ¡´íÎó1±êÇå½ÚÄ¿ipmÍ¨µÀ SQL: " + strBuff.toString());
+    		log.error("è·å–é”™è¯¯1æ ‡æ¸…èŠ‚ç›®ipmé€šé“é”™è¯¯: " + e.getMessage());
+    		log.error("è·å–é”™è¯¯1æ ‡æ¸…èŠ‚ç›®ipmé€šé“ SQL: " + strBuff.toString());
     	} finally {
     		try {
     			DaoSupport.close(rs);
     			DaoSupport.close(statement);
     			DaoSupport.close(conn);
     		} catch (DaoException e) {
-    			log.error("¹Ø±Õ»ñÈ¡±êÇå½ÚÄ¿ipmÍ¨µÀ×ÊÔ´´íÎó: " + e.getMessage());
+    			log.error("å…³é—­è·å–æ ‡æ¸…èŠ‚ç›®ipmé€šé“èµ„æºé”™è¯¯: " + e.getMessage());
     		}
     	}
     	strBuff = null;
     	return ipmIndex;
     }
     /**
-     * ĞÂ¼Ó·½·¨£¬Èô×Ô¶¯Â¼Ïñ½ÚÄ¿Îª±êÇå Ò²Æ½¾ù·ÖÅä
-     * È¡µÃ×î¼Ñ·ÖÅä¸ßÇå½ÚÄ¿µÄTSC
+     * æ–°åŠ æ–¹æ³•ï¼Œè‹¥è‡ªåŠ¨å½•åƒèŠ‚ç›®ä¸ºæ ‡æ¸… ä¹Ÿå¹³å‡åˆ†é…
+     * å–å¾—æœ€ä½³åˆ†é…é«˜æ¸…èŠ‚ç›®çš„TSC
      * @return
      * 
      * JI  LONG 2011-5-18
@@ -2171,7 +2171,7 @@ public class SetAutoRecordChannelHandle {
 			
 			rs = statement.executeQuery(strBuff.toString());
 			
-			// È¡µÃTSCÍ¨µÀºÅÁĞ±í
+			// å–å¾—TSCé€šé“å·åˆ—è¡¨
 			while(rs.next()){
 				String str=rs.getString("max(TscIndex)");
 				if(str!=null){
@@ -2179,15 +2179,15 @@ public class SetAutoRecordChannelHandle {
 				}
 			}
 		} catch (Exception e) {
-			log.error("»ñÈ¡´íÎó1±êÇå½ÚÄ¿tscÍ¨µÀ´íÎó: " + e.getMessage());
-			log.error("»ñÈ¡´íÎó1±êÇå½ÚÄ¿tscÍ¨µÀ SQL: " + strBuff.toString());
+			log.error("è·å–é”™è¯¯1æ ‡æ¸…èŠ‚ç›®tscé€šé“é”™è¯¯: " + e.getMessage());
+			log.error("è·å–é”™è¯¯1æ ‡æ¸…èŠ‚ç›®tscé€šé“ SQL: " + strBuff.toString());
 		} finally {
 			try {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			} catch (DaoException e) {
-				log.error("¹Ø±Õ»ñÈ¡±êÇå½ÚÄ¿tscÍ¨µÀ×ÊÔ´´íÎó: " + e.getMessage());
+				log.error("å…³é—­è·å–æ ‡æ¸…èŠ‚ç›®tscé€šé“èµ„æºé”™è¯¯: " + e.getMessage());
 			}
 		}
 		strBuff = null;
@@ -2195,14 +2195,14 @@ public class SetAutoRecordChannelHandle {
 	}
     
     /**
-     * È¡µÃ×î¼Ñ·ÖÅä¸ßÇå½ÚÄ¿µÄTSC
+     * å–å¾—æœ€ä½³åˆ†é…é«˜æ¸…èŠ‚ç›®çš„TSC
      * @return
      */
     private static TSCInfoVO getBestTscInfo() {
     	TSCInfoVO minvo = null;
-		// ´ÓTSCÉè±¸ÁĞ±íÀïÃæÈ¡µÃ, ×îÓ¦¸Ã·ÖÅäµÄÉè±¸
+		// ä»TSCè®¾å¤‡åˆ—è¡¨é‡Œé¢å–å¾—, æœ€åº”è¯¥åˆ†é…çš„è®¾å¤‡
 		try {
-			// È¡µÃÃ¿¸öTSCÉè±¸µ±Ç°µÄ¸ßÇå½ÚÄ¿Êı
+			// å–å¾—æ¯ä¸ªTSCè®¾å¤‡å½“å‰çš„é«˜æ¸…èŠ‚ç›®æ•°
 			TSCSendList = getTscHDNums(TSCSendList);
 		} catch (DaoException e2) {
 		}
@@ -2215,7 +2215,7 @@ public class SetAutoRecordChannelHandle {
 				minvo = tsc;
 			} 
 		}
-		//log.info("È¡µÃ×î¼Ñ·ÖÅä¸ßÇå½ÚÄ¿ IndexMin: " + minvo.getIndexMin() + " IndexMax: " + minvo.getIndexMax() + " HDCount: " + minvo.getHDNums());
+		//log.info("å–å¾—æœ€ä½³åˆ†é…é«˜æ¸…èŠ‚ç›® IndexMin: " + minvo.getIndexMin() + " IndexMax: " + minvo.getIndexMax() + " HDCount: " + minvo.getHDNums());
 		boolean flag=isExceedTscMaxRecordNum(1,minvo);
 		if(flag){
 			for(int i=0;i<TSCSendList.size();i++){
@@ -2230,14 +2230,14 @@ public class SetAutoRecordChannelHandle {
     	return minvo;
     }
     /**
-     * È¡µÃ×î¼Ñ·ÖÅä¸ßÇå½ÚÄ¿µÄIPM
+     * å–å¾—æœ€ä½³åˆ†é…é«˜æ¸…èŠ‚ç›®çš„IPM
      * @return
      */
     private static IPMInfoVO getBestIpmInfo() {
     	IPMInfoVO minvo = null;
-    	// ´ÓIPMÉè±¸ÁĞ±íÀïÃæÈ¡µÃ, ×îÓ¦¸Ã·ÖÅäµÄÉè±¸
+    	// ä»IPMè®¾å¤‡åˆ—è¡¨é‡Œé¢å–å¾—, æœ€åº”è¯¥åˆ†é…çš„è®¾å¤‡
     	try {
-    		// È¡µÃÃ¿¸öIPMÉè±¸µ±Ç°µÄ¸ßÇå½ÚÄ¿Êı
+    		// å–å¾—æ¯ä¸ªIPMè®¾å¤‡å½“å‰çš„é«˜æ¸…èŠ‚ç›®æ•°
     		IPMSendList = getIpmHDNums(IPMSendList);
     		
     	} catch (DaoException e2) {
@@ -2255,7 +2255,7 @@ public class SetAutoRecordChannelHandle {
 	    		} 
     		}
     	}
-    	//log.info("È¡µÃ×î¼Ñ·ÖÅä¸ßÇå½ÚÄ¿ IndexMin: " + minvo.getIndexMin() + " IndexMax: " + minvo.getIndexMax() + " HDCount: " + minvo.getHDNums());
+    	//log.info("å–å¾—æœ€ä½³åˆ†é…é«˜æ¸…èŠ‚ç›® IndexMin: " + minvo.getIndexMin() + " IndexMax: " + minvo.getIndexMax() + " HDCount: " + minvo.getHDNums());
     	boolean flag=isExceedIpmMaxRecordNum(1,minvo);
     	if(flag){
     		for(int i=0;i<IPMSendList.size();i++){
@@ -2273,9 +2273,9 @@ public class SetAutoRecordChannelHandle {
     }
     
     /**
-     * ·µ»Ø¸Ãipm¼ÓÉÏ¸Ã½ÚÄ¿ºóÊÇ·ñ³¬¹ı×î´óÂ¼Ïñ×ÊÔ´
-     * isHD ¸Ã½ÚÄ¿ÊÇ·ñ¸ßÇå£¨Ò»¸ö¸ßÇåÔòÎª5¸ö±êÇå£©
-     *  ·µ»Ø²ÎÊıflag ,true³¬¹ı falseÎ´³¬¹ı
+     * è¿”å›è¯¥ipmåŠ ä¸Šè¯¥èŠ‚ç›®åæ˜¯å¦è¶…è¿‡æœ€å¤§å½•åƒèµ„æº
+     * isHD è¯¥èŠ‚ç›®æ˜¯å¦é«˜æ¸…ï¼ˆä¸€ä¸ªé«˜æ¸…åˆ™ä¸º5ä¸ªæ ‡æ¸…ï¼‰
+     *  è¿”å›å‚æ•°flag ,trueè¶…è¿‡ falseæœªè¶…è¿‡
      *  Ji Long  2011-08-03 
      */
     private static  boolean isExceedIpmMaxRecordNum(int isHD,IPMInfoVO ipm){
@@ -2284,9 +2284,9 @@ public class SetAutoRecordChannelHandle {
     	Connection conn=null;
     	ResultSet rs = null;
     	/*
-    	//Õû¸öÇ°¶Ë×î¶àÂ¼Ïñ±êÇå½ÚÄ¿Êı  Ò»¸ö¸ßÇåµÈÓÚÎå¸ö±êÇå
+    	//æ•´ä¸ªå‰ç«¯æœ€å¤šå½•åƒæ ‡æ¸…èŠ‚ç›®æ•°  ä¸€ä¸ªé«˜æ¸…ç­‰äºäº”ä¸ªæ ‡æ¸…
     	int MaxAutoRecordNum=coreData.getSysVO().getMaxAutoRecordNum();
-    	//Õû¸öÇ°¶ËipmµÄ¸öÊı  Ö»ÒªÒ»¶ÔÒ»¼à²âµÄ
+    	//æ•´ä¸ªå‰ç«¯ipmçš„ä¸ªæ•°  åªè¦ä¸€å¯¹ä¸€ç›‘æµ‹çš„
     	int IpmNum=0;
     	List IPMList=coreData.getIPMList();
     	for (int i = 0; i < IPMList.size(); i++) {
@@ -2295,10 +2295,10 @@ public class SetAutoRecordChannelHandle {
     			IpmNum++;
     		}
 		}
-    	//Ã¿¸öipm×î¶àÂ¼ÖÆ¶àÉÙÌ×±êÇå  Ò»¸ö¸ßÇåµÈÓÚÎå¸ö±êÇå
+    	//æ¯ä¸ªipmæœ€å¤šå½•åˆ¶å¤šå°‘å¥—æ ‡æ¸…  ä¸€ä¸ªé«˜æ¸…ç­‰äºäº”ä¸ªæ ‡æ¸…
     	int ipmMaxRecordNum=MaxAutoRecordNum/IpmNum;
     	*/
-    	//TODO ÖØĞÂ¼ÆËã Ã¿¸öipm ´¦ÀíÒ»¶ÔÒ»µÄ¸öÊı
+    	//TODO é‡æ–°è®¡ç®— æ¯ä¸ªipm å¤„ç†ä¸€å¯¹ä¸€çš„ä¸ªæ•°
     	
     	int ipmMaxRecordNum=(ipm.getIndexMax()-ipm.getIndexMin())+1;
     	
@@ -2316,34 +2316,34 @@ public class SetAutoRecordChannelHandle {
     			}
     			count+=temp;
     		}
-    		//¼ÓÉÏ±¾´Î·ÖÅäµÄ½ÚÄ¿  ¸ßÇå¼Ó5  ±êÇå¼Ó1
+    		//åŠ ä¸Šæœ¬æ¬¡åˆ†é…çš„èŠ‚ç›®  é«˜æ¸…åŠ 5  æ ‡æ¸…åŠ 1
     		if(isHD==1){
     			count+=5;
     		}else{
     			count+=1;
     		}
     	} catch (Exception e) {
-    		log.info("²éÑ¯ipmÂ¼Ïñ¸öÊı´íÎó£º"+e.getMessage());
-    		log.info("²éÑ¯ipmÂ¼Ïñ¸öÊıSQL£º"+sql);
+    		log.info("æŸ¥è¯¢ipmå½•åƒä¸ªæ•°é”™è¯¯ï¼š"+e.getMessage());
+    		log.info("æŸ¥è¯¢ipmå½•åƒä¸ªæ•°SQLï¼š"+sql);
     	} finally {
     		try {
     			DaoSupport.close(rs);
     			DaoSupport.close(statement);
     			DaoSupport.close(conn);
     		} catch (Exception e2) {
-    			log.info("¹Ø±Õ²éÑ¯tscÂ¼Ïñ¸öÊı×ÊÔ´´íÎó£º"+e2.getMessage());
+    			log.info("å…³é—­æŸ¥è¯¢tscå½•åƒä¸ªæ•°èµ„æºé”™è¯¯ï¼š"+e2.getMessage());
     		}
     	}
-    	//Èç¹û±¾´Î·ÖÅäµÄ ½ÚÄ¿Êı ¼Ó¿âÖĞµÄ½ÚÄ¿Êı  ´óÓÚ tscÂ¼ÖÆµÄ×î´ó½ÚÄ¿Êı
+    	//å¦‚æœæœ¬æ¬¡åˆ†é…çš„ èŠ‚ç›®æ•° åŠ åº“ä¸­çš„èŠ‚ç›®æ•°  å¤§äº tscå½•åˆ¶çš„æœ€å¤§èŠ‚ç›®æ•°
     	if(count > ipmMaxRecordNum ){
     		flag=true;
     	}
     	return flag;
     }
     /**
-     * ·µ»Ø¸Ãtsc¼ÓÉÏ¸Ã½ÚÄ¿ºóÊÇ·ñ³¬¹ı×î´óÂ¼Ïñ×ÊÔ´
-     * isHD ¸Ã½ÚÄ¿ÊÇ·ñ¸ßÇå£¨Ò»¸ö¸ßÇåÔòÎª5¸ö±êÇå£©
-     *  ·µ»Ø²ÎÊıflag ,true³¬¹ı falseÎ´³¬¹ı
+     * è¿”å›è¯¥tscåŠ ä¸Šè¯¥èŠ‚ç›®åæ˜¯å¦è¶…è¿‡æœ€å¤§å½•åƒèµ„æº
+     * isHD è¯¥èŠ‚ç›®æ˜¯å¦é«˜æ¸…ï¼ˆä¸€ä¸ªé«˜æ¸…åˆ™ä¸º5ä¸ªæ ‡æ¸…ï¼‰
+     *  è¿”å›å‚æ•°flag ,trueè¶…è¿‡ falseæœªè¶…è¿‡
      *  Ji Long  2011-08-03 
      */
     private static  boolean isExceedTscMaxRecordNum(int isHD,TSCInfoVO tsc){
@@ -2353,15 +2353,15 @@ public class SetAutoRecordChannelHandle {
 		ResultSet rs = null;
 		/*
 		
-    	//Õû¸öÇ°¶Ë×î¶àÂ¼Ïñ±êÇå½ÚÄ¿Êı  Ò»¸ö¸ßÇåµÈÓÚÎå¸ö±êÇå
+    	//æ•´ä¸ªå‰ç«¯æœ€å¤šå½•åƒæ ‡æ¸…èŠ‚ç›®æ•°  ä¸€ä¸ªé«˜æ¸…ç­‰äºäº”ä¸ªæ ‡æ¸…
     	int MaxAutoRecordNum=coreData.getSysVO().getMaxAutoRecordNum();
-    	//Õû¸öÇ°¶ËTSCµÄ¸öÊı
+    	//æ•´ä¸ªå‰ç«¯TSCçš„ä¸ªæ•°
     	int TscNum=coreData.getTSCList().size();
-    	//Ã¿¸ötsc×î¶àÂ¼ÖÆ¶àÉÙÌ×±êÇå  Ò»¸ö¸ßÇåµÈÓÚÎå¸ö±êÇå
+    	//æ¯ä¸ªtscæœ€å¤šå½•åˆ¶å¤šå°‘å¥—æ ‡æ¸…  ä¸€ä¸ªé«˜æ¸…ç­‰äºäº”ä¸ªæ ‡æ¸…
     	int tscMaxRecordNum=MaxAutoRecordNum/TscNum;
 		 */
     	
-    	//TODO ÖØĞÂ¼ÆËãÃ¿Ì¨tacµÄ Â¼Ïñ¸öÊı
+    	//TODO é‡æ–°è®¡ç®—æ¯å°tacçš„ å½•åƒä¸ªæ•°
     	int tscMaxRecordNum=(tsc.getIndexMax()-tsc.getIndexMin())+1;
     	
     	String sql=" SELECT HDFlag FROM channelremapping  where TscIndex >= "+tsc.getIndexMin()+" and TscIndex <= "+tsc.getIndexMax()+" ;";
@@ -2378,25 +2378,25 @@ public class SetAutoRecordChannelHandle {
     			}
     			count+=temp;
     		}
-    		//¼ÓÉÏ±¾´Î·ÖÅäµÄ½ÚÄ¿  ¸ßÇå¼Ó5  ±êÇå¼Ó1
+    		//åŠ ä¸Šæœ¬æ¬¡åˆ†é…çš„èŠ‚ç›®  é«˜æ¸…åŠ 5  æ ‡æ¸…åŠ 1
     		if(isHD==1){
     			count+=5;
     		}else{
     			count+=1;
     		}
 		} catch (Exception e) {
-			log.info("²éÑ¯tscÂ¼Ïñ¸öÊı´íÎó£º"+e.getMessage());
-			log.info("²éÑ¯tscÂ¼Ïñ¸öÊıSQL£º"+sql);
+			log.info("æŸ¥è¯¢tscå½•åƒä¸ªæ•°é”™è¯¯ï¼š"+e.getMessage());
+			log.info("æŸ¥è¯¢tscå½•åƒä¸ªæ•°SQLï¼š"+sql);
 		} finally {
 			try {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			} catch (Exception e2) {
-				log.info("¹Ø±Õ²éÑ¯tscÂ¼Ïñ¸öÊı×ÊÔ´´íÎó£º"+e2.getMessage());
+				log.info("å…³é—­æŸ¥è¯¢tscå½•åƒä¸ªæ•°èµ„æºé”™è¯¯ï¼š"+e2.getMessage());
 			}
 		}
-		//Èç¹û±¾´Î·ÖÅäµÄ ½ÚÄ¿Êı ¼Ó¿âÖĞµÄ½ÚÄ¿Êı  ´óÓÚ tscÂ¼ÖÆµÄ×î´ó½ÚÄ¿Êı
+		//å¦‚æœæœ¬æ¬¡åˆ†é…çš„ èŠ‚ç›®æ•° åŠ åº“ä¸­çš„èŠ‚ç›®æ•°  å¤§äº tscå½•åˆ¶çš„æœ€å¤§èŠ‚ç›®æ•°
 		if(count > tscMaxRecordNum ){
 			flag=true;
 		}
@@ -2404,7 +2404,7 @@ public class SetAutoRecordChannelHandle {
     }
     
     /**
-     * È¡µÃTSCÍ¨µÀºÅÁĞ±í
+     * å–å¾—TSCé€šé“å·åˆ—è¡¨
      * @return List
      * @throws DaoException
      */
@@ -2425,13 +2425,13 @@ public class SetAutoRecordChannelHandle {
 			
 			rs = statement.executeQuery(strBuff.toString());
 			
-			// È¡µÃTSCÍ¨µÀºÅÁĞ±í
+			// å–å¾—TSCé€šé“å·åˆ—è¡¨
 			while(rs.next()){
 				tscIndexList.add(Integer.parseInt(rs.getString("TscIndex")));
 			}
 		} catch (Exception e) {
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó1: " + e.getMessage());
-			log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó1 SQL: " + strBuff.toString());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯1: " + e.getMessage());
+			log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯1 SQL: " + strBuff.toString());
 		} finally {
 			DaoSupport.close(rs);
 			DaoSupport.close(statement);
@@ -2444,7 +2444,7 @@ public class SetAutoRecordChannelHandle {
 	}
     
     /**
-     * È¡µÃIPMÍ¨µÀºÅÁĞ±í
+     * å–å¾—IPMé€šé“å·åˆ—è¡¨
      * @return List
      * @throws DaoException
      */
@@ -2465,13 +2465,13 @@ public class SetAutoRecordChannelHandle {
     		
     		rs = statement.executeQuery(strBuff.toString());
     		
-    		// È¡µÃTSCÍ¨µÀºÅÁĞ±í
+    		// å–å¾—TSCé€šé“å·åˆ—è¡¨
     		while(rs.next()){
     			IpmIndexList.add(Integer.parseInt(rs.getString("IpmIndex")));
     		}
     	} catch (Exception e) {
-    		log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó1: " + e.getMessage());
-    		log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó1 SQL: " + strBuff.toString());
+    		log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯1: " + e.getMessage());
+    		log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯1 SQL: " + strBuff.toString());
     	} finally {
     		DaoSupport.close(rs);
     		DaoSupport.close(statement);
@@ -2484,7 +2484,7 @@ public class SetAutoRecordChannelHandle {
     }
     
     /**
-     * È¡µÃTSCÉè±¸ÁĞ±íÖĞµ±Ç°±êÇå½ÚÄ¿Êı
+     * å–å¾—TSCè®¾å¤‡åˆ—è¡¨ä¸­å½“å‰æ ‡æ¸…èŠ‚ç›®æ•°
      * @return List
      * @throws DaoException
      */
@@ -2508,15 +2508,15 @@ public class SetAutoRecordChannelHandle {
 
 				rs = statement.executeQuery(strBuff.toString());
 
-				// È¡µÃTSCÍ¨µÀºÅÁĞ±í
+				// å–å¾—TSCé€šé“å·åˆ—è¡¨
 				while (rs.next()) {
 					tsc.setTVNums(Integer.parseInt(rs.getString("count(*)")));
 					//log.info("getTscTVNums IndexMin: " + tsc.getIndexMin() + " IndexMax: " + tsc.getIndexMax() + " HDCount: " + tsc.getTVNums());
 					break;
 				}
 			} catch (Exception e) {
-				log.error("È¡µÃTSCÉè±¸µ±Ç°¸ßÇå½ÚÄ¿Êı´íÎó1: " + e.getMessage());
-				log.error("È¡µÃTSCÉè±¸µ±Ç°¸ßÇå½ÚÄ¿Êı´íÎó1 SQL: " + strBuff.toString());
+				log.error("å–å¾—TSCè®¾å¤‡å½“å‰é«˜æ¸…èŠ‚ç›®æ•°é”™è¯¯1: " + e.getMessage());
+				log.error("å–å¾—TSCè®¾å¤‡å½“å‰é«˜æ¸…èŠ‚ç›®æ•°é”™è¯¯1 SQL: " + strBuff.toString());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
@@ -2532,7 +2532,7 @@ public class SetAutoRecordChannelHandle {
     
 
     /**
-     * È¡µÃIPMÉè±¸ÁĞ±íÖĞµ±Ç°¸ßÇå½ÚÄ¿Êı
+     * å–å¾—IPMè®¾å¤‡åˆ—è¡¨ä¸­å½“å‰é«˜æ¸…èŠ‚ç›®æ•°
      * @return List
      * @throws DaoException
      */
@@ -2543,7 +2543,7 @@ public class SetAutoRecordChannelHandle {
     	
     	for (int t = 0; t < IPMSendList.size(); t++) {
     		IPMInfoVO ipm = (IPMInfoVO) IPMSendList.get(t);
-    		//Ö»ÓĞ×öÒ»¶ÔÒ»¼àÊÓÊ± ²Å ¸øÓèÆ½¾ù·ÖÅä
+    		//åªæœ‰åšä¸€å¯¹ä¸€ç›‘è§†æ—¶ æ‰ ç»™äºˆå¹³å‡åˆ†é…
     		if(ipm.getRecordType()==2){
 	    		StringBuffer strBuff = new StringBuffer();
 	    		
@@ -2557,15 +2557,15 @@ public class SetAutoRecordChannelHandle {
 	    			
 	    			rs = statement.executeQuery(strBuff.toString());
 	    			
-	    			// È¡µÃTSCÍ¨µÀºÅÁĞ±í
+	    			// å–å¾—TSCé€šé“å·åˆ—è¡¨
 	    			while (rs.next()) {
 	    				ipm.setHDNums(Integer.parseInt(rs.getString("count(*)")));
 	    				//log.info("getTscHDNums IndexMin: " + tsc.getIndexMin() + " IndexMax: " + tsc.getIndexMax() + " HDCount: " + tsc.getHDNums());
 	    				break;
 	    			}
 	    		} catch (Exception e) {
-	    			log.error("È¡µÃIpmÉè±¸µ±Ç°¸ßÇå½ÚÄ¿Êı´íÎó1: " + e.getMessage());
-	    			log.error("È¡µÃIpmÉè±¸µ±Ç°¸ßÇå½ÚÄ¿Êı´íÎó1 SQL: " + strBuff.toString());
+	    			log.error("å–å¾—Ipmè®¾å¤‡å½“å‰é«˜æ¸…èŠ‚ç›®æ•°é”™è¯¯1: " + e.getMessage());
+	    			log.error("å–å¾—Ipmè®¾å¤‡å½“å‰é«˜æ¸…èŠ‚ç›®æ•°é”™è¯¯1 SQL: " + strBuff.toString());
 	    		} finally {
 	    			DaoSupport.close(rs);
 	    			DaoSupport.close(statement);
@@ -2577,7 +2577,7 @@ public class SetAutoRecordChannelHandle {
     	return IPMSendList;
     }
     /**
-     * È¡µÃTSCÉè±¸ÁĞ±íÖĞµ±Ç°¸ßÇå½ÚÄ¿Êı
+     * å–å¾—TSCè®¾å¤‡åˆ—è¡¨ä¸­å½“å‰é«˜æ¸…èŠ‚ç›®æ•°
      * @return List
      * @throws DaoException
      */
@@ -2601,15 +2601,15 @@ public class SetAutoRecordChannelHandle {
 
 				rs = statement.executeQuery(strBuff.toString());
 
-				// È¡µÃTSCÍ¨µÀºÅÁĞ±í
+				// å–å¾—TSCé€šé“å·åˆ—è¡¨
 				while (rs.next()) {
 					tsc.setHDNums(Integer.parseInt(rs.getString("count(*)")));
 					//log.info("getTscHDNums IndexMin: " + tsc.getIndexMin() + " IndexMax: " + tsc.getIndexMax() + " HDCount: " + tsc.getHDNums());
 					break;
 				}
 			} catch (Exception e) {
-				log.error("È¡µÃTSCÉè±¸µ±Ç°¸ßÇå½ÚÄ¿Êı´íÎó1: " + e.getMessage());
-				log.error("È¡µÃTSCÉè±¸µ±Ç°¸ßÇå½ÚÄ¿Êı´íÎó1 SQL: " + strBuff.toString());
+				log.error("å–å¾—TSCè®¾å¤‡å½“å‰é«˜æ¸…èŠ‚ç›®æ•°é”™è¯¯1: " + e.getMessage());
+				log.error("å–å¾—TSCè®¾å¤‡å½“å‰é«˜æ¸…èŠ‚ç›®æ•°é”™è¯¯1 SQL: " + strBuff.toString());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);

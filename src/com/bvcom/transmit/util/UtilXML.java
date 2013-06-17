@@ -74,17 +74,17 @@ public class UtilXML {
             return document;
         } catch (DocumentException de) {
 //            PersistentData pData = new PersistentData();
-//            // È¡µÃ´íÎóXMLĞÅÏ¢´æ·ÅÄ¿Â¼
+//            // å–å¾—é”™è¯¯XMLä¿¡æ¯å­˜æ”¾ç›®å½•
 //            String errorFilePath = pData.getErrorFilePath();
-//            // ´´½¨´íÎóXMLĞÅÏ¢´æ·ÅÄ¿Â¼
+//            // åˆ›å»ºé”™è¯¯XMLä¿¡æ¯å­˜æ”¾ç›®å½•
 //            CommonUtility.CreateFolder(errorFilePath);
-//            // ´íÎóĞÅÏ¢±£´æÎÄ¼ş
+//            // é”™è¯¯ä¿¡æ¯ä¿å­˜æ–‡ä»¶
 //            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HHmmss"); 
 //            Date desData = new Date();
 //            String desDataStr = formatter.format(desData);
 //            String fileName =  errorFilePath + "\\" + desDataStr + "_Error.xml";
 //            
-//            log.info("³ö´íµÄXMLÎÄ¼ş´æ·ÅÂ·¾¶£º" + fileName);
+//            log.info("å‡ºé”™çš„XMLæ–‡ä»¶å­˜æ”¾è·¯å¾„ï¼š" + fileName);
 //            
 //            CommonUtility.WriteFile(str, fileName);
             
@@ -130,13 +130,13 @@ public class UtilXML {
             return document;
         } catch (FileNotFoundException fnfe) {
             log.error("ReadFromFile:" + fnfe.getMessage());
-            log.error(" --> Ã»ÓĞÕÒµ½ÎÄ¼ş£¬Çë¼ì²éÊÇ·ñ´æÔÚÎÄ¼ş " + filename);
+            log.error(" --> æ²¡æœ‰æ‰¾åˆ°æ–‡ä»¶ï¼Œè¯·æ£€æŸ¥æ˜¯å¦å­˜åœ¨æ–‡ä»¶ " + filename);
             CommonUtility.printErrorTrace(fnfe);
             setLastExceptionError(CommonUtility.FileNotFoundExceptionError);
             return null;
         } catch (DocumentException de) {
             log.error("ReadFromFile:" + de.getMessage());
-            log.error(" --> ¶ÁÈ¡ÎÄ¼ş³ö´í " + filename + " Çë¼ì²éÎÄ¼ş±àÂë");
+            log.error(" --> è¯»å–æ–‡ä»¶å‡ºé”™ " + filename + " è¯·æ£€æŸ¥æ–‡ä»¶ç¼–ç ");
             CommonUtility.printErrorTrace(de);
             setLastExceptionError(CommonUtility.DocumentExceptionError);
             return null;
@@ -166,12 +166,12 @@ public class UtilXML {
         } 
     } 
     /**
-     * ´ÓÏÂ·¢µÄXmlÊı¾İÖĞÌáÈ¡Í·²¿ĞÅÏ¢
-     * @author ±ß ½­
+     * ä»ä¸‹å‘çš„Xmlæ•°æ®ä¸­æå–å¤´éƒ¨ä¿¡æ¯
+     * @author è¾¹ æ±Ÿ
      * @param document
      * @param bsData
      * @param pData
-     * @return boolean ³É¹¦£ºtrue   Ê§°Ü£ºfalse
+     * @return boolean æˆåŠŸï¼štrue   å¤±è´¥ï¼šfalse
      */
     public boolean getInfoFromDownXml(Document reqDocument, MSGHeadVO bsData) throws CommonException {
         
@@ -203,16 +203,16 @@ public class UtilXML {
                 } else if (attr.getName().compareTo("SrcURL") == 0) {
                         bsData.setSrcURL(attr.getValue());
                 } else if (attr.getName().compareTo("Priority") == 0) {
-                    // ÃüÁîÓÅÏÈ¼¶
+                    // å‘½ä»¤ä¼˜å…ˆçº§
                     bsData.setPriority(attr.getValue());
                 } else if (attr.getName().compareTo("Version") == 0) {
-                    // ÃüÁîÓÅÏÈ¼¶
+                    // å‘½ä»¤ä¼˜å…ˆçº§
 //                	if(attr.getValue().equals("2.5"))
 //                		bsData.setVersion("2.3");
 //                	else
                 		bsData.setVersion(attr.getValue());
                 } else if (attr.getName().compareTo("DateTime") == 0) {
-                    // Ê±¼ä
+                    // æ—¶é—´
                     bsData.setDateTime(attr.getValue());
                 }
             }
@@ -228,7 +228,7 @@ public class UtilXML {
             for (Iterator i = root.elementIterator(); i.hasNext();) {
                 ele = (Element) i.next();
                 bsData.setStatusQueryType(ele.getName());
-                //V2.5ÓÃÓÚ´¦ÀíICInfoChannelEncryptQueryµÄĞÅÏ¢
+                //V2.5ç”¨äºå¤„ç†ICInfoChannelEncryptQueryçš„ä¿¡æ¯
                 try{
                 	String str=ele.attributeValue("Type");
                 	bsData.setReturn_Type(str);
@@ -242,16 +242,16 @@ public class UtilXML {
             
             retFlg = true;
         } else {
-            log.info("getInfoFromDownXml ²É¼¯Ö¸ÁîÖĞÕÒ²»µ½MonDown×Ö¶Î Òì³£");
+            log.info("getInfoFromDownXml é‡‡é›†æŒ‡ä»¤ä¸­æ‰¾ä¸åˆ°MonDownå­—æ®µ å¼‚å¸¸");
             retFlg = false;
-            throw new CommonException("²É¼¯Ö¸ÁîÖĞÕÒ²»µ½MonDown×Ö¶Î Òì³£");
+            throw new CommonException("é‡‡é›†æŒ‡ä»¤ä¸­æ‰¾ä¸åˆ°MonDownå­—æ®µ å¼‚å¸¸");
         }
         
         return retFlg;
     }
 
     /**
-     * ÏÂ·¢¸øSMG, IPM, TSCµÄ´úÂë£¬Õâ¸öĞèÒªµÈ´ı·µ»Ø¡£
+     * ä¸‹å‘ç»™SMG, IPM, TSCçš„ä»£ç ï¼Œè¿™ä¸ªéœ€è¦ç­‰å¾…è¿”å›ã€‚
      * @param sendString
      * @param sendURL
      * @param readTimeOut
@@ -277,40 +277,40 @@ public class UtilXML {
             
             conn.setRequestProperty("Content-Type", "text/xml");
 
-            // ¶ÔÏóÇ¿ÖÆ×ª»»
+            // å¯¹è±¡å¼ºåˆ¶è½¬æ¢
             HttpURLConnection connection = (HttpURLConnection) conn;
-            // ÉèÖÃÊä³ö·½Ê½"POST"
+            // è®¾ç½®è¾“å‡ºæ–¹å¼"POST"
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setReadTimeout(readTimeOut);
             connection.setRequestMethod("POST");
 
             
-            log.info(bsData.getStatusQueryType() + " ÏÂ·¢µØÖ·:" + sendURL);
-            log.info(bsData.getStatusQueryType() + " ¡¾ÊÖ¶¯Ñ¡Ì¨¡¿ÏÂ·¢Êı¾İ£º\n" + sendString);
+            log.info(bsData.getStatusQueryType() + " ä¸‹å‘åœ°å€:" + sendURL);
+            log.info(bsData.getStatusQueryType() + " ã€æ‰‹åŠ¨é€‰å°ã€‘ä¸‹å‘æ•°æ®ï¼š\n" + sendString);
             
-//            // ÉÏ±¨ĞÅÏ¢±£´æÎÄ¼ş
+//            // ä¸ŠæŠ¥ä¿¡æ¯ä¿å­˜æ–‡ä»¶
 //            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HHmmss");
 //            SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd"); 
 //            Date desData = new Date();
-//            // Ä¿Â¼
+//            // ç›®å½•
 //            String desDataStr = formatDate.format(desData);
-//            // ÎÄ¼şÃû
+//            // æ–‡ä»¶å
 //            String desDataTimeStr = formatter.format(desData);
 //            
-//            // È¡µÃÉÏ±¨ĞÅÏ¢´æ·ÅÄ¿Â¼
+//            // å–å¾—ä¸ŠæŠ¥ä¿¡æ¯å­˜æ”¾ç›®å½•
 //            String sendFilePath = "D:\\Loging\\SendDownFile";
-//            // ´´½¨ÉÏ±¨ĞÅÏ¢´æ·ÅÄ¿Â¼
+//            // åˆ›å»ºä¸ŠæŠ¥ä¿¡æ¯å­˜æ”¾ç›®å½•
 //            CommonUtility.CreateFolder(sendFilePath);
 //            
 //            String fileFlod = sendFilePath + "\\" + desDataStr;
-//            // ´´½¨Ä¿Â¼
+//            // åˆ›å»ºç›®å½•
 //            CommonUtility.CreateFolder(fileFlod);
 //            
 //            String fileName = fileFlod + "\\" + desDataTimeStr + "_" + bsData.getStatusQueryType()+ "_Send.xml";
-//            log.info("Send XMLÎÄ¼ş´æ·ÅÂ·¾¶£º" + fileName);
+//            log.info("Send XMLæ–‡ä»¶å­˜æ”¾è·¯å¾„ï¼š" + fileName);
 //            
-//            // ±£´æÅäÖÃÎÄ¼ş
+//            // ä¿å­˜é…ç½®æ–‡ä»¶
 //            CommonUtility.WriteFile(sendString, fileName);
             
             OutputStream out = connection.getOutputStream();
@@ -321,7 +321,7 @@ public class UtilXML {
             
             requestDoc.setXMLEncoding("UTF-8");
             
-            // ÏòÊä³öÁ÷Í¨µÀ·¢??Êı¾İ
+            // å‘è¾“å‡ºæµé€šé“å‘??æ•°æ®
             wout.write(requestDoc.asXML());
             wout.flush();
             
@@ -329,7 +329,7 @@ public class UtilXML {
 //                    .getOutputStream(), "GB2312");
 //            CenterWriter.write(sendString);
 //            CenterWriter.flush();
-            // Êı¾İÖĞĞÄ¼Ó
+            // æ•°æ®ä¸­å¿ƒåŠ 
             try {
                 InputStream inReader = connection.getInputStream();
                 if (inReader != null) {
@@ -339,19 +339,19 @@ public class UtilXML {
                 // Get the response
 //                rd = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
 //                String line;
-//                log.info(" ------------- ÊÖ¶¯·µ»ØĞÅÏ¢ " + sendURL);
+//                log.info(" ------------- æ‰‹åŠ¨è¿”å›ä¿¡æ¯ " + sendURL);
 //                String recString = "";
 //                while ((line = rd.readLine()) != null) {
 //                    log.info(line);
 //                    recString +=line;
 //                }
-//                log.info(" ------------- ÊÖ¶¯·µ»ØĞÅÏ¢ " + sendURL);
-//                System.out.println("½ÓÊÕÊı¾İ: " + recString);
-                //log.info("----XXXXXXXXXXX--- ±àÂëÂÒÂë²âÊÔ: \n" + utf8Togb2312(recString));
-                log.info(bsData.getStatusQueryType() + "ÏÂ·¢XMLĞÅÏ¢³É¹¦..." + sendURL);
+//                log.info(" ------------- æ‰‹åŠ¨è¿”å›ä¿¡æ¯ " + sendURL);
+//                System.out.println("æ¥æ”¶æ•°æ®: " + recString);
+                //log.info("----XXXXXXXXXXX--- ç¼–ç ä¹±ç æµ‹è¯•: \n" + utf8Togb2312(recString));
+                log.info(bsData.getStatusQueryType() + "ä¸‹å‘XMLä¿¡æ¯æˆåŠŸ..." + sendURL);
             } catch (Exception ex) {
-                log.error(bsData.getStatusQueryType() + "ÏÂ·¢³ö´í: " + ex.getMessage());
-                log.error(bsData.getStatusQueryType() + "³ö´íURL: " + sendURL);
+                log.error(bsData.getStatusQueryType() + "ä¸‹å‘å‡ºé”™: " + ex.getMessage());
+                log.error(bsData.getStatusQueryType() + "å‡ºé”™URL: " + sendURL);
             } finally {
 
                 if (out != null) {
@@ -363,14 +363,14 @@ public class UtilXML {
             }
             
         } catch (IOException ioe) {
-            log.error(bsData.getStatusQueryType() + "ÏÂ·¢³ö´í£º " + sendURL);
-            throw new CommonException("³ö´íĞÅÏ¢£º" + ioe.getMessage());
+            log.error(bsData.getStatusQueryType() + "ä¸‹å‘å‡ºé”™ï¼š " + sendURL);
+            throw new CommonException("å‡ºé”™ä¿¡æ¯ï¼š" + ioe.getMessage());
             //CommonUtility.printErrorTrace(ioe);
         }
     }
     
     /**
-     * ÏÂ·¢¸øSMG, IPM, TSCµÄ´úÂë£¬Õâ¸öĞèÒªµÈ´ı·µ»Ø¡£
+     * ä¸‹å‘ç»™SMG, IPM, TSCçš„ä»£ç ï¼Œè¿™ä¸ªéœ€è¦ç­‰å¾…è¿”å›ã€‚
      * @param sendString
      * @param sendURL
      * @param readTimeOut
@@ -396,9 +396,9 @@ public class UtilXML {
             
             conn.setRequestProperty("Content-Type", "text/xml");
 
-            // ¶ÔÏóÇ¿ÖÆ×ª»»
+            // å¯¹è±¡å¼ºåˆ¶è½¬æ¢
             HttpURLConnection connection = (HttpURLConnection) conn;
-            // ÉèÖÃÊä³ö·½Ê½"POST"
+            // è®¾ç½®è¾“å‡ºæ–¹å¼"POST"
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setReadTimeout(readTimeOut);
@@ -406,8 +406,8 @@ public class UtilXML {
             connection.setRequestProperty("Connection", "Keep-Alive");
 
             
-            log.info(bsData.getStatusQueryType() + "ÏÂ·¢µØÖ·:" + sendURL);
-            log.info(bsData.getStatusQueryType() + "ÏÂ·¢Êı¾İ: \n" + sendString);
+            log.info(bsData.getStatusQueryType() + "ä¸‹å‘åœ°å€:" + sendURL);
+            log.info(bsData.getStatusQueryType() + "ä¸‹å‘æ•°æ®: \n" + sendString);
             
             OutputStream out = connection.getOutputStream();
             OutputStreamWriter wout = new OutputStreamWriter(out, "UTF-8");
@@ -416,19 +416,19 @@ public class UtilXML {
             
             requestDoc.setXMLEncoding("UTF-8");
             
-            // ÏòÊä³öÁ÷Í¨µÀ·¢??Êı¾İ
+            // å‘è¾“å‡ºæµé€šé“å‘??æ•°æ®
             wout.write(requestDoc.asXML());
             wout.flush();
             wout.close();
             
-            // Êı¾İÖĞĞÄ¼Ó
+            // æ•°æ®ä¸­å¿ƒåŠ 
             try {
             	try {
             		
             		rd = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
             	} catch (Exception x) {
             		log.error(bsData.getStatusQueryType() + " Read Input Stream Error");
-            		/**Êä³ö´íÎóĞÅÏ¢µ½ÎÄ¼ş*/
+            		/**è¾“å‡ºé”™è¯¯ä¿¡æ¯åˆ°æ–‡ä»¶*/
             		PrintWriter pw;
         			try {
         				pw = new PrintWriter(new File("d:/Exception.log"));
@@ -443,11 +443,11 @@ public class UtilXML {
                 while ((line = rd.readLine()) != null) {
                     retString += line;
                 }
-                log.info(bsData.getStatusQueryType() + " ÏÂ·¢XMLĞÅÏ¢³É¹¦ URL: " + sendURL);
+                log.info(bsData.getStatusQueryType() + " ä¸‹å‘XMLä¿¡æ¯æˆåŠŸ URL: " + sendURL);
 
                 if (retString != null && !retString.equals("")) {
                     retString = retString.replaceAll(">", ">\r\n");
-                    // ×ª»»UTF-8 to GB2312 Í³Ò»XML ×Ö·û±ê¼Ç
+                    // è½¬æ¢UTF-8 to GB2312 ç»Ÿä¸€XML å­—ç¬¦æ ‡è®°
                     requestDoc = this.StringToXML(retString.trim());
                     
                     requestDoc.setXMLEncoding("GB2312");
@@ -455,7 +455,7 @@ public class UtilXML {
                     retString = requestDoc.asXML();
                 }
                 
-                log.info(bsData.getStatusQueryType() + " ----------> ½ÓÊÕ·µ»ØĞÅÏ¢: \n" + retString);
+                log.info(bsData.getStatusQueryType() + " ----------> æ¥æ”¶è¿”å›ä¿¡æ¯: \n" + retString);
                 
             } catch (Exception ex) {
                 
@@ -474,18 +474,18 @@ public class UtilXML {
 
 
         } catch (IOException ioe) {
-            log.error(bsData.getStatusQueryType() + "ÏÂ·¢³ö´í£º " + sendURL);
-            throw new CommonException("³ö´íĞÅÏ¢£º" + ioe.getMessage());
+            log.error(bsData.getStatusQueryType() + "ä¸‹å‘å‡ºé”™ï¼š " + sendURL);
+            throw new CommonException("å‡ºé”™ä¿¡æ¯ï¼š" + ioe.getMessage());
             //CommonUtility.printErrorTrace(ioe);
         }
         return retString;
     }
     
     /**
-     * ÉÏ±¨¸ø¼à²âÖĞĞÄ
+     * ä¸ŠæŠ¥ç»™ç›‘æµ‹ä¸­å¿ƒ
      * @param sendString
      * @param bsData
-     * @return flag ÉÏ±¨ÊÇ·ñ³É¹¦×´Ì¬  
+     * @return flag ä¸ŠæŠ¥æ˜¯å¦æˆåŠŸçŠ¶æ€  
      * @throws CommonException
      */
     public boolean SendUpXML(String sendString, String url) {
@@ -495,10 +495,10 @@ public class UtilXML {
         BufferedReader rd = null;
         
         if (sendString == null || sendString.equals("")) {
-        	log.error("·¢ËÍĞÅÏ¢Îª¿Õ");
+        	log.error("å‘é€ä¿¡æ¯ä¸ºç©º");
         	return false;
         }
-        //Ôö¼Ó ÊÇ·ñ³É¹¦×´Ì¬
+        //å¢åŠ  æ˜¯å¦æˆåŠŸçŠ¶æ€
         boolean flag=false;
         OutputStreamWriter wout = null;
         try{
@@ -509,9 +509,9 @@ public class UtilXML {
         	
         	conn.setRequestProperty("Content-Type", "text/xml");
         	
-        	// ¶ÔÏóÇ¿ÖÆ×ª»»
+        	// å¯¹è±¡å¼ºåˆ¶è½¬æ¢
         	HttpURLConnection connection = (HttpURLConnection) conn;
-        	// ÉèÖÃÊä³ö·½Ê½"POST"
+        	// è®¾ç½®è¾“å‡ºæ–¹å¼"POST"
         	connection.setReadTimeout(5);
         	connection.setDoOutput(true);
         	connection.setDoInput(true);
@@ -524,11 +524,11 @@ public class UtilXML {
         	OutputStream out = connection.getOutputStream();
         	wout = new OutputStreamWriter(out, "GB2312");
         	
-        	// ÏòÊä³öÁ÷Í¨µÀ·¢??Êı¾İ
+        	// å‘è¾“å‡ºæµé€šé“å‘??æ•°æ®
         	wout.write(requestDoc.asXML());
         	wout.flush();
         	wout.close();
-        	// Êı¾İÖĞĞÄ¼Ó
+        	// æ•°æ®ä¸­å¿ƒåŠ 
         	try {
         		  BufferedReader br = new BufferedReader(new InputStreamReader(connection
                           .getInputStream()));
@@ -550,9 +550,9 @@ public class UtilXML {
         	}
         	flag=true;
         }catch (Exception e) {
-        	log.info("·¢ËÍ´íÎóĞÅÏ¢£º"+e.getMessage());
-        	log.info("·¢ËÍ´íÎóÊı¾İ£º"+sendString);
-        	log.info("·¢ËÍ´íÎóµØÖ·£º"+url);
+        	log.info("å‘é€é”™è¯¯ä¿¡æ¯ï¼š"+e.getMessage());
+        	log.info("å‘é€é”™è¯¯æ•°æ®ï¼š"+sendString);
+        	log.info("å‘é€é”™è¯¯åœ°å€ï¼š"+url);
 		} finally {
         	if (wout != null ) {
         		try {
@@ -565,10 +565,10 @@ public class UtilXML {
     }
     
     /**
-     * ÉÏ±¨¸ø¼à²âÖĞĞÄ
+     * ä¸ŠæŠ¥ç»™ç›‘æµ‹ä¸­å¿ƒ
      * @param sendString
      * @param bsData
-     * @return flag Ôö¼Ó±¨¾¯ÉÏ±¨ÊÇ·ñ³É¹¦×´Ì¬ Ji Long 2011-06-26 
+     * @return flag å¢åŠ æŠ¥è­¦ä¸ŠæŠ¥æ˜¯å¦æˆåŠŸçŠ¶æ€ Ji Long 2011-06-26 
      * @throws CommonException
      */
     public boolean SendUpXML(String sendString, MSGHeadVO bsData) throws CommonException {
@@ -578,39 +578,39 @@ public class UtilXML {
         BufferedReader rd = null;
         Document requestDoc = null;
         if (sendString == null || sendString.equals("")) {
-        	log.error("·¢ËÍĞÅÏ¢Îª¿Õ");
+        	log.error("å‘é€ä¿¡æ¯ä¸ºç©º");
         	return false;
         }
         boolean flag =false;
-        // È¡µÃÉÏ±¨ĞÅÏ¢´æ·ÅÄ¿Â¼
+        // å–å¾—ä¸ŠæŠ¥ä¿¡æ¯å­˜æ”¾ç›®å½•
         MemCoreData coreData = MemCoreData.getInstance();
         SysInfoVO sysVO = coreData.getSysVO();
         
         try {
-        	log.info("ÉÏ±¨ÖĞĞÄ±¨¾¯µØÖ·:" + bsData.getSrcURL()+"\n");
+        	log.info("ä¸ŠæŠ¥ä¸­å¿ƒæŠ¥è­¦åœ°å€:" + bsData.getSrcURL()+"\n");
             urlCenter = new URL(bsData.getSrcURL());
             conn = urlCenter.openConnection();
             
             conn.setRequestProperty("Content-Type", "text/xml");
 
-            // ¶ÔÏóÇ¿ÖÆ×ª»»
+            // å¯¹è±¡å¼ºåˆ¶è½¬æ¢
             HttpURLConnection connection = (HttpURLConnection) conn;
-            // ÉèÖÃÊä³ö·½Ê½"POST"
+            // è®¾ç½®è¾“å‡ºæ–¹å¼"POST"
             connection.setReadTimeout(5);
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setRequestMethod("POST");
             
-            //log.info("ÉÏ±¨µØÖ·:" + bsData.getSrcURL());
-            //log.info("¿ªÊ¼ÉÏ·¢¼à¹ÜÖĞĞÄÊı¾İ£º\n" + XMLToString(document));
+            //log.info("ä¸ŠæŠ¥åœ°å€:" + bsData.getSrcURL());
+            //log.info("å¼€å§‹ä¸Šå‘ç›‘ç®¡ä¸­å¿ƒæ•°æ®ï¼š\n" + XMLToString(document));
             
-            // ÉÏ±¨ĞÅÏ¢±£´æÎÄ¼ş
+            // ä¸ŠæŠ¥ä¿¡æ¯ä¿å­˜æ–‡ä»¶
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HHmmss");
             SimpleDateFormat formatDate = new SimpleDateFormat("yyyy/MM/dd"); 
             Date desData = new Date();
-            // Ä¿Â¼
+            // ç›®å½•
             String desDataStr = formatDate.format(desData);
-            // ÎÄ¼şÃû
+            // æ–‡ä»¶å
             String desDataTimeStr = formatter.format(desData);
             
 
@@ -622,7 +622,7 @@ public class UtilXML {
             	sendFilePath = sysVO.getAlarmFilePath();
             }
             
-            // ´´½¨ÉÏ±¨ĞÅÏ¢´æ·ÅÄ¿Â¼
+            // åˆ›å»ºä¸ŠæŠ¥ä¿¡æ¯å­˜æ”¾ç›®å½•
             CommonUtility.CreateFolder(sendFilePath);
             
             String fileFlod = sendFilePath + "\\";
@@ -633,19 +633,19 @@ public class UtilXML {
             
             if (sysVO.getIsAlarmLogEnable() == 1 || (!bsData.getStatusQueryType().equals("ReturnInfo") && !bsData.getStatusQueryType().equals("Return")
             		&& !bsData.getStatusQueryType().equals("AlarmSearchPSet") && !bsData.getStatusQueryType().equals("AlarmSearchFSet"))) {
-                // ´´½¨Ä¿Â¼
+                // åˆ›å»ºç›®å½•
                 for(int i=0; i<dataFold.length; i++) {
                 	fileFlod += dataFold[i] + "/";
                 	CommonUtility.CreateFolder(fileFlod);
                 }
                 
                 fileName = fileFlod + "\\" + desDataTimeStr + "_" + bsData.getStatusQueryType()+ "_Send.xml";
-            	log.info("Send " + bsData.getStatusQueryType() + " XMLÎÄ¼ş´æ·ÅÂ·¾¶£º" + fileName);
+            	log.info("Send " + bsData.getStatusQueryType() + " XMLæ–‡ä»¶å­˜æ”¾è·¯å¾„ï¼š" + fileName);
             	CommonUtility.WriteFile(sendString, fileName);
             	if (bsData.getStatusQueryType().equals("EPGQuery") && sendString.length() >= 1024 * 100) {
-            		log.info("±¨¾¯ÖĞĞÄÉÏ±¨ĞÅÏ¢: EPGQuery size:" + sendString.length());
+            		log.info("æŠ¥è­¦ä¸­å¿ƒä¸ŠæŠ¥ä¿¡æ¯: EPGQuery size:" + sendString.length());
             	} else {
-            		log.info("±¨¾¯ÖĞĞÄÉÏ±¨ĞÅÏ¢: " + sendString);
+            		log.info("æŠ¥è­¦ä¸­å¿ƒä¸ŠæŠ¥ä¿¡æ¯: " + sendString);
             	}
             	
             }
@@ -659,7 +659,7 @@ public class UtilXML {
             	log.info("Message: " + sendString);
             }
             
-            // ÏòÊä³öÁ÷Í¨µÀ·¢??Êı¾İ
+            // å‘è¾“å‡ºæµé€šé“å‘??æ•°æ®
             if (!bsData.getStatusQueryType().equals("EPGQuery")) {
 	            requestDoc = StringToXML(sendString.trim());
 	            requestDoc.setXMLEncoding("GB2312");
@@ -670,14 +670,14 @@ public class UtilXML {
             
             wout.flush();
             int responseCode = 0;
-            // Êı¾İÖĞĞÄ¼Ó
+            // æ•°æ®ä¸­å¿ƒåŠ 
             try {
             	responseCode = connection.getResponseCode();
                 InputStream inReader = connection.getInputStream();
                 inReader.close();
                 if (!bsData.getStatusQueryType().equals("ReturnInfo") && !bsData.getStatusQueryType().equals("Return")
                 		&& !bsData.getStatusQueryType().equals("AlarmSearchPSet") && !bsData.getStatusQueryType().equals("AlarmSearchFSet")) {
-                	log.info(bsData.getStatusQueryType() + " Response: " + responseCode + " ÉÏ±¨XMLĞÅÏ¢³É¹¦... " + bsData.getSrcURL());
+                	log.info(bsData.getStatusQueryType() + " Response: " + responseCode + " ä¸ŠæŠ¥XMLä¿¡æ¯æˆåŠŸ... " + bsData.getSrcURL());
                 }
                 
             } catch (Exception ex) {
@@ -690,7 +690,7 @@ public class UtilXML {
 	            		try {
 	            			replyAlarmErrorTableHandle.upReplyAlarmErrorTable(requestDoc.asXML(), ex.getMessage());
 	            		} catch (Exception e) {
-	            			log.error("ReplyAlarmErrorTable±¨¾¯ÉÏ±¨³ö´íÊı¾İÈë¿âÊ§°Ü"+ e.getMessage());
+	            			log.error("ReplyAlarmErrorTableæŠ¥è­¦ä¸ŠæŠ¥å‡ºé”™æ•°æ®å…¥åº“å¤±è´¥"+ e.getMessage());
 	            		}
                 	}
             		
@@ -701,11 +701,11 @@ public class UtilXML {
             	
             	fileFlod = sysVO.getSendErrorFilePath() + "\\";
             	
-                // ´´½¨ÉÏ±¨ĞÅÏ¢´æ·ÅÄ¿Â¼
+                // åˆ›å»ºä¸ŠæŠ¥ä¿¡æ¯å­˜æ”¾ç›®å½•
                 CommonUtility.CreateFolder(fileFlod);
                 
                 dataFold = desDataStr.split("/");
-                // ´´½¨Ä¿Â¼
+                // åˆ›å»ºç›®å½•
                 for(int i=0; i<dataFold.length; i++) {
                 	fileFlod += dataFold[i] + "/";
                 	CommonUtility.CreateFolder(fileFlod);
@@ -729,9 +729,9 @@ public class UtilXML {
             flag =true;
         } catch (IOException ioe) {
         	flag=false;
-            log.error(bsData.getStatusQueryType() + " ÉÏ±¨³ö´í£º " + bsData.getSrcURL());
-            log.error(bsData.getStatusQueryType() + " ÉÏ±¨³ö´íĞÅÏ¢£º" + ioe.getMessage());
-            //µ±ÎŞ·¨·¢ËÍÊı¾İÊ±ºò£¬Òª²¹±¨ĞÅÏ¢ BY TQY
+            log.error(bsData.getStatusQueryType() + " ä¸ŠæŠ¥å‡ºé”™ï¼š " + bsData.getSrcURL());
+            log.error(bsData.getStatusQueryType() + " ä¸ŠæŠ¥å‡ºé”™ä¿¡æ¯ï¼š" + ioe.getMessage());
+            //å½“æ— æ³•å‘é€æ•°æ®æ—¶å€™ï¼Œè¦è¡¥æŠ¥ä¿¡æ¯ BY TQY
         	//if (!bsData.getStatusQueryType().equals("ICInfoQuery")) {
             	if (sysVO.getIsAutoAlarmReply() != 0) {
 	        		ReplyAlarmErrorTableHandle replyAlarmErrorTableHandle = new ReplyAlarmErrorTableHandle();
@@ -739,7 +739,7 @@ public class UtilXML {
 	        			replyAlarmErrorTableHandle.upReplyAlarmErrorTable(sendString, ioe.getMessage());
 	        		} catch (Exception e) {
 	        			e.printStackTrace();
-	        			log.error("ReplyAlarmErrorTable±¨¾¯ÉÏ±¨³ö´íÊı¾İÈë¿âÊ§°Ü"+ e.getMessage());
+	        			log.error("ReplyAlarmErrorTableæŠ¥è­¦ä¸ŠæŠ¥å‡ºé”™æ•°æ®å…¥åº“å¤±è´¥"+ e.getMessage());
 	        		}
             	}
         	//} 
@@ -749,10 +749,10 @@ public class UtilXML {
     }
     
     /**
-     * È¡µÃ·µ»ØµÄXMLĞÅÏ¢
-     * @param head XMLÊı¾İ¶ÔÏó 
-     * @param value 0:³É¹¦ 1:Ê§°Ü
-     * @return XMLÎÄ±¾ĞÅÏ¢
+     * å–å¾—è¿”å›çš„XMLä¿¡æ¯
+     * @param head XMLæ•°æ®å¯¹è±¡ 
+     * @param value 0:æˆåŠŸ 1:å¤±è´¥
+     * @return XMLæ–‡æœ¬ä¿¡æ¯
      */
     public String getReturnXML(MSGHeadVO head, int value) {
         
@@ -764,18 +764,18 @@ public class UtilXML {
         strBuf.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuf.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\"> \r\n");
         if(0==value){
-            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>\r\n");
+            strBuf.append("<Return Type=\""+ head.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>\r\n");
         }else if(1==value){
-            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"Ê§°Ü\"/>\r\n");
+            strBuf.append("<Return Type=\"" + head.getStatusQueryType() + "\" Value=\"1\" Desc=\"å¤±è´¥\"/>\r\n");
         }
         strBuf.append("</Msg>");
         return strBuf.toString();
     }
     
     /**
-     * È¡µÃ·µ»ØĞÅÏ¢µÄValue
+     * å–å¾—è¿”å›ä¿¡æ¯çš„Value
      * @param retrunStr
-     * @return int value 0: ³É¹¦ 1:Ê§°Ü
+     * @return int value 0: æˆåŠŸ 1:å¤±è´¥
      */
     public int getReturnValue(String retrunStr) {
     	
@@ -790,7 +790,7 @@ public class UtilXML {
         try {
             document = this.StringToXML(retrunStr);
         } catch (CommonException e) {
-            log.error("½ÓÊÕ·µ»ØĞÅÏ¢StringToXML Error: " + e.getMessage());
+            log.error("æ¥æ”¶è¿”å›ä¿¡æ¯StringToXML Error: " + e.getMessage());
             return value;
         }
         
@@ -806,9 +806,9 @@ public class UtilXML {
     
 
     /**
-     * È¡µÃ·µ»ØÀàĞÍ
+     * å–å¾—è¿”å›ç±»å‹
      * @param retrunStr
-     * @return ·µ»ØÀàĞÍ String
+     * @return è¿”å›ç±»å‹ String
      */
     public String getReturnType(String retrunStr) {
     	
@@ -823,7 +823,7 @@ public class UtilXML {
         try {
             document = this.StringToXML(retrunStr);
         } catch (CommonException e) {
-            log.error("½ÓÊÕ·µ»ØĞÅÏ¢StringToXML Error: " + e.getMessage());
+            log.error("æ¥æ”¶è¿”å›ä¿¡æ¯StringToXML Error: " + e.getMessage());
             return value;
         }
         
@@ -918,19 +918,19 @@ public class UtilXML {
         
         List listRemoveAttr = new ArrayList();
         
-        // ²éÕÒÍ·²¿ĞÅÏ¢ÊôĞÔ
+        // æŸ¥æ‰¾å¤´éƒ¨ä¿¡æ¯å±æ€§
         for (int i=0; i < list.size(); i++) {
             attr = (Attribute)list.get(i);
             listRemoveAttr.add(attr);
         }
         
-        // É¾³ıËùÒÔÍ·²¿ĞÅÏ¢µÄÊôĞÔ
+        // åˆ é™¤æ‰€ä»¥å¤´éƒ¨ä¿¡æ¯çš„å±æ€§
         for (int i=0; i < listRemoveAttr.size(); i++) {
             root.remove((Attribute)listRemoveAttr.get(i));
         }
         MemCoreData coreData = MemCoreData.getInstance();
         SysInfoVO sysVO = coreData.getSysVO();
-        // Ôö¼ÓÍ·²¿ĞÅÏ¢ÊôĞÔ
+        // å¢åŠ å¤´éƒ¨ä¿¡æ¯å±æ€§
         root.addAttribute("Version", bsData.getVersion());
         root.addAttribute("MsgID", bsData.getCenterMsgID());
         root.addAttribute("Type", "MonUp");
@@ -943,7 +943,7 @@ public class UtilXML {
     }
     
     /**
-     * ½«documentµÄMSG elementĞŞ¸Ä³ÉMonUpÒªÇó ¼ÓÈëRetrun Element,Ò²Ê¹ËûÂú×ãMonUpÒªÇó
+     * å°†documentçš„MSG elementä¿®æ”¹æˆMonUpè¦æ±‚ åŠ å…¥Retrun Element,ä¹Ÿä½¿ä»–æ»¡è¶³MonUpè¦æ±‚
      * @param headerDoc
      * @param bsData
      * @param freqStr
@@ -953,7 +953,7 @@ public class UtilXML {
      */
     public boolean AmendXML(Document headerDoc, MSGHeadVO bsData,
             String freqStr, String redirect) throws CommonException{
-        log.info("ĞŞ¸ÄMonUp DocumentÍ·²¿ÎÄ¼ş");
+        log.info("ä¿®æ”¹MonUp Documentå¤´éƒ¨æ–‡ä»¶");
         boolean retFlg = false;
         
         if (headerDoc != null) {
@@ -974,18 +974,18 @@ public class UtilXML {
             
             List listRemoveAttr = new ArrayList();
             
-            // ²éÕÒÍ·²¿ĞÅÏ¢ÊôĞÔ
+            // æŸ¥æ‰¾å¤´éƒ¨ä¿¡æ¯å±æ€§
             for (int i=0; i < list.size(); i++) {
                 attr = (Attribute)list.get(i);
                 listRemoveAttr.add(attr);
             }
             
-            // É¾³ıËùÒÔÍ·²¿ĞÅÏ¢µÄÊôĞÔ
+            // åˆ é™¤æ‰€ä»¥å¤´éƒ¨ä¿¡æ¯çš„å±æ€§
             for (int i=0; i < listRemoveAttr.size(); i++) {
                 root.remove((Attribute)listRemoveAttr.get(i));
             }
             
-            // Ôö¼ÓÍ·²¿ĞÅÏ¢ÊôĞÔ
+            // å¢åŠ å¤´éƒ¨ä¿¡æ¯å±æ€§
             root.addAttribute("Version", bsData.getVersion());
             root.addAttribute("MsgID", bsData.getCenterMsgID());
             root.addAttribute("Type", "MonUp");
@@ -1011,7 +1011,7 @@ public class UtilXML {
 //                          attr.setValue("0");
 //                      }
 //                      if (attr.getName().compareTo("Desc") == 0) {
-//                          attr.setValue("³É¹¦");
+//                          attr.setValue("æˆåŠŸ");
 //                      }
 //                      if (attr.getName().compareTo("Redirect") == 0) {
 //                          attr.setValue(redirect);
@@ -1029,7 +1029,7 @@ public class UtilXML {
                 eleTo = root.addElement("Return");
                 eleTo.addAttribute("Type", bsData.getStatusQueryType());
                 eleTo.addAttribute("Value", "0");
-                eleTo.addAttribute("Desc", "³É¹¦");
+                eleTo.addAttribute("Desc", "æˆåŠŸ");
                 eleTo.addAttribute("Redirect", redirect);
                 eleTo.addAttribute("Freq", freqStr);
             }
@@ -1041,8 +1041,8 @@ public class UtilXML {
             
             retFlg = true;
         } else {
-            log.error("ĞŞ¸ÄDocumentÍ·²¿ÎÄ¼şÊ§°Ü DocÎÄ¼şÎªnull");
-            throw new CommonException("ĞŞ¸ÄDocumentÍ·²¿ÎÄ¼şÊ§°Ü DocÎÄ¼şÎªnull");
+            log.error("ä¿®æ”¹Documentå¤´éƒ¨æ–‡ä»¶å¤±è´¥ Docæ–‡ä»¶ä¸ºnull");
+            throw new CommonException("ä¿®æ”¹Documentå¤´éƒ¨æ–‡ä»¶å¤±è´¥ Docæ–‡ä»¶ä¸ºnull");
         }
         return retFlg;
     }

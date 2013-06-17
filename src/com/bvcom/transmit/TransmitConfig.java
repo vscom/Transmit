@@ -36,7 +36,7 @@ public class TransmitConfig extends HttpServlet {
 		//session.setAttribute("coreDate", coreDate);
 		//resp.setContentType("text/html");
 		//resp.setCharacterEncoding("UTF-8");
-		//System.out.println("===============SMGĞÅÏ¢¿ªÊ¼===================");
+		//System.out.println("===============SMGä¿¡æ¯å¼€å§‹===================");
 		StringBuffer transmitConfigBuffer=new StringBuffer();
 		transmitConfigBuffer.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
 		transmitConfigBuffer.append("<ROOT>\n");
@@ -60,9 +60,9 @@ public class TransmitConfig extends HttpServlet {
 			transmitConfigBuffer.append("\t\t<SMGCardInfo Index=\""+SMGIndex[i].trim()+"\"  URL=\""+SMGURL[i].trim()+"\" HDFlag=\""+SMGHDFlag[i].trim()+"\" HDURL=\""+SMGHDURL[i].trim()+"\" IndexType=\""+SMGIndexType[i].trim()+"\" />\n");
 		}
 		transmitConfigBuffer.append("\t</SMG>\n");
-		//System.out.println("===============SMGĞÅÏ¢½áÊø===================");
+		//System.out.println("===============SMGä¿¡æ¯ç»“æŸ===================");
 		
-		//System.out.println("===============IPMĞÅÏ¢¿ªÊ¼===================");
+		//System.out.println("===============IPMä¿¡æ¯å¼€å§‹===================");
 		transmitConfigBuffer.append("\t<IPM>\n");
 		List<IPMInfoVO> ipmList=new ArrayList<IPMInfoVO>();
 		String[] IPMIndexMin=req.getParameterValues("IPMIndexMin");
@@ -83,9 +83,9 @@ public class TransmitConfig extends HttpServlet {
 			transmitConfigBuffer.append("\t\t<IPMInfo IndexMin=\""+IPMIndexMin[i].trim()+"\" IndexMax=\""+IPMIndexMax[i].trim()+"\" RecordType=\""+IPMRecordType[i].trim()+"\"  URL=\""+IPMURL[i].trim()+"\"  SysURL=\""+IPMSysURL[i].trim()+"\"/>\n");
 		}
 		transmitConfigBuffer.append("\t</IPM>\n");
-		//System.out.println("===============IPMĞÅÏ¢½áÊø===================");
+		//System.out.println("===============IPMä¿¡æ¯ç»“æŸ===================");
 		
-		//System.out.println("===============TSCĞÅÏ¢¿ªÊ¼===================");
+		//System.out.println("===============TSCä¿¡æ¯å¼€å§‹===================");
 		transmitConfigBuffer.append("\t<TSC>\n");
 		List<TSCInfoVO> tscList=new ArrayList<TSCInfoVO>();
 		String[] TSCIndexMin=req.getParameterValues("TSCIndexMin");
@@ -106,9 +106,9 @@ public class TransmitConfig extends HttpServlet {
 			transmitConfigBuffer.append("\t\t<TSCInfo IndexMin=\""+TSCIndexMin[i].trim()+"\" IndexMax=\""+TSCIndexMax[i].trim()+"\" URL=\""+TSCURL[i].trim()+"\" RecordType=\""+TSCRecordType[i].trim()+"\" SysURL=\""+TSCSysURL[i].trim()+"\"/>\n");
 		}	
 		transmitConfigBuffer.append("\t</TSC>\n");
-		//System.out.println("===============TSCĞÅÏ¢½áÊø===================");
+		//System.out.println("===============TSCä¿¡æ¯ç»“æŸ===================");
 		
-		//System.out.println("===============SYS±¾µØĞÅÏ¢¿ªÊ¼===================");
+		//System.out.println("===============SYSæœ¬åœ°ä¿¡æ¯å¼€å§‹===================");
 		SysInfoVO system=new SysInfoVO();
 		String MaxRecordMbpsFlag=req.getParameter("MaxRecordMbpsFlag");
 		String IsHasAlarmID=req.getParameter("IsHasAlarmID");
@@ -186,7 +186,7 @@ public class TransmitConfig extends HttpServlet {
 		System.out.println(MHPInfoFilePath+", "+EPGInfoFilePath);
 		System.out.println(PSIInfoFilePath+", "+TomcatHome);
 		System.out.println(TomcatPort+", "+LocalRedirectIp);
-		System.out.println("===============SYS±¾µØĞÅÏ¢½áÊø===================");
+		System.out.println("===============SYSæœ¬åœ°ä¿¡æ¯ç»“æŸ===================");
 		*/
 		coreDate.setSMGCardList(smgList);
 		coreDate.setIPMList(ipmList);
@@ -194,11 +194,11 @@ public class TransmitConfig extends HttpServlet {
 		coreDate.setSysVO(system);
 
 		String fileStr=getConfigFilePath();
-		//System.out.println("»ñÈ¡ÅäÖÃÎÄ¼şÖĞ±£´æµÄÎ»ÖÃ£º"+fileStr);
+		//System.out.println("è·å–é…ç½®æ–‡ä»¶ä¸­ä¿å­˜çš„ä½ç½®ï¼š"+fileStr);
 		//D\:/config/TransmitConfig.xml
 		//String[] files=fileStr.split("/");
 		//String newFile=files[0]+"/"+files[1]+"/config.xml";
-		//System.out.println("ĞÂ±£´æµØÖ·£º"+newFile);
+		//System.out.println("æ–°ä¿å­˜åœ°å€ï¼š"+newFile);
 		CommonUtility.StoreIntoFile(transmitConfigBuffer.toString(), fileStr);
 		
 		RequestDispatcher dispatcher=req.getRequestDispatcher("../TransmitConfig.jsp");

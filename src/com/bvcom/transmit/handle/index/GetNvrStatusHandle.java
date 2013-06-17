@@ -33,7 +33,7 @@ public class GetNvrStatusHandle {
 	}
 
 	/**
-	 * Í¨µÀ×´Ì¬²éÑ¯
+	 * é€šé“çŠ¶æ€æŸ¥è¯¢
 	 * @throws DaoException 
 	 * 
 	 */
@@ -47,7 +47,7 @@ public class GetNvrStatusHandle {
 		try {
 			document = utilXML.StringToXML(this.downString);
 		} catch (CommonException e) {
-			log.error("Í¨µÀ×´Ì¬²éÑ¯StringToXML Error: " + e.getMessage());
+			log.error("é€šé“çŠ¶æ€æŸ¥è¯¢StringToXML Error: " + e.getMessage());
 		}
 
 		GetNvrStatusParse getnvrs = new GetNvrStatusParse();
@@ -57,16 +57,16 @@ public class GetNvrStatusHandle {
 //			index.add(nvrslist.getIndex().get(i));
 //		}
 
-		// ²éÑ¯Êı¾İ¿âµÃµ½Í¨µÀµÄ×´Ì¬
+		// æŸ¥è¯¢æ•°æ®åº“å¾—åˆ°é€šé“çš„çŠ¶æ€
 //		GetNvrStatusVO nvrstatus = new GetNvrStatusVO();
 		this.upindexStat(nvrslist);
 
-		// ÉÏ±¨»Ø¸´µÄxml¸øÖĞĞÄ,×Ô¼º·µ»Ø³É¹¦
+		// ä¸ŠæŠ¥å›å¤çš„xmlç»™ä¸­å¿ƒ,è‡ªå·±è¿”å›æˆåŠŸ
 		upString = getnvrs.ReturnXMLByURL(this.bsData, nvrslist);
 		try {
 			utilXML.SendUpXML(upString, bsData);
 		} catch (CommonException e) {
-			log.error("Í¨µÀ×´Ì¬»Ø¸´Ê§°Ü: " + e.getMessage());
+			log.error("é€šé“çŠ¶æ€å›å¤å¤±è´¥: " + e.getMessage());
 		}
 
 		bsData = null;
@@ -101,13 +101,13 @@ public class GetNvrStatusHandle {
 					
 					vo.setServiceID(Integer.parseInt(rs.getString("ServiceID")));
 					
-					// 'Â¼ÏñÀàĞÍ: 0£º²»Â¼Ïñ£¬1:´ú±í¹ÊÕÏ´¥·¢Â¼ÖÆ   2£º24Ğ¡Ê±Â¼Ïñ'
+					// 'å½•åƒç±»å‹: 0ï¼šä¸å½•åƒï¼Œ1:ä»£è¡¨æ•…éšœè§¦å‘å½•åˆ¶   2ï¼š24å°æ—¶å½•åƒ'
 					switch(Integer.parseInt(rs.getString("RecordType")))
 					{
-					   case 0:desc = "Õı³£×´Ì¬";
+					   case 0:desc = "æ­£å¸¸çŠ¶æ€";
 					   		vo.setStatus(0);
 						   	break;
-					   case 2:desc = "ÕıÔÚ×Ô¶¯Â¼ÖÆ";
+					   case 2:desc = "æ­£åœ¨è‡ªåŠ¨å½•åˆ¶";
 					   		vo.setStatus(4);
 						   	break;
 					}
@@ -117,14 +117,14 @@ public class GetNvrStatusHandle {
 				}
 				
 			} catch (Exception e) {
-				log.error("Í¨µÀ×´Ì¬²éÑ¯Êı¾İ¿â´íÎó: " + e.getMessage());
+				log.error("é€šé“çŠ¶æ€æŸ¥è¯¢æ•°æ®åº“é”™è¯¯: " + e.getMessage());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);
 				DaoSupport.close(conn);
 			}
 		} catch (DaoException e1) {
-			log.error("Í¨µÀ×´Ì¬²éÑ¯Êı¾İ¿â´íÎó: " + e1.getMessage());
+			log.error("é€šé“çŠ¶æ€æŸ¥è¯¢æ•°æ®åº“é”™è¯¯: " + e1.getMessage());
 			//e1.printStackTrace();
 		}
 

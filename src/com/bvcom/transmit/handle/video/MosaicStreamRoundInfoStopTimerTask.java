@@ -10,7 +10,7 @@ public class MosaicStreamRoundInfoStopTimerTask extends TimerTask {
 	static Logger log = Logger.getLogger(MosaicStreamRoundInfoStopTimerTask.class.getSimpleName());
 	@Override
 	public void run() {
-		log.info("------- 开始启动马赛克轮播 停止任务-------");
+		log.info("------- 寮�濮嬪惎鍔ㄩ┈璧涘厠杞挱 鍋滄浠诲姟-------");
 		
 		MosaicStreamRoundInfoStopThread stopThread=new MosaicStreamRoundInfoStopThread();
 		stopThread.start();

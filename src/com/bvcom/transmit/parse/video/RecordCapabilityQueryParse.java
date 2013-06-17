@@ -57,7 +57,7 @@ public class RecordCapabilityQueryParse {
 		strBuff.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + bsData.getDstCode());
 		strBuff.append("\" DstCode=\"" + bsData.getSrcCode() + "\" ReplyID=\""+bsData.getCenterMsgID()+"\">");
 		
-        strBuff.append("<Return Type=\""+ bsData.getStatusQueryType() + "\" Value=\"0\" Desc=\"³É¹¦\"/>");
+        strBuff.append("<Return Type=\""+ bsData.getStatusQueryType() + "\" Value=\"0\" Desc=\"æˆåŠŸ\"/>");
 
         strBuff.append("<ReturnInfo>");
         

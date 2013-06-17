@@ -7,9 +7,9 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.alarm.AlarmSearchESetVO;
 
-//报警上报（环境相关）
+//鎶ヨ涓婃姤锛堢幆澧冪浉鍏筹級
 public class AlarmSearchESetParse {
-	// 报警上报回复xml打包
+	// 鎶ヨ涓婃姤鍥炲xml鎵撳寘
 	public String ReturnXMLByURL(MSGHeadVO head,List<AlarmSearchESetVO> vo, int value) {
 		
 		String xml = null;
@@ -19,9 +19,9 @@ public class AlarmSearchESetParse {
 				+ CommonUtility.getDateTime()+ "\" SrcCode=\"" + head.getDstCode()
 				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"AlarmSearchSet\" Value=\"0\" Desc=\"成功\"/>";
+			xml += "<Return Type=\"AlarmSearchSet\" Value=\"0\" Desc=\"鎴愬姛\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"AlarmSearchSet\" Value=\"1\" Desc=\"失败\"/>";
+			xml += "<Return Type=\"AlarmSearchSet\" Value=\"1\" Desc=\"澶辫触\"/>";
 			xml +="</Msg>";
 			return xml;
 		}

@@ -12,10 +12,10 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.NVRSteamRateSetVO;
 
-//实时视频流率
+//瀹炴椂瑙嗛娴佺巼
 public class NVRSteamRateSetParse {
 
-	//实时视频流率解析xml得到通道号的数组
+	//瀹炴椂瑙嗛娴佺巼瑙ｆ瀽xml寰楀埌閫氶亾鍙风殑鏁扮粍
 	@SuppressWarnings("unchecked")
 	public List<NVRSteamRateSetVO> getIndexByDownXml(Document document){
 		List<NVRSteamRateSetVO> indexlist = new ArrayList();
@@ -37,7 +37,7 @@ public class NVRSteamRateSetParse {
 		
 	}
 	
-	//实时视频流率回复xml打包
+	//瀹炴椂瑙嗛娴佺巼鍥炲xml鎵撳寘
 	public String ReturnXMLByURL(MSGHeadVO head, int value) {
 		
 		String xml = null;
@@ -47,9 +47,9 @@ public class NVRSteamRateSetParse {
 				+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"NVRSteamRateSet\" Value=\"0\" Desc=\"成功\"/>";
+			xml += "<Return Type=\"NVRSteamRateSet\" Value=\"0\" Desc=\"鎴愬姛\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"NVRSteamRateSet\" Value=\"1\" Desc=\"失败\"/>";
+			xml += "<Return Type=\"NVRSteamRateSet\" Value=\"1\" Desc=\"澶辫触\"/>";
 			xml +="</Msg>";
 			return xml;
 		}

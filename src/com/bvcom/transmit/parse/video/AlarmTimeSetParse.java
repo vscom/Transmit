@@ -15,11 +15,11 @@ import com.bvcom.transmit.util.CommonUtility;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.video.AlarmTimeSetVO;
 
-//ÔËĞĞÍ¼
+//è¿è¡Œå›¾
 public class AlarmTimeSetParse {
 	
-	//½âÎöÊÕµ½Æ½Ì¨ÏÂ·¢µÄÔËĞĞÍ¼Ğ­Òé£¬°Ñ½ÚÄ¿ĞÅÏ¢Èë¿â
-	//²¢ÇÒ¸üĞÂÄÚ´æÖĞ½ÚÄ¿ÔËĞĞÍ¼×´Ì¬
+	//è§£ææ”¶åˆ°å¹³å°ä¸‹å‘çš„è¿è¡Œå›¾åè®®ï¼ŒæŠŠèŠ‚ç›®ä¿¡æ¯å…¥åº“
+	//å¹¶ä¸”æ›´æ–°å†…å­˜ä¸­èŠ‚ç›®è¿è¡Œå›¾çŠ¶æ€
 	//Ji  Long 2011-6-15
 	public void parse(Document document){
 		List<AlarmTime> list=new ArrayList<AlarmTime>();
@@ -71,14 +71,14 @@ public class AlarmTimeSetParse {
 				}
 			}
 		}
-		//±£´æÔËĞĞÍ¼½ÚÄ¿ĞÅÏ¢ 
+		//ä¿å­˜è¿è¡Œå›¾èŠ‚ç›®ä¿¡æ¯ 
 		dao.save(list);
 		
-		//¸üĞÂÄÚ´æÖĞÔËĞĞÍ¼½ÚÄ¿ĞÅÏ¢
+		//æ›´æ–°å†…å­˜ä¸­è¿è¡Œå›¾èŠ‚ç›®ä¿¡æ¯
 		AlarmTimeMemory.alarmTimeList=dao.list();
 	}
 	
-	//ÔËĞĞÍ¼½âÎöxmlµÃµ½Í¨µÀºÅµÄÊı×é
+	//è¿è¡Œå›¾è§£æxmlå¾—åˆ°é€šé“å·çš„æ•°ç»„
 	@SuppressWarnings("unchecked")
 	public List<AlarmTimeSetVO> getIndexByDownXml(Document document){
 		List<AlarmTimeSetVO> indexlist = new ArrayList();
@@ -107,7 +107,7 @@ public class AlarmTimeSetParse {
 		
 	}
 	
-	// ÔËĞĞÍ¼»Ø¸´xml´ò°ü
+	// è¿è¡Œå›¾å›å¤xmlæ‰“åŒ…
 	public String ReturnXMLByURL(MSGHeadVO head, int value) {
 		
 		String xml = null;
@@ -117,9 +117,9 @@ public class AlarmTimeSetParse {
 				+ CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode()
 				+ "\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">";
 		if(0==value){
-			xml += "<Return Type=\"AlarmTimeSet\" Value=\"0\" Desc=\"³É¹¦\"/>";
+			xml += "<Return Type=\"AlarmTimeSet\" Value=\"0\" Desc=\"æˆåŠŸ\"/>";
 		}else if(1==value){
-			xml += "<Return Type=\"AlarmTimeSet\" Value=\"1\" Desc=\"Ê§°Ü\"/>";
+			xml += "<Return Type=\"AlarmTimeSet\" Value=\"1\" Desc=\"å¤±è´¥\"/>";
 			xml +="</Msg>";
 			return xml;
 		}

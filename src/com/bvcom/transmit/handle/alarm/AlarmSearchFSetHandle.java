@@ -30,14 +30,14 @@ public class AlarmSearchFSetHandle {
 	}
 
 	/**
-	 * ±¨¾¯ÉÏ±¨ÆµÂÊ²éÑ¯
+	 * æŠ¥è­¦ä¸ŠæŠ¥é¢‘ç‡æŸ¥è¯¢
 	 */
 	@SuppressWarnings("unchecked")
 	public void downXML() {
 		
 		List MSGSendList = new ArrayList();
         //List IPMSendList = new ArrayList();
-		// ·µ»ØÊı¾İ
+		// è¿”å›æ•°æ®
         @SuppressWarnings("unused")
 		String upString = "";
         AlarmSearchFSetParse AlarmSearchFSet = new AlarmSearchFSetParse();
@@ -46,7 +46,7 @@ public class AlarmSearchFSetHandle {
         try {
             document = utilXML.StringToXML(this.downString);
         } catch (CommonException e) {
-            log.error("±¨¾¯ÉÏ±¨ÆµÂÊStringToXML Error: " + e.getMessage());
+            log.error("æŠ¥è­¦ä¸ŠæŠ¥é¢‘ç‡StringToXML Error: " + e.getMessage());
         }
         
 //        List<AlarmSearchFSetVO> volist = AlarmSearchFSet.getIndexByDownXml(document);
@@ -58,26 +58,26 @@ public class AlarmSearchFSetHandle {
 //        for(int j=0;j<IPMSendList.size();j++){
 //            IPMInfoVO ipm = (IPMInfoVO) MSGSendList.get(j);
 //            try {
-//                // ÔËĞĞÍ¼ĞÅÏ¢ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+//                // è¿è¡Œå›¾ä¿¡æ¯ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
 //                upString = utilXML.SendDownXML(this.downString, ipm.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
 //            } catch (CommonException e) {
-//                log.error("±¨¾¯ÉÏ±¨ÆµÂÊIPMÏÂ·¢ÈÎÎñÂ¼Ïñ³ö´í£º" + ipm.getURL());
+//                log.error("æŠ¥è­¦ä¸ŠæŠ¥é¢‘ç‡IPMä¸‹å‘ä»»åŠ¡å½•åƒå‡ºé”™ï¼š" + ipm.getURL());
 //            }
 //        }
         
     	for(int j=0;j<MSGSendList.size();j++){
     		SMGCardInfoVO smg = (SMGCardInfoVO) MSGSendList.get(j);
     		try {
-                // ÔËĞĞÍ¼ĞÅÏ¢ÏÂ·¢ timeout 1000*30 ÈıÊ®Ãë
+                // è¿è¡Œå›¾ä¿¡æ¯ä¸‹å‘ timeout 1000*30 ä¸‰åç§’
     			upString = utilXML.SendDownXML(this.downString, smg.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
             } catch (CommonException e) {
-                log.error("±¨¾¯ÉÏ±¨ÆµÂÊSMGÏÂ·¢ÈÎÎñÂ¼Ïñ³ö´í£º" + smg.getURL());
+                log.error("æŠ¥è­¦ä¸ŠæŠ¥é¢‘ç‡SMGä¸‹å‘ä»»åŠ¡å½•åƒå‡ºé”™ï¼š" + smg.getURL());
             }
         }
         try {
             utilXML.SendUpXML(document.asXML(), bsData);
         } catch (CommonException e) {
-            log.error("±¨¾¯ÉÏ±¨ÆµÂÊ»Ø¸´Ê§°Ü: " + e.getMessage());
+            log.error("æŠ¥è­¦ä¸ŠæŠ¥é¢‘ç‡å›å¤å¤±è´¥: " + e.getMessage());
         }
         
 	}

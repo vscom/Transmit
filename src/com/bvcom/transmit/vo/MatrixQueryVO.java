@@ -1,5 +1,5 @@
 package com.bvcom.transmit.vo;
-//¾ØÕóÇĞ»»
+//çŸ©é˜µåˆ‡æ¢
 public class MatrixQueryVO {
 	
 	private MSGHeadVO MSGHead = new MSGHeadVO();
@@ -12,7 +12,7 @@ public class MatrixQueryVO {
     
     private int ReuturnValue;
     
-    private String Comment;//Ê§°ÜÔ­Òò
+    private String Comment;//å¤±è´¥åŸå› 
 
 	public MSGHeadVO getMSGHead() {
 		return MSGHead;

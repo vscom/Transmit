@@ -3,7 +3,7 @@ package com.bvcom.transmit.vo.video;
 import com.bvcom.transmit.vo.MSGHeadVO;
 
 /**
- *  Â¼ÏñÂ·Êı²éÑ¯
+ *  å½•åƒè·¯æ•°æŸ¥è¯¢
  * @author Bian Jiang
  *
  */
@@ -17,7 +17,7 @@ public class RecordCapabilityQueryVO {
 	
 	private int ProgramID;
 	
-	// IsRecordÎª0ÊÇ¿ÉÒÔÂ¼ÖÆ£¬Îª1ÊÇ²»¿ÉÒÔÂ¼Ïñ£¬2 Í¨µÀ¸öÊı²»¹»ÁË²»ÄÜÂ¼Ïñ
+	// IsRecordä¸º0æ˜¯å¯ä»¥å½•åˆ¶ï¼Œä¸º1æ˜¯ä¸å¯ä»¥å½•åƒï¼Œ2 é€šé“ä¸ªæ•°ä¸å¤Ÿäº†ä¸èƒ½å½•åƒ
 	private int IsRecord = 0;
 	
 	public MSGHeadVO getMSGHead() {
@@ -53,7 +53,7 @@ public class RecordCapabilityQueryVO {
 	}
 
 	/**
-	 * IsRecordÎª0ÊÇ¿ÉÒÔÂ¼ÖÆ£¬Îª1ÊÇ²»¿ÉÒÔÂ¼Ïñ£¬2 Í¨µÀ¸öÊı²»¹»ÁË²»ÄÜÂ¼Ïñ
+	 * IsRecordä¸º0æ˜¯å¯ä»¥å½•åˆ¶ï¼Œä¸º1æ˜¯ä¸å¯ä»¥å½•åƒï¼Œ2 é€šé“ä¸ªæ•°ä¸å¤Ÿäº†ä¸èƒ½å½•åƒ
 	 * @return
 	 */
 	public int getIsRecord() {
@@ -61,7 +61,7 @@ public class RecordCapabilityQueryVO {
 	}
 
 	/**
-	 * IsRecordÎª0ÊÇ¿ÉÒÔÂ¼ÖÆ£¬Îª1ÊÇ²»¿ÉÒÔÂ¼Ïñ£¬2 Í¨µÀ¸öÊı²»¹»ÁË²»ÄÜÂ¼Ïñ
+	 * IsRecordä¸º0æ˜¯å¯ä»¥å½•åˆ¶ï¼Œä¸º1æ˜¯ä¸å¯ä»¥å½•åƒï¼Œ2 é€šé“ä¸ªæ•°ä¸å¤Ÿäº†ä¸èƒ½å½•åƒ
 	 * @param isRecord
 	 */
 	public void setIsRecord(int isRecord) {

@@ -72,7 +72,7 @@ public class ReplaceTest {
 
     public static String RegReplaceErrTime(String replaceString, String stringType) {
     	
-    	String regEx= stringType + "=\"(\\d+)-(\\d+)-(\\d+)(\\s)([^0-9]+):([^0-9]+):([^0-9]+)\""; //��ʾһ������a 
+    	String regEx= stringType + "=\"(\\d+)-(\\d+)-(\\d+)(\\s)([^0-9]+):([^0-9]+):([^0-9]+)\""; //表示一个或多个a 
     	
     	Pattern p=Pattern.compile(regEx); 
 
@@ -84,13 +84,13 @@ public class ReplaceTest {
     }
     
     public static String RegReplaceProgramName(String replaceString, String stringType) {
-    	String regEx= stringType + "=\"(\\s*)\""; //��ʾһ������a 
+    	String regEx= stringType + "=\"(\\s*)\""; //表示一个或多个a 
     	
     	Pattern p=Pattern.compile(regEx); 
 
     	Matcher m=p.matcher(replaceString); 
 
-    	String s=m.replaceAll(stringType + "=\"��Ŀ��Ϊ��\""); 
+    	String s=m.replaceAll(stringType + "=\"节目名为空\""); 
     	return s;
     }
     
@@ -111,7 +111,7 @@ public class ReplaceTest {
     	
     	Date time2 = CommonUtility.dateStrToDate("2010-10-31 09:10:50");
     	
-    	// ȡ��ʱ��
+    	// 取得时间
     	long min = ((time2.getTime() - time1.getTime())/(1000*60));
     	
 //    	System.out.println(min + "m");
@@ -149,7 +149,7 @@ public class ReplaceTest {
     }
     
     public static String RegReplaceString(String replaceString, String stringType) {
-    	String regEx= stringType + "=\"(\\d+)-(\\d+)-(\\d+)(\\s)(\\d+):(\\d+):(\\d+)\""; //��ʾһ������a 
+    	String regEx= stringType + "=\"(\\d+)-(\\d+)-(\\d+)(\\s)(\\d+):(\\d+):(\\d+)\""; //表示一个或多个a 
     	
     	Pattern p=Pattern.compile(regEx); 
 

@@ -8,7 +8,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 /*
- * ¹¦ÄÜ£º´íÎóĞÅÏ¢¼ÇÂ¼Àà£¬½«´íÎóĞÅÏ¢±£´æÔÚ´ËÀàÖĞ£¬Ìá¹©¶ÁĞ´´íÎóĞÅÏ¢¼Ì³Ğ¸¸Òì³£Àà
+ * åŠŸèƒ½ï¼šé”™è¯¯ä¿¡æ¯è®°å½•ç±»ï¼Œå°†é”™è¯¯ä¿¡æ¯ä¿å­˜åœ¨æ­¤ç±»ä¸­ï¼Œæä¾›è¯»å†™é”™è¯¯ä¿¡æ¯ç»§æ‰¿çˆ¶å¼‚å¸¸ç±»
  * 
  **/
 public class CommonException extends Exception {
@@ -30,8 +30,8 @@ public class CommonException extends Exception {
 	}
 
 	/**
-	 * »ñÈ¡Òì³£ĞÅÏ¢ÁĞ±í
-	 * @return error List Òì³£ĞÅÏ¢
+	 * è·å–å¼‚å¸¸ä¿¡æ¯åˆ—è¡¨
+	 * @return error List å¼‚å¸¸ä¿¡æ¯
 	 */
 	public List getErrorList() 
 	{
@@ -39,7 +39,7 @@ public class CommonException extends Exception {
 	}
 
 	/**
-	 * ÅĞ¶ÏÊÇ·ñÓĞÒì³£
+	 * åˆ¤æ–­æ˜¯å¦æœ‰å¼‚å¸¸
 	 * @return boolean 
 	 */
 	public boolean isHaveError() 
@@ -81,17 +81,17 @@ public class CommonException extends Exception {
     }
 
     /**
-     * ´òÓ¡´íÎó¶ÑÕ»
+     * æ‰“å°é”™è¯¯å †æ ˆ
      * @param ce
      */
     public static void printErrorTrace (Exception ce) {
-        // ´òÓ¡¶ÑÕ»´íÎó
+        // æ‰“å°å †æ ˆé”™è¯¯
         StackTraceElement[] trace = ce.getStackTrace();
-        // ´æ·ÅĞÅÏ¢ÄÚÈİ
+        // å­˜æ”¾ä¿¡æ¯å†…å®¹
         StringBuffer errorBuffer = new StringBuffer();
         for (int i=0; i < trace.length; i++) {
             errorBuffer.append("\tat " + trace[i] + "\n");
         }
-        log.error("´íÎó¶ÑÕ»£º\n" + errorBuffer.toString());
+        log.error("é”™è¯¯å †æ ˆï¼š\n" + errorBuffer.toString());
     }
 }

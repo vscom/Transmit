@@ -1,5 +1,5 @@
 /**
- * transmit (java×ª·¢)
+ * transmit (javaè½¬å‘)
  * 
  * ReadConfigFile.java    2009.11.12
  * 
@@ -35,7 +35,7 @@ import com.bvcom.transmit.vo.TSCInfoVO;
 
 /**
  * 
- *  ´ÓÅäÖÃÎÄ¼ş¶ÁÈ¡ÅäÖÃĞÅÏ¢
+ *  ä»é…ç½®æ–‡ä»¶è¯»å–é…ç½®ä¿¡æ¯
  * 
  * @version  V1.0
  * @author Bian Jiang
@@ -46,9 +46,9 @@ public class ReadConfigFile {
     static Logger log = Logger.getLogger(ReadConfigFile.class.getSimpleName());
     
     public void initConfig() {
-    	//Ôö¼Ó·½·¨°Ñ±¨¾¯¿ª¹Ø×´Ì¬·ÅÈëÄÚ´æ Ji Long 2011-5-13
+    	//å¢åŠ æ–¹æ³•æŠŠæŠ¥è­¦å¼€å…³çŠ¶æ€æ”¾å…¥å†…å­˜ Ji Long 2011-5-13
     	new AlarmSwitchMemory().alarmSwitchToMemory();
-    	//Ôö¼Ó·½·¨°ÑÔËĞĞÍ¼½ÚÄ¿ĞÅÏ¢·ÅÈëÄÚ´æ JI Long 2011-06-15
+    	//å¢åŠ æ–¹æ³•æŠŠè¿è¡Œå›¾èŠ‚ç›®ä¿¡æ¯æ”¾å…¥å†…å­˜ JI Long 2011-06-15
     	new AlarmTimeMemory().alarmTimeToMemory();
     	//
         String filePath = getConfigFilePath();
@@ -67,10 +67,10 @@ public class ReadConfigFile {
             p.load(inStr);
             filePath = p.getProperty("configFilePath");
         } catch (FileNotFoundException e) {
-            log.error("¶ÁÈ¡ÅäÖÃÎÄ¼şÊ§°Ü£º" + e.getMessage());
+            log.error("è¯»å–é…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + e.getMessage());
             CommonUtility.printErrorTrace(e);
         } catch (IOException ioe){
-            log.error("¶ÁÈ¡ÅäÖÃÎÄ¼şÊ§°Ü£º" + ioe.getMessage());
+            log.error("è¯»å–é…ç½®æ–‡ä»¶å¤±è´¥ï¼š" + ioe.getMessage());
             CommonUtility.printErrorTrace(ioe);
         } finally {
             try {
@@ -90,7 +90,7 @@ public class ReadConfigFile {
 	private void getConfigFileInfo(String filePath) {
         
         UtilXML xmlutil = new UtilXML();
-        log.info("Start Read Config File£º" + filePath);
+        log.info("Start Read Config Fileï¼š" + filePath);
         Document document = xmlutil.ReadFromFile(filePath);
         
         MemCoreData coreDate = MemCoreData.getInstance();
@@ -105,8 +105,8 @@ public class ReadConfigFile {
         
         // Get SMGCard List Element 
         
-        //³ÌĞòÖØĞÂÆô¶¯ºó£¬Òª´ÓÊı¾İ¿âÖĞ¶ÁÈ¡Êı¾İ¡¢
-        //ÅĞ¶ÏSMG_CARD_INFO±íÖĞÊÇ·ñÓĞÊı¾İ£¬ÓĞÔò¶ÁÈ¡Êı¾İ¿âĞÅÏ¢£¬·ñÔò¶ÁÈ¡TransmitConfig.xmlÅäÖÃÎÄ¼ş
+        //ç¨‹åºé‡æ–°å¯åŠ¨åï¼Œè¦ä»æ•°æ®åº“ä¸­è¯»å–æ•°æ®ã€
+        //åˆ¤æ–­SMG_CARD_INFOè¡¨ä¸­æ˜¯å¦æœ‰æ•°æ®ï¼Œæœ‰åˆ™è¯»å–æ•°æ®åº“ä¿¡æ¯ï¼Œå¦åˆ™è¯»å–TransmitConfig.xmlé…ç½®æ–‡ä»¶
         int count =0;
         try
         {
@@ -144,7 +144,7 @@ public class ReadConfigFile {
 					rs = statement.executeQuery(strBuff.toString());
 					while(rs.next()){
 						 SMGCardInfoVO smgCardInfo = new SMGCardInfoVO();
-						 //»ñÈ¡Í¨µÀºÅ
+						 //è·å–é€šé“å·
 						 smgCardInfo.setIndex(rs.getInt("smgIndex"));
 						 //SMGURL
 						 smgCardInfo.setURL(rs.getString("smgURL"));
@@ -153,49 +153,49 @@ public class ReadConfigFile {
 						 //HDURL
 						 smgCardInfo.setHDURL("http://192.168.0.100/Setup1");
 						 
-						 //Í¨µÀÒµÎñÀàĞÍ
+						 //é€šé“ä¸šåŠ¡ç±»å‹
 						 @SuppressWarnings("unused")
 						 int inputtype=rs.getInt("smgInputtype");
 						 switch(inputtype){
-						 case 0://Í£ÓÃ
+						 case 0://åœç”¨
 							   smgCardInfo.setIndexType("Stop");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 1://ÊµÊ±ÊÓÆµ
+						 case 1://å®æ—¶è§†é¢‘
 							   smgCardInfo.setIndexType("ChangeProgramQuery");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 2://ÂÖ²¥¸¨Öú
+						 case 2://è½®æ’­è¾…åŠ©
 							   smgCardInfo.setIndexType("StreamRoundInfoQuery");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 3://ÂÖÑ­²âÁ¿
+						 case 3://è½®å¾ªæµ‹é‡
 							   smgCardInfo.setIndexType("AutoAnalysisTimeQuery");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 4://Â¼Ïñ
+						 case 4://å½•åƒ
 							   smgCardInfo.setIndexType("AutoRecord");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 5://¿ÕÏĞ
+						 case 5://ç©ºé—²
 							   smgCardInfo.setIndexType("Free");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 6://ÆµµÀÉ¨¡¢Ö¸±ê²éÑ¯
+						 case 6://é¢‘é“æ‰«ã€æŒ‡æ ‡æŸ¥è¯¢
 							   smgCardInfo.setIndexType("ChannelScanQuery");
 							   SMGCardList.add(smgCardInfo);
 							   break;
-						 case 7://Ö¸±ê²éÑ¯
+						 case 7://æŒ‡æ ‡æŸ¥è¯¢
 							  smgCardInfo.setIndexType("GetIndexSet");
 							  SMGCardList.add(smgCardInfo);
 							  break;
 						 }
 						 
 						 
-						 //=================ÆµµÀÉ¨ÃèºÍÖ¸±ê²éÑ¯Õ¼ÓÃÒ»¸öÍ¨µÀ=============
+						 //=================é¢‘é“æ‰«æå’ŒæŒ‡æ ‡æŸ¥è¯¢å ç”¨ä¸€ä¸ªé€šé“=============
 //						 if(inputtype==6){
 //							 SMGCardInfoVO smgCardInfo1 = new SMGCardInfoVO();
-//							 //»ñÈ¡Í¨µÀºÅ
+//							 //è·å–é€šé“å·
 //							 smgCardInfo1.setIndex(rs.getInt("smgIndex"));
 //							 //SMGURL
 //							 smgCardInfo1.setURL(rs.getString("smgURL"));
@@ -232,19 +232,19 @@ public class ReadConfigFile {
                   
                   SMGCardInfoVO smgCardInfo = new SMGCardInfoVO();
                   
-                  // È¡µÃÍ¨µÀĞÅÏ¢
+                  // å–å¾—é€šé“ä¿¡æ¯
                   smgCardInfo.setIndex(Integer.valueOf(SMGCardInfo.attribute("Index").getValue()));
                   
-                  // Í¨µÀÀàĞÍ(1:ChangeProgramQuery(ÊÖ¶¯Ñ¡Ì¨, ÆµµÀÉ¨Ãè ºÍÖ¸±ê) 2:GetIndexSet(Ö¸±ê²éÑ¯)
+                  // é€šé“ç±»å‹(1:ChangeProgramQuery(æ‰‹åŠ¨é€‰å°, é¢‘é“æ‰«æ å’ŒæŒ‡æ ‡) 2:GetIndexSet(æŒ‡æ ‡æŸ¥è¯¢)
                   smgCardInfo.setIndexType(SMGCardInfo.attribute("IndexType").getValue());
                   
                   // IP
                   //smgCardInfo.setIP(SMGCardInfo.attribute("IP").getValue());
                   // url
                   smgCardInfo.setURL(SMGCardInfo.attribute("URL").getValue());
-                  // ¸ßÇå×ªÂë±ê¼Ç
+                  // é«˜æ¸…è½¬ç æ ‡è®°
                   smgCardInfo.setHDFlag(Integer.valueOf(SMGCardInfo.attribute("HDFlag").getValue()));
-                  // ¸ßÇå×ªÂëURL
+                  // é«˜æ¸…è½¬ç URL
                   smgCardInfo.setHDURL(SMGCardInfo.attribute("HDURL").getValue());
                   
                   SMGCardList.add(smgCardInfo);
@@ -261,7 +261,7 @@ public class ReadConfigFile {
             
             IPMInfoVO IPMInfo = new IPMInfoVO();
             
-            // È¡µÃÍ¨µÀĞÅÏ¢
+            // å–å¾—é€šé“ä¿¡æ¯
             IPMInfo.setIndexMin(Integer.valueOf(IPMInfoElement.attribute("IndexMin").getValue()));
             
             IPMInfo.setIndexMax(Integer.valueOf(IPMInfoElement.attribute("IndexMax").getValue()));
@@ -288,7 +288,7 @@ public class ReadConfigFile {
             
             TSCInfoVO TSCInfo = new TSCInfoVO();
             
-            // È¡µÃÍ¨µÀĞÅÏ¢
+            // å–å¾—é€šé“ä¿¡æ¯
             TSCInfo.setIndexMin(Integer.valueOf(TSCInfoElement.attribute("IndexMin").getValue()));
             
             TSCInfo.setIndexMax(Integer.valueOf(TSCInfoElement.attribute("IndexMax").getValue()));
@@ -306,14 +306,14 @@ public class ReadConfigFile {
             TSCList.add(TSCInfo);
         }
         
-        //by tqy ËÄÆÚ
+        //by tqy å››æœŸ
         try
         {
         sysVO.setCenterAlarmURL(XMLExt.getAttributeValue("/ROOT/SYSTEM/SysInfo/@CenterRoundChannelURL", document));
         }
         catch(Exception ex){
         	sysVO.setCenterRoundChannelURL("");
-        	log.info("ÂÖ²¥½ÚÄ¿ÉÏ±¨URL:" + "Çë¼ì²éTransmitConfig.xmlµÄCenterRoundChannelURL½ÚµãÊÇ·ñ´æÔÚ£¡");
+        	log.info("è½®æ’­èŠ‚ç›®ä¸ŠæŠ¥URL:" + "è¯·æ£€æŸ¥TransmitConfig.xmlçš„CenterRoundChannelURLèŠ‚ç‚¹æ˜¯å¦å­˜åœ¨ï¼");
         }
         
         
@@ -331,7 +331,7 @@ public class ReadConfigFile {
         sysVO.setMaxAutoRecordNum(Integer.valueOf(XMLExt.getAttributeValue("/ROOT/SYSTEM/SysInfo/@MaxAutoRecordNum", document)));
         
         try {
-        	// ÊÇ·ñ´ò°üÎªZIP£¬Ä¬ÈÏÎª´ò°üZIP
+        	// æ˜¯å¦æ‰“åŒ…ä¸ºZIPï¼Œé»˜è®¤ä¸ºæ‰“åŒ…ZIP
         	sysVO.setIsEPGZip(Integer.valueOf(XMLExt.getAttributeValue("/ROOT/SYSTEM/SysInfo/@IsEPGZip", document)));
 		} catch (Exception ex) {
 			sysVO.setIsEPGZip(1);
@@ -339,7 +339,7 @@ public class ReadConfigFile {
 		
         try {
     	    /**
-    	     * EPGĞÅÏ¢ÊÇ·ñ´ÓÊı¾İ¿âÈ¡µÃ 0:²»´ÓÊı¾İ¿âÈ¡µÃÊı¾İ 1:´ÓÊı¾İ¿âÈ¡µÃ
+    	     * EPGä¿¡æ¯æ˜¯å¦ä»æ•°æ®åº“å–å¾— 0:ä¸ä»æ•°æ®åº“å–å¾—æ•°æ® 1:ä»æ•°æ®åº“å–å¾—
     	     */
         	sysVO.setIsEPGFromDataBase(Integer.valueOf(XMLExt.getAttributeValue("/ROOT/SYSTEM/SysInfo/@IsEPGFromDataBase", document)));
 		} catch (Exception ex) {
@@ -347,13 +347,13 @@ public class ReadConfigFile {
 		}
 		
         try {
-        	// ±¨¾¯ĞÅÏ¢ÊÇ·ñÖ÷¶¯²»±¨ 0:²»²¹±¨±¨¾¯ĞÅÏ¢ 1:²¹±¨±¨¾¯ĞÅÏ¢
+        	// æŠ¥è­¦ä¿¡æ¯æ˜¯å¦ä¸»åŠ¨ä¸æŠ¥ 0:ä¸è¡¥æŠ¥æŠ¥è­¦ä¿¡æ¯ 1:è¡¥æŠ¥æŠ¥è­¦ä¿¡æ¯
         	sysVO.setIsAutoAlarmReply(Integer.valueOf(XMLExt.getAttributeValue("/ROOT/SYSTEM/SysInfo/@IsAutoAlarmReply", document)));
 		} catch (Exception ex) {
 			sysVO.setIsEPGZip(0);
 		}
 		/**
-		 * MaxRecordMbpsFlag ÔÊĞí ¼Ó´óÂëÂÊºóÂ¼ÖÆµÄ¸öÊı
+		 * MaxRecordMbpsFlag å…è®¸ åŠ å¤§ç ç‡åå½•åˆ¶çš„ä¸ªæ•°
 		 */
 		
 		try {
@@ -363,7 +363,7 @@ public class ReadConfigFile {
 		}
         
 	    /**
-	     * IsHasAlarmID ÊÇ·ñ´æÔÚAlarmID, ±¨¾¯Êı¾İÊÇ·ñÈë¿â£¬ 0: ²»Èë¿â 1:Èë¿â
+	     * IsHasAlarmID æ˜¯å¦å­˜åœ¨AlarmID, æŠ¥è­¦æ•°æ®æ˜¯å¦å…¥åº“ï¼Œ 0: ä¸å…¥åº“ 1:å…¥åº“
 	     */
         try {
         	sysVO.setIsHasAlarmID(Integer.valueOf(XMLExt.getAttributeValue("/ROOT/SYSTEM/SysInfo/@IsHasAlarmID", document)));
@@ -375,7 +375,7 @@ public class ReadConfigFile {
 		
 		try {
             /**
-             * Â¼ÏñÎÄ¼ş±£´æÂ·¾¶
+             * å½•åƒæ–‡ä»¶ä¿å­˜è·¯å¾„
              */
         	sysVO.setRecordFilePath(XMLExt.getAttributeValue("/ROOT/SYSTEM/SysInfo/@RecordFilePath", document));
 		} catch (Exception ex) {
@@ -385,7 +385,7 @@ public class ReadConfigFile {
 		
         try {
             /**
-             * ±¨¾¯Êı¾İ±£´æÈÕÖ¾Ê¹ÄÜ±ê¼Ç
+             * æŠ¥è­¦æ•°æ®ä¿å­˜æ—¥å¿—ä½¿èƒ½æ ‡è®°
              */
         	sysVO.setIsAlarmLogEnable(Integer.valueOf(XMLExt.getAttributeValue("/ROOT/SYSTEM/SysLog/@IsAlarmLogEnable", document)));
 		} catch (Exception ex) {
@@ -393,7 +393,7 @@ public class ReadConfigFile {
 		}
 		
 		
-		//By TQY ËÄÆÚÈÕÖ¾ÎÄ¼ş´æ·ÅÂ·¾¶
+		//By TQY å››æœŸæ—¥å¿—æ–‡ä»¶å­˜æ”¾è·¯å¾„
 		try {
         	sysVO.setReceFilePath(XMLExt.getAttributeValue("/ROOT/SYSTEM/SysLog/@LogFilePath", document));
 		} catch (Exception ex) {
@@ -424,7 +424,7 @@ public class ReadConfigFile {
     		sysVO.setSendErrorFilePath("D:\\Loging\\ErrorUpFile");
     	}
         
-        // PSI ĞÅÏ¢
+        // PSI ä¿¡æ¯
         sysVO.setEPGInfoFilePath(XMLExt.getAttributeValue("/ROOT/SYSTEM/PSIInfo/@EPGInfoFilePath", document));
         sysVO.setMHPInfoFilePath(XMLExt.getAttributeValue("/ROOT/SYSTEM/PSIInfo/@MHPInfoFilePath", document));
         sysVO.setPSIInfoFilePath(XMLExt.getAttributeValue("/ROOT/SYSTEM/PSIInfo/@PSIInfoFilePath", document));
@@ -439,7 +439,7 @@ public class ReadConfigFile {
         String startTime = AutoAnalysisTimeQueryConfigFile.getAutoAnalysisTime();
         sysVO.setAutoAnalysisStartTime(startTime);
         
-        log.info("End Read Config File£º" + filePath);
+        log.info("End Read Config Fileï¼š" + filePath);
     }
     
     

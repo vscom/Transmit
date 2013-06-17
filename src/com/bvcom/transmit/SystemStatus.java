@@ -71,21 +71,21 @@ public class SystemStatus extends HttpServlet {
         out.println("	 RTVM: 	6701/Work <br>");
 		try {
 			List<SetAutoRecordChannelVO> AutoRecordlistSMGNew = selectChannelRemappingInfo(0);
-			out.println("<h3>Â¼ÖÆ×´Ì¬</h3>");
+			out.println("<h3>å½•åˆ¶çŠ¶æ€</h3>");
 			out.println("<table border=1 cellspacing=1 >");
 			
 			out.println("<tr>");
-			out.println("<td width=3%> ĞòºÅ </td>");
-			out.println("<td width=9%> °å¿¨Í¨µÀºÅ</td>");
-			out.println("<td width=9%> ½ÚÄ¿±àºÅ </td>");
+			out.println("<td width=3%> åºå· </td>");
+			out.println("<td width=9%> æ¿å¡é€šé“å·</td>");
+			out.println("<td width=9%> èŠ‚ç›®ç¼–å· </td>");
 			out.println("<td width=6%> TscIndex </td>");	
-			out.println("<td> ½ÚÄ¿Ãû³Æ </td>");	
+			out.println("<td> èŠ‚ç›®åç§° </td>");	
 			out.println("<td width=5%> Freq </td>");
 			out.println("<td width=7%> ServiceID </td>");
-			out.println("<td width=7%> Â¼ÏñÀàĞÍ </td>");
+			out.println("<td width=7%> å½•åƒç±»å‹ </td>");
 			out.println("<td width=5%> HDFlag </td>");
 			out.println("<td> UDP </td>");
-			out.println("<td> °å¿¨µØÖ· </td>");
+			out.println("<td> æ¿å¡åœ°å€ </td>");
 			out.println("</tr>");
 			int devIndex = 0;
 			for(int i=0; i<AutoRecordlistSMGNew.size(); i++) {
@@ -106,21 +106,21 @@ public class SystemStatus extends HttpServlet {
 				
 				out.println("<td> ");
 				if (vo.getRecordType() == 1) {
-					out.println("ÒìÌ¬Â¼ÖÆ");
+					out.println("å¼‚æ€å½•åˆ¶");
 				} else if(vo.getRecordType() == 2) {
-					out.println("×Ô¶¯Â¼Ïñ");
+					out.println("è‡ªåŠ¨å½•åƒ");
 				}else if(vo.getRecordType() == 3) {
-					out.println("ÈÎÎñÂ¼Ïñ");
+					out.println("ä»»åŠ¡å½•åƒ");
 				}else if(vo.getRecordType() == 4) {
-					out.println("ÂíÈü¿ËÂÖ²¥");
+					out.println("é©¬èµ›å…‹è½®æ’­");
 				}
 				
 				out.println(" </td>");
 				
 				if(vo.getHDFlag() == 1) {
-					out.println("<td> ¸ßÇå </td>");
+					out.println("<td> é«˜æ¸… </td>");
 				} else {
-					out.println("<td> ±êÇå </td>");
+					out.println("<td> æ ‡æ¸… </td>");
 				}
 				
 				out.println("<td> " + vo.getUdp()+ ":" + vo.getPort() + "</td>");
@@ -135,18 +135,18 @@ public class SystemStatus extends HttpServlet {
 			monitorProgramQueryList=MonitorProgramQueryHandle.GetChangeProgramInfoList(monitorProgramQueryList);
 			
 			
-			//TODO 1.Ôö¼ÓÊÓÆµÏà¹Ø×´Ì¬
-			out.println("<h3>ÊÓÆµ×´Ì¬</h3>");
+			//TODO 1.å¢åŠ è§†é¢‘ç›¸å…³çŠ¶æ€
+			out.println("<h3>è§†é¢‘çŠ¶æ€</h3>");
 			out.println("<table border=1 cellspacing=1 >");
 			out.println("<tr>");
-			out.println("<td width=3%> ĞòºÅ </td>");
-			out.println("<td width=9%> °å¿¨Í¨µÀºÅ </td>");
-			out.println("<td width=12%> ÊÓÆµÀàĞÍ </td>");
+			out.println("<td width=3%> åºå· </td>");
+			out.println("<td width=9%> æ¿å¡é€šé“å· </td>");
+			out.println("<td width=12%> è§†é¢‘ç±»å‹ </td>");
 			out.println("<td> UDP </td>");
 			out.println("<td> RtvsURL </td>");	
 			out.println("<td> smgURL </td>");
 			out.println("</tr>");
-			//0:¿ÕÏĞ 1:Ò»¶ÔÒ»¼àÊÓ¶à»­Ãæ 2:ÂÖ²¥¼à²âÊ¹ÓÃ 3:ÊÖ¶¯Ñ¡Ì¨ 4:×Ô¶¯ÂÖ²¥ 5:¶à»­Ãæ(ÂíÈü¿Ë) 6: Ò»¶ÔÒ»¼à²âµÄÊÖ¶¯Ñ¡Ì¨
+			//0:ç©ºé—² 1:ä¸€å¯¹ä¸€ç›‘è§†å¤šç”»é¢ 2:è½®æ’­ç›‘æµ‹ä½¿ç”¨ 3:æ‰‹åŠ¨é€‰å° 4:è‡ªåŠ¨è½®æ’­ 5:å¤šç”»é¢(é©¬èµ›å…‹) 6: ä¸€å¯¹ä¸€ç›‘æµ‹çš„æ‰‹åŠ¨é€‰å°
 			
 			for(int i=0;i<monitorProgramQueryList.size();i++){
 				MonitorProgramQueryVO mo=monitorProgramQueryList.get(i);
@@ -155,13 +155,13 @@ public class SystemStatus extends HttpServlet {
 					out.println("<td>"+(i+1)+"</td>");
 					out.println("<td>"+mo.getSmgIndex()+"</td>");
 					if(mo.getStatusFlag()==2){
-						out.println("<td>ÂÖ²¥¼à²â</td>");
+						out.println("<td>è½®æ’­ç›‘æµ‹</td>");
 					}else if(mo.getStatusFlag()==3){
-						out.println("<td>ÊÖ¶¯Ñ¡Ì¨</td>");
+						out.println("<td>æ‰‹åŠ¨é€‰å°</td>");
 					}else if(mo.getStatusFlag()==4){
-						out.println("<td>×Ô¶¯ÂÖ²¥</td>");
+						out.println("<td>è‡ªåŠ¨è½®æ’­</td>");
 					}else if(mo.getStatusFlag()==5){
-						out.println("<td>ÂíÈü¿ËºÏ³É</td>");
+						out.println("<td>é©¬èµ›å…‹åˆæˆ</td>");
 					}
 					out.println("<td>"+mo.getRtvsIP()+":"+mo.getRtvsPort()+"</td>");
 					out.println("<td>"+mo.getRTVSResetURL()+"</td>");
@@ -193,7 +193,7 @@ public class SystemStatus extends HttpServlet {
 		ResultSet rs = null;
 		
 			StringBuffer strBuff = new StringBuffer();
-			// È¡µÃÏà¹Ø½ÚÄ¿ÆµµãĞÅÏ¢
+			// å–å¾—ç›¸å…³èŠ‚ç›®é¢‘ç‚¹ä¿¡æ¯
 			strBuff.append("select *  from channelremapping  ");
 			
 			if(isDataInit == 0) {
@@ -270,8 +270,8 @@ public class SystemStatus extends HttpServlet {
 				//}
 				
 			} catch (Exception e) {
-				log.error("×Ô¶¯Â¼Ïñ È¡µÃ½ÚÄ¿Ïà¹ØÍ¨µÀ´íÎó: " + e.getMessage());
-				log.error("´íÎóĞÅÏ¢SQL: " + strBuff.toString());
+				log.error("è‡ªåŠ¨å½•åƒ å–å¾—èŠ‚ç›®ç›¸å…³é€šé“é”™è¯¯: " + e.getMessage());
+				log.error("é”™è¯¯ä¿¡æ¯SQL: " + strBuff.toString());
 			} finally {
 				DaoSupport.close(rs);
 				DaoSupport.close(statement);

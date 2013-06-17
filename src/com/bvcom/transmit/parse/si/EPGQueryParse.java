@@ -15,7 +15,7 @@ import com.bvcom.transmit.vo.si.EPGQueryVo;
 public class EPGQueryParse {
 
 	/**
-	 * 解析下发的EPG查询指令
+	 * 瑙ｆ瀽涓嬪彂鐨凟PG鏌ヨ鎸囦护
 	 * @param document
 	 * @return
 	 */
@@ -37,7 +37,7 @@ public class EPGQueryParse {
 	}
 	
 	/**
-	 * 取得EPG返回信息中的记录信息
+	 * 鍙栧緱EPG杩斿洖淇℃伅涓殑璁板綍淇℃伅
 	 * @param document
 	 * @return List<EPGQueryVo>
 	 */
@@ -103,16 +103,16 @@ public class EPGQueryParse {
         strBuff.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuff.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">\r\n");
 		if(0==value){
-            strBuff.append("<Return Type=\"EPGQuery\" Value=\"0\" Desc=\"成功\" Redirect=\"" + Redirect + "\" />\r\n");
+            strBuff.append("<Return Type=\"EPGQuery\" Value=\"0\" Desc=\"鎴愬姛\" Redirect=\"" + Redirect + "\" />\r\n");
 		}else if(1==value){
-            strBuff.append("<Return Type=\"EPGQuery\" Value=\"1\" Desc=\"失败\" Redirect=\"" + Redirect + "\"  />\r\n");
+            strBuff.append("<Return Type=\"EPGQuery\" Value=\"1\" Desc=\"澶辫触\" Redirect=\"" + Redirect + "\"  />\r\n");
 		}
         strBuff.append("</Msg>\r\n");
 		return strBuff.toString();
 	}
 	
 	/**
-	 * 转换EPG信息为XML文件
+	 * 杞崲EPG淇℃伅涓篨ML鏂囦欢
 	 * @param head
 	 * @param EPGQueryList
 	 * @param scanTime
@@ -126,7 +126,7 @@ public class EPGQueryParse {
         strBuff.append(head.getCenterMsgID() + "\" Type=\"MonUp\" DateTime=\"");
         strBuff.append(CommonUtility.getDateTime() + "\" SrcCode=\"" + head.getDstCode());
         strBuff.append("\" DstCode=\"" + head.getSrcCode() + "\" ReplyID=\""+head.getCenterMsgID()+"\">\r\n");
-        strBuff.append("<Return Type=\"EPGQuery\" Value=\"0\" Desc=\"成功\" Redirect=\"\" />\r\n");
+        strBuff.append("<Return Type=\"EPGQuery\" Value=\"0\" Desc=\"鎴愬姛\" Redirect=\"\" />\r\n");
 		
         strBuff.append("<ReturnInfo>\r\n");
         strBuff.append("<EPGQuery ScanTime=\"" + scanTime + "\">\r\n");
