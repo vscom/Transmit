@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="GB2312" standalone="yes" ?>
+<Msg Version="2.3" MsgID="1000_ID" Type="MonDown" DateTime="2009-08-17 15:30:00" SrcCode="110000G01" DstCode="110000M01" SrcURL="http://10.24.32.28:8089/servlet/receiver" Priority="1" >
+	<ipm48pluspro>
+  		<lcd idx="0" left="0" top="0" width="720" high="576" >
+			<Media idx="1" left="0" top="0" width="180" high="144" serviceid="801" freq="123000" />
+			<Media idx="2" left="180" top="0" width="180" high="144" serviceid="801" freq="123000" />
+			<Media idx="3" left="360" top="0" width="180" high="144" serviceid="801" freq="123000" />
+			<Media idx="4" left="540" top="0" width="180" high="144" serviceid="801" freq="123000" />
+			<Media idx="5" left="0" top="144" width="180" high="144" serviceid="801" freq="123000" />
+			<Media idx="6" left="180" top="144" width="360" high="288" serviceid="801" freq="123000" />
+			<Media idx="7" left="540" top="144" width="180" high="144" serviceid="801" freq="123000" />
+			<Media idx="8" left="0" top="288" width="180" high="144" serviceid="801" freq="123000" />
+			<Media idx="9" left="540" top="288" width="180" high="144" serviceid="801" freq="123000" />
+			<Media idx="10" left="0" top="432" width="180" high="144" serviceid="801" freq="123000" />
+			<Media idx="11" left="180" top="432" width="180" high="144" serviceid="801" freq="123000" />
+			<Media idx="12" left="360" top="432" width="180" high="144" serviceid="801" freq="123000" />
+			<Media idx="13" left="540" top="432" width="180" high="144" serviceid="801" freq="123000" />
+ 		</lcd>
+	</ipm48pluspro>
+</Msg>
+<!--
+  lcd: 显示区描述，idx=0表示第一个显示区，1＝第2个。
+	left，top: 左上角坐标
+	width,high:宽，高
+	serviceid：
+	freq:
+-->

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GB2312" standalone="yes"?>
+<Msg>
+    <RTVSResetConfig>
+        <!-- Type: 0:空闲 1:一对一监测 2:轮播监测使用 3:手动选台 4:自动轮播 -->
+        <RTVSConfig  Index="0" Freq="115000" ServiceID="301" SMGUdpIP="239.1.1.1" SMGUdpPort="3456" Type="1"/>
+    </RTVSResetConfig>
+</Msg>
+

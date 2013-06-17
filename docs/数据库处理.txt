@@ -1,0 +1,2 @@
+1. «Âø’Õ®µ¿”≥…‰
+update transmit.channelremapping set freq = 0, statusflag = 0, TscIndex = 0, serviceid = 0, videopid = 0, audiopid = 0, downindex=0

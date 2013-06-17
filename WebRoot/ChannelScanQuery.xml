@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="GB2312"?>
+<Msg Version="4" MsgID="1107" Type="MonUp" DateTime="2000-01-01 08:09:40" SrcURL="http://10.134.121.4/interface/receive.asmx" SrcCode="110004" DstCode="" Priority="0" ReplyID="1107">
+<Return Type="ChannelScanQuery" Value="0" Desc="成功"/>
+<ReturnInfo>
+<ChannelScanQuery ScanTime="2000-01-01 08:09:40">
+<ChannelScan Freq="259000" OrgNetID="0" TsID="20" QAM="64" SymbolRate="6875">
+<Channel Program="数字电视宣传" ProgramID="501" ServiceID="501" VideoPID="2011" AudioPID="2012" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2011"/>
+<elementryPID StreamType="4" PID="2012"/>
+</Channel>
+<Channel Program="广东移动" ProgramID="109" ServiceID="109" VideoPID="2051" AudioPID="2052" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2051"/>
+<elementryPID StreamType="4" PID="2052"/>
+</Channel>
+<Channel Program="广东卫视" ProgramID="102" ServiceID="102" VideoPID="2021" AudioPID="2022" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2021"/>
+<elementryPID StreamType="4" PID="2022"/>
+</Channel>
+<Channel Program="广东体育" ProgramID="108" ServiceID="108" VideoPID="2041" AudioPID="2042" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2041"/>
+<elementryPID StreamType="4" PID="2042"/>
+</Channel>
+<Channel Program="广东珠江" ProgramID="105" ServiceID="105" VideoPID="2031" AudioPID="2032" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2031"/>
+<elementryPID StreamType="4" PID="2032"/>
+</Channel>
+<Channel Program="广东新闻" ProgramID="107" ServiceID="107" VideoPID="2061" AudioPID="2062" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2061"/>
+<elementryPID StreamType="4" PID="2062"/>
+</Channel>
+<Channel Program="广东嘉佳卡通" ProgramID="110" ServiceID="110" VideoPID="2071" AudioPID="2072" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2071"/>
+<elementryPID StreamType="4" PID="2072"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="267000" OrgNetID="0" TsID="22" QAM="64" SymbolRate="6875">
+<Channel Program="山东教育（选传）" ProgramID="273" ServiceID="273" VideoPID="2281" AudioPID="2282" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2281"/>
+<elementryPID StreamType="4" PID="2282"/>
+</Channel>
+<Channel Program="南方影视" ProgramID="124" ServiceID="124" VideoPID="2241" AudioPID="2242" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2241"/>
+<elementryPID StreamType="4" PID="2242"/>
+</Channel>
+<Channel Program="南方少儿" ProgramID="125" ServiceID="125" VideoPID="2251" AudioPID="2252" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2251"/>
+<elementryPID StreamType="4" PID="2252"/>
+</Channel>
+<Channel Program="南方经济" ProgramID="121" ServiceID="121" VideoPID="2211" AudioPID="2212" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2211"/>
+<elementryPID StreamType="4" PID="2212"/>
+</Channel>
+<Channel Program="南方综艺" ProgramID="123" ServiceID="123" VideoPID="2231" AudioPID="2232" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2231"/>
+<elementryPID StreamType="4" PID="2232"/>
+</Channel>
+<Channel Program="南方都市" ProgramID="122" ServiceID="122" VideoPID="2221" AudioPID="2222" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2221"/>
+<elementryPID StreamType="4" PID="2222"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="275000" OrgNetID="0" TsID="44" QAM="64" SymbolRate="6875">
+<Channel Program="全省新闻信息" ProgramID="1000" ServiceID="1000" VideoPID="4441" AudioPID="4442" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4441"/>
+<elementryPID StreamType="3" PID="4442"/>
+</Channel>
+<Channel Program="CCTV证券资讯（付费）" ProgramID="443" ServiceID="443" VideoPID="4471" AudioPID="4472" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4471"/>
+<elementryPID StreamType="4" PID="4472"/>
+</Channel>
+<Channel Program="邮轮旅游" ProgramID="126" ServiceID="126" VideoPID="4411" AudioPID="4412" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4411"/>
+<elementryPID StreamType="4" PID="4412"/>
+</Channel>
+<Channel Program="天天购物" ProgramID="127" ServiceID="127" VideoPID="4421" AudioPID="4422" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4421"/>
+<elementryPID StreamType="4" PID="4422"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="291000" OrgNetID="0" TsID="23" QAM="64" SymbolRate="6875">
+<Channel Program="中央教育一台" ProgramID="145" ServiceID="145" VideoPID="2361" AudioPID="2362" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2361"/>
+<elementryPID StreamType="4" PID="2362"/>
+</Channel>
+<Channel Program="CCTV-1" ProgramID="101" ServiceID="101" VideoPID="2311" AudioPID="2312" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2311"/>
+<elementryPID StreamType="4" PID="2312"/>
+</Channel>
+<Channel Program="CCTV-2（选传）" ProgramID="132" ServiceID="132" VideoPID="2321" AudioPID="2322" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2321"/>
+<elementryPID StreamType="4" PID="2322"/>
+</Channel>
+<Channel Program="CCTV-7（选传）" ProgramID="137" ServiceID="137" VideoPID="2341" AudioPID="2342" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2341"/>
+<elementryPID StreamType="4" PID="2342"/>
+</Channel>
+<Channel Program="CCTV-新闻" ProgramID="131" ServiceID="131" VideoPID="2371" AudioPID="2372" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2371"/>
+<elementryPID StreamType="4" PID="2372"/>
+</Channel>
+<Channel Program="CCTV-少儿" ProgramID="143" ServiceID="143" VideoPID="2351" AudioPID="2352" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2351"/>
+<elementryPID StreamType="4" PID="2352"/>
+</Channel>
+<Channel Program="CCTV-4（选传）" ProgramID="134" ServiceID="134" VideoPID="2331" AudioPID="2332" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2331"/>
+<elementryPID StreamType="4" PID="2332"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="299000" OrgNetID="0" TsID="41" QAM="64" SymbolRate="6875">
+<Channel Program="CCTV-5（选传）" ProgramID="135" ServiceID="135" VideoPID="4121" AudioPID="4122" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4121"/>
+<elementryPID StreamType="4" PID="4122"/>
+</Channel>
+<Channel Program="CCTV-3（选传）" ProgramID="133" ServiceID="133" VideoPID="4111" AudioPID="4112" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4111"/>
+<elementryPID StreamType="4" PID="4112"/>
+</Channel>
+<Channel Program="CCTV-6（选传）" ProgramID="136" ServiceID="136" VideoPID="4131" AudioPID="4132" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4131"/>
+<elementryPID StreamType="4" PID="4132"/>
+</Channel>
+<Channel Program="CCTV-8（选传）" ProgramID="138" ServiceID="138" VideoPID="4141" AudioPID="4142" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4141"/>
+<elementryPID StreamType="4" PID="4142"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="307000" OrgNetID="0" TsID="26" QAM="64" SymbolRate="6875">
+<Channel Program="广东公共" ProgramID="106" ServiceID="106" VideoPID="2611" AudioPID="2612" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2611"/>
+<elementryPID StreamType="4" PID="2612"/>
+</Channel>
+<Channel Program="凤凰中文台" ProgramID="181" ServiceID="181" VideoPID="2661" AudioPID="2662" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2661"/>
+<elementryPID StreamType="4" PID="2662"/>
+</Channel>
+<Channel Program="香港国际" ProgramID="185" ServiceID="185" VideoPID="2651" AudioPID="2652" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2651"/>
+<elementryPID StreamType="4" PID="2652"/>
+</Channel>
+<Channel Program="香港明珠" ProgramID="184" ServiceID="184" VideoPID="2641" AudioPID="2642" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2641"/>
+<elementryPID StreamType="4" PID="2642"/>
+</Channel>
+<Channel Program="香港本港" ProgramID="183" ServiceID="183" VideoPID="2631" AudioPID="2632" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2631"/>
+<elementryPID StreamType="4" PID="2632"/>
+</Channel>
+<Channel Program="香港翡翠" ProgramID="182" ServiceID="182" VideoPID="2621" AudioPID="2622" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2621"/>
+<elementryPID StreamType="4" PID="2622"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="315000" OrgNetID="0" TsID="31" QAM="64" SymbolRate="6875">
+<Channel Program="广州经济" ProgramID="161" ServiceID="161" VideoPID="3121" AudioPID="3122" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3121"/>
+<elementryPID StreamType="4" PID="3122"/>
+</Channel>
+<Channel Program="广州英语" ProgramID="162" ServiceID="162" VideoPID="3131" AudioPID="3132" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3131"/>
+<elementryPID StreamType="4" PID="3132"/>
+</Channel>
+<Channel Program="广州竞赛" ProgramID="163" ServiceID="163" VideoPID="3141" AudioPID="3142" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3141"/>
+<elementryPID StreamType="4" PID="3142"/>
+</Channel>
+<Channel Program="广州影视" ProgramID="165" ServiceID="165" VideoPID="3161" AudioPID="3162" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3161"/>
+<elementryPID StreamType="4" PID="3162"/>
+</Channel>
+<Channel Program="广州台" ProgramID="104" ServiceID="104" VideoPID="3111" AudioPID="3112" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3111"/>
+<elementryPID StreamType="4" PID="3112"/>
+</Channel>
+<Channel Program="广州新闻" ProgramID="164" ServiceID="164" VideoPID="3151" AudioPID="3152" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3151"/>
+<elementryPID StreamType="4" PID="3152"/>
+</Channel>
+<Channel Program="广州少儿" ProgramID="166" ServiceID="166" VideoPID="3171" AudioPID="3172" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3171"/>
+<elementryPID StreamType="4" PID="3172"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="323000" OrgNetID="0" TsID="27" QAM="64" SymbolRate="6875">
+<Channel Program="重庆卫视（选传）" ProgramID="276" ServiceID="276" VideoPID="2761" AudioPID="2762" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2761"/>
+<elementryPID StreamType="4" PID="2762"/>
+</Channel>
+<Channel Program="金鹰卡通（选传）" ProgramID="277" ServiceID="277" VideoPID="2771" AudioPID="2772" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2771"/>
+<elementryPID StreamType="4" PID="2772"/>
+</Channel>
+<Channel Program="江西卫视（选传）" ProgramID="278" ServiceID="278" VideoPID="2781" AudioPID="2782" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2781"/>
+<elementryPID StreamType="4" PID="2782"/>
+</Channel>
+<Channel Program="广西卫视（选传）" ProgramID="274" ServiceID="274" VideoPID="2741" AudioPID="2742" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2741"/>
+<elementryPID StreamType="4" PID="2742"/>
+</Channel>
+<Channel Program="安徽卫视（选传）" ProgramID="203" ServiceID="203" VideoPID="2711" AudioPID="2712" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2711"/>
+<elementryPID StreamType="4" PID="2712"/>
+</Channel>
+<Channel Program="山东卫视（选传）" ProgramID="272" ServiceID="272" VideoPID="2721" AudioPID="2722" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2721"/>
+<elementryPID StreamType="4" PID="2722"/>
+</Channel>
+<Channel Program="四川卫视（选传）" ProgramID="275" ServiceID="275" VideoPID="2751" AudioPID="2752" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2751"/>
+<elementryPID StreamType="4" PID="2752"/>
+</Channel>
+<Channel Program="湖南卫视（选传）" ProgramID="202" ServiceID="202" VideoPID="2731" AudioPID="2732" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2731"/>
+<elementryPID StreamType="4" PID="2732"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="331000" OrgNetID="0" TsID="90" QAM="64" SymbolRate="6875">
+<Channel Program="未知1" ProgramID="902" ServiceID="902" VideoPID="8765" AudioPID="0" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+</Channel>
+<Channel Program="未知2" ProgramID="9994" ServiceID="9994" VideoPID="8765" AudioPID="0" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="339000" OrgNetID="0" TsID="28" QAM="64" SymbolRate="6875">
+<Channel Program="贵州卫视（选传）" ProgramID="285" ServiceID="285" VideoPID="2851" AudioPID="2852" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2851"/>
+<elementryPID StreamType="4" PID="2852"/>
+</Channel>
+<Channel Program="旅游卫视（选传）" ProgramID="295" ServiceID="295" VideoPID="2841" AudioPID="2842" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2841"/>
+<elementryPID StreamType="4" PID="2842"/>
+</Channel>
+<Channel Program="河北卫视（选传）" ProgramID="283" ServiceID="283" VideoPID="2831" AudioPID="2832" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2831"/>
+<elementryPID StreamType="4" PID="2832"/>
+</Channel>
+<Channel Program="云南卫视（选传）" ProgramID="282" ServiceID="282" VideoPID="2821" AudioPID="2822" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2821"/>
+<elementryPID StreamType="4" PID="2822"/>
+</Channel>
+<Channel Program="炫动卡通（选传）" ProgramID="289" ServiceID="289" VideoPID="2871" AudioPID="2872" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2871"/>
+<elementryPID StreamType="4" PID="2872"/>
+</Channel>
+<Channel Program="辽宁卫视（选传）" ProgramID="281" ServiceID="281" VideoPID="2811" AudioPID="2812" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2811"/>
+<elementryPID StreamType="4" PID="2812"/>
+</Channel>
+<Channel Program="陕西卫视（选传）" ProgramID="286" ServiceID="286" VideoPID="2861" AudioPID="2862" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2861"/>
+<elementryPID StreamType="4" PID="2862"/>
+</Channel>
+<Channel Program="黑龙江卫视（选传）" ProgramID="290" ServiceID="290" VideoPID="2881" AudioPID="2882" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2881"/>
+<elementryPID StreamType="4" PID="2882"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="347000" OrgNetID="0" TsID="29" QAM="64" SymbolRate="6875">
+<Channel Program="甘肃卫视（选传）" ProgramID="297" ServiceID="297" VideoPID="2971" AudioPID="2972" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2971"/>
+<elementryPID StreamType="4" PID="2972"/>
+</Channel>
+<Channel Program="天津卫视（选传）" ProgramID="287" ServiceID="287" VideoPID="2961" AudioPID="2962" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2961"/>
+<elementryPID StreamType="4" PID="2962"/>
+</Channel>
+<Channel Program="新疆卫视（选传）" ProgramID="292" ServiceID="292" VideoPID="2921" AudioPID="2922" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2921"/>
+<elementryPID StreamType="4" PID="2922"/>
+</Channel>
+<Channel Program="山西卫视（选传）" ProgramID="298" ServiceID="298" VideoPID="2981" AudioPID="2982" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2981"/>
+<elementryPID StreamType="4" PID="2982"/>
+</Channel>
+<Channel Program="北京卫视（选传）" ProgramID="294" ServiceID="294" VideoPID="2941" AudioPID="2942" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2941"/>
+<elementryPID StreamType="4" PID="2942"/>
+</Channel>
+<Channel Program="福建卫视（选传）" ProgramID="206" ServiceID="206" VideoPID="2951" AudioPID="2952" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2951"/>
+<elementryPID StreamType="4" PID="2952"/>
+</Channel>
+<Channel Program="吉林卫视（选传）" ProgramID="291" ServiceID="291" VideoPID="2911" AudioPID="2912" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2911"/>
+<elementryPID StreamType="4" PID="2912"/>
+</Channel>
+<Channel Program="湖北卫视（选传）" ProgramID="293" ServiceID="293" VideoPID="2931" AudioPID="2932" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2931"/>
+<elementryPID StreamType="4" PID="2932"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="355000" OrgNetID="0" TsID="32" QAM="64" SymbolRate="6875">
+<Channel Program="世界地理（付费）" ProgramID="325" ServiceID="325" VideoPID="3251" AudioPID="3252" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3251"/>
+<elementryPID StreamType="4" PID="3252"/>
+</Channel>
+<Channel Program="第一剧场（付费）" ProgramID="327" ServiceID="327" VideoPID="3271" AudioPID="3272" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3271"/>
+<elementryPID StreamType="4" PID="3272"/>
+</Channel>
+<Channel Program="电视指南（付费）" ProgramID="321" ServiceID="321" VideoPID="3211" AudioPID="3212" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3211"/>
+<elementryPID StreamType="4" PID="3212"/>
+</Channel>
+<Channel Program="风云剧场（付费）" ProgramID="326" ServiceID="326" VideoPID="3261" AudioPID="3262" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3261"/>
+<elementryPID StreamType="4" PID="3262"/>
+</Channel>
+<Channel Program="怀旧剧场（付费）" ProgramID="322" ServiceID="322" VideoPID="3221" AudioPID="3222" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3221"/>
+<elementryPID StreamType="4" PID="3222"/>
+</Channel>
+<Channel Program="风云足球（付费）" ProgramID="324" ServiceID="324" VideoPID="3241" AudioPID="3242" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3241"/>
+<elementryPID StreamType="4" PID="3242"/>
+</Channel>
+<Channel Program="风云音乐（付费）" ProgramID="328" ServiceID="328" VideoPID="3281" AudioPID="3282" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3281"/>
+<elementryPID StreamType="4" PID="3282"/>
+</Channel>
+<Channel Program="央视精品（付费）" ProgramID="323" ServiceID="323" VideoPID="3231" AudioPID="3232" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3231"/>
+<elementryPID StreamType="4" PID="3232"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="363000" OrgNetID="0" TsID="38" QAM="64" SymbolRate="6875">
+<Channel Program="女性时尚（付费）" ProgramID="384" ServiceID="384" VideoPID="3841" AudioPID="3842" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3841"/>
+<elementryPID StreamType="4" PID="3842"/>
+</Channel>
+<Channel Program="宝贝家（付费）" ProgramID="386" ServiceID="386" VideoPID="3861" AudioPID="3862" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3861"/>
+<elementryPID StreamType="4" PID="3862"/>
+</Channel>
+<Channel Program="书画频道（付费）" ProgramID="383" ServiceID="383" VideoPID="3831" AudioPID="3832" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3831"/>
+<elementryPID StreamType="4" PID="3832"/>
+</Channel>
+<Channel Program="环球奇观（付费）" ProgramID="381" ServiceID="381" VideoPID="3811" AudioPID="3812" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3811"/>
+<elementryPID StreamType="4" PID="3812"/>
+</Channel>
+<Channel Program="老故事频道（付费）" ProgramID="382" ServiceID="382" VideoPID="3821" AudioPID="3822" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3821"/>
+<elementryPID StreamType="4" PID="3822"/>
+</Channel>
+<Channel Program="发现之旅（付费）" ProgramID="385" ServiceID="385" VideoPID="3851" AudioPID="3852" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3851"/>
+<elementryPID StreamType="4" PID="3852"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="371000" OrgNetID="0" TsID="40" QAM="64" SymbolRate="6875">
+<Channel Program="深圳卫视（选传）" ProgramID="201" ServiceID="201" VideoPID="4011" AudioPID="4012" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4011"/>
+<elementryPID StreamType="4" PID="4012"/>
+</Channel>
+<Channel Program="澳亚卫视台" ProgramID="186" ServiceID="186" VideoPID="4041" AudioPID="4042" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4041"/>
+<elementryPID StreamType="4" PID="4042"/>
+</Channel>
+<Channel Program="时尚频道（选传）" ProgramID="111" ServiceID="111" VideoPID="4021" AudioPID="4022" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4021"/>
+<elementryPID StreamType="4" PID="4022"/>
+</Channel>
+<Channel Program="南方卫视" ProgramID="103" ServiceID="103" VideoPID="4031" AudioPID="4032" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4031"/>
+<elementryPID StreamType="4" PID="4032"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="379000" OrgNetID="0" TsID="30" QAM="64" SymbolRate="6875">
+<Channel Program="河南卫视（选传）" ProgramID="207" ServiceID="207" VideoPID="3031" AudioPID="3032" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3031"/>
+<elementryPID StreamType="4" PID="3032"/>
+</Channel>
+<Channel Program="东方卫视（选传）" ProgramID="288" ServiceID="288" VideoPID="3071" AudioPID="3072" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3071"/>
+<elementryPID StreamType="4" PID="3072"/>
+</Channel>
+<Channel Program="内蒙古卫视（选传）" ProgramID="304" ServiceID="304" VideoPID="3041" AudioPID="3042" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3041"/>
+<elementryPID StreamType="4" PID="3042"/>
+</Channel>
+<Channel Program="浙江卫视（选传）" ProgramID="204" ServiceID="204" VideoPID="3011" AudioPID="3012" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3011"/>
+<elementryPID StreamType="4" PID="3012"/>
+</Channel>
+<Channel Program="西藏卫视（选传）" ProgramID="308" ServiceID="308" VideoPID="3081" AudioPID="3082" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3081"/>
+<elementryPID StreamType="4" PID="3082"/>
+</Channel>
+<Channel Program="江苏卫视（选传）" ProgramID="205" ServiceID="205" VideoPID="3021" AudioPID="3022" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3021"/>
+<elementryPID StreamType="4" PID="3022"/>
+</Channel>
+<Channel Program="宁夏卫视（选传）" ProgramID="305" ServiceID="305" VideoPID="3051" AudioPID="3052" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3051"/>
+<elementryPID StreamType="4" PID="3052"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="387000" OrgNetID="0" TsID="42" QAM="64" SymbolRate="6875">
+<Channel Program="MTV" ProgramID="189" ServiceID="189" VideoPID="4221" AudioPID="4222" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4221"/>
+<elementryPID StreamType="4" PID="4222"/>
+</Channel>
+<Channel Program="兵团卫视（选传）" ProgramID="307" ServiceID="307" VideoPID="4251" AudioPID="4252" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4251"/>
+<elementryPID StreamType="4" PID="4252"/>
+</Channel>
+<Channel Program="珠江电影频道" ProgramID="112" ServiceID="112" VideoPID="4241" AudioPID="4242" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4241"/>
+<elementryPID StreamType="4" PID="4242"/>
+</Channel>
+<Channel Program="华娱卫视台" ProgramID="187" ServiceID="187" VideoPID="4211" AudioPID="4212" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4211"/>
+<elementryPID StreamType="4" PID="4212"/>
+</Channel>
+<Channel Program="星空卫视" ProgramID="188" ServiceID="188" VideoPID="4231" AudioPID="4232" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="4231"/>
+<elementryPID StreamType="4" PID="4232"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="395000" OrgNetID="0" TsID="24" QAM="64" SymbolRate="6875">
+<Channel Program="CCTV-10（选传）" ProgramID="140" ServiceID="140" VideoPID="2421" AudioPID="2422" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2421"/>
+<elementryPID StreamType="4" PID="2422"/>
+</Channel>
+<Channel Program="CCTV-11（选传）" ProgramID="141" ServiceID="141" VideoPID="2431" AudioPID="2432" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2431"/>
+<elementryPID StreamType="4" PID="2432"/>
+</Channel>
+<Channel Program="CCTV-12（选传）" ProgramID="142" ServiceID="142" VideoPID="2441" AudioPID="2442" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2441"/>
+<elementryPID StreamType="4" PID="2442"/>
+</Channel>
+<Channel Program="CCTV-音乐（选传）" ProgramID="144" ServiceID="144" VideoPID="2451" AudioPID="2452" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2451"/>
+<elementryPID StreamType="4" PID="2452"/>
+</Channel>
+<Channel Program="CCTV-9（选传）" ProgramID="139" ServiceID="139" VideoPID="2411" AudioPID="2412" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2411"/>
+<elementryPID StreamType="4" PID="2412"/>
+</Channel>
+<Channel Program="未知1" ProgramID="1001" ServiceID="1001" VideoPID="2461" AudioPID="2462" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="2461"/>
+<elementryPID StreamType="4" PID="2462"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="419000" OrgNetID="0" TsID="37" QAM="64" SymbolRate="6875">
+<Channel Program="乒羽频道（付费）" ProgramID="374" ServiceID="374" VideoPID="3741" AudioPID="3742" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3741"/>
+<elementryPID StreamType="4" PID="3742"/>
+</Channel>
+<Channel Program="中华美食（付费）" ProgramID="378" ServiceID="378" VideoPID="3781" AudioPID="3782" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3781"/>
+<elementryPID StreamType="4" PID="3782"/>
+</Channel>
+<Channel Program="CHC家庭影院（付费）" ProgramID="375" ServiceID="375" VideoPID="3751" AudioPID="3752" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3751"/>
+<elementryPID StreamType="4" PID="3752"/>
+</Channel>
+<Channel Program="CHC动作电影（付费）" ProgramID="377" ServiceID="377" VideoPID="3771" AudioPID="3772" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3771"/>
+<elementryPID StreamType="4" PID="3772"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="443000" OrgNetID="0" TsID="39" QAM="64" SymbolRate="6875">
+<Channel Program="欧洲足球（付费）" ProgramID="392" ServiceID="392" VideoPID="3921" AudioPID="3922" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3921"/>
+<elementryPID StreamType="4" PID="3922"/>
+</Channel>
+<Channel Program="岭南戏曲（付费）" ProgramID="395" ServiceID="395" VideoPID="3951" AudioPID="3952" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3951"/>
+<elementryPID StreamType="4" PID="3952"/>
+</Channel>
+<Channel Program="天元围棋（付费）" ProgramID="396" ServiceID="396" VideoPID="3961" AudioPID="3962" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3961"/>
+<elementryPID StreamType="4" PID="3962"/>
+</Channel>
+<Channel Program="会展频道" ProgramID="114" ServiceID="114" VideoPID="3981" AudioPID="3982" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3981"/>
+<elementryPID StreamType="4" PID="3982"/>
+</Channel>
+<Channel Program="英语辅导（付费）" ProgramID="394" ServiceID="394" VideoPID="3941" AudioPID="3942" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3941"/>
+<elementryPID StreamType="4" PID="3942"/>
+</Channel>
+<Channel Program="房产频道" ProgramID="113" ServiceID="113" VideoPID="3931" AudioPID="3932" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3931"/>
+<elementryPID StreamType="4" PID="3932"/>
+</Channel>
+<Channel Program="高尔夫（付费）" ProgramID="391" ServiceID="391" VideoPID="3911" AudioPID="3912" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3911"/>
+<elementryPID StreamType="4" PID="3912"/>
+</Channel>
+<Channel Program="新动漫（付费）" ProgramID="397" ServiceID="397" VideoPID="3971" AudioPID="3972" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="3971"/>
+<elementryPID StreamType="4" PID="3972"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="459000" OrgNetID="0" TsID="45" QAM="64" SymbolRate="6875">
+<Channel Program="交通之声" ProgramID="4502" ServiceID="4502" VideoPID="8765" AudioPID="4534" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+<elementryPID StreamType="4" PID="4534"/>
+</Channel>
+<Channel Program="新闻频道" ProgramID="4503" ServiceID="4503" VideoPID="8765" AudioPID="4537" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+<elementryPID StreamType="4" PID="4537"/>
+</Channel>
+<Channel Program="珠江经济台" ProgramID="4504" ServiceID="4504" VideoPID="8765" AudioPID="4540" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+<elementryPID StreamType="4" PID="4540"/>
+</Channel>
+<Channel Program="音乐之声" ProgramID="4505" ServiceID="4505" VideoPID="8765" AudioPID="4543" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+<elementryPID StreamType="4" PID="4543"/>
+</Channel>
+<Channel Program="城市之声" ProgramID="4506" ServiceID="4506" VideoPID="8765" AudioPID="4547" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+<elementryPID StreamType="4" PID="4547"/>
+</Channel>
+<Channel Program="故事广播" ProgramID="4512" ServiceID="4512" VideoPID="8765" AudioPID="4564" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+<elementryPID StreamType="4" PID="4564"/>
+</Channel>
+<Channel Program="南方生活广播" ProgramID="4501" ServiceID="4501" VideoPID="8765" AudioPID="4531" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+<elementryPID StreamType="4" PID="4531"/>
+</Channel>
+<Channel Program="股市广播" ProgramID="4507" ServiceID="4507" VideoPID="8765" AudioPID="4549" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+<elementryPID StreamType="4" PID="4549"/>
+</Channel>
+<Channel Program="文体广播" ProgramID="4508" ServiceID="4508" VideoPID="8765" AudioPID="4552" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+<elementryPID StreamType="4" PID="4552"/>
+</Channel>
+<Channel Program="流行音乐" ProgramID="4509" ServiceID="4509" VideoPID="8765" AudioPID="4555" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+<elementryPID StreamType="3" PID="4555"/>
+</Channel>
+<Channel Program="钢琴音乐" ProgramID="4510" ServiceID="4510" VideoPID="8765" AudioPID="4558" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+<elementryPID StreamType="3" PID="4558"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="474000" OrgNetID="0" TsID="46" QAM="64" SymbolRate="6875">
+<Channel Program="广东视窗" ProgramID="100" ServiceID="100" VideoPID="8765" AudioPID="0" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="490000" OrgNetID="0" TsID="91" QAM="64" SymbolRate="6875">
+<Channel Program="未知1" ProgramID="912" ServiceID="912" VideoPID="1021" AudioPID="1022" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1021"/>
+<elementryPID StreamType="4" PID="1022"/>
+</Channel>
+<Channel Program="未知2" ProgramID="913" ServiceID="913" VideoPID="1031" AudioPID="1032" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1031"/>
+<elementryPID StreamType="3" PID="1032"/>
+</Channel>
+<Channel Program="未知3" ProgramID="914" ServiceID="914" VideoPID="8765" AudioPID="1042" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+<elementryPID StreamType="4" PID="1042"/>
+</Channel>
+<Channel Program="股票平台" ProgramID="911" ServiceID="911" VideoPID="8765" AudioPID="0" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="498000" OrgNetID="0" TsID="51" QAM="64" SymbolRate="6875">
+<Channel Program="电视报纸" ProgramID="200" ServiceID="200" VideoPID="8765" AudioPID="0" Encrypt="0" HDTV="0">
+<elementryPID StreamType="0" PID="8765"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="514000" OrgNetID="0" TsID="80" QAM="64" SymbolRate="6875">
+<Channel Program="新闻-0" ProgramID="1000" ServiceID="1000" VideoPID="1300" AudioPID="1500" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1300"/>
+<elementryPID StreamType="3" PID="1500"/>
+</Channel>
+<Channel Program="新闻-6" ProgramID="1006" ServiceID="1006" VideoPID="1306" AudioPID="1506" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1306"/>
+<elementryPID StreamType="3" PID="1506"/>
+</Channel>
+<Channel Program="新闻-3" ProgramID="1003" ServiceID="1003" VideoPID="1303" AudioPID="1503" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1303"/>
+<elementryPID StreamType="3" PID="1503"/>
+</Channel>
+<Channel Program="新闻-2" ProgramID="1002" ServiceID="1002" VideoPID="1302" AudioPID="1502" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1302"/>
+<elementryPID StreamType="3" PID="1502"/>
+</Channel>
+<Channel Program="新闻-1" ProgramID="1001" ServiceID="1001" VideoPID="1301" AudioPID="1501" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1301"/>
+<elementryPID StreamType="3" PID="1501"/>
+</Channel>
+<Channel Program="新闻-5" ProgramID="1005" ServiceID="1005" VideoPID="1305" AudioPID="1505" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1305"/>
+<elementryPID StreamType="3" PID="1505"/>
+</Channel>
+<Channel Program="新闻-7" ProgramID="1007" ServiceID="1007" VideoPID="1307" AudioPID="1507" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1307"/>
+<elementryPID StreamType="3" PID="1507"/>
+</Channel>
+<Channel Program="新闻-4" ProgramID="1004" ServiceID="1004" VideoPID="1304" AudioPID="1504" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1304"/>
+<elementryPID StreamType="3" PID="1504"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="522000" OrgNetID="0" TsID="81" QAM="64" SymbolRate="6875">
+<Channel Program="宣传-0" ProgramID="1017" ServiceID="1017" VideoPID="1217" AudioPID="1417" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1217"/>
+<elementryPID StreamType="3" PID="1417"/>
+</Channel>
+<Channel Program="新闻-9" ProgramID="1011" ServiceID="1011" VideoPID="1211" AudioPID="1411" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1211"/>
+<elementryPID StreamType="3" PID="1411"/>
+</Channel>
+<Channel Program="新闻-13" ProgramID="1015" ServiceID="1015" VideoPID="1215" AudioPID="1415" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1215"/>
+<elementryPID StreamType="3" PID="1415"/>
+</Channel>
+<Channel Program="新闻-10" ProgramID="1012" ServiceID="1012" VideoPID="1212" AudioPID="1412" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1212"/>
+<elementryPID StreamType="3" PID="1412"/>
+</Channel>
+<Channel Program="新闻-14" ProgramID="1016" ServiceID="1016" VideoPID="1216" AudioPID="1416" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1216"/>
+<elementryPID StreamType="3" PID="1416"/>
+</Channel>
+<Channel Program="新闻-8" ProgramID="1010" ServiceID="1010" VideoPID="1210" AudioPID="1410" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1210"/>
+<elementryPID StreamType="3" PID="1410"/>
+</Channel>
+<Channel Program="新闻-11" ProgramID="1013" ServiceID="1013" VideoPID="1213" AudioPID="1413" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1213"/>
+<elementryPID StreamType="3" PID="1413"/>
+</Channel>
+<Channel Program="新闻-12" ProgramID="1014" ServiceID="1014" VideoPID="1214" AudioPID="1414" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1214"/>
+<elementryPID StreamType="3" PID="1414"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="530000" OrgNetID="0" TsID="82" QAM="64" SymbolRate="6875">
+<Channel Program="电影-0" ProgramID="1026" ServiceID="1026" VideoPID="1226" AudioPID="1426" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1226"/>
+<elementryPID StreamType="3" PID="1426"/>
+</Channel>
+<Channel Program="电视剧-1" ProgramID="1023" ServiceID="1023" VideoPID="1223" AudioPID="1423" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1223"/>
+<elementryPID StreamType="3" PID="1423"/>
+</Channel>
+<Channel Program="电视剧-12" ProgramID="1025" ServiceID="1025" VideoPID="1225" AudioPID="1425" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1225"/>
+<elementryPID StreamType="3" PID="1425"/>
+</Channel>
+<Channel Program="电视剧-02" ProgramID="1022" ServiceID="1022" VideoPID="1222" AudioPID="1422" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1222"/>
+<elementryPID StreamType="3" PID="1422"/>
+</Channel>
+<Channel Program="电视剧-11" ProgramID="1024" ServiceID="1024" VideoPID="1224" AudioPID="1424" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1224"/>
+<elementryPID StreamType="3" PID="1424"/>
+</Channel>
+<Channel Program="电视剧-0" ProgramID="1020" ServiceID="1020" VideoPID="1220" AudioPID="1420" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1220"/>
+<elementryPID StreamType="3" PID="1420"/>
+</Channel>
+<Channel Program="电影-1" ProgramID="1027" ServiceID="1027" VideoPID="1227" AudioPID="1427" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1227"/>
+<elementryPID StreamType="3" PID="1427"/>
+</Channel>
+<Channel Program="电视剧-01" ProgramID="1021" ServiceID="1021" VideoPID="1221" AudioPID="1421" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1221"/>
+<elementryPID StreamType="3" PID="1421"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="538000" OrgNetID="0" TsID="83" QAM="64" SymbolRate="6875">
+<Channel Program="综艺-0" ProgramID="1035" ServiceID="1035" VideoPID="1235" AudioPID="1435" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1235"/>
+<elementryPID StreamType="3" PID="1435"/>
+</Channel>
+<Channel Program="生活-0" ProgramID="1037" ServiceID="1037" VideoPID="1237" AudioPID="1437" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1237"/>
+<elementryPID StreamType="3" PID="1437"/>
+</Channel>
+<Channel Program="电影-3" ProgramID="1031" ServiceID="1031" VideoPID="1231" AudioPID="1431" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1231"/>
+<elementryPID StreamType="3" PID="1431"/>
+</Channel>
+<Channel Program="电影-2" ProgramID="1030" ServiceID="1030" VideoPID="1230" AudioPID="1430" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1230"/>
+<elementryPID StreamType="3" PID="1430"/>
+</Channel>
+<Channel Program="体育-1" ProgramID="1033" ServiceID="1033" VideoPID="1233" AudioPID="1433" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1233"/>
+<elementryPID StreamType="3" PID="1433"/>
+</Channel>
+<Channel Program="体育-2" ProgramID="1034" ServiceID="1034" VideoPID="1234" AudioPID="1434" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1234"/>
+<elementryPID StreamType="3" PID="1434"/>
+</Channel>
+<Channel Program="体育-0" ProgramID="1032" ServiceID="1032" VideoPID="1232" AudioPID="1432" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1232"/>
+<elementryPID StreamType="3" PID="1432"/>
+</Channel>
+<Channel Program="少儿-0" ProgramID="1036" ServiceID="1036" VideoPID="1236" AudioPID="1436" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1236"/>
+<elementryPID StreamType="3" PID="1436"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="554000" OrgNetID="0" TsID="84" QAM="64" SymbolRate="6875">
+<Channel Program="银晟电影-2" ProgramID="1042" ServiceID="1042" VideoPID="1242" AudioPID="1442" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1242"/>
+<elementryPID StreamType="3" PID="1442"/>
+</Channel>
+<Channel Program="银晟电影-31" ProgramID="1045" ServiceID="1045" VideoPID="1245" AudioPID="1445" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1245"/>
+<elementryPID StreamType="3" PID="1445"/>
+</Channel>
+<Channel Program="银晟电影-21" ProgramID="1043" ServiceID="1043" VideoPID="1243" AudioPID="1443" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1243"/>
+<elementryPID StreamType="3" PID="1443"/>
+</Channel>
+<Channel Program="银晟电影-41" ProgramID="1047" ServiceID="1047" VideoPID="1247" AudioPID="1447" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1247"/>
+<elementryPID StreamType="3" PID="1447"/>
+</Channel>
+<Channel Program="银晟电影-1" ProgramID="1040" ServiceID="1040" VideoPID="1240" AudioPID="1440" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1240"/>
+<elementryPID StreamType="3" PID="1440"/>
+</Channel>
+<Channel Program="银晟电影-3" ProgramID="1044" ServiceID="1044" VideoPID="1244" AudioPID="1444" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1244"/>
+<elementryPID StreamType="3" PID="1444"/>
+</Channel>
+<Channel Program="银晟电影-11" ProgramID="1041" ServiceID="1041" VideoPID="1241" AudioPID="1441" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1241"/>
+<elementryPID StreamType="3" PID="1441"/>
+</Channel>
+<Channel Program="银晟电影-4" ProgramID="1046" ServiceID="1046" VideoPID="1246" AudioPID="1446" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1246"/>
+<elementryPID StreamType="3" PID="1446"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="562000" OrgNetID="0" TsID="85" QAM="64" SymbolRate="6875">
+<Channel Program="银晟电影-6" ProgramID="1052" ServiceID="1052" VideoPID="1252" AudioPID="1452" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1252"/>
+<elementryPID StreamType="3" PID="1452"/>
+</Channel>
+<Channel Program="银晟电影-51" ProgramID="1051" ServiceID="1051" VideoPID="1251" AudioPID="1451" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1251"/>
+<elementryPID StreamType="3" PID="1451"/>
+</Channel>
+<Channel Program="银晟电影-81" ProgramID="1057" ServiceID="1057" VideoPID="1257" AudioPID="1457" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1257"/>
+<elementryPID StreamType="3" PID="1457"/>
+</Channel>
+<Channel Program="银晟电影-61" ProgramID="1053" ServiceID="1053" VideoPID="1253" AudioPID="1453" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1253"/>
+<elementryPID StreamType="3" PID="1453"/>
+</Channel>
+<Channel Program="银晟电影-5" ProgramID="1050" ServiceID="1050" VideoPID="1250" AudioPID="1450" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1250"/>
+<elementryPID StreamType="3" PID="1450"/>
+</Channel>
+<Channel Program="银晟电影-8" ProgramID="1056" ServiceID="1056" VideoPID="1256" AudioPID="1456" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1256"/>
+<elementryPID StreamType="3" PID="1456"/>
+</Channel>
+<Channel Program="银晟电影-71" ProgramID="1055" ServiceID="1055" VideoPID="1255" AudioPID="1455" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1255"/>
+<elementryPID StreamType="3" PID="1455"/>
+</Channel>
+<Channel Program="银晟电影-7" ProgramID="1054" ServiceID="1054" VideoPID="1254" AudioPID="1454" Encrypt="0" HDTV="0">
+<elementryPID StreamType="2" PID="1254"/>
+<elementryPID StreamType="3" PID="1454"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="594000" OrgNetID="0" TsID="53" QAM="64" SymbolRate="6875">
+<Channel Program="深圳卫视高清" ProgramID="499" ServiceID="499" VideoPID="5312" AudioPID="5311" Encrypt="0" HDTV="1">
+<elementryPID StreamType="2" PID="5312"/>
+<elementryPID StreamType="6" PID="5311"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="602000" OrgNetID="0" TsID="52" QAM="64" SymbolRate="6875">
+<Channel Program="广东卫视高清" ProgramID="496" ServiceID="496" VideoPID="5211" AudioPID="5212" Encrypt="0" HDTV="1">
+<elementryPID StreamType="2" PID="5211"/>
+<elementryPID StreamType="6" PID="5212"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="626000" OrgNetID="0" TsID="49" QAM="64" SymbolRate="6875">
+<Channel Program="广东有线高清演示" ProgramID="502" ServiceID="502" VideoPID="4911" AudioPID="4912" Encrypt="0" HDTV="1">
+<elementryPID StreamType="2" PID="4911"/>
+<elementryPID StreamType="6" PID="4912"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="634000" OrgNetID="0" TsID="48" QAM="64" SymbolRate="6875">
+<Channel Program="CHC高清电影" ProgramID="504" ServiceID="504" VideoPID="4811" AudioPID="4812" Encrypt="0" HDTV="1">
+<elementryPID StreamType="2" PID="4811"/>
+<elementryPID StreamType="4" PID="4812"/>
+</Channel>
+</ChannelScan>
+<ChannelScan Freq="642000" OrgNetID="0" TsID="47" QAM="64" SymbolRate="6875">
+<Channel Program="CCTV-1高清" ProgramID="497" ServiceID="497" VideoPID="4711" AudioPID="4712" Encrypt="0" HDTV="1">
+<elementryPID StreamType="2" PID="4711"/>
+<elementryPID StreamType="6" PID="4712"/>
+</Channel>
+<Channel Program="央视综合高清" ProgramID="498" ServiceID="498" VideoPID="4721" AudioPID="4722" Encrypt="0" HDTV="1">
+<elementryPID StreamType="2" PID="4721"/>
+<elementryPID StreamType="6" PID="4722"/>
+</Channel>
+</ChannelScan>
+</ChannelScanQuery>
+</ReturnInfo>
+</Msg>

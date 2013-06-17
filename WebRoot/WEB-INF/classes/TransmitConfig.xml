@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ROOT>
+    <SMG>
+        <!-- SMG 配置信息 
+        Index:	通道号
+        IP:		设备IP
+        URL:	数据接收URL
+        HDFlag: 高清标记 0:没有高清硬转码 1:有高清硬转码
+        HDURL:  高清硬转码接收URL
+        IndexType: 通道类型(1:ChangeProgramQuery(频道扫描和指标查询) 2: AutoRecord(自动录像) 3: GetIndexSet(性能指标和星座图)
+         (和视频相关的操作请配置数据库)
+		 0：停用（stop） 1：实时视频（TimeVideo）2：轮播辅助（StreamRoundInfoQuery）3：轮训测量（GetIndexSet）4：录像（AutoRecord）5：空闲（null）
+        -->
+        <SMGCardInfo Index="1"  URL="http://192.168.0.60:8080/Setup1/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="ChannelScanQuery" />
+        <SMGCardInfo Index="2"  URL="http://192.168.0.60:8080/Setup2/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="3"  URL="http://192.168.0.61:8080/Setup1/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="4"  URL="http://192.168.0.61:8080/Setup2/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="5"  URL="http://192.168.0.62:8080/Setup1/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="6"  URL="http://192.168.0.62:8080/Setup2/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+		<!--
+        <SMGCardInfo Index="7"  URL="http://192.168.0.70:8080/Setup1/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="8"  URL="http://192.168.0.70:8080/Setup2/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="9"  URL="http://192.168.0.73:8080/Setup1/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="10" URL="http://192.168.0.73:8080/Setup2/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="11" URL="http://192.168.0.74:8080/Setup1/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="12" URL="http://192.168.0.74:8080/Setup2/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+		
+        <SMGCardInfo Index="13" URL="http://192.168.0.75:8080/Setup1/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="14" URL="http://192.168.0.75:8080/Setup2/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="15" URL="http://192.168.0.78:8080/Setup1/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="16" URL="http://192.168.0.78:8080/Setup2/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="17" URL="http://192.168.0.80:8080/Setup1/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="18" URL="http://192.168.0.80:8080/Setup2/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+
+        <SMGCardInfo Index="19" URL="http://192.168.0.83:8080/Setup1/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="20" URL="http://192.168.0.83:8080/Setup2/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        <SMGCardInfo Index="21" URL="http://192.168.0.86:8080/Setup1/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="AutoRecord" />
+        
+        <SMGCardInfo Index="22"  URL="http://192.168.0.60:8080/Setup1/" HDFlag="0" HDURL="http://192.168.100.101:8080/Setup/" IndexType="GetIndexSet" />
+		-->
+    </SMG>
+
+    <IPM>
+        <!-- 多画软件配置信息
+      IndexMin: 最小通道号
+      IndexMax: 最大通道号
+      IP:	设备IP
+      RecordType: 0:不录像 1:异态触发录像 2:自动录像 3:多画面合成(马赛克)
+      URL:  设备接收到URL地址
+      -->
+        <IPMInfo IndexMin="1" IndexMax="20" RecordType="2"  URL="http://192.168.0.34:8280/Setup/"/>
+    </IPM>
+    <TSC>
+        <!-- 转码软件配置信息
+      IndexMin: 最小通道号
+      IndexMax: 最大通道号
+      IP:	设备IP
+      URL:  设备接收到URL地址
+      RecordType: 0:不录像 1:异态触发录像 2:自动录像
+      -->
+        <TSCInfo IndexMin="1" IndexMax="10" URL="http://192.168.0.22:8089/Setup/" RecordType="2"/>
+        <TSCInfo IndexMin="11" IndexMax="20" URL="http://192.168.0.11:8089/Setup/" RecordType="2"/>
+    </TSC>
+	<TSGrab URL="http://192.168.0.26:8088/Setup/"/>
+    <SYSTEM>
+        <!-- 本地系统配置信息
+      MaxRecordMbpsFlag 增加码率后允许录制节目最大数
+      IsHasAlarmID 是否存在AlarmID, 报警数据是否入库， 0: 不入库 1:入库
+      IsEPGZip EPG数据是否打包为ZIP，0: 不打包 1:大于1M打包
+      IsEPGFromDataBase EPG信息是否从数据库取得 0:不从数据库取得数据 1:从数据库取得
+      IsAutoAlarmReply: 报警信息是否主动不报 0:不补报报警信息 1:补报报警信息
+      MaxAutoRecordNum 最大支持节目路数，用于配置悲观和乐观值
+      CenterAlarmURL 报警上报地址  http://192.168.2.177:8088/Web2.0/servlet/SDVAlarmReceServlet
+      http://10.134.121.4/interface/receive.asmx
+      SrcCode	本地code(340200D01)
+      DstCode	中心code
+      IsAlarmLogEnable="0" 报警数据保存日志标记
+      receFilePath 中心下发文件保存地址
+      sendFilePath 中心上报文件保存地址
+      alarmFilePath 报警上报保存地址
+      sendErrorFilePath 错误信息文件保存地址
+      MHPInfoFilePath MHP采集保存地址
+      EPGInfoFilePath EPG采集保存地址
+      PSIInfoFilePath PSI采集保存地址
+      TomcatHomePath Tomcat的物理地址
+      TomcatPort     Tomcat的端口号
+      LocalRedirectIp 本地对外的IP地址
+      -->
+        <SysInfo MaxRecordMbpsFlag="5" IsHasAlarmID="1" IsEPGZip="1" IsEPGFromDataBase="0" IsAutoAlarmReply="1" MaxAutoRecordNum="40" CenterAlarmURL="http://10.134.121.4/interface/receive.asmx" SrcCode="440000M01" DstCode="440000G01"  AgentType="SI" CenterToAgentURL="http://192.168.2.216:8080/transmit/servlet/transmit" AgentToCenterURL="http://10.24.32.28:8089/servlet/receiver"/>
+        <SysLog  IsAlarmLogEnable="0" receFilePath="D:\\Loging\\ReceCenterFile" sendFilePath="D:\\Loging\\SendUpFile" alarmFilePath="D:\\Loging\\AlarmUpFile" sendErrorFilePath="D:\\Loging\\ErrorUpFile"/>
+        <PSIInfo MHPInfoFilePath="D:\MHPInfo" EPGInfoFilePath="D:\EPGInfo" PSIInfoFilePath="D:\PSI_SIInfo" TSGrabURL="http://192.168.0.26:8088/Setup/"/>
+        <Tomcat TomcatHomePath="C:\apache-tomcat-6.0.29" TomcatPort="8088" LocalRedirectIp="192.168.2.232"/>
+    </SYSTEM>
+</ROOT>

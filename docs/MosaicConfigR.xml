@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GB2312" standalone="yes"?>
+<Msg Version="2.3" MsgID="2" Type="MonUp" DateTime="2002-08-17 15:30:00" SrcCode="110000X01" DstCode="110000N01" SrcURL="http://10.24.32.28:8089" Priority="1">
+	<Return Type="MosaicConfig" Value="0" Desc="成功"></Return>
+	<ReturnInfo>
+		<MosaicUrl Url="http://10.0.0.1/index.html" />
+	</ReturnInfo>
+</Msg>

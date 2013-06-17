@@ -1,0 +1,11 @@
+1. Tomcat 文件共享方式访问
+修改server.xml配置文件, 在<Host>标签中增加下面内容
+<Context path="/TSCServer" docBase="\\10.0.0.253\DstRecord" reloadable="true" />
+
+2. Bat 中 Sleep
+@echo off
+echo Wscript.Sleep WScript.Arguments(0) >%tmp%\delay.vbs
+cscript //b //nologo %tmp%\delay.vbs 5000
+del %tmp%\delay.vbs > nul
+ 
+

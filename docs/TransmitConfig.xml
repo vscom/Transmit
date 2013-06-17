@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ROOT>
+    <SMG>
+        <!-- SMG 配置信息 
+        Index:	通道号
+        IP:		设备IP
+        URL:	数据接收URL
+        IndexType: 通道类型(1:ChangeProgramQuery(手动选台) 2:GetIndexSet(指标查询) 3:ChannelScanQuery(频道扫描))
+        -->
+        <SMGCardInfo Index="1" IP="192.168.0.1" URL="http://192.168.0.1:8080/Setup" IndexType="ChangeProgramQuery" />
+        <SMGCardInfo Index="2" IP="192.168.0.2" URL="http://192.168.0.2:8080/Setup" IndexType="GetIndexSet" />
+        <SMGCardInfo Index="3" IP="192.168.0.3" URL="http://192.168.0.3:8080/Setup" IndexType="ChannelScanQuery" />
+    </SMG>
+    <IPM>
+        <IPMInfo IndexMin="1" IndexMax="16" IP="192.168.0.11" URL="http://192.168.0.11:8080/Setup"/>
+        <IPMInfo IndexMin="17" IndexMax="32" IP="192.168.0.12" URL="http://192.168.0.12:8080/Setup"/>
+    </IPM>
+    <TSC>
+        <TSCInfo IndexMin="1" IndexMax="16" IP="192.168.0.21" URL="http://192.168.0.21:8080/Setup"/>
+        <TSCInfo IndexMin="17" IndexMax="32" IP="192.168.0.22" URL="http://192.168.0.22:8080/Setup"/>
+    </TSC>
+</ROOT>

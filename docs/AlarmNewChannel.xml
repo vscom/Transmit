@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="GB2312"?>
+<Msg Version="4" MsgID="29469" Type="MonUp" DateTime="2000-01-01 16:30:25" SrcCode="110004" DstCode="" ReplyID="-1">
+    <Return Type="AlarmNewChannel" Value="0" Desc="成功"/>
+    <ReturnInfo>
+        <ChannelScan Freq="498000" OrgNetID="0" TsID="1" QAM="64" SymbolRate="6875">
+            <Channel Program="节目1" ProgramID="1" ServiceID="1" VideoPID="4096" AudioPID="4097" Encrypt="0" HDTV="0">
+                <elementryPID StreamType="2" PID="4096"/>
+                <elementryPID StreamType="3" PID="4097"/>
+            </Channel>
+            <Channel Program="节目2" ProgramID="2" ServiceID="2" VideoPID="4196" AudioPID="4197" Encrypt="1" HDTV="1">
+                <elementryPID StreamType="2" PID="4196"/>
+                <elementryPID StreamType="3" PID="4197"/>
+            </Channel>
+        </ChannelScan>
+    </ReturnInfo>
+</Msg>
+

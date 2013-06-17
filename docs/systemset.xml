@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Msg Version="4" MsgID="2" Type="MonDown" DateTime="2009-04-13 18:00:00" SrcCode="110000X01" DstCode="110000N01" SrcURL="http://10.24.32.28:8089" Priority="1">
+	<SysInfoSet>
+		<SysInfo  ChannelNum0="1" ChannelNum1="2"  Ip="192.168.0.78" Mask="255.255.255.0" Gateway="192.168.0.1" 
+		AlarmURL="http://192.168.0.70:8088/Web2.0/servlet/AlarmReceServlet"
+		TimerURL="http://192.168.0.70:8088/Web2.0/servlet/AlarmReceServlet" 
+		TsgrabEnable="0" CIMode="0" CI0Max="8" CI1Max="8" />
+		<!-- 
+		         ChannelNum0: first channel num
+                         ChannelNum1: secend channel num
+			 Ip:          board ip
+		         Mask:        board mask
+                         Gateway:     board gateway
+			 AlarmURL:    Alarm report url
+			 TimerURL:    timing server url
+			 TsgrabEnable: TSgrab switch
+                         CIMode:    CI Run mode: 0-double 1-firstchannel 2-secendchannel
+                         CI0Max:    first channel Max ci number
+                         CI1Max:    secend channel Max ci number
+		-->
+	</SysInfoSet>
+</Msg>
