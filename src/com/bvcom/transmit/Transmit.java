@@ -49,6 +49,8 @@ public class Transmit extends HttpServlet {
         
         StringBuffer strBuff = new StringBuffer();
         
+        
+        
         Statement statement = null;
         ResultSet rs = null;
         Connection conn = DaoSupport.getJDBCConnection();
