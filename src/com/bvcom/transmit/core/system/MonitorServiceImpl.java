@@ -1,10 +1,9 @@
 package com.bvcom.transmit.core.system;
-import java.io.InputStreamReader;   
-import java.io.LineNumberReader;   
-  
-import sun.management.ManagementFactory;   
-  
-import com.sun.management.OperatingSystemMXBean;   
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+import java.lang.management.ManagementFactory;
+
+import com.sun.management.OperatingSystemMXBean;
   
 /** *//**  
  * 获取系统信息的业务逻辑实现类.  
