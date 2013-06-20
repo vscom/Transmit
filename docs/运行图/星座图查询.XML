@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Msg Version="1" MsgID="1" Type="MonDown" DateTime="2010-09-02 14:11:44" SrcCode="110000G01" DstCode="320002" SrcURL="http://192.168.2.220:8088/Web2.0/servlet/MainCtrlCMDRecvServlet" Priority="5">
+  <NephogramQuery QueryFreq="283000" QAM="QAM64"/>
+</Msg>

@@ -1,0 +1,24 @@
+<!-- The contents of this file will be loaded for each web application -->
+<Context>
+ <Resource 
+ 	name="jdbc/mysql"
+ 	auth="Container" 
+ 	type="javax.sql.DataSource" 
+ 	maxActive="300" 
+ 	maxIdle="20" 
+ 	maxWait="5000" 
+ 	username="transmit" 
+ 	password="transmit"  
+ 	driverClassName="com.mysql.jdbc.Driver" 
+ 	url="jdbc:mysql://127.0.0.1:3306/transmit?useUnicode=true" />
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+	
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+    <!--
+    <Manager pathname="" />
+    -->
+
+
+
+</Context>

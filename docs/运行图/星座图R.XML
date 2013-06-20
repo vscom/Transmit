@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="GB2312"?>
+<Msg Version="4" MsgID="1000" Type="MonUp" DateTime="2000-01-01 16:22:04" SrcURL="" SrcCode="110004" DstCode="" Priority="0" ReplyID="1000">
+    <Return Type="NephogramQuery" Value="0" Desc="成功"/>
+    <ReturnInfo>
+        <NephogramQuery QueryFreq="259000" QAM="QAM64" MER="12">
+            <Value I="-97" Q="-119"/>
+            <Value I="105" Q="124"/>
+            <Value I="-127" Q="113"/>
+            <Value I="-124" Q="-124"/>
+            <Value I="-121" Q="-107"/>
+            <Value I="-121" Q="123"/>
+            <Value I="-128" Q="108"/>
+            <Value I="-127" Q="-115"/>
+            <Value I="-110" Q="-118"/>
+            <Value I="-118" Q="122"/>
+            <Value I="-126" Q="115"/>
+            <Value I="-111" Q="109"/>
+            <Value I="118" Q="-125"/>
+            <Value I="121" Q="112"/>
+            <Value I="113" Q="127"/>
+            <Value I="116" Q="-127"/>
+            <Value I="121" Q="118"/>
+            <Value I="118" Q="118"/>
+            <Value I="-118" Q="-100"/>
+            <Value I="115" Q="127"/>
+            <Value I="-123" Q="-122"/>
+            <Value I="-124" Q="127"/>
+            <Value I="120" Q="127"/>
+            <Value I="119" Q="-114"/>
+            <Value I="106" Q="124"/>
+            <Value I="124" Q="122"/>
+            <Value I="111" Q="-127"/>
+            <Value I="-116" Q="126"/>
+            <Value I="-123" Q="-121"/>
+            <Value I="112" Q="-126"/>
+            <Value I="113" Q="126"/>
+            <Value I="105" Q="109"/>
+            <Value I="125" Q="114"/>
+            <Value I="124" Q="-107"/>
+            <Value I="-126" Q="-125"/>
+            <Value I="-128" Q="115"/>
+            <Value I="-117" Q="113"/>
+            <Value I="-127" Q="108"/>
+            <Value I="124" Q="121"/>
+            <Value I="-104" Q="123"/>
+            <Value I="119" Q="120"/>
+            <Value I="-114" Q="124"/>
+            <Value I="-128" Q="-102"/>
+            <Value I="-126" Q="125"/>
+            <Value I="122" Q="116"/>
+            <Value I="-125" Q="-128"/>
+            <Value I="124" Q="111"/>
+            <Value I="110" Q="-122"/>
+            <Value I="121" Q="105"/>
+            <Value I="-122" Q="-112"/>
+            <Value I="-125" Q="118"/>
+            <Value I="116" Q="-107"/>
+            <Value I="-116" Q="-125"/>
+            <Value I="-124" Q="117"/>
+            <Value I="107" Q="125"/>
+            <Value I="114" Q="-128"/>
+            <Value I="-123" Q="126"/>
+            <Value I="-118" Q="-121"/>
+            <Value I="119" Q="110"/>
+            <Value I="-110" Q="-128"/>
+            <Value I="112" Q="-128"/>
+            <Value I="110" Q="-112"/>
+            <Value I="-128" Q="126"/>
+            <Value I="-107" Q="-126"/>
+        </NephogramQuery>
+    </ReturnInfo>
+</Msg>
+

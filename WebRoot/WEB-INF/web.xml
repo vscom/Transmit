@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <servlet>
+    <servlet-name>TransmitConfig</servlet-name>
+    <servlet-class>com.bvcom.transmit.TransmitConfig</servlet-class>
+  </servlet>	
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Transmit</servlet-name>
+    <servlet-class>com.bvcom.transmit.Transmit</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AlarmRec</servlet-name>
+    <servlet-class>com.bvcom.transmit.AlarmRec</servlet-class>
+  </servlet>
+  <servlet>
+    <description>Transmit Database Init</description>
+    <display-name>Transmit Database Init</display-name>
+    <servlet-name>DatabaseInit</servlet-name>
+    <servlet-class>com.bvcom.transmit.DatabaseInit</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SystemStatus</servlet-name>
+    <servlet-class>com.bvcom.transmit.SystemStatus</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Rec</servlet-name>
+    <servlet-class>com.bvcom.transmit.Rec</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SmgCardInfo</servlet-name>
+    <servlet-class>com.bvcom.transmit.SmgCardInfo</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+    <servlet-name>TransmitConfig</servlet-name>
+    <url-pattern>/servlet/TransmitConfig</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Transmit</servlet-name>
+    <url-pattern>/servlet/transmit</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AlarmRec</servlet-name>
+    <url-pattern>/servlet/AlarmRec</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DatabaseInit</servlet-name>
+    <url-pattern>/servlet/DatabaseInit</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SystemStatus</servlet-name>
+    <url-pattern>/Work</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Rec</servlet-name>
+    <url-pattern>/servlet/Rec</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SmgCardInfo</servlet-name>
+    <url-pattern>/smginfo</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+    <resource-ref>
+      <description>DB Connection</description>
+      <res-ref-name>jdbc/mysql</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Container</res-auth>
+  </resource-ref>
+  
+</web-app>

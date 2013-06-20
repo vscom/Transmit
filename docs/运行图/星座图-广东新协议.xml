@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="GB2312" standalone="yes" ?> 
+<Msg  Version="4" MsgID="1000_ID" Type="MonDown" DateTime="2009-08-17 15:30:00" SrcCode="110000G01" DstCode="110000M01" SrcURL="http://10.24.32.28:8089/servlet/receiver" Priority="1">
+<ConstellationQuery Freq="283000" QAM="QAM64" SymbolRate="6875"/>
+</Msg>
