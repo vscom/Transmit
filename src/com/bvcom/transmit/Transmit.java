@@ -223,6 +223,7 @@ public class Transmit extends HttpServlet {
         AutoAnalysisTimeQueryConfigFile autoAnalysisTimeOueryConfigFile=new AutoAnalysisTimeQueryConfigFile();
         String StopTime = autoAnalysisTimeOueryConfigFile.getStreamRoundInfoQueryStopTime();
         
+        try {
 		String[] strStartDate = StopTime.split(" ");
 		String[] sStartDate = strStartDate[0].split("-");
 		String[] sEndDate = strStartDate[1].split(":");
@@ -244,6 +245,9 @@ public class Transmit extends HttpServlet {
 			Timer stopTimer=new Timer();
 	        //stopTimer.schedule(new MosaicStreamRoundInfoStopTimerTask(), stopDate);
 		}
+        } catch (Exception ex) {
+        	// 在第一次初始化的时候可能取不到时间信息
+        }
 		
 		
 		
