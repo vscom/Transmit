@@ -1,0 +1,15 @@
+1. B表存在，但是A表不存在
+select * from B where not exists (select 1 from A where foo=B.foo and bar=B.bar);
+
+CREATE TABLE `A` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `foo` varchar(25) COLLATE utf8_bin DEFAULT NULL,
+  `bar` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin
+
+
+INSERT INTO A (id, foo, bar) VALUES (1, "1", 1);
+
+2. 
+

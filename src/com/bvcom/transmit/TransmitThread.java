@@ -91,11 +91,11 @@ public class TransmitThread extends Thread {
     
     public void run() {
         
-        String returnstr = null;
+//        String returnstr = null;
         
         // 接受信息保存文件
         this.saveReceXML2File();
-        long t1 = System.currentTimeMillis();
+//        long t1 = System.currentTimeMillis();
 //        System.out.println("\n === 查询属性: " + this.bsData.getStatusQueryType() + " ThreadID: " + this.getId() + " ===\n");
 
         // 协议判别
@@ -103,7 +103,7 @@ public class TransmitThread extends Thread {
             this.transmitMainCtrl();
         } catch (CommonException e) {
         }
-        long t2 = System.currentTimeMillis();
+//        long t2 = System.currentTimeMillis();
 //        log.info(this.bsData.getStatusQueryType() + " ThreadID: " + this.getId() + " ===  系统处理时间: " + ((t2-t1)/1000) + "s");
     }
     
@@ -164,7 +164,6 @@ public class TransmitThread extends Thread {
             // 频道扫描
             ChannelScanQueryHandle ChannelScanQuery = new ChannelScanQueryHandle(this.downString, this.bsData);
             ChannelScanQuery.downXML();
-            //TODO 关注一下 
             ChannelScanQuery = null;
             
             
@@ -172,7 +171,6 @@ public class TransmitThread extends Thread {
             // 数据业务分析时间设置
             AutoAnalysisTimeQueryHandle AutoAnalysis = new AutoAnalysisTimeQueryHandle(this.downString, this.bsData);
             AutoAnalysis.downXML();
-            //TODO 关注一下 
             AutoAnalysis = null;
             
             

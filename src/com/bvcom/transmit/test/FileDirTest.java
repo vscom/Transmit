@@ -11,7 +11,6 @@ public class FileDirTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		System.out.println("Hello, world");
 	
 		String dataStr = "2010-09-01 10:00:00";

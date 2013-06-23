@@ -171,13 +171,12 @@ public class ChannelScanQueryHandle {
 	            delChannelScanTable();
 	            
 	            //added by tqy 新增加ServiceType入库操作，兼容原来表结构
-	            try{
+	            try {
 	            	updateChannelScanTable(ChannelScanQueryVOList);
 	            }
 	            catch(Exception ex){
 	            	upChannelScanTable(ChannelScanQueryVOList);
 	            }
-	            
 	        } catch (Exception e) {
 	            log.error("频道扫描结果入库失败 Error: " + e.getMessage());
 	        }
@@ -205,6 +204,9 @@ public class ChannelScanQueryHandle {
 		//添加 清空自动录像节目信息  和给TSC下发删除协议 
 		CleanChannelAndTSC  ccat=new CleanChannelAndTSC(bsData);
 		ccat.chean();
+		
+		// TODO 频道表里面有的节目，但是在映射表里面没有，需要自动把节目配置到节目映射表里面
+		
 		
 		bsData = null;
 		downString = null;

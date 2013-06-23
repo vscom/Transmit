@@ -28,6 +28,7 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -892,6 +893,9 @@ public class CommonUtility {
          */
         @SuppressWarnings("unchecked")
 		public static void checkSMGChannelIndex(int index, List SMGSendList) {
+        	if (SMGSendList == null) {
+        		SMGSendList = new ArrayList();
+        	}
             // 核心数据结构数据
             MemCoreData coreData = MemCoreData.getInstance();
             // 取得SMG配置文件信息
