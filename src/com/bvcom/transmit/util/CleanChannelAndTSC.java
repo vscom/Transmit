@@ -13,6 +13,7 @@ import com.bvcom.transmit.db.DaoSupport;
 import com.bvcom.transmit.handle.video.SetAutoRecordChannelHandle;
 import com.bvcom.transmit.parse.rec.SetAutoRecordChannelParse;
 import com.bvcom.transmit.vo.MSGHeadVO;
+import com.bvcom.transmit.vo.SMGCardInfoVO;
 import com.bvcom.transmit.vo.TSCInfoVO;
 import com.bvcom.transmit.vo.rec.SetAutoRecordChannelVO;
 /**
@@ -25,6 +26,8 @@ public class CleanChannelAndTSC {
 	private static MemCoreData coreData = MemCoreData.getInstance();
 	@SuppressWarnings("unchecked")
 	private static List TSCSendList = coreData.getTSCList();//tsc的列表信息
+	private static List SMGSendList = null;//SMG的列表信息
+	
 	private String downString = new String();
 	private UtilXML utilXML = new UtilXML();
 	private MSGHeadVO bsData = new MSGHeadVO();
@@ -68,6 +71,36 @@ public class CleanChannelAndTSC {
 				log.error("关闭数据库失败: " + e.getMessage());
 			}
 		}
+		
+		// TODO 映射表里面有，但是频道扫描表里面没有的情况 Add By: Jiang 2013.6.23
+		// SELECT * FROM channelremapping where not exists 
+		// (select * from channelscanlist where freq=channelremapping.freq and serviceid = channelremapping.serviceid)
+		try {
+			conn = DaoSupport.getJDBCConnection();
+			statement = conn.createStatement();
+			String sqlStr = "SELECT * FROM channelremapping where not exists (select * from channelscanlist where freq=channelremapping.freq and serviceid = channelremapping.serviceid)";
+			rs = statement.executeQuery(sqlStr);
+			while (rs.next()) {
+				int freq=rs.getInt("Freq");
+				int serviceid=rs.getInt("ServiceID");
+				if(freq!=0&&serviceid!=0){
+					sqlStr="update channelremapping set DelFlag = 1 where freq = "+freq+" and serviceid = "+serviceid+";";
+					statement = conn.createStatement();
+					statement.executeUpdate(sqlStr);
+				}
+			}
+		}catch (Exception e) {
+			log.error("映射表里面有，但是频道扫描表里面没有的情况: " + e.getMessage());
+		} finally {
+			try {
+				DaoSupport.close(rs);
+				DaoSupport.close(statement);
+				DaoSupport.close(conn);
+			} catch (DaoException e) {
+				log.error("关闭数据库失败: " + e.getMessage());
+			}
+		}
+		SMGSendList = new ArrayList();
 		List<SetAutoRecordChannelVO> list=new ArrayList<SetAutoRecordChannelVO>(); 
 		try {
 			conn = DaoSupport.getJDBCConnection();
@@ -87,6 +120,7 @@ public class CleanChannelAndTSC {
 				srcVo.setAudioPID(rs.getInt("AudioPID"));
 				srcVo.setRecordType(rs.getInt("RecordType"));
 				list.add(srcVo);
+				CommonUtility.checkSMGChannelIndex(rs.getInt("DevIndex"), SMGSendList);
 			}
 			
 		} catch (Exception e) {
@@ -125,11 +159,40 @@ public class CleanChannelAndTSC {
 	                	break;
 	                }
                 }
-                
             } catch (CommonException e) {
                 log.error("下发自动录像到TSC出错：" + tsc.getURL());
             }
         }
+        
+        // 当映射表里面的节目删除的时候，也删除SMG对于的节目信息 By: Jiang 2013.6.23
+        /* 暂时先注释掉，等测试成功后再用
+        String smgDownString = recordString.createForDownXML(bsData, list, "Del", true);
+        for(int l=0;l<SMGSendList.size();l++)
+        {
+            SMGCardInfoVO smg = (SMGCardInfoVO) SMGSendList.get(l);
+            try {
+                if (!url.equals(smg.getURL().trim())) {
+                smgDownString = smgDownString.replaceAll("QAM=\"64\"", "QAM=\"QAM64\"");
+            	smgDownString = smgDownString.replaceAll("QAM=\"\"", "QAM=\"QAM64\"");
+                // 自动录像下发 timeout 1000*30 三十秒
+                utilXML.SendDownNoneReturn(recordString.replaceString(smgDownString), smg.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
+                url = smg.getURL().trim();
+                }
+                // 高清相关配置
+                if (smg.getHDFlag() == 1 && smg.getHDURL() != null && !smg.getHDURL().trim().equals("")) {
+                	// 高清转码下发
+                	utilXML.SendDownNoneReturn(recordString.replaceString(smgDownString), smg.getHDURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
+                }
+                try {
+					Thread.sleep(1000 * 1);
+				} catch (InterruptedException e) {
+				}
+            } catch (CommonException e) {
+                log.error("下发自动录像到SMG出错：" + smg.getURL());
+            }
+        }
+        */
+        
 		//调用删除方法 把删除标记为1的 节目信息清空
 		try {
 			SetAutoRecordChannelHandle.delChannelRemappingByProgram();

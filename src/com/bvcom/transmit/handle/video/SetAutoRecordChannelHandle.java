@@ -718,8 +718,8 @@ public class SetAutoRecordChannelHandle {
 							continue;
 						}
 					} catch (Exception e) {
-						
 					}
+					
 					SetAutoRecordChannelVO vo = new SetAutoRecordChannelVO();
 					// channelprogramstatus(channelindex, freq, symbolrate, qam, serviceID, videoPID, audioPID, lasttime, HDFlag) 
 					vo.setIndex(Integer.parseInt(rs.getString("channelindex")));

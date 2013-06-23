@@ -9,7 +9,6 @@ public class BufferedInputStreamDemo {
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
 		String s = "This is a &copy; copyright symbol "
 				+ "but this is &copy not.\\n";
 		byte buf[] = s.getBytes();

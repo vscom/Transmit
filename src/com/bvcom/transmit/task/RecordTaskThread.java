@@ -85,9 +85,12 @@ public class RecordTaskThread extends Thread {
 			
 		} catch (DaoException e) {
 			log.error("任务录像处理出错: " + e.getMessage());
+			try {
+				Thread.sleep(CommonUtility.RECORD_TASK_WAIT_TIME);
+			} catch (Exception ex) {
+			}
 			recordTaskProcess();
 		}
-    	
     }
     
     /**

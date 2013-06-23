@@ -196,7 +196,6 @@ public class SetAutoRecordChannelParse {
         
         for(int i=0; i< AutoRecordlist.size(); i++) 
         {
-        	
         	SetAutoRecordChannelVO vo = (SetAutoRecordChannelVO)AutoRecordlist.get(i);
             
         	strBuff.append("		<ChCode Index=\"" + (isSMG?vo.getDevIndex():vo.getIpmIndex()) + "\" DevIndex=\"" + vo.getDevIndex() + "\" TscIndex=\"" + vo.getTscIndex() + "\" Freq=\"" + vo.getFreq() + "\" SymbolRate=\""+ vo.getSymbolRate() +"\" ");
