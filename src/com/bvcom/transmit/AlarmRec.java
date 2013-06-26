@@ -27,7 +27,6 @@ import com.bvcom.transmit.vo.SysInfoVO;
 import com.bvcom.transmit.vo.alarm.AlarmSearchPSetVO;
 
 public class AlarmRec extends HttpServlet {
-
     /**
 	 * 
 	 */
