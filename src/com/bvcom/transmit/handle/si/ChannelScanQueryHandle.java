@@ -2,6 +2,7 @@ package com.bvcom.transmit.handle.si;
 
 import java.io.File;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,8 @@ import org.dom4j.Document;
 import com.bvcom.transmit.config.AutoAnalysisTimeQueryConfigFile;
 import com.bvcom.transmit.core.MemCoreData;
 import com.bvcom.transmit.db.DaoSupport;
+import com.bvcom.transmit.handle.video.SetAutoRecordChannelHandle;
+import com.bvcom.transmit.parse.rec.SetAutoRecordChannelParse;
 import com.bvcom.transmit.parse.si.ChannelScanQueryParse;
 import com.bvcom.transmit.util.CleanChannelAndTSC;
 import com.bvcom.transmit.util.CommonException;
@@ -21,6 +24,7 @@ import com.bvcom.transmit.util.UtilXML;
 import com.bvcom.transmit.vo.MSGHeadVO;
 import com.bvcom.transmit.vo.SMGCardInfoVO;
 import com.bvcom.transmit.vo.SysInfoVO;
+import com.bvcom.transmit.vo.rec.SetAutoRecordChannelVO;
 import com.bvcom.transmit.vo.si.ChannelScanQueryVO;
 
 public class ChannelScanQueryHandle {
@@ -205,13 +209,239 @@ public class ChannelScanQueryHandle {
 		CleanChannelAndTSC  ccat=new CleanChannelAndTSC(bsData);
 		ccat.chean();
 		
-		// TODO 频道表里面有的节目，但是在映射表里面没有，需要自动把节目配置到节目映射表里面
-		
+		// 频道表里面有的节目，但是在映射表里面没有，需要自动把节目配置到节目映射表里面
+		// By: Jiang 2013.6.29
+		getFreqFromScanlistByRemapping();
 		
 		bsData = null;
 		downString = null;
 		SMGSendList = null;
 		utilXML = null;
+	}
+	
+	/**
+	 * 获取在频道列表里面没有被分配的频点
+	 * By: Jiang 2013.6.29
+	 */
+	private void getFreqFromScanlistByRemapping() {
+		// select * from channelscanlist where not exists (select * from channelremapping where freq=channelremapping.freq and serviceid = channelremapping.serviceid) group by freq
+		Statement statement = null;
+		ResultSet rs = null;
+		Connection conn = null;
+		
+		try {
+			conn = DaoSupport.getJDBCConnection();
+			statement = conn.createStatement();
+			String sqlStr = "select * from channelscanlist where not exists (select * from channelremapping where freq=channelremapping.freq and serviceid = channelremapping.serviceid) group by freq";
+			rs = statement.executeQuery(sqlStr);
+			while (rs.next()) {
+				int freq=rs.getInt("Freq");
+				// TODO 根据查出来的频点，获取全部节目信息，下发给SMG设备进行频点锁定
+				getProgramByFreq(freq);
+			}
+		}catch (Exception e) {
+			log.error("映射表里面有，但是频道扫描表里面没有的情况: " + e.getMessage());
+		} finally {
+			try {
+				DaoSupport.close(rs);
+				DaoSupport.close(statement);
+				DaoSupport.close(conn);
+			} catch (DaoException e) {
+				log.error("关闭数据库失败: " + e.getMessage());
+			}
+		}
+	}
+
+	/**
+	 * 从频道扫描表里面获取节目信息
+	 * @param freq
+	 * @return
+	 * By: Jiang 2013.6.29
+	 */
+	private void getProgramByFreq(int freq) {
+		Statement statement = null;
+		ResultSet rs = null;
+		Connection conn = null;
+		int devIndex = 0;
+		List<SetAutoRecordChannelVO> programList = new ArrayList<SetAutoRecordChannelVO>(); 
+		try {
+			// 从频道扫描表里面获取节目信息
+			conn = DaoSupport.getJDBCConnection();
+			statement = conn.createStatement();
+			String sqlStr = "SELECT * FROM channelscanlist where freq = " + freq + ";";
+			rs = statement.executeQuery(sqlStr);
+			while (rs.next()) {
+				SetAutoRecordChannelVO srcVo=new SetAutoRecordChannelVO();
+				srcVo.setAction("Set");
+				srcVo.setFreq(rs.getInt("Freq"));
+				srcVo.setServiceID(rs.getInt("ServiceID"));
+				srcVo.setProgramName(rs.getString("Program"));
+				srcVo.setQAM(rs.getInt("QAM"));
+				srcVo.setSymbolRate(rs.getInt("SymbolRate"));
+				srcVo.setVideoPID(rs.getInt("VideoPID"));
+				srcVo.setAudioPID(rs.getInt("AudioPID"));
+				srcVo.setHDFlag(rs.getInt("HDTV"));
+				programList.add(srcVo);
+			}
+			
+		} catch (Exception e) {
+		} finally {
+			try {
+				DaoSupport.close(rs);
+				DaoSupport.close(statement);
+				DaoSupport.close(conn);
+			} catch (DaoException e) {
+				log.error("关闭数据库失败: " + e.getMessage());
+			}
+		}
+		
+		// 从映射表里面获取没有被使用的通道或者频点已经被分配的通道
+		devIndex = getUndistributedByFreq(freq);
+		try {
+			// 从节目映射表里面获取，当前设备通道信息
+			conn = DaoSupport.getJDBCConnection();
+			statement = conn.createStatement();
+			String sqlStr = "SELECT * FROM channelremapping where Devindex = " + devIndex + ";";
+			rs = statement.executeQuery(sqlStr);
+			int count = 0;
+			while (rs.next()) {
+				SetAutoRecordChannelVO vo = programList.get(count);
+				vo.setDevIndex(rs.getInt("Devindex"));
+				vo.setIndex(rs.getInt("channelindex"));
+				vo.setRecordType(2);
+				count++;
+			}
+		} catch (Exception e) {
+			log.error("getProgramByFreq 从映射表里面获取没有被使用的通道或者频点已经被分配的通道: " + e.getMessage());
+		} finally {
+			try {
+				DaoSupport.close(rs);
+				DaoSupport.close(statement);
+				DaoSupport.close(conn);
+			} catch (DaoException e) {
+				log.error("关闭数据库失败: " + e.getMessage());
+			}
+		}
+		
+		// 下发节目信息给SMG
+		// 生成数据下发给SMG
+		List SMGSendList = new ArrayList();
+		CommonUtility.checkSMGChannelIndex(devIndex, SMGSendList);
+		
+		SetAutoRecordChannelParse recordString = new SetAutoRecordChannelParse();
+		String smgDownString = recordString.createForDownXML(bsData, programList, "Set", true);
+		String url = "";
+        for(int l=0;l<SMGSendList.size();l++)
+        {
+            SMGCardInfoVO smg = (SMGCardInfoVO) SMGSendList.get(l);
+            try {
+                if (!url.equals(smg.getURL().trim())) {
+                smgDownString = smgDownString.replaceAll("QAM=\"64\"", "QAM=\"QAM64\"");
+            	smgDownString = smgDownString.replaceAll("QAM=\"\"", "QAM=\"QAM64\"");
+                // 自动录像下发 timeout 1000*30 三十秒
+                utilXML.SendDownNoneReturn(recordString.replaceString(smgDownString), smg.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
+                url = smg.getURL().trim();
+                }
+                // 高清相关配置
+                if (smg.getHDFlag() == 1 && smg.getHDURL() != null && !smg.getHDURL().trim().equals("")) {
+                	// 高清转码下发
+                	utilXML.SendDownNoneReturn(recordString.replaceString(smgDownString), smg.getHDURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
+                }
+                try {
+					Thread.sleep(1000 * 1);
+				} catch (InterruptedException e) {
+				}
+            } catch (CommonException e) {
+                log.error("下发自动录像到SMG出错：" + smg.getURL());
+                return;
+            }
+        }
+		
+		// SMG 下发成功更新节目映射表数据库
+        SetAutoRecordChannelHandle autoRecord = new SetAutoRecordChannelHandle();
+        for (int i=0; i < programList.size(); i++) {
+        	try {
+        		SetAutoRecordChannelVO vo = programList.get(i);
+				autoRecord.upFreqByIndex(vo, vo.getIndex());
+			} catch (DaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+		
+	}
+	
+	/**
+	 * 获取在界面映射表中没有被分配的通道
+	 * 从映射表里面获取没有被使用的通道或者频点已经被分配的通道
+	 * @return devIndex SMG 的设备通道号
+	 * By: Jiang 2013.6.29
+	 */
+	private int getUndistributedByFreq(int freq) {
+		Statement statement = null;
+		ResultSet rs = null;
+		Connection conn = null;
+		int devIndex = 0;
+		// 通过Freq 和 StatusFlag 来确定相关的频点是否分配
+		StringBuffer strBuff = new StringBuffer();
+		
+		//是否为未使用的频点通道信息
+		strBuff.append("select * from channelremapping where devindex in (select DevIndex from channelremapping where delflag =0 and freq = " + freq + ") and delflag =0 and statusflag = 0");
+		System.out.println("是否为未使用的频点通道信息{freq}"+strBuff.toString());
+		try {
+			conn = DaoSupport.getJDBCConnection();
+			statement = conn.createStatement();
+			rs = statement.executeQuery(strBuff.toString());
+			
+			// 库中存在相关的节目返回相关的设备通道
+			while(rs.next()){
+				devIndex = Integer.parseInt(rs.getString("DevIndex"));
+				break;
+			}
+		} catch (Exception e) {
+			log.error("getUndistributedByFreq 获取在界面映射表中没有被分配的通道: " + e.getMessage());
+			log.error("getUndistributedByFreq 获取在界面映射表中没有被分配的通道2 SQL: " + strBuff.toString());
+		} finally {
+			try {
+				DaoSupport.close(rs);
+				DaoSupport.close(statement);
+				if (devIndex > 0) {
+					DaoSupport.close(conn);
+					return devIndex;
+				}
+			} catch (DaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		// 频点没有分配的时候获取通道信息
+		strBuff = new StringBuffer();
+		// SELECT * FROM channelremapping c where statusflag = 0 and Devindex not in (select devindex from channelremapping where statusflag = 1) group by devindex
+		strBuff.append("SELECT * FROM channelremapping c where delflag =0 and statusflag = 0 and Devindex not in (select devindex from channelremapping where delflag =0 and statusflag = 1) group by devindex");
+		System.out.println("没有取得相关的通道，需要从新分配一个新的SMG板卡:"+strBuff.toString());
+		try {
+			statement = conn.createStatement();
+			rs = statement.executeQuery(strBuff.toString());
+			// 取得没有被分配的SMG设备
+			while(rs.next()){
+				devIndex = Integer.parseInt(rs.getString("DevIndex"));
+				break;
+			}
+		} catch (Exception e) {
+			log.error("getUndistributedByFreq 获取在界面映射表中没有被分配的通道: " + e.getMessage());
+			log.error("getUndistributedByFreq 获取在界面映射表中没有被分配的通道2 SQL: " + strBuff.toString());
+		} finally {
+			try {
+				DaoSupport.close(rs);
+				DaoSupport.close(statement);
+				DaoSupport.close(conn);
+			} catch (DaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return devIndex;
 	}
 
 	/**

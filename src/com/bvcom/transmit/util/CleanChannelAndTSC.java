@@ -141,7 +141,7 @@ public class CleanChannelAndTSC {
 		String url = "";
 		String retString = "";
 	    int isError = 0;
-        for(int t=0;t<TSCSendList.size();t++){
+		for (int t = 0; t < TSCSendList.size(); t++) {
             TSCInfoVO tsc = (TSCInfoVO) TSCSendList.get(t);
             try {
             	if (tsc.getRecordType() != 1 && tsc.getRecordType() != 2) {
