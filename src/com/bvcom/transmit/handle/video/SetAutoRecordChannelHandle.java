@@ -554,7 +554,7 @@ public class SetAutoRecordChannelHandle {
 		//log.info("自动录像删除节目信息成功! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		DaoSupport.close(conn);
 	}
-    private void upFreqByIndex(SetAutoRecordChannelVO vo, int index) throws DaoException {
+    public void upFreqByIndex(SetAutoRecordChannelVO vo, int index) throws DaoException {
 
 		StringBuffer strBuff = new StringBuffer();
 		
