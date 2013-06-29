@@ -36,6 +36,8 @@ public class AlarmThread extends Thread {
 	private List alarmList = new ArrayList();
 	MSGHeadVO bsData = null;
 
+	
+	
 	UtilXML xmlUtil = new UtilXML();
 
 	public AlarmThread(List List, MSGHeadVO bsData) {
