@@ -362,7 +362,7 @@ public class ChannelScanQueryHandle {
         for (int i=0; i < programList.size(); i++) {
         	try {
         		SetAutoRecordChannelVO vo = programList.get(i);
-				autoRecord.upFreqByIndex(vo, vo.getIndex());
+				autoRecord.upChannelRemappingIndex(vo);
 			} catch (DaoException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
