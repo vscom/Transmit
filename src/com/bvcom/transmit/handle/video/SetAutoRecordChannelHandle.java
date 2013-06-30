@@ -2644,4 +2644,70 @@ public class SetAutoRecordChannelHandle {
 	public void setUtilXML(UtilXML utilXML) {
 		this.utilXML = utilXML;
 	}
+	
+	/**
+	 * 获取节目映射表的所以信息
+	 * @return
+	 * @throws DaoException
+	 */
+    public List<SetAutoRecordChannelVO> GetAllPrograms() throws DaoException {
+
+		List<SetAutoRecordChannelVO> voList = new ArrayList();
+		
+		Statement statement = null;
+		Connection conn = DaoSupport.getJDBCConnection();
+
+		ResultSet rs = null;
+		
+		StringBuffer strBuff = new StringBuffer();
+		strBuff.append("select *  from channelremapping");
+		try {
+			statement = conn.createStatement();
+			rs = statement.executeQuery(strBuff.toString());
+			while(rs.next()){
+				int freq = Integer.parseInt(rs.getString("freq"));
+				int serverID = Integer.parseInt(rs.getString("serviceID"));
+				
+				if (freq == 0 || serverID == 0) {
+					continue;
+				}
+				
+				SetAutoRecordChannelVO vo = new SetAutoRecordChannelVO();
+				
+				// channelprogramstatus(channelindex, freq, symbolrate, qam, serviceID, videoPID, audioPID, lasttime, HDFlag) 
+				vo.setIndex(Integer.parseInt(rs.getString("channelindex")));
+				vo.setTscIndex(Integer.parseInt(rs.getString("TscIndex")));
+				vo.setIpmIndex(Integer.parseInt(rs.getString("IpmIndex")));
+				vo.setFreq(freq);
+				vo.setSymbolRate(Integer.parseInt(rs.getString("symbolrate")));
+				vo.setQAM(Integer.parseInt(rs.getString("qam")));
+				vo.setAction(rs.getString("Action"));
+				  
+				vo.setServiceID(serverID);
+				
+				vo.setVideoPID(Integer.parseInt(rs.getString("videoPID")));
+				vo.setAudioPID(Integer.parseInt(rs.getString("audioPID")));
+				vo.setRecordType(Integer.parseInt(rs.getString("RecordType")));
+				vo.setDevIndex(Integer.parseInt(rs.getString("DevIndex")));
+				vo.setHDFlag(Integer.parseInt(rs.getString("HDFlag")));
+				vo.setUdp(rs.getString("udp"));
+				vo.setPort(Integer.parseInt(rs.getString("port")));
+				vo.setSmgURL(rs.getString("smgURL"));
+				vo.setProgramName(rs.getString("ProgramName"));
+				
+				voList.add(vo);
+			}
+			
+		} catch (Exception e) {
+			log.error("自动录像 取得节目相关通道错误: " + e.getMessage());
+		} finally {
+			DaoSupport.close(rs);
+			DaoSupport.close(statement);
+			DaoSupport.close(conn);
+	
+		}
+		strBuff = null;
+		
+		return voList;
+	}
 }
