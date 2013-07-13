@@ -56,7 +56,9 @@ public class SetAutoRecordChannelVO {
 	    
 	    private String smgURL;
 	    
-	    private int RecordType; //  0：不录像，1:代表故障触发录制   2：24小时录像(默认)	3: 任务录像
+	    // 0：不录像，1:代表故障触发录制   2：24小时录像(默认)	3: 任务录像
+	    // Type: 9: 频道扫描Java转发自动给SMS分配的节目 add By: Jiang 2013.7.10
+	    private int RecordType; 
 	    
 	    private String Comment;//失败原因
 
@@ -183,6 +185,7 @@ public class SetAutoRecordChannelVO {
 		/**
 		 * 0：不录像，1:代表故障触发录制   2：24小时录像(默认)	3: 任务录像  4: 马赛克合成轮播
 		 * Type: 4: 马赛克合成轮播 add By: Bian Jiang 2012.3.21
+		 * Type: 9: 频道扫描Java转发自动给SMS分配的节目 add By: Jiang 2013.7.10
 		 * @return
 		 */
 		public int getRecordType() {
@@ -192,6 +195,7 @@ public class SetAutoRecordChannelVO {
 		/**
 		 * 0：不录像，1:代表故障触发录制   2：24小时录像(默认)	3: 任务录像  4: 马赛克合成轮播
 		 * Type: 4: 马赛克合成轮播 add By: Bian Jiang 2012.3.21
+		 * Type: 9: 频道扫描Java转发自动给SMS分配的节目 add By: Jiang 2013.7.10
 		 * @param recordType
 		 */
 		public void setRecordType(int recordType) {
