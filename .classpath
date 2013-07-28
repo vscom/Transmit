@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/calendrica.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jaxen-1.1.1.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/junit.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.14.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/calendrica.jar"/>
+	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/dom4j-1.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/jaxen-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/junit.jar"/>
+	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/Hong/work/java/apache-tomcat-7.0.41/lib/servlet-api.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.0.3-bin.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="/Users/jilong/Downloads/dev/apache-tomcat-6.0.16/lib/servlet-api.jar"/>
+=======
+>>>>>>> branch 'master' of https://github.com/vscom/Transmit.git
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

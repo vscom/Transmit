@@ -308,7 +308,8 @@ public class ChannelScanQueryHandle {
 				SetAutoRecordChannelVO vo = programList.get(count);
 				vo.setDevIndex(rs.getInt("Devindex"));
 				vo.setIndex(rs.getInt("channelindex"));
-				vo.setRecordType(2);
+				// Type: 9: 频道扫描Java转发自动给SMS分配的节目 add By: Jiang 2013.7.10
+				vo.setRecordType(9);
 				count++;
 			}
 		} catch (Exception e) {

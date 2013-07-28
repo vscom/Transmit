@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 eclipse.preferences.version=1
 encoding//src/log4j.properties=GBK
 encoding//src/transmit.sql=UTF-8
 encoding/<project>=UTF-8
+=======
+eclipse.preferences.version=1
+encoding//src/log4j.properties=GBK
+encoding//src/transmit.sql=UTF-8
+encoding/<project>=UTF-8
+>>>>>>> branch 'master' of https://github.com/vscom/Transmit.git

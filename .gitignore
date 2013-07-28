@@ -1,10 +1,10 @@
 *.class
 
 # Package Files #
-*.jar
 *.war
 *.ear
 bin
+.settings
 #
 # NOTE! Don't add files that are generated in specific
 # subdirectories here. Add them in the ".gitignore" file

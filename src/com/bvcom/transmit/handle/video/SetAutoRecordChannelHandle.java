@@ -89,6 +89,20 @@ public class SetAutoRecordChannelHandle {
         SetAutoRecordChannelParse setAutoRecordChannel = new SetAutoRecordChannelParse();
         List<SetAutoRecordChannelVO> AutoRecordlist = setAutoRecordChannel.getDownXml(document);
         
+        // 查询当前的节目是否在正常输出 By: Jiang Bian 2013.7.13
+        AutoRecordlist = checkoutProgramIsWorking(AutoRecordlist);
+        
+        if (AutoRecordlist.size() <= 0) {
+        	// 如果没有新节目，就直接返回中心并退出
+	    	upString = setAutoRecordChannel.ReturnXMLByURL(this.bsData, 0,-1);
+	        try {
+	            utilXML.SendUpXML(upString, bsData);
+	        } catch (CommonException e) {
+	            log.error("自动录像回复失败: " + e.getMessage());
+	        }
+        	return;
+        }
+        
         // 判断是否自动录像是否超过配置文件中的最大值(MaxAutoRecordNum)
         int count = 0;
         for(int i=0; i< AutoRecordlist.size(); i++)  {//得到解析后的xml的对象数组中的一个操作
@@ -274,62 +288,19 @@ public class SetAutoRecordChannelHandle {
 				}
 	        //}
 	        
-	        
 	        String url = "";	        
 	        String retString = "";
 	        
-	        int isError = 0;
+	        boolean isError = false;
 	        //TODO TSC下发
-	        for(int t=0;t<TSCSendList.size();t++){
-	            TSCInfoVO tsc = (TSCInfoVO) TSCSendList.get(t);
-	            try {
-	            	if (tsc.getRecordType() != 1 && tsc.getRecordType() != 2) {
-	            		// Add By Bian Jiang 2011.1.28
-	            		// 如果不是自动录像或异态录像就进行下一个
-	            		continue;
-	            	}
-	            	//原语句不能保证一个板卡只发一次：BY TQY 
-	                if (!url.equals(tsc.getURL().trim())) {
-	                    // 自动录像下发
-	                	retString = utilXML.SendDownXML(this.downString, tsc.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
-	                    url = tsc.getURL().trim();
-	                }
-	                if(!retString.equals("")) {
-	                	isError = utilXML.getReturnValue(retString);
-		                if (isError == 1) {
-		                	break;
-		                }
-	                }
-	                
-	            } catch (CommonException e) {
-	                log.error("下发自动录像到TSC出错：" + tsc.getURL());
-	            }
-	        }
+	        isError = tscSendDev();
 	        
 	        /* IPM 不用发送 */
-	        for(int t=0;t<IPMSendList.size();t++){
-	        	IPMInfoVO ipm = (IPMInfoVO) IPMSendList.get(t);
-	            try {
-	            	if(ipm.getRecordType()==2){
-	            		if (!url.equals(ipm.getURL().trim())) {
-	            			// 自动录像下发
-	            			retString = utilXML.SendDownXML(this.downString, ipm.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
-	            			url = ipm.getURL().trim();
-	            			if(!retString.equals("")) {
-	            				isError = utilXML.getReturnValue(retString);
-	            				if (isError == 1) {
-	            					break;
-	            				}
-	            			}
-	            		}
-	            	}
-	                
-	            } catch (CommonException e) {
-	                log.error("下发自动录像到IPM出错：" + ipm.getURL());
-	            }
+	        if (isError) {
+	        	isError = ipmSendDev();
 	        }
 	        
-	    	if(AutoRecordlist.size() > 0 && isError==0) {
+	    	if(AutoRecordlist.size() > 0 && isError) {
 	    		upString = setAutoRecordChannel.ReturnXMLByURL(this.bsData, 0,-1);
 	    	} else {
 	    		upString = setAutoRecordChannel.ReturnXMLByURL(this.bsData, 1,-1);
@@ -342,7 +313,7 @@ public class SetAutoRecordChannelHandle {
 	        }
 	       
 	        //1：没有给TSC和IPM发送成功时不在给板卡发信息
-	        if(AutoRecordlist.size() > 0 && isError==0) {
+	        if(AutoRecordlist.size() > 0 && isError) {
 	        
 		        for(int l=0;l<SMGSendList.size();l++)
 		        {
@@ -444,6 +415,162 @@ public class SetAutoRecordChannelHandle {
 	        IPMSendList = null;
 	        utilXML = null;
 	        AutoRecordlist = null;
+    }
+    
+    /**
+     * 查询当前的节目是否在正常输出
+     * @param autoRecordlist
+     * @return 如果节目映射表里面没有相关的节目，返回到新的list里面
+     * By: Jiang 2013.7.13
+     */
+    private List<SetAutoRecordChannelVO> checkoutProgramIsWorking(List<SetAutoRecordChannelVO> autoRecordlist) {
+    	List<SetAutoRecordChannelVO> newRecordList = new ArrayList<SetAutoRecordChannelVO>();
+    	boolean isSet = false;
+    	for (int i = 0; i < autoRecordlist.size(); i++) {
+    		try {
+    			SetAutoRecordChannelVO vo = autoRecordlist.get(i);
+    			
+    			 if(vo.getAction().equals("Set")) {
+    				 isSet = true;
+					if (isHaveProgramInRemapping(vo) == 1) {
+						// 节目已经在映射表里面，更新录像为自动录像
+						updateRecordTypeByProgram(vo, 2);
+					} else {
+						// 节目没有在映射表里面
+						newRecordList.add(vo);
+					}
+    			 } else {
+    				 // 录像删除的时候设置为频道扫描设置的节目
+    				 vo.setTscIndex(0);
+    				 vo.setIpmIndex(0);
+    				 updateRecordTypeByProgram(vo, 9);
+    			 }
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+    	if (isSet) {
+	        boolean isError = false;
+	        //TODO TSC下发
+	        isError = tscSendDev();
+	        
+	        /* IPM 不用发送 */
+	        if (isError) {
+	        	isError = ipmSendDev();
+	        }
+    	}
+    	
+    	return newRecordList;
+    }
+    
+    /**
+     * 通过节目的频点和serverID更新录像类型
+     * @param vo
+     * @param recordType  2:自动录像 9:频道扫描自动分配
+     * @throws DaoException
+     */
+    public static void updateRecordTypeByProgram(SetAutoRecordChannelVO vo, int recordType) throws DaoException {
+
+		StringBuffer strBuff = new StringBuffer();
+		
+		Statement statement = null;
+		Connection conn = DaoSupport.getJDBCConnection();
+
+		// 取得相关节目频点信息
+		strBuff.append("update transmit.channelremapping c set ");
+		strBuff.append(" RecordType = " + recordType + ", StatusFlag = 1,");
+		strBuff.append("TscIndex = " + vo.getTscIndex() + ", ");
+		strBuff.append("IpmIndex = " + vo.getIpmIndex());
+		strBuff.append("where ");
+		strBuff.append(" freq = " + vo.getFreq());
+		strBuff.append(" and ServiceID = " + vo.getServiceID());
+		try {
+			statement = conn.createStatement();
+			statement.execute(strBuff.toString());
+		} catch (Exception e) {
+			log.error("自动录像 更新通道映射表错误: " + e.getMessage());
+		} finally {
+			DaoSupport.close(statement);
+			DaoSupport.close(conn);
+		}
+	}
+    
+    /**
+     * 给IPM设备下发指令
+     * @return true: 下发成功 False: 下发失败
+     * By: Jiang 2013.7.10
+     */
+    private boolean ipmSendDev() {
+        /* IPM 设备发送发送 */
+    	String url = "";
+    	String retString = "";
+    	int isError = 0;
+    	boolean isRet = true;
+        for(int t=0;t<IPMSendList.size();t++){
+        	IPMInfoVO ipm = (IPMInfoVO) IPMSendList.get(t);
+            try {
+            	if(ipm.getRecordType()==2){
+            		if (!url.equals(ipm.getURL().trim())) {
+            			// 自动录像下发
+            			retString = utilXML.SendDownXML(this.downString, ipm.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
+            			url = ipm.getURL().trim();
+            			if(!retString.equals("")) {
+            				isError = utilXML.getReturnValue(retString);
+            				if (isError == 1) {
+            					isRet = false;
+            					break;
+            				}
+            			}
+            		}
+            	}
+                
+            } catch (CommonException e) {
+                log.error("下发自动录像到IPM出错：" + ipm.getURL());
+            }
+        }
+        return isRet;
+    }
+    
+    /**
+     * 给TSC设备发送信息
+     * @return true: 下发成功 False: 下发失败
+     * By: Jiang 2013.7.10
+     */
+    private boolean tscSendDev() {
+        /* IPM 设备发送发送 */
+    	String url = "";
+    	String retString = "";
+    	int isError = 0;
+    	boolean isRet = true;
+        for(int t=0;t<TSCSendList.size();t++){
+            TSCInfoVO tsc = (TSCInfoVO) TSCSendList.get(t);
+            try {
+            	if (tsc.getRecordType() != 1 && tsc.getRecordType() != 2) {
+            		// Add By Bian Jiang 2011.1.28
+            		// 如果不是自动录像或异态录像就进行下一个
+            		continue;
+            	}
+            	//原语句不能保证一个板卡只发一次：BY TQY 
+                if (!url.equals(tsc.getURL().trim())) {
+                    // 自动录像下发
+                	retString = utilXML.SendDownXML(this.downString, tsc.getURL(), CommonUtility.CONN_WAIT_TIMEOUT, bsData);
+                    url = tsc.getURL().trim();
+                }
+                if(!retString.equals("")) {
+                	isError = utilXML.getReturnValue(retString);
+	                if (isError == 1) {
+	                	isRet = false;
+	                	break;
+	                }
+                }
+                
+            } catch (CommonException e) {
+                log.error("下发自动录像到TSC出错：" + tsc.getURL());
+            }
+        }
+        return isRet;
     }
     
     public void updateAutoRecordTable(SetAutoRecordChannelVO vo)
@@ -1222,6 +1349,8 @@ public class SetAutoRecordChannelHandle {
 		int flag = 0;
 		ResultSet rs = null;
 		
+		 int tscindex=0;
+		 int iasindex=0;
 		// 取得相关节目频点信息
 		strBuff.append("select * from channelremapping where StatusFlag != 0 and freq = " + vo.getFreq() + " and ServiceID = " + vo.getServiceID());
 		
@@ -1231,10 +1360,14 @@ public class SetAutoRecordChannelHandle {
 			rs = statement.executeQuery(strBuff.toString());
 			
 			// 库中存在相关的节目返回相关的设备通道
-			while(rs.next()){
+			while (rs.next()) {
 				vo.setUdp(rs.getString("udp"));
 				vo.setPort(Integer.parseInt(rs.getString("port")));
 				flag = 1;
+
+				tscindex = rs.getInt("TscIndex");
+				iasindex = rs.getInt("IpmIndex");
+				break;
 			}
 		} catch (Exception e) {
 			log.error("自动录像 取得节目相关通道错误1: " + e.getMessage());
@@ -1246,6 +1379,16 @@ public class SetAutoRecordChannelHandle {
 			DaoSupport.close(conn);
 		}
 		
+		 if(tscindex != 0 && iasindex != 0){
+			 vo.setTscIndex(tscindex);
+			 vo.setIpmIndex(iasindex);
+		 }else{
+			 //否则把同一个频点的节目发给同一个tsc
+			vo.setTscIndex(getTSCIndex(vo.getHDFlag(),vo.getFreq()));
+			//ias 通道号 平均分配  一个高清等于5个标清  Ji Long 
+			vo.setIpmIndex(getIASIndex(vo.getHDFlag(),vo.getFreq()));
+		 }
+		 
 		strBuff = null;
 		
 		
@@ -1372,6 +1515,12 @@ public class SetAutoRecordChannelHandle {
      */
     public static SetAutoRecordChannelVO delRecordTaskIndex(SetAutoRecordChannelVO vo) throws DaoException {
 
+    	// 任务录像删除的时候，标记为频道扫描自动分配的节目 By: Jiang 2013.07.13
+		 vo.setTscIndex(0);
+		 vo.setIpmIndex(0);
+		 updateRecordTypeByProgram(vo, 9);
+		 
+    	/*
 		StringBuffer strBuff = new StringBuffer();
 		
 		Statement statement = null;
@@ -1398,7 +1547,8 @@ public class SetAutoRecordChannelHandle {
 			DaoSupport.close(conn);
 		}
 		strBuff = null;
-		
+		*/
+    	
 		//log.info("自动录像 更新通道映射表成功! channelindex:" + vo.getIndex() + " freq:" + vo.getFreq() + " serviceID:" + vo.getServiceID());
 		return vo;
 	}
